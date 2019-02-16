@@ -1,10 +1,11 @@
 
-import React, { Component } from "react";
+import React from "react";
 import HomeScreen from "../Containers/HomeScreen";
 import ProfileScreen from "../Containers/ProfileScreen";
 import AboutScreen from "../Containers/AboutScreen";
 import ContactScreen from "../Containers/ContactScreen";
 import { createTabNavigator, TabBarBottom } from "react-navigation";
+import { Colors, Fonts } from "../Themes";
 
 export default {
 
@@ -54,12 +55,12 @@ export default {
           padding: 0
         },
         labelStyle: {
-          //fontFamily: Fonts.type.gotham_medium,
+          fontFamily: Fonts.type.gotham_medium,
           fontSize: 12,
           letterSpacing: 0,
         },
-        activeTintColor: 'blue',
-        inactiveTintColor: '#333333',
+        activeTintColor: Colors.headerTintColor,
+        inactiveTintColor: Colors.Text,
         //pressColor: ,
         upperCaseLabel: false,
         pressOpacity: 0.3,

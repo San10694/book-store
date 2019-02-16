@@ -4,6 +4,7 @@ ADDED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/src/main/AndroidManifest.xml:1:1-26:12
+MERGED from [:react-native-vector-icons] /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.57.2] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/cd1827cf3a8e0eae391cd42fde962050/AndroidManifest.xml:2:1-15:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/93ea944e5413c4fc195adfe93cc4db11/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:27.1.1] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/5acb9d2720dfee7027519ec501a2ca1f/AndroidManifest.xml:17:1-22:12
@@ -97,6 +98,8 @@ uses-sdk
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/src/main/AndroidManifest.xml
+MERGED from [:react-native-vector-icons] /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.57.2] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/cd1827cf3a8e0eae391cd42fde962050/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.57.2] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/cd1827cf3a8e0eae391cd42fde962050/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:27.1.1] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/93ea944e5413c4fc195adfe93cc4db11/AndroidManifest.xml:20:5-44

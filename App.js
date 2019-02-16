@@ -5,6 +5,7 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import Navigation from "./App/Navigation/AppNavigation";
 import configureStore from "./App/Redux/ConfigureStore";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const store = configureStore();
 

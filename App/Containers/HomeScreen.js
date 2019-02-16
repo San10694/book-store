@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
 
+
+const myButton = (
+  <Icon.Button
+    name="facebook"
+    backgroundColor="#3b5998"
+    onPress={this.loginWithFacebook}
+  >
+    Login with Facebook
+  </Icon.Button>
+);
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -17,18 +27,17 @@ class HomeScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Home!</Text>
         <Text style={styles.instructions}>Start Buying Books form this page</Text>
+
         <TouchableOpacity
-          style={{
-            backgroundColor: "#b5b9bf",
-            height: 35,
-            width: 200,
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 5
-          }}
           onPress={() => this.props.navigation.navigate("ProfileScreen")}
         >
-          <Text>Navigate to Profile</Text>
+          <Icon.Button
+            name="facebook"
+            backgroundColor="#3b5998"
+            onPress={this.loginWithFacebook}
+          >
+            Login with Facebook
+         </Icon.Button>
         </TouchableOpacity>
       </View>
     );
