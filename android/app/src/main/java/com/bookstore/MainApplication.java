@@ -1,4 +1,4 @@
-package com.reactnativestarter;
+package com.bookstore;
 
 import android.app.Application;
 

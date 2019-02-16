@@ -10,7 +10,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.getRestaurantList();
+    //this.props.getRestaurantList();
   }
   render() {
     return (
