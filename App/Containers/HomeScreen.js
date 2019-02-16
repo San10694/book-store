@@ -16,7 +16,7 @@ class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to Home!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>Start Buying Books form this page</Text>
         <TouchableOpacity
           style={{
             backgroundColor: "#b5b9bf",
