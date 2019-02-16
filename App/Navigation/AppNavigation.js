@@ -2,15 +2,21 @@ import React from "react";
 import {
   createStackNavigator,
   createDrawerNavigator,
-  DrawerActions
+  createTabNavigator,
+  DrawerActions, TabBarBottom
 } from "react-navigation";
 import { TouchableOpacity } from "react-native";
 import DrawerScreen from "../Components/DrawerScreen";
 import { MenuIcon } from "../Components/MenuIcon";
 import Routes from "./Routes";
 
+import HomeScreen from "../Containers/HomeScreen";
+import ProfileScreen from "../Containers/ProfileScreen";
+import AboutScreen from "../Containers/AboutScreen";
+import ContactScreen from "../Containers/ContactScreen";
+
 const DrawerNavigator = createDrawerNavigator(Routes, {
-  initialRouteName: "HomeScreen",
+  initialRouteName: "HomeTab",
   contentComponent: DrawerScreen,
   drawerWidth: 300,
   drawerBackgroundColor: "#F5FCFF",
@@ -28,6 +34,29 @@ const DrawerNavigator = createDrawerNavigator(Routes, {
     inactiveLabelStyle: {}
   }
 });
+
+// const HOME = createTabNavigator({
+//   HomeScreen: {
+//     screen: HomeScreen
+//   },
+//   ProfileScreen: {
+//     screen: ProfileScreen,
+
+//   },
+//   AboutScreen: {
+//     screen: AboutScreen,
+//     key: AboutScreen,
+//   }
+// },
+//   {
+//     tabBarComponent: (props) => <TabBarBottom {...props} />,
+//     tabBarPosition: "bottom",
+//     animationEnabled: false,
+//     swipeEnabled: false,
+//     initialRouteName: HomeScreen,
+
+
+//   })
 
 const PrimaryNav = createStackNavigator(
   {
