@@ -1,7 +1,8 @@
 
 const Colors = {
     primary: '#00BCD4',
-
+    white: '#fff',
+    black: '#000',
     // navigation bar
     headerTintColor: '#00BCD4',
 
