@@ -1,6 +1,6 @@
 const images = {
 
-
+    // storeImage = require('../Assets/bgImg/burdon.jpg')
 }
 
 
