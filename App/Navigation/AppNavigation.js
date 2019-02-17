@@ -71,46 +71,46 @@ const PrimaryNav = createStackNavigator(
     DrawerNavigator: {
       screen: DrawerNavigator
     },
-    LoginScreen: {
-      name: "LoginScreen",
-      description: "LoginScreen",
-      screen: LoginScreen,
-      navigationOptions: {
-        title: "Login Screen"
-      }
-    },
-    RegistrationScreen: {
-      name: "RegistrationScreen",
-      description: "RegistrationScreen",
-      screen: RegistrationScreen,
-      navigationOptions: {
-        title: "Registration Screen"
-      }
-    },
-    CartScreen: {
-      name: "CartScreen",
-      description: "CartScreen",
-      screen: CartScreen,
-      navigationOptions: {
-        title: "Cart Screen"
-      }
-    },
-    WishListScreen: {
-      name: "WishListScreen",
-      description: "WishListScreen",
-      screen: WishListScreen,
-      navigationOptions: {
-        title: "WishList Screen"
-      }
-    },
-    OrderScreen: {
-      name: "OrderScreen",
-      description: "OrderScreen",
-      screen: OrderScreen,
-      navigationOptions: {
-        title: "OrderScreen"
-      }
-    },
+    // LoginScreen: {
+    //   name: "LoginScreen",
+    //   description: "LoginScreen",
+    //   screen: LoginScreen,
+    //   navigationOptions: {
+    //     title: "Login Screen"
+    //   }
+    // },
+    // RegistrationScreen: {
+    //   name: "RegistrationScreen",
+    //   description: "RegistrationScreen",
+    //   screen: RegistrationScreen,
+    //   navigationOptions: {
+    //     title: "Registration Screen"
+    //   }
+    // },
+    // CartScreen: {
+    //   name: "CartScreen",
+    //   description: "CartScreen",
+    //   screen: CartScreen,
+    //   navigationOptions: {
+    //     title: "Cart Screen"
+    //   }
+    // },
+    // WishListScreen: {
+    //   name: "WishListScreen",
+    //   description: "WishListScreen",
+    //   screen: WishListScreen,
+    //   navigationOptions: {
+    //     title: "WishList Screen"
+    //   }
+    // },
+    // OrderScreen: {
+    //   name: "OrderScreen",
+    //   description: "OrderScreen",
+    //   screen: OrderScreen,
+    //   navigationOptions: {
+    //     title: "OrderScreen"
+    //   }
+    // },
   },
   {
     navigationOptions: ({ navigation }) => ({

@@ -8,21 +8,10 @@ import { CardSection } from '../Components/CardSection';
 import { Card } from '../Components/Card';
 import { MenuIcon } from '../Components/MenuIcon';
 import Styles from './Styles';
-import {
-  DrawerActions
-} from "react-navigation";
 import { Colors } from "../Themes";
 
 
-const myButton = (
-  <Icon.Button
-    name="facebook"
-    backgroundColor="#3b5998"
-    onPress={this.loginWithFacebook}
-  >
-    Login with Facebook
-  </Icon.Button>
-);
+
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -30,19 +19,19 @@ class HomeScreen extends Component {
 
 
   static navigationOptions = {
-    headerStyle: {
-      backgroundColor: Colors.lightGrey,
-      elevation: 0
 
-    },
   }
 
   componentDidMount() {
     //this.props.getRestaurantList();
   }
+
+
   render() {
     return (
-      <ScrollView>
+      <ScrollView
+        style={{ backgroundColor: Colors.lightGrey }}
+      >
         <View style={Styles.dateContainer}>
           <Text style={Styles.normalText}>SUNDAY 17 FEB</Text>
         </View>
@@ -56,7 +45,7 @@ class HomeScreen extends Component {
                 <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.bookImg} />
               </View>
               <View style={Styles.priceContainer}>
-                <Text style={Styles.bookName}>Herry Potter Part-8</Text>
+                <Text style={Styles.bookName}>Herry Potter Part-1</Text>
                 <Text style={Styles.priceText}>$20.0</Text>
               </View>
             </CardSection>
@@ -70,7 +59,21 @@ class HomeScreen extends Component {
                 <Image source={require('../Assets/bgImg/study.jpg')} style={Styles.bookImg} />
               </View>
               <View style={Styles.priceContainer}>
-                <Text style={Styles.bookName}>Herry Potter Part-8</Text>
+                <Text style={Styles.bookName}>Herry Potter Part-2</Text>
+                <Text style={Styles.priceText}>$20.0</Text>
+              </View>
+            </CardSection>
+          </Card>
+          <Card>
+            <CardSection>
+              <View style={Styles.favContainer}>
+                <Icon name="heart" size={25} color={Colors.lightGrey} />
+              </View>
+              <View style={Styles.imgContainer}>
+                <Image source={require('../Assets/bgImg/study.jpg')} style={Styles.bookImg} />
+              </View>
+              <View style={Styles.priceContainer}>
+                <Text style={Styles.bookName}>Herry Potter Part-3</Text>
                 <Text style={Styles.priceText}>$20.0</Text>
               </View>
             </CardSection>
@@ -83,54 +86,53 @@ class HomeScreen extends Component {
           <View>
             <View style={Styles.iconMainContainer}>
               <View style={Styles.iconContainer}>
-                <Icon name="mobile" size={40} color={Colors.darkRed} style={Styles.icon} />
+                <Icon name="book" size={40} color={Colors.blue2} style={Styles.icon} />
               </View>
-              <Text style={Styles.iconNm}>mobile</Text>
+              <Text style={Styles.iconNm}>Thriller</Text>
             </View>
           </View>
           <View>
             <View style={Styles.iconMainContainer}>
               <View style={Styles.iconContainer}>
-                <Icon name="mobile" size={40} color={Colors.darkRed} style={Styles.icon} />
+                <Icon name="book" size={40} color={Colors.green} style={Styles.icon} />
               </View>
-              <Text style={Styles.iconNm}>mobile</Text>
+              <Text style={Styles.iconNm}>Mystery</Text>
             </View>
           </View>
           <View>
             <View style={Styles.iconMainContainer}>
               <View style={Styles.iconContainer}>
-                <Icon name="mobile" size={40} color={Colors.darkRed} style={Styles.icon} />
+                <Icon name="book" size={40} color={Colors.darkRed} style={Styles.icon} />
               </View>
-              <Text style={Styles.iconNm}>mobile</Text>
+              <Text style={Styles.iconNm}>Fiction</Text>
             </View>
           </View>
           <View>
             <View style={Styles.iconMainContainer}>
               <View style={Styles.iconContainer}>
-                <Icon name="mobile" size={40} color={Colors.darkRed} style={Styles.icon} />
+                <Icon name="book" size={40} color={Colors.blue2} style={Styles.icon} />
               </View>
-              <Text style={Styles.iconNm}>mobile</Text>
+              <Text style={Styles.iconNm}>Westerns</Text>
             </View>
           </View>
           <View>
             <View style={Styles.iconMainContainer}>
               <View style={Styles.iconContainer}>
-                <Icon name="mobile" size={40} color={Colors.darkRed} style={Styles.icon} />
+                <Icon name="book" size={40} color={Colors.green} style={Styles.icon} />
               </View>
-              <Text style={Styles.iconNm}>mobile</Text>
+              <Text style={Styles.iconNm}>Religious</Text>
             </View>
           </View>
           <View>
             <View style={Styles.iconMainContainer}>
               <View style={Styles.iconContainer}>
-                <Icon name="mobile" size={40} color={Colors.darkRed} style={Styles.icon} />
+                <Icon name="book" size={40} color={Colors.darkRed} style={Styles.icon} />
               </View>
-              <Text style={Styles.iconNm}>mobile</Text>
+              <Text style={Styles.iconNm}>History</Text>
             </View>
           </View>
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-
           <Card style={Styles.cardStyle}>
             <CardSection style={Styles.advrCardSection}>
               <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.advrImg} />
@@ -160,7 +162,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
           <Card style={Styles.cardStyle}>
@@ -170,7 +172,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
           <Card style={Styles.cardStyle}>
@@ -180,11 +182,11 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
         </ScrollView>
-        <Text style={Styles.headText}>Features</Text>
+        <Text style={Styles.headText}>Featured</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
           <Card style={Styles.cardStyle}>
@@ -194,7 +196,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
           <Card style={Styles.cardStyle}>
@@ -204,7 +206,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
           <Card style={Styles.cardStyle}>
@@ -214,7 +216,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
         </ScrollView>
@@ -228,7 +230,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
           <Card style={Styles.cardStyle}>
@@ -238,7 +240,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
           <Card style={Styles.cardStyle}>
@@ -248,7 +250,7 @@ class HomeScreen extends Component {
 
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
-              <Text>$20</Text>
+              {/* <Text>$20</Text> */}
             </CardSection>
           </Card>
         </ScrollView >

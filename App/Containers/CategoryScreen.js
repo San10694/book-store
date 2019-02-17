@@ -15,7 +15,7 @@ export default class CategoryScreen extends Component {
                     <CardSection style={Styles.CategoryCardSection}>
                         <Image source={require('../Assets/bgImg/category.jpg')} style={Styles.categoryImg} />
                         <View style={Styles.categoryContainer}>
-                            <Text style={Styles.boldText}>Shop Now</Text>
+                            <Text style={Styles.boldText}>Science</Text>
                         </View>
                     </CardSection>
                 </Card>
@@ -23,7 +23,7 @@ export default class CategoryScreen extends Component {
                     <CardSection style={Styles.CategoryCardSection}>
                         <Image source={require('../Assets/bgImg/category.jpg')} style={Styles.categoryImg} />
                         <View style={Styles.categoryContainer}>
-                            <Text style={Styles.boldText}>Shop Now</Text>
+                            <Text style={Styles.boldText}>History</Text>
                         </View>
                     </CardSection>
                 </Card>
@@ -31,7 +31,7 @@ export default class CategoryScreen extends Component {
                     <CardSection style={Styles.CategoryCardSection}>
                         <Image source={require('../Assets/bgImg/category.jpg')} style={Styles.categoryImg} />
                         <View style={Styles.categoryContainer}>
-                            <Text style={Styles.boldText}>Shop Now</Text>
+                            <Text style={Styles.boldText}>Applied Mathmetics</Text>
                         </View>
                     </CardSection>
                 </Card>
@@ -39,7 +39,7 @@ export default class CategoryScreen extends Component {
                     <CardSection style={Styles.CategoryCardSection}>
                         <Image source={require('../Assets/bgImg/category.jpg')} style={Styles.categoryImg} />
                         <View style={Styles.categoryContainer}>
-                            <Text style={Styles.boldText}>Shop Now</Text>
+                            <Text style={Styles.boldText}>General Knowledge</Text>
                         </View>
                     </CardSection>
                 </Card>

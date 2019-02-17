@@ -9,6 +9,11 @@ import { Colors, Fonts } from "../Themes";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View } from 'react-native';
 import CategoryScreen from '../Containers/CategoryScreen';
+import LoginScreen from "../Containers/LoginScreen";
+import RegistrationScreen from "../Containers/RegistrationScreen";
+import CartScreen from "../Containers/CartScreen";
+import WishListScreen from "../Containers/WishListScreen";
+import OrderScreen from "../Containers/OrderScreen";
 
 
 export default {
@@ -123,7 +128,47 @@ export default {
     navigationOptions: {
       title: "Category Screen"
     }
-  }
+  },
+  LoginScreen: {
+    name: "LoginScreen",
+    description: "LoginScreen",
+    screen: LoginScreen,
+    navigationOptions: {
+      title: "Login Screen"
+    }
+  },
+  RegistrationScreen: {
+    name: "RegistrationScreen",
+    description: "RegistrationScreen",
+    screen: RegistrationScreen,
+    navigationOptions: {
+      title: "Registration Screen"
+    }
+  },
+  CartScreen: {
+    name: "CartScreen",
+    description: "CartScreen",
+    screen: CartScreen,
+    navigationOptions: {
+      title: "Cart Screen"
+    }
+  },
+  WishListScreen: {
+    name: "WishListScreen",
+    description: "WishListScreen",
+    screen: WishListScreen,
+    navigationOptions: {
+      title: "WishList Screen"
+    }
+  },
+  OrderScreen: {
+    name: "OrderScreen",
+    description: "OrderScreen",
+    screen: OrderScreen,
+    navigationOptions: {
+      title: "OrderScreen"
+    }
+  },
 
 };
 

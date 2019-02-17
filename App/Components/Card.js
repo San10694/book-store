@@ -1,13 +1,13 @@
 
 import React from 'react';
 import { View } from 'react-native';
+import Ripple from 'react-native-material-ripple';
 
 const Card = ({ children, style }) => {
-
-
     return (
-        <View style={style}>
-            {children}</View>
+        <Ripple style={style}>
+            {children}
+        </Ripple>
     );
 };
 
