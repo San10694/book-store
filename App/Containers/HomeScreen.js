@@ -25,9 +25,9 @@ class HomeScreen extends Component {
   }
 
 
-  static navigationOptions = ({ navigation }) => ({
-    header: null,
-  });
+  static navigationOptions = {
+    header: null
+  }
 
   componentDidMount() {
     //this.props.getRestaurantList();
@@ -35,13 +35,13 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: Colors.white }}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             this.props.navigation.dispatch(DrawerActions.toggleDrawer());
           }}
         >
           <MenuIcon navigation={this.props.navigation} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={styles.container}>
           <Text style={styles.welcome}>Welcome to Home!</Text>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.white
+    backgroundColor: Colors.lightGrey
   },
   welcome: {
     fontSize: 20,

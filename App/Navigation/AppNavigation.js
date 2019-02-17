@@ -69,7 +69,8 @@ const PrimaryNav = createStackNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
-      header: null,
+      //headerMode: 'none',
+      // header: null,
       // title: "Book Store", // Title to appear in status bar
       headerLeft: (
         <TouchableOpacity

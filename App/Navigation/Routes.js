@@ -8,6 +8,7 @@ import { createTabNavigator, TabBarBottom } from "react-navigation";
 import { Colors, Fonts } from "../Themes";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View } from 'react-native';
+import CategoryScreen from '../Containers/CategoryScreen';
 
 
 export default {
@@ -25,6 +26,8 @@ export default {
     Home: {
       screen: HomeScreen,
       navigationOptions: {
+        // headerMode: 'none',
+        // header: null,
         tabBarIcon: ({ tintColor }) => (
           <View style={{ marginTop: 5 }}>
             <Icon name="home-outline" size={20} color={tintColor}>
@@ -34,8 +37,8 @@ export default {
       },
     },
     Categories: {
-      screen: AboutScreen,
-      key: AboutScreen,
+      screen: CategoryScreen,
+      key: CategoryScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <View style={{ marginTop: 5 }}>
@@ -88,7 +91,7 @@ export default {
           marginBottom: 5
         },
         activeTintColor: Colors.headerTintColor,
-        inactiveTintColor: Colors.Text,
+        inactiveTintColor: Colors.inactiveTabbarTint,
         //pressColor: ,
         upperCaseLabel: false,
         pressOpacity: 0.3,
@@ -121,7 +124,16 @@ export default {
     navigationOptions: {
       title: "Contact Screen"
     }
-  }
+  },
+  // CategoryScreen: {
+  //   name: "CategoryScreen",
+  //   description: "CategoryScreen",
+  //   screen: CategoryScreen,
+  //   navigationOptions: {
+  //     title: "Category Screen"
+  //   }
+  // }
+
 };
 
-
+//CategoryScreen

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "/Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
                     "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/93ea944e5413c4fc195adfe93cc4db11/res/values-en-rCA/values-en-rCA.xml",
