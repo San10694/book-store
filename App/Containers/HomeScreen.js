@@ -7,6 +7,12 @@ import Fonts from '../Themes/Fonts';
 import { CardSection } from '../Components/CardSection';
 import { Card } from '../Components/Card';
 import Colors from '../Themes/Colors';
+import { MenuIcon } from '../Components/MenuIcon';
+import {
+  DrawerActions
+} from "react-navigation";
+import { Colors } from "../Themes";
+
 
 const myButton = (
   <Icon.Button
@@ -23,6 +29,9 @@ class HomeScreen extends Component {
   }
 
 
+  static navigationOptions = ({ navigation }) => ({
+    header: null,
+  });
 
   componentDidMount() {
     //this.props.getRestaurantList();
@@ -286,7 +295,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: Colors.white
   },
   welcome: {
     fontSize: 20,
@@ -295,7 +304,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: "center",
-    color: "#333333",
+    color: Colors.Text,
     marginBottom: 5
   }
 });

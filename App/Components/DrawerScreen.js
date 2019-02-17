@@ -8,6 +8,19 @@ import {
   TouchableOpacity
 } from "react-native";
 import { DrawerActions } from "react-navigation";
+import { Colors } from '../Themes'
+
+
+
+const menuItems =
+  [{ 'title': 'SHOP', 'route': 'HomeScreen' },
+  { 'title': 'CATEGORY', 'route': 'HomeScreen' },
+  { 'title': 'ABOUT US', 'route': 'AboutScreen' },
+  { 'title': 'CONTACT', 'route': 'ContactScreen' },
+  { 'title': 'SETTING', 'route': 'HomeScreen' },
+  { 'title': 'LOGIN', 'route': 'HomeScreen' },
+  { 'title': 'NEWS', 'route': 'HomeScreen' },
+  ]
 
 class DrawerScreen extends Component {
   navigateToScreen = route => () => {
@@ -18,35 +31,27 @@ class DrawerScreen extends Component {
     this.props.navigation.dispatch(DrawerActions.closeDrawer());
   };
 
+
+
+
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
           <View>
-            <TouchableOpacity style={styles.menuItem}>
-              <Text
-                style={styles.textItem}
-                onPress={this.navigateToScreen("HomeScreen")}
-              >
-                Home
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuItem}>
-              <Text
-                style={styles.textItem}
-                onPress={this.navigateToScreen("AboutScreen")}
-              >
-                About
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuItem}>
-              <Text
-                style={styles.textItem}
-                onPress={this.navigateToScreen("ContactScreen")}
-              >
-                Contact
-              </Text>
-            </TouchableOpacity>
+            {menuItems.map((item) => {
+              return (
+                <TouchableOpacity style={styles.menuItem}>
+                  <Text
+                    style={styles.textItem}
+                    onPress={this.navigateToScreen(item.route)}
+                  >
+                    {item.title}
+                  </Text>
+                </TouchableOpacity>
+              )
+            })
+            }
           </View>
         </ScrollView>
       </View>
@@ -60,8 +65,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
-    //backgroundColor: "#F5FCFF"
+    alignItems: "center",
+    backgroundColor: Colors.white,
+    paddingTop: 80
   },
   welcome: {
     fontSize: 20,
@@ -72,11 +78,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 0.5,
     borderColor: "#d6d7da",
-    width: 300
+    width: 300,
   },
   textItem: {
-    fontSize: 16,
-    fontWeight: "400"
+    fontSize: 14,
+    fontWeight: "400",
+    color: Colors.black
   }
 });
 

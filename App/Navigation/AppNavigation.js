@@ -14,6 +14,7 @@ import HomeScreen from "../Containers/HomeScreen";
 import ProfileScreen from "../Containers/ProfileScreen";
 import AboutScreen from "../Containers/AboutScreen";
 import ContactScreen from "../Containers/ContactScreen";
+import { Colors } from "../Themes";
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -68,7 +69,8 @@ const PrimaryNav = createStackNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
-      title: "React Native Starter", // Title to appear in status bar
+      header: null,
+      // title: "Book Store", // Title to appear in status bar
       headerLeft: (
         <TouchableOpacity
           onPress={() => {
@@ -79,9 +81,11 @@ const PrimaryNav = createStackNavigator(
         </TouchableOpacity>
       ),
       headerStyle: {
-        backgroundColor: "#333"
+        backgroundColor: "#fff",
+        shadowOpacity: 1
+
       },
-      headerTintColor: "#fff",
+      headerTintColor: Colors.Text,
       headerTitleStyle: {
         fontWeight: "400"
       }

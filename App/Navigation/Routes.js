@@ -6,6 +6,9 @@ import AboutScreen from "../Containers/AboutScreen";
 import ContactScreen from "../Containers/ContactScreen";
 import { createTabNavigator, TabBarBottom } from "react-navigation";
 import { Colors, Fonts } from "../Themes";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View } from 'react-native';
+
 
 export default {
 
@@ -20,14 +23,38 @@ export default {
 
   HomeTab: createTabNavigator({
     Home: {
-      screen: HomeScreen
+      screen: HomeScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View style={{ marginTop: 5 }}>
+            <Icon name="home-outline" size={20} color={tintColor}>
+            </Icon>
+          </View>
+        ),
+      },
     },
-    About: {
+    Categories: {
       screen: AboutScreen,
       key: AboutScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View style={{ marginTop: 5 }}>
+            <Icon name="apps" size={20} color={tintColor}>
+            </Icon>
+          </View>
+        ),
+      },
     },
     Profile: {
-      screen: ProfileScreen
+      screen: ProfileScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <View style={{ marginTop: 5 }}>
+            <Icon name="face-profile" size={20} color={tintColor}>
+            </Icon>
+          </View>
+        ),
+      },
     },
   },
     {
@@ -58,6 +85,7 @@ export default {
           fontFamily: Fonts.type.gotham_medium,
           fontSize: 12,
           letterSpacing: 0,
+          marginBottom: 5
         },
         activeTintColor: Colors.headerTintColor,
         inactiveTintColor: Colors.Text,
