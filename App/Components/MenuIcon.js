@@ -15,7 +15,7 @@ export const MenuIcon = ({ navigation }) => {
   } else {
     return (
       <View style={{ margin: 10 }}>
-        <Icon name="keyboard-backspace" size={25} color={Colors.Text}>
+        <Icon name="keyboard-backspace" size={25} color={Colors.primary}>
         </Icon>
       </View>
     );

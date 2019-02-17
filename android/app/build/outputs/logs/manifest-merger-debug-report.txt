@@ -5,14 +5,9 @@ INJECTED from /home/vijaya/Documents/React_Projects/2.Template/book-store/androi
 INJECTED from /home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/AndroidManifest.xml:1:1-26:12
 MERGED from [:react-native-vector-icons] /home/vijaya/Documents/React_Projects/2.Template/book-store/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-smart-splashscreen] /home/vijaya/Documents/React_Projects/2.Template/book-store/node_modules/react-native-smart-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.57.2] /home/vijaya/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/0e53a6ee0c87618c2815d9bda69b30e8/AndroidManifest.xml:2:1-15:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/47889ed2962709c901630df9d93f660a/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/1e9205d376d426cd7812f32f791992d2/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6105c3e3ff8e39de6e1eaae94c8f8ed8/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/21c86597af829184c4cd718f7b766650/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/9449a2b8a099997b7e6ac6b6fd2648a4/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.fresco:fresco:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fresco-1.10.0.aar/98d631f63bf020a678914747624b477b/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.10.0.aar/14a38b948e68b843953ed3c73e4f8c50/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:drawee:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/drawee-1.10.0.aar/4988230ffd4694631b3a8bda274e0ffb/AndroidManifest.xml:2:1-9:12
@@ -20,9 +15,15 @@ MERGED from [com.facebook.fresco:imagepipeline:1.10.0] /home/vijaya/.gradle/cach
 MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.10.0.aar/79b45b180bc9f0b4f3c68103501e0af9/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.soloader:soloader:0.5.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/soloader-0.5.1.aar/3f04c0baf55124b4b88c3c975a4099d7/AndroidManifest.xml:2:1-13:12
 MERGED from [org.webkit:android-jsc:r174650] /home/vijaya/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/1b1fbe64316bc94e1daf6163c821988a/AndroidManifest.xml:1:1-3:12
+MERGED from [com.facebook.fresco:fbcore:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fbcore-1.10.0.aar/367e3dbea58a834fada34c40b083a4b4/AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-fragment:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/47889ed2962709c901630df9d93f660a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/1e9205d376d426cd7812f32f791992d2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6105c3e3ff8e39de6e1eaae94c8f8ed8/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/21c86597af829184c4cd718f7b766650/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/9449a2b8a099997b7e6ac6b6fd2648a4/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/d9234cb85e70e18c98cc31788f8f3ff3/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/32974eda2e7aab919df5ed7dd5774448/AndroidManifest.xml:17:1-22:12
-MERGED from [com.facebook.fresco:fbcore:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fbcore-1.10.0.aar/367e3dbea58a834fada34c40b083a4b4/AndroidManifest.xml:2:1-9:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/f43829ce34dba16f06c05b444cad99a7/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/db5c37fac97a8d7a4c3255dcc71fe070/AndroidManifest.xml:17:1-22:12
 INJECTED from /home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/AndroidManifest.xml:1:1-26:12
@@ -100,22 +101,12 @@ INJECTED from /home/vijaya/Documents/React_Projects/2.Template/book-store/androi
 INJECTED from /home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/AndroidManifest.xml
 MERGED from [:react-native-vector-icons] /home/vijaya/Documents/React_Projects/2.Template/book-store/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /home/vijaya/Documents/React_Projects/2.Template/book-store/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-smart-splashscreen] /home/vijaya/Documents/React_Projects/2.Template/book-store/node_modules/react-native-smart-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-smart-splashscreen] /home/vijaya/Documents/React_Projects/2.Template/book-store/node_modules/react-native-smart-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.57.2] /home/vijaya/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/0e53a6ee0c87618c2815d9bda69b30e8/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.57.2] /home/vijaya/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/0e53a6ee0c87618c2815d9bda69b30e8/AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/47889ed2962709c901630df9d93f660a/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/47889ed2962709c901630df9d93f660a/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/1e9205d376d426cd7812f32f791992d2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/1e9205d376d426cd7812f32f791992d2/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6105c3e3ff8e39de6e1eaae94c8f8ed8/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6105c3e3ff8e39de6e1eaae94c8f8ed8/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/21c86597af829184c4cd718f7b766650/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/21c86597af829184c4cd718f7b766650/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/9449a2b8a099997b7e6ac6b6fd2648a4/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/9449a2b8a099997b7e6ac6b6fd2648a4/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.fresco:fresco:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fresco-1.10.0.aar/98d631f63bf020a678914747624b477b/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:fresco:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fresco-1.10.0.aar/98d631f63bf020a678914747624b477b/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.10.0.aar/14a38b948e68b843953ed3c73e4f8c50/AndroidManifest.xml:5:5-7:41
@@ -128,12 +119,24 @@ MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] /home/vijaya/.gradle
 MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.10.0.aar/79b45b180bc9f0b4f3c68103501e0af9/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.soloader:soloader:0.5.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/soloader-0.5.1.aar/3f04c0baf55124b4b88c3c975a4099d7/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.soloader:soloader:0.5.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/soloader-0.5.1.aar/3f04c0baf55124b4b88c3c975a4099d7/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.fresco:fbcore:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fbcore-1.10.0.aar/367e3dbea58a834fada34c40b083a4b4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fbcore-1.10.0.aar/367e3dbea58a834fada34c40b083a4b4/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/47889ed2962709c901630df9d93f660a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/47889ed2962709c901630df9d93f660a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/1e9205d376d426cd7812f32f791992d2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/1e9205d376d426cd7812f32f791992d2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6105c3e3ff8e39de6e1eaae94c8f8ed8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/6105c3e3ff8e39de6e1eaae94c8f8ed8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/21c86597af829184c4cd718f7b766650/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/21c86597af829184c4cd718f7b766650/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/9449a2b8a099997b7e6ac6b6fd2648a4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/9449a2b8a099997b7e6ac6b6fd2648a4/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/d9234cb85e70e18c98cc31788f8f3ff3/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/d9234cb85e70e18c98cc31788f8f3ff3/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/32974eda2e7aab919df5ed7dd5774448/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/32974eda2e7aab919df5ed7dd5774448/AndroidManifest.xml:20:5-44
-MERGED from [com.facebook.fresco:fbcore:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fbcore-1.10.0.aar/367e3dbea58a834fada34c40b083a4b4/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:1.10.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/fbcore-1.10.0.aar/367e3dbea58a834fada34c40b083a4b4/AndroidManifest.xml:5:5-7:41
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/f43829ce34dba16f06c05b444cad99a7/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/f43829ce34dba16f06c05b444cad99a7/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.0] /home/vijaya/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/db5c37fac97a8d7a4c3255dcc71fe070/AndroidManifest.xml:20:5-44

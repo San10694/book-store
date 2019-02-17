@@ -428,10 +428,6 @@
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/drawable/abc_tab_indicator_material.xml"
     },
     {
-        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-xhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/drawable-ldrtl-xhdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -756,6 +752,10 @@
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/drawable-xhdpi-v4/abc_ic_star_half_black_48dp.png"
     },
     {
+        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/mipmap-ldpi_ic_launcher.png.flat",
+        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/mipmap-ldpi/ic_launcher.png"
+    },
+    {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/color_abc_background_cache_hint_selector_material_dark.xml.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/color/abc_background_cache_hint_selector_material_dark.xml"
     },
@@ -834,10 +834,6 @@
     {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/anim_catalyst_slide_up.xml.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/react-native-0.57.2.aar/0e53a6ee0c87618c2815d9bda69b30e8/res/anim/catalyst_slide_up.xml"
-    },
-    {
-        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
     },
     {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-mdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -1090,10 +1086,6 @@
     {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/layout-watch-v20_abc_alert_dialog_button_bar_material.xml.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml"
-    },
-    {
-        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -1388,6 +1380,10 @@
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/anim/abc_fade_out.xml"
     },
     {
+        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/drawable_splash.png.flat",
+        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/drawable/splash.png"
+    },
+    {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/layout_abc_screen_simple_overlay_action_mode.xml.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/layout/abc_screen_simple_overlay_action_mode.xml"
     },
@@ -1448,10 +1444,6 @@
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/color/abc_primary_text_material_light.xml"
     },
     {
-        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
-    },
-    {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
     },
@@ -1486,10 +1478,6 @@
     {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
         "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/res/drawable-xhdpi-v4/notification_bg_normal.9.png"
-    },
-    {
-        "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/res/merged/debug/layout_abc_action_bar_title_item.xml.flat",
