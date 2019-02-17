@@ -16,13 +16,13 @@ import { Colors } from '../Themes'
 
 
 const menuItems =
-  [{ 'title': 'SHOP', 'route': 'HomeScreen' },
-  { 'title': 'CATEGORY', 'route': 'HomeScreen' },
+  [{ 'title': 'SHOP', 'route': 'Home' },
+  { 'title': 'CATEGORY', 'route': 'Categories' },
   { 'title': 'ABOUT US', 'route': 'AboutScreen' },
   { 'title': 'CONTACT', 'route': 'ContactScreen' },
-  { 'title': 'SETTING', 'route': 'ProfileScreen' },
-  { 'title': 'LOGIN', 'route': 'HomeScreen' },
-  { 'title': 'NEWS', 'route': 'HomeScreen' },
+  { 'title': 'SETTING', 'route': 'Profile' },
+  { 'title': 'LOGIN', 'route': 'Profile' },
+  { 'title': 'NEWS', 'route': 'Home' },
   ]
 
 class DrawerScreen extends Component {

@@ -9,7 +9,7 @@ const Colors = {
     // bottom tab bar
     tabbar: "rgba(255, 255, 255, 1)",
     tabbarTint: '#00BCD4',
-    inactiveTabbarTint: '#80868b',
+    charcoal: '#80868b',
     tabbarColor: "#ccc",
 
 

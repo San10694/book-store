@@ -91,7 +91,7 @@ export default {
           marginBottom: 5
         },
         activeTintColor: Colors.headerTintColor,
-        inactiveTintColor: Colors.inactiveTabbarTint,
+        inactiveTintColor: Colors.charcoal,
         //pressColor: ,
         upperCaseLabel: false,
         pressOpacity: 0.3,
@@ -100,15 +100,6 @@ export default {
         allowFontScaling: false
       }
     }),
-
-  ProfileScreen: {
-    name: "ProfileScreen",
-    description: "ProfileScreen",
-    screen: ProfileScreen,
-    navigationOptions: {
-      title: "Profile Screen"
-    }
-  },
   AboutScreen: {
     name: "AboutScreen",
     description: "AboutScreen",
@@ -125,14 +116,14 @@ export default {
       title: "Contact Screen"
     }
   },
-  // CategoryScreen: {
-  //   name: "CategoryScreen",
-  //   description: "CategoryScreen",
-  //   screen: CategoryScreen,
-  //   navigationOptions: {
-  //     title: "Category Screen"
-  //   }
-  // }
+  CategoryScreen: {
+    name: "CategoryScreen",
+    description: "CategoryScreen",
+    screen: CategoryScreen,
+    navigationOptions: {
+      title: "Category Screen"
+    }
+  }
 
 };
 

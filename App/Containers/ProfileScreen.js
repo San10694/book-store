@@ -8,13 +8,13 @@ import { Colors, Fonts } from "../Themes";
 
 
 const menuItems =
-  [{ 'title': 'Cart', 'route': 'HomeScreen' },
-  { 'title': 'My Orders', 'route': 'HomeScreen' },
-  { 'title': 'WishList', 'route': 'AboutScreen' },
+  [{ 'title': 'Cart', 'route': 'Home' },
+  { 'title': 'My Orders', 'route': 'Home' },
+  { 'title': 'WishList', 'route': 'Home' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
-  { 'title': 'Privacy Polices', 'route': 'HomeScreen' },
-  { 'title': 'Terms & Conditions', 'route': 'HomeScreen' },
-  { 'title': 'About Us', 'route': 'HomeScreen' },
+  { 'title': 'Privacy Polices', 'route': 'Home' },
+  { 'title': 'Terms & Conditions', 'route': 'Home' },
+  { 'title': 'About Us', 'route': 'AboutScreen' },
   ]
 export default class ProfileScreen extends Component {
 
@@ -64,11 +64,10 @@ export default class ProfileScreen extends Component {
           <View style={{ backgroundColor: Colors.white }}>
             {menuItems.map((item) => {
               return (
-                <Ripple style={styles.menuItem}>
-                  <Text
-                    style={styles.textItem}
-                    onPress={() => this.props.navigation.navigate(item.route)}
-                  >
+                <Ripple style={styles.menuItem}
+                // onPress={() => this.props.navigation.navigate(item.route)}
+                >
+                  <Text style={styles.textItem}>
                     {item.title}
                   </Text>
                 </Ripple>
@@ -111,11 +110,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10
   },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  },
   menuItem: {
     padding: 10,
     paddingLeft: 15,
@@ -126,7 +120,7 @@ const styles = StyleSheet.create({
   textItem: {
     fontSize: 16,
     fontWeight: "400",
-    color: Colors.Text,
+    color: Colors.charcoal,
     fontFamily: Fonts.type.gotham_medium,
   }
 });

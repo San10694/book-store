@@ -26,7 +26,11 @@ class HomeScreen extends Component {
 
 
   static navigationOptions = {
-    header: null
+    headerStyle: {
+      backgroundColor: Colors.lightGrey,
+      elevation: 0
+
+    },
   }
 
   componentDidMount() {
