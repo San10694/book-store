@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sandeeptiwari/Desktop/ReactNative/React-Native-Starter/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ms/values-ms.xml",
+            "outputFile": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ms/values-ms.xml",
             "map": [
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7ec8115049899e0ad4cfb5a9886129a0/res/values-ms/values-ms.xml",
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5365cffe48c09afff6f57e3a0b622777/res/values-ms/values-ms.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,216,321,429,516,620,731,809,888,968,1080,1189,1286,1395,1498,1605,1764,1865",
+                        "endColumns": "110,104,107,86,103,110,77,78,79,111,108,96,108,102,106,158,100,79",
+                        "endOffsets": "211,316,424,511,615,726,804,883,963,1075,1184,1281,1390,1493,1600,1759,1860,1940"
+                    }
+                },
+                {
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/d2392a021a3de53e6b7b30cb80653ace/res/values-ms/values-ms.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "1945",
                         "endColumns": "100",
                         "endOffsets": "2041"
-                    }
-                },
-                {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/93ea944e5413c4fc195adfe93cc4db11/res/values-ms/values-ms.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,216,321,429,516,620,731,809,888,968,1080,1189,1286,1395,1498,1605,1764,1865",
-                        "endColumns": "110,104,107,86,103,110,77,78,79,111,108,96,108,102,106,158,100,79",
-                        "endOffsets": "211,316,424,511,615,726,804,883,963,1075,1184,1281,1390,1493,1600,1759,1860,1940"
                     }
                 }
             ]
