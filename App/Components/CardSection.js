@@ -7,8 +7,9 @@ const CardSection = ({ children, onPress, style }) => {
     const { cardSectionContainer } = Styles;
 
     return (
-        <View style={[cardSectionContainer, style]} onPress={onPress}>
-            {children}</View>
+        <View style={[cardSectionContainer, style]}>
+            {children}
+        </View>
     );
 };
 

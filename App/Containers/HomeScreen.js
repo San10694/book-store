@@ -9,8 +9,24 @@ import { Card } from '../Components/Card';
 import { MenuIcon } from '../Components/MenuIcon';
 import Styles from './Styles';
 import { Colors } from "../Themes";
+import Banner from "../Components/Banner";
 
 
+const bannerData = [
+  { title: 'Harry Poter part -1', price: 50, image: require('../Assets/bgImg/burdon.jpg') },
+  { title: 'Harry Poter part -2', price: 50, image: require('../Assets/bgImg/burdon.jpg') },
+  { title: 'Harry Poter part -3', price: 50, image: require('../Assets/bgImg/burdon.jpg') },
+  { title: 'Harry Poter part -4', price: 50, image: require('../Assets/bgImg/burdon.jpg') }
+]
+
+categories = [
+  { title: 'Thriller', icon: 'book', color: Colors.blue2 },
+  { title: 'Mystry', icon: 'book', color: Colors.green },
+  { title: 'Religious', icon: 'book', color: Colors.darkRed },
+  { title: 'Western', icon: 'book', color: Colors.blue2 },
+  { title: 'Comic', icon: 'book', color: Colors.green },
+  { title: 'Thriller', icon: 'book', color: Colors.darkRed },
+]
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -33,104 +49,31 @@ class HomeScreen extends Component {
         style={{ backgroundColor: Colors.lightGrey }}
       >
         <View style={Styles.dateContainer}>
-          <Text style={Styles.normalText}>SUNDAY 17 FEB</Text>
+          <Text style={Styles.normalText}>MONDAY 18 FEB</Text>
         </View>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Card>
-            <CardSection>
-              <View style={Styles.favContainer}>
-                <Icon name="heart" size={25} color={Colors.lightGrey} />
-              </View>
-              <View style={Styles.imgContainer}>
-                <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.bookImg} />
-              </View>
-              <View style={Styles.priceContainer}>
-                <Text style={Styles.bookName}>Herry Potter Part-1</Text>
-                <Text style={Styles.priceText}>$20.0</Text>
-              </View>
-            </CardSection>
-          </Card>
-          <Card>
-            <CardSection>
-              <View style={Styles.favContainer}>
-                <Icon name="heart" size={25} color={Colors.lightGrey} />
-              </View>
-              <View style={Styles.imgContainer}>
-                <Image source={require('../Assets/bgImg/study.jpg')} style={Styles.bookImg} />
-              </View>
-              <View style={Styles.priceContainer}>
-                <Text style={Styles.bookName}>Herry Potter Part-2</Text>
-                <Text style={Styles.priceText}>$20.0</Text>
-              </View>
-            </CardSection>
-          </Card>
-          <Card>
-            <CardSection>
-              <View style={Styles.favContainer}>
-                <Icon name="heart" size={25} color={Colors.lightGrey} />
-              </View>
-              <View style={Styles.imgContainer}>
-                <Image source={require('../Assets/bgImg/study.jpg')} style={Styles.bookImg} />
-              </View>
-              <View style={Styles.priceContainer}>
-                <Text style={Styles.bookName}>Herry Potter Part-3</Text>
-                <Text style={Styles.priceText}>$20.0</Text>
-              </View>
-            </CardSection>
-          </Card>
-
+          {
+            bannerData.map((item) => {
+              return <Banner image={item.image}
+                title={item.title} price={item.price} />
+            })
+          }
         </ScrollView>
 
-
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <View>
-            <View style={Styles.iconMainContainer}>
-              <View style={Styles.iconContainer}>
-                <Icon name="book" size={40} color={Colors.blue2} style={Styles.icon} />
+          {categories.map((item) => {
+            return (
+              <View>
+                <View style={Styles.iconMainContainer}>
+                  <View style={Styles.iconContainer}>
+                    <Icon name={item.icon} size={40} color={item.color} style={Styles.icon} />
+                  </View>
+                  <Text style={Styles.iconNm}>{item.title}</Text>
+                </View>
               </View>
-              <Text style={Styles.iconNm}>Thriller</Text>
-            </View>
-          </View>
-          <View>
-            <View style={Styles.iconMainContainer}>
-              <View style={Styles.iconContainer}>
-                <Icon name="book" size={40} color={Colors.green} style={Styles.icon} />
-              </View>
-              <Text style={Styles.iconNm}>Mystery</Text>
-            </View>
-          </View>
-          <View>
-            <View style={Styles.iconMainContainer}>
-              <View style={Styles.iconContainer}>
-                <Icon name="book" size={40} color={Colors.darkRed} style={Styles.icon} />
-              </View>
-              <Text style={Styles.iconNm}>Fiction</Text>
-            </View>
-          </View>
-          <View>
-            <View style={Styles.iconMainContainer}>
-              <View style={Styles.iconContainer}>
-                <Icon name="book" size={40} color={Colors.blue2} style={Styles.icon} />
-              </View>
-              <Text style={Styles.iconNm}>Westerns</Text>
-            </View>
-          </View>
-          <View>
-            <View style={Styles.iconMainContainer}>
-              <View style={Styles.iconContainer}>
-                <Icon name="book" size={40} color={Colors.green} style={Styles.icon} />
-              </View>
-              <Text style={Styles.iconNm}>Religious</Text>
-            </View>
-          </View>
-          <View>
-            <View style={Styles.iconMainContainer}>
-              <View style={Styles.iconContainer}>
-                <Icon name="book" size={40} color={Colors.darkRed} style={Styles.icon} />
-              </View>
-              <Text style={Styles.iconNm}>History</Text>
-            </View>
-          </View>
+            )
+          })
+          }
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <Card style={Styles.cardStyle}>

@@ -5,8 +5,6 @@ const { Dimensions } = React;
 
 
 export default {
-
-
     // CardSection
     cardSectionContainer: {
         backgroundColor: Colors.background, margin: 10, padding: 10, borderRadius: 8, width: Dimensions.get('screen').width * 0.95
