@@ -10,6 +10,7 @@ import { MenuIcon } from '../Components/MenuIcon';
 import Styles from './Styles';
 import { Colors } from "../Themes";
 import Banner from "../Components/Banner";
+import FeatureCard from "../Components/FeatureCard";
 
 
 const bannerData = [
@@ -98,11 +99,16 @@ class HomeScreen extends Component {
         <Text style={Styles.headText}>Sale</Text>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {/* {
+            bannerData.map((item) => {
+              return <FeatureCard image={item.image}
+                title={item.title} price={item.price} />
+            })
+          } */}
           <Card style={Styles.cardStyle}>
             <CardSection style={Styles.saleCardsection}>
               <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.saleImg} />
               <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
               <Text style={Styles.bookName}>Herry Potter</Text>
               <Text>$20</Text>
               {/* <Text>$20</Text> */}
