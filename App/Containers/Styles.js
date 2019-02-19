@@ -1,6 +1,7 @@
 import { View, Image, Text, StyleSheet, Dimensions } from 'react-native';
 import { Colors } from '../Themes';
 import Fonts from '../Themes/Fonts';
+
 const { width, height } = Dimensions.get('window');
 
 
@@ -97,6 +98,7 @@ export default {
     saleCardsection: {
         backgroundColor: Colors.background,
         padding: 5,
+        paddingTop: 20,
         width: width * 0.40,
         height: 200,
     },
@@ -115,14 +117,26 @@ export default {
         paddingTop: 5
     },
     headText: { fontSize: Fonts.size.h6, paddingLeft: 20, fontWeight: 'bold', fontFamily: Fonts.type.sans_serif },
-    featureContainer: { backgroundColor: Colors.background, padding: 5, width: width * 0.46, height: 200 },
+    featureContainer: {
+        backgroundColor: Colors.background,
+        padding: 5,
+        width: width * 0.46,
+        height: 200,
+        paddingTop: 20
+    },
     featureImg: {
         position: 'relative',
         width: width * 0.43,
         height: 120,
         borderRadius: 5
     },
-    bookContainer: { backgroundColor: Colors.background, padding: 5, width: width * 0.90, height: 200 },
+    bookContainer: {
+        backgroundColor: Colors.background,
+        padding: 5,
+        width: width * 0.90,
+        height: 200,
+        paddingTop: 20
+    },
     bookConImg: { position: 'relative', width: width * 0.87, height: 120 },
     categoryContainer: {
         position: 'absolute',
