@@ -35,8 +35,9 @@ export default {
     priceContainer: { paddingTop: 50 },
     bookName: {
         fontSize: Fonts.size.medium,
-        fontWeight: '600',
-        fontFamily: Fonts.type.sans_serif
+        //fontWeight: '700',
+        fontFamily: Fonts.type.sans_serif,
+        textAlign: 'left'
     },
     priceText: {
         fontSize: Fonts.size.medium,
@@ -116,7 +117,12 @@ export default {
         paddingRight: 5,
         paddingTop: 5
     },
-    headText: { fontSize: Fonts.size.h6, paddingLeft: 20, fontWeight: 'bold', fontFamily: Fonts.type.sans_serif },
+    headText: {
+        fontSize: Fonts.size.h6,
+        paddingLeft: 20,
+        fontWeight: 'bold',
+        fontFamily: Fonts.type.sans_serif
+    },
     featureContainer: {
         backgroundColor: Colors.background,
         padding: 5,
@@ -137,7 +143,11 @@ export default {
         height: 200,
         paddingTop: 20
     },
-    bookConImg: { position: 'relative', width: width * 0.87, height: 120 },
+    bookConImg: {
+        position: 'relative',
+        width: width * 0.87,
+        height: 120
+    },
     categoryContainer: {
         position: 'absolute',
         top: 15,
@@ -155,7 +165,7 @@ export default {
     categoryImg: {
         borderRadius: 10,
         position: 'relative',
-        width: width * 0.91,
+        width: width * 0.90,
         height: 140
     },
     categoryCardStyle: { margin: 5 }

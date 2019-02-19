@@ -27,7 +27,7 @@ class FeatureCard extends PureComponent {
                         }
                         <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
                         <Text style={Styles.bookName}>{title}</Text>
-                        <Text>${price}</Text>
+                        <Text style={{ textAlign: 'left', fontWeight: 'bold' }}>${price}</Text>
                         {/* <Text>$20</Text> */}
                     </View>
                 </View>

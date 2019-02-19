@@ -13,11 +13,11 @@ class CategoryScreen extends Component {
 
 
     render() {
-        const { categories, isFetching } = this.props.product
+        const { categories, isFetching } = this.props.product;
         return (
             <ScrollView>
                 {
-                    categories.map((item, index) => {
+                    categories ? categories.map((item, index) => {
                         return (
                             <Card key={index} style={Styles.categoryCardStyle}>
                                 <CardSection style={Styles.CategoryCardSection}>
@@ -29,7 +29,7 @@ class CategoryScreen extends Component {
                                 </CardSection>
                             </Card>
                         )
-                    })
+                    }) : null
                 }
             </ScrollView>
         );

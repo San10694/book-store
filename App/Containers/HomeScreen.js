@@ -120,7 +120,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.sale.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
+              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             }) : null
           }
@@ -129,7 +129,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.featured.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
+              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
@@ -138,7 +138,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.online.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
+              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
             }) : null
           }
