@@ -13,6 +13,7 @@ import Styles from './Styles';
 import { Colors, Images } from "../Themes";
 import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
+import ActivityIndicator from "../Components/ActivityIndicator";
 
 
 const bannerData = [
@@ -22,7 +23,7 @@ const bannerData = [
   { key: 4, title: 'Harry Poter part -4', price: 50, image: Images.burdon }
 ]
 
-_categories = [
+const _categories = [
   { key: 1, title: 'Thriller', icon: 'book', color: Colors.blue2 },
   { key: 2, title: 'Mystry', icon: 'book', color: Colors.green },
   { key: 3, title: 'Religious', icon: 'book', color: Colors.darkRed },
@@ -52,10 +53,14 @@ class HomeScreen extends Component {
   render() {
     var date = new Date();
     var currentDate = date.toDateString();
-    const { productDetails, banner, categories } = this.props.product
-    console.log("  productDetails -- ", productDetails);
-    if (banner == null && categories == null && productDetails == null) {
-      return <View></View>
+    const { productDetails, banner, categories, isFetching } = this.props.product
+    console.log("  isFetching -- ", isFetching);
+    if (isFetching) {
+      return (
+        <View>
+          <ActivityIndicator isFetching={isFetching} />
+        </View>
+      )
     }
     return (
       <ScrollView
@@ -66,7 +71,6 @@ class HomeScreen extends Component {
         </View>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
-            // product.banner ? product.banner :
             banner ? banner.banners.map((item, index) => {
               return <Banner key={index} image={imageUrl + item.image_link}
                 title={item.title} price={item.price} imageStyle={Styles.bookImg} />
