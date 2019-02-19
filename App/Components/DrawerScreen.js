@@ -58,9 +58,9 @@ class DrawerScreen extends Component {
                 GUEST
 			       	</Text>
             </View>
-            {menuItems.map((item) => {
+            {menuItems.map((item, index) => {
               return (
-                <Ripple style={styles.menuItem} onPress={this.navigateToScreen(item.route)}>
+                <Ripple key={index} style={styles.menuItem} onPress={this.navigateToScreen(item.route)}>
                   <Text style={styles.textItem}>
                     {item.title}
                   </Text>

@@ -1,13 +1,18 @@
 const React = require('react-native');
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, Dimensions } from 'react-native';
 import Colors from '../Themes/Colors';
-const { Dimensions } = React;
+const { width } = Dimensions.get('window');
+
 
 
 export default {
     // CardSection
     cardSectionContainer: {
-        backgroundColor: Colors.background, margin: 10, padding: 10, borderRadius: 8, width: Dimensions.get('screen').width * 0.95
+        backgroundColor: Colors.background,
+        margin: 10,
+        padding: 10,
+        borderRadius: 8,
+        width: width * 0.95
     },
 
 };

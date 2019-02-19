@@ -1,35 +1,37 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, Dimensions, Image, ScrollView } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
 import { getRestaurantList } from "../Redux/ListRedux";
+import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
 import { CardSection } from '../Components/CardSection';
 import { Card } from '../Components/Card';
 import { MenuIcon } from '../Components/MenuIcon';
 import Styles from './Styles';
-import { Colors } from "../Themes";
+import { Colors, Images } from "../Themes";
 import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
 
 
 const bannerData = [
-  { title: 'Harry Poter part -1', price: 50, image: require('../Assets/bgImg/burdon.jpg') },
-  { title: 'Harry Poter part -2', price: 50, image: require('../Assets/bgImg/burdon.jpg') },
-  { title: 'Harry Poter part -3', price: 50, image: require('../Assets/bgImg/burdon.jpg') },
-  { title: 'Harry Poter part -4', price: 50, image: require('../Assets/bgImg/burdon.jpg') }
+  { key: 1, title: 'Harry Poter part -1', price: 50, image: Images.burdon },
+  { key: 2, title: 'Harry Poter part -2', price: 50, image: Images.burdon },
+  { key: 3, title: 'Harry Poter part -3', price: 50, image: Images.burdon },
+  { key: 4, title: 'Harry Poter part -4', price: 50, image: Images.burdon }
 ]
 
-categories = [
-  { title: 'Thriller', icon: 'book', color: Colors.blue2 },
-  { title: 'Mystry', icon: 'book', color: Colors.green },
-  { title: 'Religious', icon: 'book', color: Colors.darkRed },
-  { title: 'Western', icon: 'book', color: Colors.blue2 },
-  { title: 'Comic', icon: 'book', color: Colors.green },
-  { title: 'Thriller', icon: 'book', color: Colors.darkRed },
+_categories = [
+  { key: 1, title: 'Thriller', icon: 'book', color: Colors.blue2 },
+  { key: 2, title: 'Mystry', icon: 'book', color: Colors.green },
+  { key: 3, title: 'Religious', icon: 'book', color: Colors.darkRed },
+  { key: 4, title: 'Western', icon: 'book', color: Colors.blue2 },
+  { key: 5, title: 'Comic', icon: 'book', color: Colors.green },
+  { key: 6, title: 'Thriller', icon: 'book', color: Colors.darkRed },
 ]
 
+const imageUrl = 'http://vemulate.com/image/'
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -41,36 +43,45 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    //this.props.getRestaurantList();
+    this.props.getBannerList();
+    this.props.getCategories();
+    this.props.getProducts(1)
   }
 
 
   render() {
+    var date = new Date();
+    var currentDate = date.toDateString();
+    const { productDetails, banner, categories } = this.props.product
+    console.log("  productDetails -- ", productDetails);
+    if (banner == null && categories == null && productDetails == null) {
+      return <View></View>
+    }
     return (
       <ScrollView
         style={{ backgroundColor: Colors.lightGrey }}
       >
         <View style={Styles.dateContainer}>
-          <Text style={Styles.normalText}>MONDAY 18 FEB</Text>
+          <Text style={Styles.normalText}>{currentDate.toUpperCase()}</Text>
         </View>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
-            bannerData.map((item) => {
-              return <Banner image={item.image}
+            // product.banner ? product.banner :
+            banner ? banner.banners.map((item, index) => {
+              return <Banner key={index} image={imageUrl + item.image_link}
                 title={item.title} price={item.price} imageStyle={Styles.bookImg} />
-            })
+            }) : null
           }
         </ScrollView>
-
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {categories.map((item) => {
+          {categories.map((item, index) => {
             return (
-              <View>
+              <View key={item.id}>
                 <View style={Styles.iconMainContainer}>
                   <Ripple style={Styles.iconContainer}>
-                    <Icon name={item.icon} size={40} color={item.color} style={Styles.icon} />
+                    <Icon name={item.icon} size={40} color={Colors.green} style={Styles.icon} />
                   </Ripple>
-                  <Text style={Styles.iconNm}>{item.title}</Text>
+                  <Text numberOfLines={2} style={Styles.iconNm}>{item.name}</Text>
                 </View>
               </View>
             )
@@ -78,51 +89,54 @@ class HomeScreen extends Component {
           }
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.advrCardSection}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.advrImg} />
-              <View style={Styles.advrContainer}>
-                <Text style={Styles.boldText}>Shop Now</Text>
-                <Icon name='arrow-right' size={25} color={Colors.background} />
-              </View>
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.advrCardSection}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.advrImg} />
-              <View style={Styles.advrContainer}>
-                <Text style={Styles.boldText}>Shop Now</Text>
-                <Icon name='arrow-right' size={25} color={Colors.background} />
-              </View>
-            </CardSection>
-          </Card>
+          {
+            banner ? banner.offers.map((item, index) => {
+              return (
+                <Card key={index} style={Styles.cardStyle}>
+                  <CardSection style={Styles.advrCardSection}>
+                    <Image source={Images.burdon} style={Styles.advrImg} />
+                    <View style={Styles.advrContainer}>
+                      <WebView
+                        style={{
+                          backgroundColor: 'transparent', marginLeft: 10
+                        }}
+                        html={item.description} />
+                      {/* <Text style={Styles.boldText}>Use Code: {item.code}</Text> */}
+                      <Text style={Styles.boldText}>{item.name}</Text>
+                      <Icon name='arrow-right' size={25} color={Colors.background} />
+                    </View>
+                  </CardSection>
+                </Card>
+              )
+            }) : null
+          }
+
         </ScrollView>
         <Text style={Styles.headText}>Sale</Text>
-
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
-            bannerData.map((item) => {
-              return <FeatureCard image={item.image}
+            productDetails ? productDetails.sale.map((item, index) => {
+              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
                 title={item.title} price={item.price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
-            })
+            }) : null
           }
         </ScrollView>
         <Text style={Styles.headText}>Featured</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
-            bannerData.map((item) => {
-              return <FeatureCard image={item.image}
+            productDetails ? productDetails.featured.map((item, index) => {
+              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
                 title={item.title} price={item.price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
-            })
+            }) : null
           }
         </ScrollView>
         <Text style={Styles.headText}>Online Books</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
-            bannerData.map((item) => {
-              return <FeatureCard image={item.image}
+            productDetails ? productDetails.online.map((item, index) => {
+              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
                 title={item.title} price={item.price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
-            })
+            }) : null
           }
         </ScrollView >
       </ScrollView >
@@ -131,16 +145,20 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = state => {
-  const { restaurantList } = state;
+  const { restaurantList, product } = state;
   console.log("State in Home Screen- ", restaurantList);
   return {
-    restaurantList
+    restaurantList,
+    product
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRestaurantList: () => dispatch(getRestaurantList())
+    getRestaurantList: () => dispatch(getRestaurantList()),
+    getBannerList: () => dispatch(getBannerList()),
+    getCategories: () => dispatch(getCategories()),
+    getProducts: (flag) => dispatch(getProducts(flag)),
   };
 };
 

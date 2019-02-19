@@ -1,12 +1,11 @@
-
 import React, { PureComponent } from "react";
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
 import Styles from '../Containers/Styles';
-import styleSheet from './Styles';
 import { Colors } from "../Themes";
 
+const { width, height } = Dimensions.get('window');
 
 class Banner extends PureComponent {
 
@@ -16,6 +15,7 @@ class Banner extends PureComponent {
 
     render() {
         const { image, title, price, style, imageStyle, onPress } = this.props;
+        // console.log("image ", image)
         return (
             <Ripple onPress={onPress}>
                 <View style={[styleSheet.cardSectionContainer]} >
@@ -23,12 +23,12 @@ class Banner extends PureComponent {
                         <Icon name="heart" size={25} color={Colors.lightGrey} />
                     </View>
                     <View style={Styles.imgContainer}>
-                        <Image source={image} style={imageStyle} />
+                        <Image source={{ uri: image }} style={imageStyle} resizeMode='stretch' />
                     </View>
-                    <View style={Styles.priceContainer}>
+                    {/* <View style={Styles.priceContainer}>
                         <Text style={Styles.bookName}>{title}</Text>
                         <Text style={Styles.priceText}>${price}</Text>
-                    </View>
+                    </View> */}
                 </View>
             </Ripple>
         );
@@ -47,3 +47,14 @@ Banner.defualtProps = {
 
 
 export default Banner;
+
+const styleSheet = StyleSheet.create({
+    cardSectionContainer: {
+        backgroundColor: Colors.background,
+        margin: 10,
+        padding: 10,
+        borderRadius: 8,
+        width: width * 0.95,
+        height: height * 0.3
+    },
+})

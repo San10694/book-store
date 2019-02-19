@@ -1,7 +1,8 @@
-const React = require('react-native');
-const { Dimensions } = React;
+import { View, Image, Text, StyleSheet, Dimensions } from 'react-native';
 import { Colors } from '../Themes';
 import Fonts from '../Themes/Fonts';
+const { width, height } = Dimensions.get('window');
+
 
 export default {
     // date container
@@ -18,16 +19,16 @@ export default {
         top: 10
     },
     imgContainer: {
-        width: Dimensions.get('screen').width * 0.45,
+        width: width * 0.45,
         height: 100,
         position: 'relative'
     },
     bookImg: {
-        width: Dimensions.get('screen').width * 0.55,
-        height: 120,
-        top: 25,
-        left: 70,
-        position: 'absolute',
+        width: width * 0.90,
+        height: height * 0.27,
+        // top: 25,
+        // left: 70,
+        //position: 'absolute',
         borderRadius: 5,
     },
     priceContainer: { paddingTop: 50 },
@@ -40,7 +41,12 @@ export default {
         fontSize: Fonts.size.medium,
         fontFamily: Fonts.type.sans_serif
     },
-    iconMainContainer: { margin: 20 },
+    iconMainContainer: {
+        margin: 5,
+        width: 90,
+        // justifyContent: 'center',
+        alignItems: 'center'
+    },
     iconContainer: {
         borderRadius: 100,
         width: 60,
@@ -52,7 +58,8 @@ export default {
     iconNm: {
         color: Colors.green,
         paddingTop: 10,
-        paddingLeft: 10
+        textAlign: 'center',
+        fontSize: 12
     },
     cardStyle: {
         marginTop: 5,
@@ -62,15 +69,16 @@ export default {
     advrCardSection: {
         backgroundColor: 'transparent',
         padding: 0,
-        width: Dimensions.get('screen').width * 0.90
+        width: width * 0.80,
+        borderWidth: 4.0,
+        borderRadius: 5,
+        borderColor: Colors.background,
     },
     advrImg: {
         position: 'relative',
-        borderWidth: 4.0,
-        borderColor: Colors.background,
         borderRadius: 5,
-        width: Dimensions.get('screen').width * 0.90,
-        height: 100
+        width: width * 0.78,
+        height: 120
     },
     advrContainer: {
         bottom: 17,
@@ -89,12 +97,12 @@ export default {
     saleCardsection: {
         backgroundColor: Colors.background,
         padding: 5,
-        width: Dimensions.get('screen').width * 0.40,
+        width: width * 0.40,
         height: 200,
     },
     saleImg: {
         position: 'relative',
-        width: Dimensions.get('screen').width * 0.37,
+        width: width * 0.37,
         height: 120,
         borderRadius: 5
 
@@ -107,15 +115,15 @@ export default {
         paddingTop: 5
     },
     headText: { fontSize: Fonts.size.h6, paddingLeft: 20, fontWeight: 'bold', fontFamily: Fonts.type.sans_serif },
-    featureContainer: { backgroundColor: Colors.background, padding: 5, width: Dimensions.get('screen').width * 0.46, height: 200 },
+    featureContainer: { backgroundColor: Colors.background, padding: 5, width: width * 0.46, height: 200 },
     featureImg: {
         position: 'relative',
-        width: Dimensions.get('screen').width * 0.43,
+        width: width * 0.43,
         height: 120,
         borderRadius: 5
     },
-    bookContainer: { backgroundColor: Colors.background, padding: 5, width: Dimensions.get('screen').width * 0.90, height: 200 },
-    bookConImg: { position: 'relative', width: Dimensions.get('screen').width * 0.87, height: 120 },
+    bookContainer: { backgroundColor: Colors.background, padding: 5, width: width * 0.90, height: 200 },
+    bookConImg: { position: 'relative', width: width * 0.87, height: 120 },
     categoryContainer: {
         position: 'absolute',
         top: 15,
@@ -128,12 +136,12 @@ export default {
         borderRadius: 10,
         backgroundColor: 'transparent',
         padding: 0,
-        width: Dimensions.get('screen').width
+        width: width
     },
     categoryImg: {
         borderRadius: 10,
         position: 'relative',
-        width: Dimensions.get('screen').width * 0.91,
+        width: width * 0.91,
         height: 140
     },
     categoryCardStyle: { margin: 5 }

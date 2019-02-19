@@ -62,9 +62,9 @@ export default class ProfileScreen extends Component {
           </View>
           <View style={{ height: 10, backgroundColor: Colors.lightGrey }}></View>
           <View style={{ backgroundColor: Colors.white }}>
-            {menuItems.map((item) => {
+            {menuItems.map((item, index) => {
               return (
-                <Ripple style={styles.menuItem}
+                <Ripple key={index} style={styles.menuItem}
                 // onPress={() => this.props.navigation.navigate(item.route)}
                 >
                   <Text style={styles.textItem}>
