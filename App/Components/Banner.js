@@ -15,7 +15,7 @@ class Banner extends PureComponent {
     }
 
     render() {
-        const { image, title, price, style, onPress } = this.props;
+        const { image, title, price, style, imageStyle, onPress } = this.props;
         return (
             <Ripple onPress={onPress}>
                 <View style={[styleSheet.cardSectionContainer]} >
@@ -23,7 +23,7 @@ class Banner extends PureComponent {
                         <Icon name="heart" size={25} color={Colors.lightGrey} />
                     </View>
                     <View style={Styles.imgContainer}>
-                        <Image source={image} style={Styles.bookImg} />
+                        <Image source={image} style={imageStyle} />
                     </View>
                     <View style={Styles.priceContainer}>
                         <Text style={Styles.bookName}>{title}</Text>
@@ -40,6 +40,7 @@ Banner.defualtProps = {
     style: {
 
     },
+    imageStyle: Styles.bookImg
 
 }
 

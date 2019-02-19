@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, Text, View, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Ripple from 'react-native-material-ripple';
 import { getRestaurantList } from "../Redux/ListRedux";
 import Fonts from '../Themes/Fonts';
 import { CardSection } from '../Components/CardSection';
@@ -56,7 +57,7 @@ class HomeScreen extends Component {
           {
             bannerData.map((item) => {
               return <Banner image={item.image}
-                title={item.title} price={item.price} />
+                title={item.title} price={item.price} imageStyle={Styles.bookImg} />
             })
           }
         </ScrollView>
@@ -66,9 +67,9 @@ class HomeScreen extends Component {
             return (
               <View>
                 <View style={Styles.iconMainContainer}>
-                  <View style={Styles.iconContainer}>
+                  <Ripple style={Styles.iconContainer}>
                     <Icon name={item.icon} size={40} color={item.color} style={Styles.icon} />
-                  </View>
+                  </Ripple>
                   <Text style={Styles.iconNm}>{item.title}</Text>
                 </View>
               </View>
@@ -99,109 +100,30 @@ class HomeScreen extends Component {
         <Text style={Styles.headText}>Sale</Text>
 
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {/* {
+          {
             bannerData.map((item) => {
               return <FeatureCard image={item.image}
-                title={item.title} price={item.price} />
+                title={item.title} price={item.price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             })
-          } */}
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.saleCardsection}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.saleImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.saleCardsection}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.saleImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.saleCardsection}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.saleImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
+          }
         </ScrollView>
         <Text style={Styles.headText}>Featured</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.featureContainer}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.featureImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.featureContainer}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.featureImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.featureContainer}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.featureImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
+          {
+            bannerData.map((item) => {
+              return <FeatureCard image={item.image}
+                title={item.title} price={item.price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
+            })
+          }
         </ScrollView>
         <Text style={Styles.headText}>Online Books</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.bookContainer}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.bookConImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.bookContainer}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.bookConImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
-          <Card style={Styles.cardStyle}>
-            <CardSection style={Styles.bookContainer}>
-              <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.bookConImg} />
-              <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-              <Text style={Styles.bookName}>Herry Potter</Text>
-              <Text>$20</Text>
-              {/* <Text>$20</Text> */}
-            </CardSection>
-          </Card>
+          {
+            bannerData.map((item) => {
+              return <FeatureCard image={item.image}
+                title={item.title} price={item.price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
+            })
+          }
         </ScrollView >
       </ScrollView >
     );

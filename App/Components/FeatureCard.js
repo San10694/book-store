@@ -15,12 +15,12 @@ class FeatureCard extends PureComponent {
     }
 
     render() {
-        const { image, title, price, style, onPress } = this.props;
+        const { image, title, price, style, imageStyle, onPress } = this.props;
         return (
             <Ripple onPress={onPress}>
                 <View style={[Styles.cardStyle]} >
-                    <View style={[Styles.saleCardsection, style]} >
-                        <Image source={image} style={Styles.saleImg} />
+                    <View style={[styleSheet.cardSectionContainer, style]} >
+                        <Image source={image} style={imageStyle} />
                         <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
                         <Text style={Styles.bookName}>{title}</Text>
                         <Text>${price}</Text>
