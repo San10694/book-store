@@ -78,7 +78,7 @@ class HomeScreen extends Component {
           }
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {categories.map((item, index) => {
+          {categories ? categories.map((item, index) => {
             return (
               <View key={item.id}>
                 <View style={Styles.iconMainContainer}>
@@ -89,7 +89,7 @@ class HomeScreen extends Component {
                 </View>
               </View>
             )
-          })
+          }) : null
           }
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
