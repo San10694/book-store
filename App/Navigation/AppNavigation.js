@@ -91,7 +91,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "SubCategoryScreen",
       screen: SubCategoryScreen,
       navigationOptions: {
-        title: "Sub Category Screen",
+        title: "Sub Categories",
         // header: null
       }
     },
@@ -100,7 +100,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "SubSubCategoryScreen",
       screen: SubSubCategoryScreen,
       navigationOptions: {
-        title: "Sub Category Screen",
+        title: "Sub Categories",
         // header: null
       }
     },
@@ -109,7 +109,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "ProductListScreen",
       screen: ProductListScreen,
       navigationOptions: {
-        title: "Product List",
+        title: "Book List",
         //header: null
       }
     },
@@ -118,7 +118,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "ProductDetailScreen",
       screen: ProductDetailScreen,
       navigationOptions: {
-        title: "Product Detail",
+        title: "Product Details",
         // header: null
       }
     },
@@ -182,7 +182,7 @@ hile using the drawer navigator inside stack navigator.*/
       ),
       headerStyle: {
         backgroundColor: Colors.lightGrey,
-        elevation: 0
+        elevation: navigation.state.routeName === 'DrawerNavigator' ? 0 : 1
 
       },
       headerTintColor: Colors.Text,

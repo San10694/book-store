@@ -1,53 +1,58 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
-import { getRestaurantList } from "../Redux/ListRedux";
 import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
-import { CardSection } from '../Components/CardSection';
-import { Card } from '../Components/Card';
-import { MenuIcon } from '../Components/MenuIcon';
 import Styles from './Styles';
 import { Colors, Images } from "../Themes";
-import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
+import Api from "../Services";
 
-
-
+const api = Api.Api();
 class ProductListScreen extends Component {
 
-    componentDidMount() {
-        this.props.getProducts(1)
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            id: props.navigation.state.params.id,
+            productList: []
+        }
     }
 
+    componentDidMount() {
+        api.getSubCategories(this.state.id).then(response => {
+            const { data } = response ? response.data : []
+            this.setState({ productList: data })
+            console.log("Product List - ", data);
+        })
+    }
 
     render() {
-        var date = new Date();
-        var currentDate = date.toDateString();
-        const { productDetails } = this.props.product
-        console.log("  productDetails -- ", JSON.stringify(productDetails));
-        if (productDetails == null) {
+        const { productList } = this.state;
+        const { productDetails } = this.props.product;
+        if (productList == null) {
             return <View></View>
         }
         return (
-
-            <View style={{
-                flexWrap: "wrap",
-                flex: 1,
-                width: "50%"
-            }}>
-                <View style={{ flexWrap: "wrap" }}>
-                    {
-                        productDetails ? productDetails.featured.map((item, index) => {
-                            return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
-                                title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg} />
-                        }) : null
-                    }
+            <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
+                <View style={{
+                    flexWrap: "wrap",
+                    flex: 1,
+                    width: "50%"
+                }}>
+                    <View style={{ flexWrap: "wrap" }}>
+                        {
+                            productDetails ? productDetails.featured.map((item, index) => {
+                                return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
+                                    title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg} />
+                            }) : null
+                        }
+                    </View>
                 </View>
-            </View>
-
+            </ScrollView>
         );
     }
 }

@@ -13,15 +13,11 @@ const api = Api.Api();
 
 class CategoryScreen extends Component {
 
-    componentDidMount() {
-        api.getCategories().then(res => {
-            console.log("getCategories - ", res);
-        })
-    }
+
 
     render() {
         const { categories } = this.props.product
-        console.log("  categories -- ", JSON.stringify(categories));
+        //console.log("  categories -- ", JSON.stringify(categories));
         if (categories == null) {
             return <View></View>
         }
@@ -32,7 +28,8 @@ class CategoryScreen extends Component {
                         <View key={item.id}>
                             <Ripple style={Styles.categoryscnContainer}
                                 onPress={() => {
-                                    this.props.navigation.navigate('SubCategoryScreen');
+                                    this.props.navigation.navigate('SubCategoryScreen', { category_group_id: item.id, title: item.name });
+
                                 }}>
 
                                 <View style={Styles.categorySubContainer}>
@@ -55,7 +52,6 @@ class CategoryScreen extends Component {
 
 const mapStateToProps = state => {
     const { product } = state;
-    console.log("State in Category Screen- ", product);
     return {
         product
     };

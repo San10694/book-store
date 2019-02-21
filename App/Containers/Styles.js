@@ -178,6 +178,7 @@ export default {
     categoryIcon: { width: 40, height: 40, flex: .2 },
     categoryName: { flex: .7, paddingTop: 10, fontWeight: '500' },
     categoryBackIcon: { flex: .1, alignSelf: 'center' },
+
     productContainer: {
         backgroundColor: Colors.background,
         padding: 5,

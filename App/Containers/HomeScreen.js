@@ -54,7 +54,7 @@ class HomeScreen extends Component {
     var date = new Date();
     var currentDate = date.toDateString();
     const { productDetails, banner, categories, isFetching } = this.props.product
-    console.log("  isFetching -- ", isFetching);
+    //console.log("  product -- ", this.props.product);
     if (isFetching) {
       return (
         <View>
@@ -82,7 +82,9 @@ class HomeScreen extends Component {
             return (
               <View key={item.id}>
                 <View style={Styles.iconMainContainer}>
-                  <Ripple style={Styles.iconContainer}>
+                  <Ripple style={Styles.iconContainer} onPress={() => {
+                    this.props.navigation.navigate('SubCategoryScreen', { category_group_id: item.id, title: item.name });
+                  }}>
                     <Icon name={item.icon} size={40} color={Colors.green} style={Styles.icon} />
                   </Ripple>
                   <Text numberOfLines={2} style={Styles.iconNm}>{item.name}</Text>
