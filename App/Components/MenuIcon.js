@@ -5,21 +5,30 @@ import { Colors } from "../Themes";
 
 
 export const MenuIcon = ({ navigation }) => {
-  if (!navigation.state.isDrawerOpen) {
-    return (
-      <View style={{ margin: 10 }}>
-        <Icon name="menu" size={25} color={Colors.primary}>
-        </Icon>
-      </View>
-    );
-  } else {
-    return (
-      <View style={{ margin: 10 }}>
-        <Icon name="keyboard-backspace" size={25} color={Colors.primary}>
-        </Icon>
-      </View>
-    );
-  }
+  const { isDrawerOpen, routeName } = navigation.state;
+  if (routeName === 'DrawerNavigator') {
+    if (!isDrawerOpen) {
+      return (
+        <View style={{ margin: 10 }}>
+          <Icon name="menu" size={25} color={Colors.primary}>
+          </Icon>
+        </View>
+      );
+    } else {
+      return (
+        <View style={{ margin: 10 }}>
+          <Icon name="keyboard-backspace" size={25} color={Colors.primary}>
+          </Icon>
+        </View>
+      );
+    }
+  } return (
+    <View style={{ margin: 10 }}>
+      <Icon name="keyboard-backspace" size={25} color={Colors.primary}>
+      </Icon>
+    </View>
+  );
+
 };
 
 

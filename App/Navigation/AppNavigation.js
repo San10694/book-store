@@ -15,11 +15,16 @@ import ProfileScreen from "../Containers/ProfileScreen";
 import AboutScreen from "../Containers/AboutScreen";
 import ContactScreen from "../Containers/ContactScreen";
 import { Colors } from "../Themes";
+import CategoryScreen from '../Containers/CategoryScreen';
+import SubCategoryScreen from '../Containers/SubCategoryScreen';
+import SubSubCategoryScreen from '../Containers/SubSubCategoryScreen';
 import LoginScreen from "../Containers/LoginScreen";
 import RegistrationScreen from "../Containers/RegistrationScreen";
 import CartScreen from "../Containers/CartScreen";
 import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
+import ProductListScreen from "../Containers/ProductListScreen";
+import ProductDetailScreen from '../Containers/ProductDetailScreen';
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -67,19 +72,56 @@ const DrawerNavigator = createDrawerNavigator(Routes, {
 const PrimaryNav = createStackNavigator(
   {
     /*important: key and screen name (i.e. DrawerNavigator) should be same
-     while using the drawer navigator inside stack navigator.*/
+     wimport ProductDetailScreen from '../Containers/ProductDetailScreen';
+hile using the drawer navigator inside stack navigator.*/
     DrawerNavigator: {
       screen: DrawerNavigator
     },
-    // AboutScreen: {
-    //   name: "AboutScreen",
-    //   description: "AboutScreen",
-    //   screen: AboutScreen,
+    // CategoryScreen: {
+    //   name: "CategoryScreen",
+    //   description: "CategoryScreen",
+    //   screen: CategoryScreen,
     //   navigationOptions: {
-    //     title: "About Screen",
+    //     title: "Category Screen",
     //     header: null
     //   }
-    // }
+    // },
+    SubCategoryScreen: {
+      name: "SubCategoryScreen",
+      description: "SubCategoryScreen",
+      screen: SubCategoryScreen,
+      navigationOptions: {
+        title: "Sub Category Screen",
+        // header: null
+      }
+    },
+    SubSubCategoryScreen: {
+      name: "SubSubCategoryScreen",
+      description: "SubSubCategoryScreen",
+      screen: SubSubCategoryScreen,
+      navigationOptions: {
+        title: "Sub Category Screen",
+        // header: null
+      }
+    },
+    ProductListScreen: {
+      name: "ProductListScreen",
+      description: "ProductListScreen",
+      screen: ProductListScreen,
+      navigationOptions: {
+        title: "Product List",
+        //header: null
+      }
+    },
+    ProductDetailScreen: {
+      name: "ProductDetailScreen",
+      description: "ProductDetailScreen",
+      screen: ProductDetailScreen,
+      navigationOptions: {
+        title: "Product Detail",
+        // header: null
+      }
+    },
     // LoginScreen: {
     //   name: "LoginScreen",
     //   description: "LoginScreen",
@@ -129,7 +171,10 @@ const PrimaryNav = createStackNavigator(
       headerLeft: (
         <TouchableOpacity
           onPress={() => {
-            navigation.dispatch(DrawerActions.toggleDrawer());
+            const { routeName } = navigation.state
+            routeName === 'DrawerNavigator' ?
+              navigation.dispatch(DrawerActions.toggleDrawer())
+              : navigation.goBack();
           }}
         >
           <MenuIcon navigation={navigation} />

@@ -4,19 +4,19 @@ import { Colors, Images } from "../Themes";
 import Styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getCategories } from "../Redux/ProductRedux";
-import { connect } from 'react-redux';
-import Api from "../Services";
-import Ripple from "react-native-material-ripple";
-import { PrimaryNav } from '../Navigation/AppNavigation';
+import { connect } from "react-redux";
+import Ripple from 'react-native-material-ripple';
 
-const api = Api.Api();
 
-class CategoryScreen extends Component {
+
+class SubSubCategoryScreen extends Component {
+
+    constructor(props) {
+        super(props)
+    }
 
     componentDidMount() {
-        api.getCategories().then(res => {
-            console.log("getCategories - ", res);
-        })
+        this.props.getCategories();
     }
 
     render() {
@@ -32,7 +32,7 @@ class CategoryScreen extends Component {
                         <View key={item.id}>
                             <Ripple style={Styles.categoryscnContainer}
                                 onPress={() => {
-                                    this.props.navigation.navigate('SubCategoryScreen');
+                                    this.props.navigation.navigate("ProductListScreen")
                                 }}>
 
                                 <View style={Styles.categorySubContainer}>
@@ -70,5 +70,5 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CategoryScreen);
+)(SubSubCategoryScreen);
 

@@ -18,15 +18,6 @@ import OrderScreen from "../Containers/OrderScreen";
 
 export default {
 
-  // HomeScreen: {
-  //   name: "HomeScreen",
-  //   description: "HomeScreen",
-  //   screen: HomeTab,
-  //   navigationOptions: {
-  //     title: "Home Screen"
-  //   }
-  // },
-
   HomeTab: createTabNavigator({
     Home: {
       screen: HomeScreen,
