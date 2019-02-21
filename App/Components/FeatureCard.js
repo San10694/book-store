@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
 import Styles from '../Containers/Styles';
 import styleSheet from './Styles';
-import { Colors, Images } from "../Themes";
+import { Colors, Images, Constants } from "../Themes";
 
 
 class FeatureCard extends PureComponent {
@@ -27,8 +27,7 @@ class FeatureCard extends PureComponent {
                         }
                         <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
                         <Text style={Styles.bookName}>{title}</Text>
-                        <Text>${price}</Text>
-                        {/* <Text>$20</Text> */}
+                        <Text style={{ textAlign: 'left', fontWeight: 'bold' }}>{Constants.rupee}{price}</Text>
                     </View>
                 </View>
             </Ripple>
@@ -39,20 +38,7 @@ class FeatureCard extends PureComponent {
 FeatureCard.defualtProps = {
     longCardRequired: false,
     style: {
-    },
-
+    }
 }
 
-
 export default FeatureCard;
-
-{/* <Card style={Styles.cardStyle}>
-    <CardSection style={Styles.saleCardsection}>
-        <Image source={require('../Assets/bgImg/burdon.jpg')} style={Styles.saleImg} />
-        <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
-
-        <Text style={Styles.bookName}>Herry Potter</Text>
-        <Text>$20</Text>
-        <Text>$20</Text>
-    </CardSection>
-</Card> */}

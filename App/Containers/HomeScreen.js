@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
@@ -13,6 +13,7 @@ import Styles from './Styles';
 import { Colors, Images } from "../Themes";
 import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
+import ActivityIndicator from "../Components/ActivityIndicator";
 
 
 const bannerData = [
@@ -22,7 +23,7 @@ const bannerData = [
   { key: 4, title: 'Harry Poter part -4', price: 50, image: Images.burdon }
 ]
 
-_categories = [
+const _categories = [
   { key: 1, title: 'Thriller', icon: 'book', color: Colors.blue2 },
   { key: 2, title: 'Mystry', icon: 'book', color: Colors.green },
   { key: 3, title: 'Religious', icon: 'book', color: Colors.darkRed },
@@ -52,10 +53,14 @@ class HomeScreen extends Component {
   render() {
     var date = new Date();
     var currentDate = date.toDateString();
-    const { productDetails, banner, categories } = this.props.product
-    console.log("  productDetails -- ", JSON.stringify(productDetails));
-    if (banner == null && categories == null && productDetails == null) {
-      return <View></View>
+    const { productDetails, banner, categories, isFetching } = this.props.product
+    console.log("  isFetching -- ", isFetching);
+    if (isFetching) {
+      return (
+        <View>
+          <ActivityIndicator isFetching={isFetching} />
+        </View>
+      )
     }
     return (
       <ScrollView
@@ -66,7 +71,6 @@ class HomeScreen extends Component {
         </View>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
-            // product.banner ? product.banner :
             banner ? banner.banners.map((item, index) => {
               return <Banner key={index} image={imageUrl + item.image_link}
                 title={item.title} price={item.price} imageStyle={Styles.bookImg} />
@@ -74,7 +78,7 @@ class HomeScreen extends Component {
           }
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {categories.map((item, index) => {
+          {categories ? categories.map((item, index) => {
             return (
               <View key={item.id}>
                 <View style={Styles.iconMainContainer}>
@@ -85,7 +89,7 @@ class HomeScreen extends Component {
                 </View>
               </View>
             )
-          })
+          }) : null
           }
         </ScrollView>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -95,15 +99,18 @@ class HomeScreen extends Component {
                 <Card key={index} style={Styles.cardStyle}>
                   <CardSection style={Styles.advrCardSection}>
                     <Image source={Images.burdon} style={Styles.advrImg} />
+                    <View style={{
+                      position: 'absolute',
+                      paddingTop: 20,
+                      paddingLeft: 60
+                    }}>
+                      <Text style={styles.offerText}>{item.description}</Text>
+                      <Text style={styles.offerText}>Use Code: <Text> {item.code}</Text></Text>
+                    </View>
                     <View style={Styles.advrContainer}>
-                      <WebView
-                        style={{
-                          backgroundColor: 'transparent', marginLeft: 10
-                        }}
-                        html={item.description} />
-                      {/* <Text style={Styles.boldText}>Use Code: {item.code}</Text> */}
                       <Text style={Styles.boldText}>{item.name}</Text>
                       <Icon name='arrow-right' size={25} color={Colors.background} />
+
                     </View>
                   </CardSection>
                 </Card>
@@ -116,7 +123,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.sale.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
+              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             }) : null
           }
@@ -125,7 +132,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.featured.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
+              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
@@ -134,8 +141,11 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.online.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
-                title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
+              //   return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+              //     title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
+              // }) : null
+              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+                title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
         </ScrollView >
@@ -167,21 +177,20 @@ export default connect(
   mapDispatchToProps
 )(HomeScreen);
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     backgroundColor: Colors.lightGrey
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: "center",
-//     margin: 10
-//   },
-//   instructions: {
-//     textAlign: "center",
-//     color: Colors.Text,
-//     marginBottom: 5
-//   }
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colors.lightGrey
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10
+  },
+  offerText: {
+    fontSize: Fonts.size.h6,
+    color: Colors.background,
+  }
+});

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res  --sourcemap-output index.android.sourcemap.js",
     "test": "jest"
   },
   "dependencies": {
@@ -12,6 +13,7 @@
     "lodash": "^4.17.4",
     "react": "16.5.0",
     "react-native": "0.57.1",
+    "react-native-loading-spinner-overlay": "0.5.2",
     "react-native-material-ripple": "0.8.0",
     "react-native-smart-splash-screen": "^2.3.5",
     "react-native-snackbar": "^0.5.3",

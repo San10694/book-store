@@ -124,14 +124,7 @@ export default {
       title: "Contact Screen"
     }
   },
-  CategoryScreen: {
-    name: "CategoryScreen",
-    description: "CategoryScreen",
-    screen: CategoryScreen,
-    navigationOptions: {
-      title: "Category Screen"
-    }
-  },
+
   LoginScreen: {
     name: "LoginScreen",
     description: "LoginScreen",
