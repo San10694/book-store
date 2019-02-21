@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
@@ -99,15 +99,18 @@ class HomeScreen extends Component {
                 <Card key={index} style={Styles.cardStyle}>
                   <CardSection style={Styles.advrCardSection}>
                     <Image source={Images.burdon} style={Styles.advrImg} />
+                    <View style={{
+                      position: 'absolute',
+                      paddingTop: 20,
+                      paddingLeft: 60
+                    }}>
+                      <Text style={styles.offerText}>{item.description}</Text>
+                      <Text style={styles.offerText}>Use Code: <Text> {item.code}</Text></Text>
+                    </View>
                     <View style={Styles.advrContainer}>
-                      <WebView
-                        style={{
-                          backgroundColor: 'transparent', marginLeft: 10
-                        }}
-                        html={item.description} />
-                      {/* <Text style={Styles.boldText}>Use Code: {item.code}</Text> */}
                       <Text style={Styles.boldText}>{item.name}</Text>
                       <Icon name='arrow-right' size={25} color={Colors.background} />
+
                     </View>
                   </CardSection>
                 </Card>
@@ -138,8 +141,11 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.online.map((item, index) => {
+              //   return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+              //     title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
+              // }) : null
               return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
-                title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
+                title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
         </ScrollView >
@@ -183,9 +189,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10
   },
-  instructions: {
-    textAlign: "center",
-    color: Colors.Text,
-    marginBottom: 5
+  offerText: {
+    fontSize: Fonts.size.h6,
+    color: Colors.background,
   }
 });
