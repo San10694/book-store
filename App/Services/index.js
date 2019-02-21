@@ -21,7 +21,8 @@ const Api = () => {
     categories: '/api/category',
     sub_catgory: '/api/subcategory',
     child_catgory: '/api/childcategory',
-    new_products: '/api/new_products'
+    new_products: '/api/new_products',
+    product_list: '/api/browseCategory'
 
   };
 
@@ -67,6 +68,18 @@ const Api = () => {
         }
       });
   }
+  const getProductList = () => {
+    return api.post(endPoints.product_list, {
+      key: 'A123456789',
+      id: 42,
+      page_id: 1
+    })
+      .catch((error) => {
+        if (error && error.response) {
+          // const { data } = error.response;
+        }
+      });
+  }
   const getProducts = (flag) => {
     console.log("flag --", flag);
     return api.post(endPoints.new_products, { key: 'A123456789' })
@@ -85,8 +98,8 @@ const Api = () => {
     getCategories,
     getSubCategories,
     getChildCategories,
+    getProductList,
     getProducts
-
   }
 }
 

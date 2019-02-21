@@ -7,9 +7,18 @@ import { CardSection } from '../Components/CardSection';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getCategories } from "../Redux/ProductRedux";
 import { connect } from 'react-redux';
+import Api from "../Services";
 
+const api = Api.Api();
 
 class CategoryScreen extends Component {
+
+    componentDidMount() {
+        console.log("CategoryScreen - ");
+        api.getCategories().then(res => {
+            console.log("getCategories - ", res);
+        })
+    }
 
 
     render() {
