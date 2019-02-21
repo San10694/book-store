@@ -53,7 +53,7 @@ class HomeScreen extends Component {
     var date = new Date();
     var currentDate = date.toDateString();
     const { productDetails, banner, categories } = this.props.product
-    console.log("  productDetails -- ", productDetails);
+    console.log("  productDetails -- ", JSON.stringify(productDetails));
     if (banner == null && categories == null && productDetails == null) {
       return <View></View>
     }
@@ -167,21 +167,21 @@ export default connect(
   mapDispatchToProps
 )(HomeScreen);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.lightGrey
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: Colors.Text,
-    marginBottom: 5
-  }
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     backgroundColor: Colors.lightGrey
+//   },
+//   welcome: {
+//     fontSize: 20,
+//     textAlign: "center",
+//     margin: 10
+//   },
+//   instructions: {
+//     textAlign: "center",
+//     color: Colors.Text,
+//     marginBottom: 5
+//   }
+// });

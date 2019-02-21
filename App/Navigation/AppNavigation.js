@@ -15,6 +15,9 @@ import ProfileScreen from "../Containers/ProfileScreen";
 import AboutScreen from "../Containers/AboutScreen";
 import ContactScreen from "../Containers/ContactScreen";
 import { Colors } from "../Themes";
+import CategoryScreen from '../Containers/CategoryScreen';
+import SubCategoryScreen from '../Containers/SubCategoryScreen';
+import SubSubCategoryScreen from '../Containers/SubSubCategoryScreen';
 import LoginScreen from "../Containers/LoginScreen";
 import RegistrationScreen from "../Containers/RegistrationScreen";
 import CartScreen from "../Containers/CartScreen";
@@ -22,7 +25,7 @@ import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
-  initialRouteName: "HomeTab",
+  initialRouteName: "ProductListScreen",
   contentComponent: DrawerScreen,
   drawerWidth: 300,
   drawerBackgroundColor: "#F5FCFF",
@@ -70,6 +73,33 @@ const PrimaryNav = createStackNavigator(
      while using the drawer navigator inside stack navigator.*/
     DrawerNavigator: {
       screen: DrawerNavigator
+    },
+    CategoryScreen: {
+      name: "CategoryScreen",
+      description: "CategoryScreen",
+      screen: CategoryScreen,
+      navigationOptions: {
+        title: "Category Screen",
+        header: null
+      }
+    },
+    SubCategoryScreen: {
+      name: "SubCategoryScreen",
+      description: "SubCategoryScreen",
+      screen: SubCategoryScreen,
+      navigationOptions: {
+        title: "Sub Category Screen",
+        header: null
+      }
+    },
+    SubSubCategoryScreen: {
+      name: "SubSubCategoryScreen",
+      description: "SubSubCategoryScreen",
+      screen: SubSubCategoryScreen,
+      navigationOptions: {
+        title: "Sub Category Screen",
+        header: null
+      }
     },
     // LoginScreen: {
     //   name: "LoginScreen",

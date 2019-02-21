@@ -158,5 +158,27 @@ export default {
         width: width * 0.91,
         height: 140
     },
-    categoryCardStyle: { margin: 5 }
+    categoryCardStyle: { margin: 5 },
+
+
+
+    ///category screen
+    categoryscnContainer: { borderBottomColor: Colors.primary, borderBottomWidth: 1 },
+    categorySubContainer: { flexDirection: 'row', padding: 20, flex: 1 },
+    categoryIcon: { width: 40, height: 40, flex: .2 },
+    categoryName: { flex: .7, paddingTop: 10, fontWeight: '500' },
+    categoryBackIcon: { flex: .1, alignSelf: 'center' },
+    productContainer: {
+        backgroundColor: Colors.background,
+        padding: 5,
+        width: width * 0.44,
+        height: 200,
+        paddingTop: 20
+    },
+    productImg: {
+        position: 'relative',
+        width: width * 0.43,
+        height: 120,
+        borderRadius: 5
+    },
 }

@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
-import { Colors } from "../Themes";
+import { Colors, Images } from "../Themes";
+import Fonts from '../Themes/Fonts';
 
+
+const bannerData = [
+    { key: 1, title: 'Harry Poter part -1', price: 50, image: Images.burdon },
+    { key: 2, title: 'Harry Poter part -2', price: 50, image: Images.burdon }
+
+]
 
 
 class CartScreen extends Component {
@@ -22,12 +29,26 @@ class CartScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: Colors.white }}>
-                <View style={styles.container}>
-                    <Text style={styles.welcome}>Welcome to Cart Screen!</Text>
-                    <Text style={styles.instructions}>Start Buying Books form this page</Text>
+            <ScrollView style={{ padding: 20, backgroundColor: Colors.background }}>
+
+                <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
+                    <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
+                    <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>$900.00</Text>
                 </View>
-            </View>
+                <View style={{ flex: 1, flexDirection: 'row', paddingTop: 10 }}>
+                    <View style={{ flex: .25, width: 70, height: 70, marginTop: 10, marginRight: 5 }}>
+                        <Image source={Images.burdon} style={{ width: 70, height: 70 }} />
+                    </View>
+                    <View style={{ flex: .3 }}>
+                        <Text style={{ paddingLeft: 7, fontSize: Fonts.size.regular, paddingTop: 10 }}>hhhhh</Text>
+                        <Text style={{ padding: 10, fontSize: Fonts.size.regular, color: Colors.primary, fontWeight: '500' }}>$50.00</Text>
+
+                    </View>
+                    <View style={{ flex: .55 }}>
+                        <Text>kkk</Text>
+                    </View>
+                </View>
+            </ScrollView>
         );
     }
 }

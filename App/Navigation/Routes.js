@@ -14,7 +14,8 @@ import RegistrationScreen from "../Containers/RegistrationScreen";
 import CartScreen from "../Containers/CartScreen";
 import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
-
+import ProductDetailScreen from '../Containers/ProductDetailScreen';
+import ProductListScreen from '../Containers/ProductListScreen';
 
 export default {
 
@@ -64,6 +65,8 @@ export default {
         ),
       },
     },
+
+
   },
     {
       tabBarComponent: (props) => <TabBarBottom {...props} />,
@@ -167,6 +170,22 @@ export default {
     screen: OrderScreen,
     navigationOptions: {
       title: "OrderScreen"
+    }
+  },
+  ProductDetailScreen: {
+    name: "ProductDetailScreen",
+    description: "ProductDetailScreen",
+    screen: ProductDetailScreen,
+    navigationOptions: {
+      title: "ProductDetail"
+    }
+  },
+  ProductListScreen: {
+    name: "ProductListScreen",
+    description: "ProductListScreen",
+    screen: ProductListScreen,
+    navigationOptions: {
+      title: "Product-List Screen"
     }
   },
 
