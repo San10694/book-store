@@ -3,6 +3,10 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../Themes";
 
 export default class AboutScreen extends Component {
+
+  static navigationOptions = {
+    title: "About Screen"
+  }
   render() {
     return (
       <View style={styles.container}>

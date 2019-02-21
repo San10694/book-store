@@ -71,6 +71,15 @@ const PrimaryNav = createStackNavigator(
     DrawerNavigator: {
       screen: DrawerNavigator
     },
+    // AboutScreen: {
+    //   name: "AboutScreen",
+    //   description: "AboutScreen",
+    //   screen: AboutScreen,
+    //   navigationOptions: {
+    //     title: "About Screen",
+    //     header: null
+    //   }
+    // }
     // LoginScreen: {
     //   name: "LoginScreen",
     //   description: "LoginScreen",

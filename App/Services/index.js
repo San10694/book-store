@@ -19,6 +19,8 @@ const Api = () => {
   const endPoints = {
     getBanners: "/api/home",
     categories: '/api/category',
+    sub_catgory: '/api/subcategory',
+    child_catgory: '/api/childcategory',
     new_products: '/api/new_products'
 
   };
@@ -49,6 +51,22 @@ const Api = () => {
         }
       });
   }
+  const getSubCategories = () => {
+    return api.post(endPoints.sub_catgory, { category_group_id: 'A123456789' })
+      .catch((error) => {
+        if (error && error.response) {
+          // const { data } = error.response;
+        }
+      });
+  }
+  const getChildCategories = () => {
+    return api.post(endPoints.child_catgory, { category_sub_group_id: 'A123456789' })
+      .catch((error) => {
+        if (error && error.response) {
+          // const { data } = error.response;
+        }
+      });
+  }
   const getProducts = (flag) => {
     console.log("flag --", flag);
     return api.post(endPoints.new_products, { key: 'A123456789' })
@@ -61,15 +79,12 @@ const Api = () => {
 
   const getRestaurantList = () => api.get(endPoints.getBanners);
 
-
-
-
-
-
   return {
     getRestaurantList,
     getBanners,
     getCategories,
+    getSubCategories,
+    getChildCategories,
     getProducts
 
   }
