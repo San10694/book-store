@@ -5,7 +5,9 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import Navigation from "./App/Navigation/AppNavigation";
 import configureStore from "./App/Redux/ConfigureStore";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import SplashScreen from 'react-native-smart-splash-screen';
+
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const store = configureStore();
 
@@ -13,6 +15,14 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     console.disableYellowBox = true;
+  }
+  componentDidMount() {
+    //SplashScreen.close(SplashScreen.animationType.scale, 850, 500)
+    SplashScreen.close({
+      animationType: SplashScreen.animationType.scale,
+      duration: 850,
+      delay: 500,
+    })
   }
   render() {
     let persistor = persistStore(store);
@@ -26,21 +36,3 @@ export default class App extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
-});

@@ -9,7 +9,9 @@ const Colors = {
     // bottom tab bar
     tabbar: "rgba(255, 255, 255, 1)",
     tabbarTint: '#00BCD4',
+    charcoal: '#80868b',
     tabbarColor: "#ccc",
+
 
     // wishlist
     heartActiveWishList: "rgba(252, 31, 74, 1)",

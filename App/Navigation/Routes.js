@@ -8,6 +8,12 @@ import { createTabNavigator, TabBarBottom } from "react-navigation";
 import { Colors, Fonts } from "../Themes";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View } from 'react-native';
+import CategoryScreen from '../Containers/CategoryScreen';
+import LoginScreen from "../Containers/LoginScreen";
+import RegistrationScreen from "../Containers/RegistrationScreen";
+import CartScreen from "../Containers/CartScreen";
+import WishListScreen from "../Containers/WishListScreen";
+import OrderScreen from "../Containers/OrderScreen";
 
 
 export default {
@@ -25,6 +31,8 @@ export default {
     Home: {
       screen: HomeScreen,
       navigationOptions: {
+        // headerMode: 'none',
+        // header: null,
         tabBarIcon: ({ tintColor }) => (
           <View style={{ marginTop: 5 }}>
             <Icon name="home-outline" size={20} color={tintColor}>
@@ -34,8 +42,8 @@ export default {
       },
     },
     Categories: {
-      screen: AboutScreen,
-      key: AboutScreen,
+      screen: CategoryScreen,
+      key: CategoryScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <View style={{ marginTop: 5 }}>
@@ -88,7 +96,7 @@ export default {
           marginBottom: 5
         },
         activeTintColor: Colors.headerTintColor,
-        inactiveTintColor: Colors.Text,
+        inactiveTintColor: Colors.charcoal,
         //pressColor: ,
         upperCaseLabel: false,
         pressOpacity: 0.3,
@@ -97,15 +105,6 @@ export default {
         allowFontScaling: false
       }
     }),
-
-  ProfileScreen: {
-    name: "ProfileScreen",
-    description: "ProfileScreen",
-    screen: ProfileScreen,
-    navigationOptions: {
-      title: "Profile Screen"
-    }
-  },
   AboutScreen: {
     name: "AboutScreen",
     description: "AboutScreen",
@@ -121,7 +120,49 @@ export default {
     navigationOptions: {
       title: "Contact Screen"
     }
-  }
+  },
+
+  LoginScreen: {
+    name: "LoginScreen",
+    description: "LoginScreen",
+    screen: LoginScreen,
+    navigationOptions: {
+      title: "Login Screen"
+    }
+  },
+  RegistrationScreen: {
+    name: "RegistrationScreen",
+    description: "RegistrationScreen",
+    screen: RegistrationScreen,
+    navigationOptions: {
+      title: "Registration Screen"
+    }
+  },
+  CartScreen: {
+    name: "CartScreen",
+    description: "CartScreen",
+    screen: CartScreen,
+    navigationOptions: {
+      title: "Cart Screen"
+    }
+  },
+  WishListScreen: {
+    name: "WishListScreen",
+    description: "WishListScreen",
+    screen: WishListScreen,
+    navigationOptions: {
+      title: "WishList Screen"
+    }
+  },
+  OrderScreen: {
+    name: "OrderScreen",
+    description: "OrderScreen",
+    screen: OrderScreen,
+    navigationOptions: {
+      title: "OrderScreen"
+    }
+  },
+
 };
 
-
+//CategoryScreen

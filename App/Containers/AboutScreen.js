@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import { Colors } from "../Themes";
 
 export default class AboutScreen extends Component {
+
+  static navigationOptions = {
+    title: "About Screen"
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -16,7 +21,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    backgroundColor: Colors.lightGrey
+
   },
   welcome: {
     fontSize: 20,

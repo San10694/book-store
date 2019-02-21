@@ -15,6 +15,11 @@ import ProfileScreen from "../Containers/ProfileScreen";
 import AboutScreen from "../Containers/AboutScreen";
 import ContactScreen from "../Containers/ContactScreen";
 import { Colors } from "../Themes";
+import LoginScreen from "../Containers/LoginScreen";
+import RegistrationScreen from "../Containers/RegistrationScreen";
+import CartScreen from "../Containers/CartScreen";
+import WishListScreen from "../Containers/WishListScreen";
+import OrderScreen from "../Containers/OrderScreen";
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -65,11 +70,61 @@ const PrimaryNav = createStackNavigator(
      while using the drawer navigator inside stack navigator.*/
     DrawerNavigator: {
       screen: DrawerNavigator
-    }
+    },
+    // AboutScreen: {
+    //   name: "AboutScreen",
+    //   description: "AboutScreen",
+    //   screen: AboutScreen,
+    //   navigationOptions: {
+    //     title: "About Screen",
+    //     header: null
+    //   }
+    // }
+    // LoginScreen: {
+    //   name: "LoginScreen",
+    //   description: "LoginScreen",
+    //   screen: LoginScreen,
+    //   navigationOptions: {
+    //     title: "Login Screen"
+    //   }
+    // },
+    // RegistrationScreen: {
+    //   name: "RegistrationScreen",
+    //   description: "RegistrationScreen",
+    //   screen: RegistrationScreen,
+    //   navigationOptions: {
+    //     title: "Registration Screen"
+    //   }
+    // },
+    // CartScreen: {
+    //   name: "CartScreen",
+    //   description: "CartScreen",
+    //   screen: CartScreen,
+    //   navigationOptions: {
+    //     title: "Cart Screen"
+    //   }
+    // },
+    // WishListScreen: {
+    //   name: "WishListScreen",
+    //   description: "WishListScreen",
+    //   screen: WishListScreen,
+    //   navigationOptions: {
+    //     title: "WishList Screen"
+    //   }
+    // },
+    // OrderScreen: {
+    //   name: "OrderScreen",
+    //   description: "OrderScreen",
+    //   screen: OrderScreen,
+    //   navigationOptions: {
+    //     title: "OrderScreen"
+    //   }
+    // },
   },
   {
     navigationOptions: ({ navigation }) => ({
-      header: null,
+      //headerMode: 'none',
+      // header: null,
       // title: "Book Store", // Title to appear in status bar
       headerLeft: (
         <TouchableOpacity
@@ -81,8 +136,8 @@ const PrimaryNav = createStackNavigator(
         </TouchableOpacity>
       ),
       headerStyle: {
-        backgroundColor: "#fff",
-        shadowOpacity: 1
+        backgroundColor: Colors.lightGrey,
+        elevation: 0
 
       },
       headerTintColor: Colors.Text,

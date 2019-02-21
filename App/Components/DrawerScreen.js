@@ -5,24 +5,29 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   TouchableOpacity
 } from "react-native";
 import { DrawerActions } from "react-navigation";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ripple from 'react-native-material-ripple';
 import { Colors } from '../Themes'
 
 
 
 const menuItems =
-  [{ 'title': 'SHOP', 'route': 'HomeScreen' },
-  { 'title': 'CATEGORY', 'route': 'HomeScreen' },
+  [{ 'title': 'SHOP', 'route': 'Home' },
+  { 'title': 'CATEGORY', 'route': 'Categories' },
   { 'title': 'ABOUT US', 'route': 'AboutScreen' },
   { 'title': 'CONTACT', 'route': 'ContactScreen' },
-  { 'title': 'SETTING', 'route': 'HomeScreen' },
-  { 'title': 'LOGIN', 'route': 'HomeScreen' },
-  { 'title': 'NEWS', 'route': 'HomeScreen' },
+  { 'title': 'SETTING', 'route': 'Profile' },
+  { 'title': 'LOGIN', 'route': 'Profile' },
+  { 'title': 'NEWS', 'route': 'Home' },
   ]
 
 class DrawerScreen extends Component {
+
+
   navigateToScreen = route => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
@@ -32,23 +37,34 @@ class DrawerScreen extends Component {
   };
 
 
-
-
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
           <View>
-            {menuItems.map((item) => {
+            <View style={styles.userWrapper}>
+              <View style={styles.avatar}>
+                {/* <Image style = {styles.avatarImg} source = {require('../../Images/profile.jpg')} /> */}
+                {/* <Image
+                  style={styles.avatarImg}
+                  source={{ uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png' }}
+                /> */}
+                <View>
+                  <Icon name="account-circle-outline" size={50} color={Colors.primary}>
+                  </Icon>
+                </View>
+              </View>
+              <Text style={styles.userName}>
+                GUEST
+			       	</Text>
+            </View>
+            {menuItems.map((item, index) => {
               return (
-                <TouchableOpacity style={styles.menuItem}>
-                  <Text
-                    style={styles.textItem}
-                    onPress={this.navigateToScreen(item.route)}
-                  >
+                <Ripple key={index} style={styles.menuItem} onPress={this.navigateToScreen(item.route)}>
+                  <Text style={styles.textItem}>
                     {item.title}
                   </Text>
-                </TouchableOpacity>
+                </Ripple>
               )
             })
             }
@@ -66,8 +82,29 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.white,
-    paddingTop: 80
+    backgroundColor: Colors.white
+  },
+  userWrapper: {
+    width: '100%',
+    alignItems: 'center',
+    height: 120,
+    marginTop: 20
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 100,
+    borderColor: Colors.white,
+    borderWidth: 1
+  },
+  avatarImg: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 12,
+  },
+  userName: {
+    marginTop: 12,
+    fontSize: 16,
   },
   welcome: {
     fontSize: 20,
@@ -76,6 +113,7 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     padding: 10,
+    paddingLeft: 20,
     borderBottomWidth: 0.5,
     borderColor: "#d6d7da",
     width: 300,

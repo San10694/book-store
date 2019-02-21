@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default function ListReducer(state = initialState, action) {
-  console.log("List Redux ", action);
   const { payload } = action;
   switch (action.type) {
     case types.GET_RESTAURANT_LIST:
