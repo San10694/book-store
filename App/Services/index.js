@@ -50,7 +50,8 @@ const Api = () => {
       });
   }
   const getChildCategories = (id) => {
-    return api.post(endPoints.child_catgory, { key: 'A123456789', category_sub_group_id: id })
+    const body = JSON.stringify({ key: 'A123456789', category_sub_group_id: id })
+    return api.post(endPoints.child_catgory, body)
       .catch((error) => {
         if (error && error.response) {
           // const { data } = error.response;
@@ -66,7 +67,6 @@ const Api = () => {
       });
   }
   const getProducts = (flag) => {
-    console.log("flag --", flag);
     return api.post(endPoints.new_products, { key: 'A123456789' })
       .catch((error) => {
         if (error && error.response) {

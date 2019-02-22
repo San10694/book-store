@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export default function ProductReducer(state = initialState, action) {
-    console.log("Product Action ", action);
+    //console.log("Product Action ", action);
     const { payload } = action;
     switch (action.type) {
         case types.GET_BANNER_LIST:

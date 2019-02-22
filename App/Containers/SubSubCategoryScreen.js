@@ -23,10 +23,10 @@ class SubSubCategoryScreen extends Component {
     }
 
     componentDidMount() {
-        api.getSubCategories(this.state.category_sub_group_id).then(response => {
+        api.getChildCategories(this.state.category_sub_group_id).then(response => {
             const { data } = response ? response.data : []
             this.setState({ subCategories: data })
-            console.log("child--SubCategories - ", data);
+            console.log("child--SubCategories - ", response);
         })
     }
 
@@ -48,7 +48,7 @@ class SubSubCategoryScreen extends Component {
 
                                 <View style={Styles.categorySubContainer}>
                                     <View style={Styles.categoryIcon}>
-                                        <Icon size={40} name={item.icon ? item.icon : ''} color={Colors.primary} />
+                                        <Icon size={40} name={item.icon ? item.icon : 'book'} color={Colors.primary} />
                                     </View>
                                     <Text style={Styles.categoryName}>{item.name}</Text>
                                     <Icon size={20} name="chevron-right" color={Colors.lightgrey} style={Styles.categoryBackIcon} />

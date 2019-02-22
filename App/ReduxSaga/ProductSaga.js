@@ -34,7 +34,7 @@ export function* getCategories(api, action) {
 export function* getProducts(api, action) {
     try {
         const response = yield api.getProducts(action.payload);
-        console.log("products  res-- ", response);
+        // console.log("products  res-- ", response);
         if (response.data) {
             const { data } = response.data;
             // console.log("response ", data);

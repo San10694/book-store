@@ -25,7 +25,8 @@ class SubCategoryScreen extends Component {
         super(props);
 
         this.state = {
-            category_group_id: props.navigation.state.params.category_group_id
+            category_group_id: props.navigation.state.params.category_group_id,
+            subCategories: []
         }
     }
 
@@ -46,7 +47,7 @@ class SubCategoryScreen extends Component {
         }
         return (
             <ScrollView>
-                {subCategories.map((item, index) => {
+                {subCategories ? subCategories.map((item, index) => {
                     return (
                         <View key={item.id}>
                             <Ripple style={Styles.categoryscnContainer} onPress={() => {
@@ -55,7 +56,7 @@ class SubCategoryScreen extends Component {
 
                                 <View style={Styles.categorySubContainer}>
                                     <View style={Styles.categoryIcon}>
-                                        <Icon size={40} name={item.icon ? item.icon : ''} color={Colors.primary} />
+                                        <Icon size={40} name={item.icon ? item.icon : 'book'} color={Colors.primary} />
                                     </View>
                                     <Text style={Styles.categoryName}>{item.name}</Text>
                                     <Icon size={20} name="chevron-right" color={Colors.lightgrey} style={Styles.categoryBackIcon} />
@@ -64,7 +65,7 @@ class SubCategoryScreen extends Component {
                             </Ripple>
                         </View>
                     )
-                })
+                }) : null
                 }
             </ScrollView>
         );

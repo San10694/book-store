@@ -23,7 +23,7 @@ class CategoryScreen extends Component {
         }
         return (
             <ScrollView>
-                {categories.map((item, index) => {
+                {categories ? categories.map((item, index) => {
                     return (
                         <View key={item.id}>
                             <Ripple style={Styles.categoryscnContainer}
@@ -43,7 +43,7 @@ class CategoryScreen extends Component {
                             </Ripple>
                         </View>
                     )
-                })
+                }) : null
                 }
             </ScrollView>
         );

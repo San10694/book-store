@@ -10,6 +10,8 @@ import { Colors, Images } from "../Themes";
 import FeatureCard from "../Components/FeatureCard";
 import Api from "../Services";
 
+
+const imageUrl = 'http://vemulate.com/image/'
 const api = Api.Api();
 class ProductListScreen extends Component {
 
@@ -23,7 +25,7 @@ class ProductListScreen extends Component {
     }
 
     componentDidMount() {
-        api.getSubCategories(this.state.id).then(response => {
+        api.getProductList(this.state.id).then(response => {
             const { data } = response ? response.data : []
             this.setState({ productList: data })
             console.log("Product List - ", data);
@@ -37,22 +39,22 @@ class ProductListScreen extends Component {
             return <View></View>
         }
         return (
-            <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
-                <View style={{
-                    flexWrap: "wrap",
-                    flex: 1,
-                    width: "50%"
-                }}>
-                    <View style={{ flexWrap: "wrap" }}>
-                        {
-                            productDetails ? productDetails.featured.map((item, index) => {
-                                return <FeatureCard key={index} image={item.image ? item.image.path + item.image.name : null}
-                                    title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg} />
-                            }) : null
-                        }
-                    </View>
+            // <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
+            <View style={{
+                flexWrap: "wrap",
+                flex: 1,
+                width: "50%"
+            }}>
+                <View style={{ flexWrap: "wrap" }}>
+                    {
+                        productList ? productList.map((item, index) => {
+                            return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+                                title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg} />
+                        }) : null
+                    }
                 </View>
-            </ScrollView>
+            </View>
+            // </ScrollView>
         );
     }
 }
