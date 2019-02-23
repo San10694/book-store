@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors, Images } from "../Themes";
 import Fonts from '../Themes/Fonts';
+import Ripple from "react-native-material-ripple";
 
 
 const bannerData = [
@@ -29,23 +30,35 @@ class CartScreen extends Component {
 
     render() {
         return (
-            <ScrollView style={{ padding: 20, backgroundColor: Colors.background }}>
-
-                <View style={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-                    <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
-                    <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>$900.00</Text>
+            <ScrollView style={{ backgroundColor: Colors.background }}>
+                <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
+                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>$900.00</Text>
+                    </View>
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row', paddingTop: 10 }}>
-                    <View style={{ flex: .25, width: 70, height: 70, marginTop: 10, marginRight: 5 }}>
-                        <Image source={Images.burdon} style={{ width: 70, height: 70 }} />
-                    </View>
-                    <View style={{ flex: .3 }}>
-                        <Text style={{ paddingLeft: 7, fontSize: Fonts.size.regular, paddingTop: 10 }}>hhhhh</Text>
-                        <Text style={{ padding: 10, fontSize: Fonts.size.regular, color: Colors.primary, fontWeight: '500' }}>$50.00</Text>
-
-                    </View>
-                    <View style={{ flex: .55 }}>
-                        <Text>kkk</Text>
+                <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                    <View style={{ padding: 20, flex: 1, flexDirection: 'row', }}>
+                        <View style={{
+                            flex: .35, width: 85, height: 85, marginRight: 5,
+                        }}>
+                            <Image source={Images.burdon} style={{
+                                width: 85, height: 85, borderWidth: 3,
+                                borderColor: Colors.lightGrey
+                            }} />
+                        </View>
+                        <View style={{ flex: .7, position: 'relative' }}>
+                            <Text style={{ paddingLeft: 7, fontSize: Fonts.size.medium_15 }}>hhhhh</Text>
+                            <Text style={{ padding: 10, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>$50.00</Text>
+                            <Ripple><Icon name='trash-o' size={25} color={Colors.lightgrey} style={{ position: 'absolute', top: 0, right: 30 }} /></Ripple>
+                        </View>
+                        <View style={{ flex: .1 }}>
+                            <View style={{ backgroundColor: Colors.lightGrey, alignItems: 'center', width: 25, height: 85, borderColor: Colors.lightgrey, borderWidth: 1, borderRadius: 25 }}>
+                                <Ripple><Icon name='caret-up' size={25} color={Colors.lightgrey} /></Ripple>
+                                <View style={{ paddingTop: 6, paddingBottom: 6 }}><Text>1</Text></View>
+                                <Ripple><Icon name='caret-down' size={25} color={Colors.lightgrey} /></Ripple>
+                            </View>
+                        </View>
                     </View>
                 </View>
             </ScrollView>

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Ripple from 'react-native-material-ripple';
 import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
 import Styles from './Styles';
@@ -34,7 +32,6 @@ class ProductListScreen extends Component {
 
     render() {
         const { productList } = this.state;
-        const { productDetails } = this.props.product;
         if (productList == null) {
             return <View></View>
         }
@@ -49,7 +46,11 @@ class ProductListScreen extends Component {
                     {
                         productList ? productList.map((item, index) => {
                             return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
-                                title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg} />
+                                title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg}
+                                onPress={() => {
+                                    this.props.navigation.navigate('ProductDetailScreen', { product_id: item.id, title: item.name, product: item });
+                                }}
+                            />
                         }) : null
                     }
                 </View>

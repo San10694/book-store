@@ -11,8 +11,8 @@ const Api = () => {
     sub_catgory: '/api/subcategory',
     child_catgory: '/api/childcategory',
     new_products: '/api/new_products',
-    product_list: '/api/browseCategory'
-
+    product_list: '/api/browseCategory',
+    product_detail: '/api/product/'
   };
 
   const api = axios.create({
@@ -66,8 +66,22 @@ const Api = () => {
         }
       });
   }
+
+
+  const getProductDetails = (id) => {
+    console.log('id', endPoints.product_detail + `${id}`);
+
+    return api.post(endPoints.product_detail + `${id}`, { key: 'A123456789', id: id })
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+          console.log('data', JSON.stringify(data) + error);
+        }
+      });
+  }
+
   const getProducts = (flag) => {
-    return api.post(endPoints.new_products, { key: 'A123456789' })
+    return api.post(endPoints.new_products, { key: 'A123456791' })
       .catch((error) => {
         if (error && error.response) {
           // const { data } = error.response;
@@ -84,7 +98,8 @@ const Api = () => {
     getSubCategories,
     getChildCategories,
     getProductList,
-    getProducts
+    getProducts,
+    getProductDetails
   }
 }
 

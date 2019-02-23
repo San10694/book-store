@@ -3,74 +3,68 @@ import { Text, View, ScrollView, Image, Dimensions, TouchableOpacity } from "rea
 import { Colors, Images } from "../Themes";
 import Fonts from '../Themes/Fonts';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Styles from './Styles';
+import Api from "../Services";
+import { connect } from "react-redux";
+import { getProducts } from "../Redux/ProductRedux";
+import axios from 'axios';
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
 
-const { width, height } = Dimensions.get('window');
+const imageUrl = 'http://vemulate.com/image/'
+const api = Api.Api();
 
 export default class ProductDetailScreen extends Component {
-  render() {
-    return (
-      <View style={{ backgroundColor: Colors.white, padding: 10 }}>
-        <ScrollView>
+  constructor(props) {
+    super(props);
 
-          <View style={{
-            backgroundColor: 'transparent',
-            width: width * 0.6,
-            position: 'relative',
-            alignSelf: 'center',
-            marginBottom: 10,
-            marginTop: 20,
-          }}>
-            <Image source={Images.burdon} style={{
-              width: width * 0.6,
-              height: 140,
-            }} />
-            <Icon name='heart' size={25} color={Colors.lightGrey} style={{ position: 'absolute', top: 6, right: 10 }} />
-          </View>
-          <View style={{ marginTop: 10, alignItems: 'center' }}>
-            <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{detail.title}</Text>
-            <Text style={{ fontSize: Fonts.size.input, fontWeight: '400' }}>{detail.shopname}</Text>
-            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '300' }}>${detail.price}</Text>
-          </View>
-          <View style={{ margin: 10 }}>
-            <Text style={{ textAlign: 'center' }}>{detail.description}</Text>
-          </View>
-        </ScrollView>
-        <View style={{ flexDirection: 'row', flex: 2 }}>
-          <View style={{ flex: 1 }}>
+    this.state = {
+      id: props.navigation.state.params.product_id,
+      productDetail: props.navigation.state.params.product
+    }
+    console.log('rrrrrrrrrrrrr', JSON.stringify(this.props.navigation.state.params.product));
+  }
+
+  componentDidMount() {
+    this.setState({ productDetail: this.props.navigation.state.params.product })
+  }
+
+  render() {
+    const { productDetail } = this.state;
+    if (productDetail == null) {
+      return <View></View>
+    }
+    return (
+      <View style={Styles.productDetailContainer}>
+
+        <View style={Styles.productdetailSubContainer}>
+          <Image source={productDetail.image ? imageUrl + productDetail.image.path : null} style={Styles.ProductDetailImg} />
+          <Icon name='heart' size={25} color={Colors.lightGrey} style={Styles.productDetailFav} />
+        </View>
+        <View style={Styles.productPriceContainer}>
+          <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{productDetail.title}</Text>
+          {/* <Text style={{ fontSize: Fonts.size.input, fontWeight: '400' }}>{productDetail.shopname}</Text> */}
+          <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '300' }}>${productDetail.sale_price}</Text>
+        </View>
+        <View style={Styles.productDescription}>
+          <Text>{detail.description}</Text>
+        </View>
+        <View style={Styles.buyContainer}>
+          <View style={Styles.buySubContainer}>
             <TouchableOpacity
-              style={{
-                width: width * 0.45,
-                height: 40,
-                backgroundColor: Colors.primary,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 5,
-                alignSelf: 'center'
-              }}
+              style={Styles.buyButton}
             //onPress={this.onSignUpHandle}
             >
-
-              <Text style={{ color: Colors.white }}>Shopping</Text>
-
+              <Text style={Styles.btnText}>Shopping</Text>
             </TouchableOpacity>
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={Styles.buySubContainer}>
             <TouchableOpacity
-              style={{
-                width: width * 0.45,
-                height: 40,
-                backgroundColor: Colors.primary,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 5,
-                alignSelf: 'center'
-              }}
+              style={Styles.buyButton}
             //onPress={this.onSignUpHandle}
             >
 
-              <Text style={{ color: Colors.white }}>Buy Now</Text>
+              <Text style={Styles.btnText}>Buy Now</Text>
 
             </TouchableOpacity>
           </View>
@@ -80,3 +74,22 @@ export default class ProductDetailScreen extends Component {
   }
 }
 
+
+// const mapStateToProps = state => {
+//   const { product } = state;
+//   console.log('ffffffffffffffff', product);
+//   return {
+//     product
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+
+//     getProducts: (flag) => dispatch(getProducts(flag)),
+//   };
+// };
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(ProductDetailScreen);

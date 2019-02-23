@@ -14,7 +14,7 @@ import RegistrationScreen from "../Containers/RegistrationScreen";
 import CartScreen from "../Containers/CartScreen";
 import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
-
+import ProductDetailScreen from '../Containers/ProductDetailScreen';
 
 export default {
 
@@ -104,6 +104,15 @@ export default {
       title: "About Screen"
     }
   },
+  // ProductDetailScreen: {
+  //   name: "ProductDetailScreen",
+  //   description: "ProductDetailScreen",
+  //   screen: ProductDetailScreen,
+  //   navigationOptions: {
+  //     title: "Product Details",
+  //     // header: null
+  //   }
+  // },
   ContactScreen: {
     name: "ContactScreen",
     description: "ContactScreen",
