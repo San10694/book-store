@@ -82,6 +82,7 @@ const Colors = {
     },
 
     lightGrey: "rgba(247, 248, 250, 1)",
+    borderColor: "rgba(0, 0, 0, .1)",
     lightGrey1: "rgba(212, 220, 255, 1)",
     darkOrange: "rgba(255, 132, 11, 1)",
     darkYellow: "rgba(255, 164, 31, 1)",

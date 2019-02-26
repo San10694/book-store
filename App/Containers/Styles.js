@@ -192,4 +192,42 @@ export default {
         height: 120,
         borderRadius: 5
     },
+
+
+    // product detail screen
+
+    productDetailContainer: { backgroundColor: Colors.white, padding: 10, position: 'relative', height: Dimensions.get('screen').height * .88 },
+    productdetailSubContainer: {
+        backgroundColor: 'transparent',
+        width: width * 0.6,
+        position: 'relative',
+        alignSelf: 'center',
+        marginBottom: 10,
+        marginTop: 20,
+    },
+    ProductDetailImg: {
+        width: width * 0.6,
+        height: 140,
+    },
+    productDetailFav: { position: 'absolute', top: 6, right: 10 },
+    productPriceContainer: { marginTop: 10, alignItems: 'center' },
+    productDescription: { margin: 10, alignSelf: 'center' },
+    buyContainer: { flexDirection: 'row', position: 'absolute', bottom: 13, paddingLeft: 15 },
+    buyButton: {
+        width: width * 0.90,
+        height: 40,
+        backgroundColor: Colors.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        alignSelf: 'center'
+    },
+    btnText: { color: Colors.white },
+
+    /// cart page 
+
+    cartContainer: { backgroundColor: Colors.background },
+
+
+
 }

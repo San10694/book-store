@@ -122,6 +122,15 @@ hile using the drawer navigator inside stack navigator.*/
         // header: null
       }
     },
+    CartScreen: {
+      name: "CartScreen",
+      description: "CartScreen",
+      screen: CartScreen,
+      navigationOptions: {
+        title: "Cart",
+        // header: null
+      }
+    },
     // LoginScreen: {
     //   name: "LoginScreen",
     //   description: "LoginScreen",

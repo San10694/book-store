@@ -4,7 +4,8 @@ const initialState = {
     error: false,
     bannerList: null,
     categories: null,
-    productDetails: null
+    productDetails: null,
+    // productDetail: null
 };
 
 export default function ProductReducer(state = initialState, action) {
@@ -40,6 +41,8 @@ export default function ProductReducer(state = initialState, action) {
                 isFetching: false,
                 productDetails: payload
             };
+
+
         default:
             return state;
     }
