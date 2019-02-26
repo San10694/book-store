@@ -30,6 +30,7 @@ const INITIAL_STATE = {
     subTotal: 0.0,
     tax: 0.0,
     payMoney: 0.0,
+
     // couponDiscountPercentage: 0.0,
     // deductedAmountByCoupon: 0.0,
     paymentOption: 'COD',
@@ -37,7 +38,7 @@ const INITIAL_STATE = {
 };
 
 export default function CartReducer(state = INITIAL_STATE, action) {
-    console.log('action-------', JSON.stringify(state));
+    console.log('action-------', JSON.stringify(state.cart));
     switch (action.type) {
 
         case types.ADD_CART_ITEM: {
@@ -64,7 +65,6 @@ export default function CartReducer(state = INITIAL_STATE, action) {
         case types.CLEAR_CART_ITEMS: {
             return { cart: [] };
         }
-
         case types.REMOVE_CART_ITEM: {
             const index = state.cart.findIndex(cartItem => compareCartItem(cartItem, action.product)); // check if existed
             return index == -1
@@ -72,7 +72,7 @@ export default function CartReducer(state = INITIAL_STATE, action) {
                 : Object.assign(
                     {},
                     state,
-                    state.cart[index].Quantity == 0
+                    state.cart[index].quantity == 0
                         ? {
                             cart: state.cart.filter(cartItem => !compareCartItem(cartItem, action.product)),
                         }
@@ -99,27 +99,33 @@ export default function CartReducer(state = INITIAL_STATE, action) {
                 });
         }
 
+        case types.FETCH_CART_COUPON:
+            return { ...state, coupon: action.payload };
+
         default:
             return state;
     }
 };
 
 const calculatePrice = state => {
+    console.log('first time====================');
+
     var subTotal = 0.0;
     var grandTotal = 0.0;
     var payMoney = 0.0;
     var tax = 0.0;
-    console.log('state.cart.length', state.cart.length);
     state.cart.map(item => {
+        console.log('quan', item.quantity);
+        item.totalPrice = (item.quantity) * Number(item.sale_price);
         subTotal = subTotal + item.totalPrice;
         grandTotal = subTotal;
         console.log('subTotal-' + subTotal);
         state.subTotal = subTotal;
         state.grandTotal = grandTotal;
         state.payMoney = grandTotal;
-        state.tax = tax;
+        // state.tax = tax;
         console.log('state.grandTotal', grandTotal);
-        return subTotal, grandTotal, payMoney, tax;
+        return subTotal, grandTotal, payMoney;
     });
 
 };
@@ -132,47 +138,49 @@ const calculatePrice1 = (state, action) => {
     console.log('ca	llllll');
 
     state.cart.map(item => {
-        item.totalPrice = item.sale_price;
+        item.totalPrice = ((item.quantity) * Number(item.sale_price));
         subTotal = subTotal + item.totalPrice;
-        // tax = (subTotal * item.tax) / 100;
+        console.log('item tttotal ', item.totalPrice);
         grandTotal = subTotal;
         console.log('subTotal-' + subTotal);
         state.subTotal = subTotal;
         state.grandTotal = grandTotal;
         state.payMoney = grandTotal;
-        state.tax = tax;
-        return subTotal, grandTotal, payMoney, tax;
+        // state.tax = tax;
+        return subTotal, grandTotal, payMoney;
     });
 };
 
 
 const compareCartItem = (cartItem, product) => {
-    if (cartItem.productId === product.productId) {
-        console.log('compare_cartItems is  TRUE!!');
+    if (cartItem.id === product.id) {
+        // console.log('compare_cartItems is  TRUE!!');
     }
-    return cartItem.productId === product.productId;
+    return cartItem.id === product.id;
 };
 
 const cartItem = (
     state = {
-        productId: undefined,
+        id: undefined,
         totalPrice: 0,
+        quantity: 1
     },
     action
 ) => {
-
+    console.log('quantity ================', state.quantity);
     switch (action.type) {
         case types.ADD_CART_ITEM: {
-
-            return state.productId === undefined
+            return state.id === undefined
                 ? Object.assign({}, state, action.product, {
-                    totalPrice: Number(action.product.sale_price),
-                    price: Number(action.product.sale_price),
+                    totalPrice: ((state.quantity + 1) * Number(action.product.sale_price)),
+                    sale_price: Number(action.product.sale_price),
                 })
                 : !compareCartItem(state, action.product)
                     ? state
                     : Object.assign({}, state, {
-                        totalPrice: Number(action.product.sale_price),
+                        totalPrice:
+                            ((state.quantity + 1) * Number(action.product.sale_price)),
+                        quantity: state.quantity + 1,
                     });
         }
 
@@ -181,7 +189,8 @@ const cartItem = (
             return !compareCartItem(state, action.product)
                 ? state
                 : Object.assign({}, state, {
-                    totalPrice: Number(action.product.sale_price),
+                    quantity: state.quantity - 1,
+                    totalPrice: state.quantity * Number(action.product.sale_price),
                 });
 
         default:

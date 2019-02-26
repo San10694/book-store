@@ -21,7 +21,8 @@ class ProductDetailScreen extends Component {
 
     this.state = {
       id: props.navigation.state.params.product_id,
-      productDetail: props.navigation.state.params.product
+      productDetail: props.navigation.state.params.product,
+      quantity: 1
     }
     console.log('rrrrrrrrrrrrr', JSON.stringify(this.props.navigation.state.params.product));
   }
@@ -49,7 +50,7 @@ class ProductDetailScreen extends Component {
   addProductToCart() {
     console.log('cart data');
     var product = this.state.productDetail;
-    console.log('product-->' + JSON.stringify(product));
+    console.log('product----------->' + JSON.stringify(product));
     this.props.addCartItem(product);
     this.props.navigation.navigate('CartScreen');
   }

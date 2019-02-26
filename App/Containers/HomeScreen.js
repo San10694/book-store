@@ -54,7 +54,7 @@ class HomeScreen extends Component {
     var date = new Date();
     var currentDate = date.toDateString();
     const { productDetails, banner, categories, isFetching } = this.props.product
-    //console.log("  product -- ", this.props.product);
+    console.log("  product -- ", JSON.stringify(productDetails));
     if (isFetching) {
       return (
         <View>
@@ -158,7 +158,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = state => {
   const { restaurantList, product } = state;
-  //console.log("State in Home Screen- ", restaurantList);
+  console.log("State in Home Screen- ", JSON.stringify(product));
   return {
     restaurantList,
     product
