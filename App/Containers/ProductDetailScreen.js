@@ -6,15 +6,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './Styles';
 import Api from "../Services";
 import { connect } from "react-redux";
-import { getProducts } from "../Redux/ProductRedux";
+import { addToCart } from '../Redux/CartRedux';
 import axios from 'axios';
+import Ripple from "react-native-material-ripple";
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
 
 const imageUrl = 'http://vemulate.com/image/'
-const api = Api.Api();
+const BASE_URL = "http://vemulate.com";
 
-export default class ProductDetailScreen extends Component {
+class ProductDetailScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -25,8 +26,32 @@ export default class ProductDetailScreen extends Component {
     console.log('rrrrrrrrrrrrr', JSON.stringify(this.props.navigation.state.params.product));
   }
 
+
   componentDidMount() {
     this.setState({ productDetail: this.props.navigation.state.params.product })
+
+    // this.addProductData();
+  }
+
+  // addProductData() {
+  //   var bodyFormData = new FormData();
+  //   var data = { 'key': 'A123456789', 'id': this.state.id };
+  //   bodyFormData.append(data);
+  //   console.log(JSON.stringify(bodyFormData));
+  //   axios.post(BASE_URL + '/api/products', bodyFormData).then(response => {
+  //     console.log(JSON.stringify(response));
+  //   }).catch(error => {
+  //     console.log(JSON.stringify(error));
+  //   });
+  // }
+
+  // add to cart
+  addProductToCart() {
+    console.log('cart data');
+    var product = this.state.productDetail;
+    console.log('product-->' + JSON.stringify(product));
+    this.props.addCartItem(product);
+    this.props.navigation.navigate('CartScreen');
   }
 
   render() {
@@ -34,11 +59,12 @@ export default class ProductDetailScreen extends Component {
     if (productDetail == null) {
       return <View></View>
     }
+    console.log(imageUrl + productDetail.image.path);
     return (
       <View style={Styles.productDetailContainer}>
 
         <View style={Styles.productdetailSubContainer}>
-          <Image source={productDetail.image ? imageUrl + productDetail.image.path : null} style={Styles.ProductDetailImg} />
+          <Image source={{ uri: productDetail.image ? imageUrl + productDetail.image.path : null }} style={Styles.ProductDetailImg} />
           <Icon name='heart' size={25} color={Colors.lightGrey} style={Styles.productDetailFav} />
         </View>
         <View style={Styles.productPriceContainer}>
@@ -50,46 +76,35 @@ export default class ProductDetailScreen extends Component {
           <Text>{detail.description}</Text>
         </View>
         <View style={Styles.buyContainer}>
-          <View style={Styles.buySubContainer}>
-            <TouchableOpacity
-              style={Styles.buyButton}
-            //onPress={this.onSignUpHandle}
-            >
-              <Text style={Styles.btnText}>Shopping</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={Styles.buySubContainer}>
-            <TouchableOpacity
-              style={Styles.buyButton}
-            //onPress={this.onSignUpHandle}
-            >
+          <Ripple
+            style={Styles.buyButton}
+            onPress={() => this.addProductToCart()}
+          >
 
-              <Text style={Styles.btnText}>Buy Now</Text>
+            <Text style={Styles.btnText}>Buy Now</Text>
 
-            </TouchableOpacity>
-          </View>
+          </Ripple>
         </View>
       </View>
     );
   }
 }
 
+const mapStateToProps = state => {
+  const { cartItems } = state;
+  console.log('cartitem---------->>>>>> ', cartItems);
+  return {
+    cartItems
+  };
+};
 
-// const mapStateToProps = state => {
-//   const { product } = state;
-//   console.log('ffffffffffffffff', product);
-//   return {
-//     product
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    addCartItem: item => dispatch(addToCart(item)),
+  }
+};
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-
-//     getProducts: (flag) => dispatch(getProducts(flag)),
-//   };
-// };
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(ProductDetailScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductDetailScreen);
