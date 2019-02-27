@@ -1,19 +1,24 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
+import Fonts from '../Themes/Fonts';
+
+const { width, height } = Dimensions.get('window');
 
 
-
-class LoginScreen extends Component {
+class AddAdressScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: ""
+            name: "",
+            pincode: 0,
+            mobile: 0,
+            street: '',
+            state: ''
 
         }
     }
@@ -26,14 +31,21 @@ class LoginScreen extends Component {
         //this.props.getRestaurantList();
     }
 
-    onUsernameEditHandle = (email) => {
-        this.setState({ email: email })
+    onUsernameEditHandle = (name) => {
+        this.setState({ name: name })
 
     }
-    onPasswordEditHandle = (password) => {
-        this.setState({ password: password })
-
-
+    onNumberEditHandle = (mobile) => {
+        this.setState({ mobile: mobile })
+    }
+    onStreetEditHandle = (street) => {
+        this.setState({ street: street })
+    }
+    onStateEditHandle = (state) => {
+        this.setState({ state: state })
+    }
+    onPincodeEditHandle = (pincode) => {
+        this.setState({ pincode: pincode })
     }
 
     render() {
@@ -44,29 +56,20 @@ class LoginScreen extends Component {
                     <ScrollView
                         style={{ backgroundColor: Colors.white }}
                         contentContainerStyle={styles.container}>
-                        {/* <View style={styles.logoWrap}>
-                            <Image
-                                source={Config.LogoWithText}
-                                style={styles.logo}
-                                resizeMode="contain"
-                            />
-                        </View> */}
+                        <View>
+                            <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Enter Address</Text>
+                        </View>
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"phone"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
+
                                     <TextInput
                                         ref={(comp) => (this.username = comp)}
-                                        placeholder={"Enter Mobile No"}
-                                        keyboardType="numeric"
-                                        onChangeText={(email) => this.onUsernameEditHandle(email)}
+                                        placeholder={"Enter Your Name"}
+                                        onChangeText={(name) => this.onUsernameEditHandle(name)}
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
-                                        value={this.state.email}
+                                        value={this.state.name}
                                         style={{
                                             height: 50,
                                             borderRadius: 5,
@@ -74,28 +77,74 @@ class LoginScreen extends Component {
                                         }}
                                     />
                                 </View>
-                                {/* <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"lock-outline"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
+                                <View style={styles.inputWrap}>
+
                                     <TextInput
-                                        ref={(comp) => (this.password = comp)}
-                                        placeholder={"password"}
-                                        onChangeText={(password) => this.onPasswordEditHandle(password)}
-                                        secureTextEntry
-                                        returnKeyType="go"
-                                        value={this.state.password}
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter Street Name"}
+                                        onChangeText={(street) => this.onStreetEditHandle(street)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.street}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
                                     />
-                                </View> */}
-                                {/* <ButtonIndex
-                                    text={Languages.Login.toUpperCase()}
-                                    containerStyle={styles.loginButton}
-                                    textStyle={styles.textLogin}
-                                    onPress={this.onLoginPressHandle}
-                                    textColor={text}
-                                /> */}
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter State Name"}
+                                        keyboardType="numeric"
+                                        onChangeText={(state) => this.onStateEditHandle(state)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.state}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter Mobile No"}
+                                        keyboardType="numeric"
+                                        onChangeText={(mobile) => this.onNumberEditHandle(mobile)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.mobile}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter PinCode No"}
+                                        onChangeText={(pincode) => this.onPincodeEditHandle(pincode)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        keyboardType="numeric"
+                                        value={this.state.pincode}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+
+                                </View>
                             </View>
                             {/* <View style={styles.separatorWrap}>
                                 <View style={styles.separator} />
@@ -109,16 +158,15 @@ class LoginScreen extends Component {
                                 onPress={this.onFBLoginPressHandle}
                             /> */}
                             <TouchableOpacity
-                                onPress={() => { this.props.navigation.navigate("OtpScreen") }}
                                 style={{
-                                    width: 100,
+                                    width: width * 0.9,
                                     height: 40,
                                     backgroundColor: Colors.primary,
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                     borderRadius: 5,
                                     marginTop: 15,
-                                    marginHorizontal: 100
+                                    marginLeft: 20
                                 }}
                             //onPress={this.onSignUpHandle}
                             >
@@ -153,7 +201,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LoginScreen);
+)(AddAdressScreen);
 
 const styles = StyleSheet.create({
     container: {
@@ -183,8 +231,9 @@ const styles = StyleSheet.create({
         borderColor: Colors.blackDivide,
         borderWidth: 1,
         borderRadius: 10,
-        margin: 20,
-        paddingHorizontal: 10
+        marginTop: 10,
+        marginLeft: 20,
+        marginRight: 20
     },
     input: {
         color: Colors.text,

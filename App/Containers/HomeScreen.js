@@ -49,6 +49,10 @@ class HomeScreen extends Component {
     this.props.getProducts(1)
   }
 
+  onPress(item) {
+    this.props.navigation.navigate('ProductDetailScreen', { product_id: item.id })
+  }
+
 
   render() {
     var date = new Date();
@@ -125,7 +129,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.sale.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             }) : null
           }
@@ -134,7 +138,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.featured.map((item, index) => {
-              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
@@ -146,7 +150,8 @@ class HomeScreen extends Component {
               //   return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
               //     title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
               // }) : null
-              return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+              return <FeatureCard onPress={() => this.onPress(item)}
+                key={index} image={item.image ? imageUrl + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
@@ -154,7 +159,9 @@ class HomeScreen extends Component {
       </ScrollView >
     );
   }
+
 }
+
 
 const mapStateToProps = state => {
   const { restaurantList, product } = state;

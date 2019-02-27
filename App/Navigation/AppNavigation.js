@@ -25,6 +25,8 @@ import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
 import ProductListScreen from "../Containers/ProductListScreen";
 import ProductDetailScreen from '../Containers/ProductDetailScreen';
+import OtpScreen from "../Containers/OtpScreen";
+import AddAddressScreen from '../Containers/AddAddressScreen';
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -77,12 +79,12 @@ hile using the drawer navigator inside stack navigator.*/
     DrawerNavigator: {
       screen: DrawerNavigator
     },
-    // CategoryScreen: {
-    //   name: "CategoryScreen",
-    //   description: "CategoryScreen",
-    //   screen: CategoryScreen,
+    // HomeScreen: {
+    //   name: "HomeScreen",
+    //   description: "HomeScreen",
+    //   screen: HomeScreen,
     //   navigationOptions: {
-    //     title: "Category Screen",
+    //     title: "Home Screen",
     //     header: null
     //   }
     // },
@@ -128,6 +130,24 @@ hile using the drawer navigator inside stack navigator.*/
       screen: CartScreen,
       navigationOptions: {
         title: "Cart",
+        // header: null
+      }
+    },
+    OtpScreen: {
+      name: "OtpScreen",
+      description: "OtpScreen",
+      screen: OtpScreen,
+      navigationOptions: {
+        title: "Otp",
+        // header: null
+      }
+    },
+    AddAddressScreen: {
+      name: "AddAddressScreen",
+      description: "AddAddressScreen",
+      screen: AddAddressScreen,
+      navigationOptions: {
+        title: "Otp",
         // header: null
       }
     },

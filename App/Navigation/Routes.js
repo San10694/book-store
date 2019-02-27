@@ -15,6 +15,7 @@ import CartScreen from "../Containers/CartScreen";
 import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
 import ProductDetailScreen from '../Containers/ProductDetailScreen';
+import AddAddressScreen from '../Containers/AddAddressScreen';
 
 export default {
 

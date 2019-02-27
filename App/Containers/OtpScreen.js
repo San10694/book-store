@@ -5,10 +5,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
+import { NavigationActions } from "react-navigation";
 
 
 
-class LoginScreen extends Component {
+class OtpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,6 +37,20 @@ class LoginScreen extends Component {
 
     }
 
+    resetNavigation() {
+        // this.props
+        //     .navigation
+        //     .dispatch(NavigationActions.reset(
+        //         {
+        //             index: 0,
+        //             key: null,
+        //             actions: [
+        //                 NavigationActions.navigate({ routeName: 'HomeTab' })
+        //             ]
+        //         }));
+        this.props.navigation.navigate("HomeTab")
+    }
+
     render() {
         const { isLoading } = this.props;
         return (
@@ -61,7 +76,7 @@ class LoginScreen extends Component {
                                     />
                                     <TextInput
                                         ref={(comp) => (this.username = comp)}
-                                        placeholder={"Enter Mobile No"}
+                                        placeholder={"Enter  OTP"}
                                         keyboardType="numeric"
                                         onChangeText={(email) => this.onUsernameEditHandle(email)}
                                         //onSubmitEditing={this.focusPassword}
@@ -109,7 +124,7 @@ class LoginScreen extends Component {
                                 onPress={this.onFBLoginPressHandle}
                             /> */}
                             <TouchableOpacity
-                                onPress={() => { this.props.navigation.navigate("OtpScreen") }}
+                                onPress={() => this.resetNavigation()}
                                 style={{
                                     width: 100,
                                     height: 40,
@@ -123,7 +138,7 @@ class LoginScreen extends Component {
                             //onPress={this.onSignUpHandle}
                             >
 
-                                <Text style={{ color: Colors.white }}>SEND OTP</Text>
+                                <Text style={{ color: Colors.white }}>Verify OTP</Text>
 
                             </TouchableOpacity>
                         </View>
@@ -153,7 +168,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LoginScreen);
+)(OtpScreen);
 
 const styles = StyleSheet.create({
     container: {
