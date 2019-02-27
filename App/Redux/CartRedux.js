@@ -38,7 +38,7 @@ const INITIAL_STATE = {
 };
 
 export default function CartReducer(state = INITIAL_STATE, action) {
-    console.log('action-------', JSON.stringify(state.cart));
+    console.log('action-------', JSON.stringify(action));
     switch (action.type) {
 
         case types.ADD_CART_ITEM: {
@@ -57,8 +57,9 @@ export default function CartReducer(state = INITIAL_STATE, action) {
                 {
                     subTotalAmount: calculatePrice(state),
                     subTotal: state.subTotal, // state.cart.map( item => calculatePrice( item )).toString(),
-                    grandTotal: Number(state.grandTotal),
+                    grandTotal: state.grandTotal,
                 }
+
             );
         }
 
@@ -82,7 +83,7 @@ export default function CartReducer(state = INITIAL_STATE, action) {
                     {
                         subTotalAmount: calculatePrice1(state, action.product),
                         subTotal: state.subTotal, // state.cart.map( item => calculatePrice( item )).toString(),
-                        grandTotal: Number(state.grandTotal),
+                        grandTotal: state.grandTotal,
                     }
                 );
         }
@@ -95,7 +96,7 @@ export default function CartReducer(state = INITIAL_STATE, action) {
                     cart: state.cart.filter(cartItem => !compareCartItem(cartItem, action.product)),
                     subTotalAmount: calculatePrice(state),
                     subTotal: state.subTotal, // state.cart.map( item => calculatePrice( item )).toString(),
-                    grandTotal: Number(state.grandTotal),
+                    grandTotal: state.grandTotal,
                 });
         }
 
@@ -109,6 +110,7 @@ export default function CartReducer(state = INITIAL_STATE, action) {
 
 const calculatePrice = state => {
     console.log('first time====================');
+    console.log('cartttttttt', state.cart);
 
     var subTotal = 0.0;
     var grandTotal = 0.0;
@@ -153,34 +155,33 @@ const calculatePrice1 = (state, action) => {
 
 
 const compareCartItem = (cartItem, product) => {
-    if (cartItem.id === product.id) {
+    if (cartItem.product_id === product.product_id) {
         // console.log('compare_cartItems is  TRUE!!');
     }
-    return cartItem.id === product.id;
+    return cartItem.product_id === product.product_id;
 };
 
 const cartItem = (
     state = {
-        id: undefined,
+        product_id: undefined,
         totalPrice: 0,
         quantity: 1
     },
     action
 ) => {
-    console.log('quantity ================', state.quantity);
     switch (action.type) {
         case types.ADD_CART_ITEM: {
-            return state.id === undefined
+            return state.product_id === undefined
                 ? Object.assign({}, state, action.product, {
-                    totalPrice: ((state.quantity + 1) * Number(action.product.sale_price)),
+                    totalPrice: ((action.product.quantity + 1) * Number(action.product.sale_price)),
                     sale_price: Number(action.product.sale_price),
                 })
                 : !compareCartItem(state, action.product)
                     ? state
                     : Object.assign({}, state, {
                         totalPrice:
-                            ((state.quantity + 1) * Number(action.product.sale_price)),
-                        quantity: state.quantity + 1,
+                            ((action.product.quantity + 1) * Number(action.product.sale_price)),
+                        quantity: action.product.quantity + 1,
                     });
         }
 
@@ -189,8 +190,8 @@ const cartItem = (
             return !compareCartItem(state, action.product)
                 ? state
                 : Object.assign({}, state, {
-                    quantity: state.quantity - 1,
-                    totalPrice: state.quantity * Number(action.product.sale_price),
+                    quantity: action.product.quantity - 1,
+                    totalPrice: action.product.quantity * Number(action.product.sale_price),
                 });
 
         default:

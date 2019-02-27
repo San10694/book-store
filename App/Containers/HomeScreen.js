@@ -158,7 +158,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = state => {
   const { restaurantList, product } = state;
-  console.log("State in Home Screen- ", JSON.stringify(product));
+  console.log("State in Home Screen- ", product);
   return {
     restaurantList,
     product

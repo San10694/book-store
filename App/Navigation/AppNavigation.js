@@ -127,7 +127,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "CartScreen",
       screen: CartScreen,
       navigationOptions: {
-        title: "Product Details",
+        title: "Cart",
         // header: null
       }
     },

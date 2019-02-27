@@ -69,19 +69,21 @@ const Api = () => {
 
 
   const getProductDetails = (id) => {
-    console.log('id', endPoints.product_detail + `${id}`);
-
-    return api.post(endPoints.product_detail + `${id}`, { key: 'A123456789', id: id })
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    // console.log("API -", api.defaults);
+    return api.post(endPoints.product_detail + `${id}`, formData)
       .catch((error) => {
         if (error && error.response) {
           const { data } = error.response;
-          console.log('data', JSON.stringify(data) + error);
         }
       });
   }
 
   const getProducts = (flag) => {
-    return api.post(endPoints.new_products, { key: 'A123456791' })
+    return api.post(endPoints.new_products, { key: 'A123456789' })
       .catch((error) => {
         if (error && error.response) {
           // const { data } = error.response;

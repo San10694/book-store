@@ -5,7 +5,7 @@ const initialState = {
     bannerList: null,
     categories: null,
     productDetails: null,
-    productDetail: null
+    // productDetail: null
 };
 
 export default function ProductReducer(state = initialState, action) {

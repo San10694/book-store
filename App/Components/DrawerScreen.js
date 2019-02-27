@@ -21,7 +21,7 @@ const menuItems =
   { 'title': 'ABOUT US', 'route': 'AboutScreen' },
   { 'title': 'CONTACT', 'route': 'ContactScreen' },
   { 'title': 'SETTING', 'route': 'Profile' },
-  { 'title': 'LOGIN', 'route': 'Profile' },
+  { 'title': 'LOGIN', 'route': 'LoginScreen' },
   { 'title': 'NEWS', 'route': 'Home' },
   ]
 

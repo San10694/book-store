@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
 import { connect } from "react-redux";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors } from "../Themes";
+import ActivityIndicator from '../Components/ActivityIndicator';
 
 
 
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            email: "",
+            password: ""
+
+        }
     }
 
     static navigationOptions = {
@@ -18,6 +24,16 @@ class LoginScreen extends Component {
 
     componentDidMount() {
         //this.props.getRestaurantList();
+    }
+
+    onUsernameEditHandle = (email) => {
+        this.setState({ email: email })
+
+    }
+    onPasswordEditHandle = (password) => {
+        this.setState({ password: password })
+
+
     }
 
     render() {
@@ -41,19 +57,20 @@ class LoginScreen extends Component {
                                     <Icon
                                         name={"email-outline"}
                                         size={20}
-                                        color={Colors.Text}
+                                        color={Colors.primary}
                                     />
                                     <TextInput
                                         ref={(comp) => (this.username = comp)}
                                         placeholder={"Email"}
                                         keyboardType="email-address"
-                                        // onChangeText={this.onUsernameEditHandle}
+                                        onChangeText={(email) => this.onUsernameEditHandle(email)}
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
-                                        value={"name"}
+                                        value={this.state.email}
                                         style={{
                                             height: 40,
                                             borderRadius: 5,
+
                                         }}
                                     />
                                 </View>
@@ -61,15 +78,15 @@ class LoginScreen extends Component {
                                     <Icon
                                         name={"lock-outline"}
                                         size={20}
-                                        color={Colors.Text}
+                                        color={Colors.primary}
                                     />
                                     <TextInput
                                         ref={(comp) => (this.password = comp)}
                                         placeholder={"password"}
-                                        //onChangeText={this.onPasswordEditHandle}
+                                        onChangeText={(password) => this.onPasswordEditHandle(password)}
                                         secureTextEntry
                                         returnKeyType="go"
-                                        value={"123"}
+                                        value={this.state.password}
                                     />
                                 </View>
                                 {/* <ButtonIndex
@@ -105,12 +122,12 @@ class LoginScreen extends Component {
                             //onPress={this.onSignUpHandle}
                             >
 
-                                <Text style={styles.highlight}>Login</Text>
+                                <Text style={{ color: Colors.white }}>Login</Text>
 
                             </TouchableOpacity>
                         </View>
 
-                        {isLoading ? <Spinner mode="overlay" /> : null}
+                        {isLoading ? <ActivityIndicator mode="overlay" /> : null}
                     </ScrollView>
                 </View>
             </View>
@@ -163,7 +180,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         borderColor: Colors.blackDivide,
-        borderBottomWidth: 1,
+        borderWidth: 1,
+        borderRadius: 10,
+        margin: 20
     },
     input: {
         color: Colors.text,

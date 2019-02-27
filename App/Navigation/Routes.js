@@ -138,14 +138,14 @@ export default {
       title: "Registration Screen"
     }
   },
-  CartScreen: {
-    name: "CartScreen",
-    description: "CartScreen",
-    screen: CartScreen,
-    navigationOptions: {
-      title: "Cart Screen"
-    }
-  },
+  // CartScreen: {
+  //   name: "CartScreen",
+  //   description: "CartScreen",
+  //   screen: CartScreen,
+  //   navigationOptions: {
+  //     title: "Cart Screen"
+  //   }
+  // },
   WishListScreen: {
     name: "WishListScreen",
     description: "WishListScreen",

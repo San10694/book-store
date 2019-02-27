@@ -18,24 +18,28 @@ class CartScreen extends Component {
             subTotal: this.props.cartItems.subTotal,
             grandTotal: this.props.cartItems.grandTotal,
         }
-        this.updateData(this.props.cart);
+
     }
 
     static navigationOptions = {
 
     }
 
+    componentDidMount() {
+        this.updateData(this.props.cart);
+    }
+
     //increase product quantity
     add(e, item) {
         this.setState({ count: this.state.count + 1 });
-        //  console.log("add-----");
-
+        //  con sole.log("add-----");
         this.props.addCartItem(item);
         this.setState({
             subTotal: this.props.cartItems.subTotal,
             grandTotal: this.props.cartItems.grandTotal,
             payMoney: this.props.cartItems.grandTotal,
         });
+        this.updateData(this.props.cart);
     }
 
     //decrease product quantity
@@ -51,9 +55,11 @@ class CartScreen extends Component {
             grandTotal: this.props.cartItems.grandTotal,
             payMoney: this.props.cartItems.grandTotal,
         });
+        this.updateData(this.props.cart);
     }
 
     async updateData(cart) {
+        console.log('qqqqqqqqqqqqqqqqq', cart[0].min_order_quantity);
         var subTotal = 0.0;
         var grandTotal = 0.0;
         var payMoney = 0.0;
@@ -71,6 +77,7 @@ class CartScreen extends Component {
             var tax = 0.0;
             // console.log('state.cart.length', this.props.cart.length);
             this.props.cart.map(item => {
+                item.totalPrice = item.quantity * item.sale_price;
                 subTotal = subTotal + item.totalPrice;
                 this.props.cartItems.subTotal = subTotal;
                 this.props.cartItems.grandTotal = grandTotal;
@@ -100,52 +107,56 @@ class CartScreen extends Component {
 
     render() {
 
-        if (this.props.cartItems == null) {
+        if (this.props.cartItems.cart.length == 0) {
             return <View></View>
         }
-        console.log('data   ======', this.props.cartItems);
-        return (
-            <ScrollView style={Styles.cartContainer}>
-                <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
-                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
-                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>${this.state.grandTotal}</Text>
+        else {
+            return (
+                <ScrollView style={Styles.cartContainer}>
+                    <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                        <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
+                            <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>${this.state.subTotal}</Text>
+                        </View>
                     </View>
-                </View>
-                <FlatList
-                    data={this.props.cartItems.cart}
-                    renderItem={({ item }) => (
-                        <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                    <FlatList
+                        data={this.props.cartItems.cart}
+                        renderItem={({ item }) => (
+                            <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
 
-                            <View style={{ padding: 20, flex: 1, flexDirection: 'row', }}>
-                                <View style={{
-                                    flex: .3, width: 85, height: 85, marginRight: 5,
-                                }}>
-                                    <Image source={{ uri: item.image ? imageUrl + item.image.path : null }} style={{
-                                        width: 85, height: 85, borderWidth: 3,
-                                        borderColor: Colors.lightGrey
-                                    }} />
-                                </View>
-                                <View style={{ flex: .75, position: 'relative' }}>
-                                    <Text style={{ paddingLeft: 7, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
-                                    <Text style={{ padding: 10, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>${item.sale_price}</Text>
-                                    <Ripple onPress={(e) => this.deleteToCart(e, item)}><Icon name='trash-o' size={25} color={Colors.lightgrey} /></Ripple>
-                                </View>
-                                <View style={{ flex: .1 }}>
-                                    <View style={{ backgroundColor: Colors.lightGrey, alignItems: 'center', width: 25, height: 85, borderColor: Colors.lightgrey, borderWidth: 1, borderRadius: 25 }}>
-                                        <Ripple onPress={(e) => this.add(e, item)}><Icon name='caret-up' size={25} color={Colors.lightgrey} /></Ripple>
-                                        <View style={{ paddingTop: 6, paddingBottom: 6 }}><Text>{item.quantity}</Text></View>
-                                        <Ripple onPress={(e) => this.remove(e, item)}><Icon name='caret-down' size={25} color={Colors.lightgrey} /></Ripple>
+                                <View style={{ padding: 20, flex: 1, flexDirection: 'row', }}>
+                                    <View style={{
+                                        flex: .3, width: 85, height: 85, marginRight: 5,
+                                    }}>
+                                        <Image source={{ uri: item.image ? imageUrl + item.image[0].path : null }} style={{
+                                            width: 85, height: 85, borderWidth: 3,
+                                            borderColor: Colors.lightGrey
+                                        }} />
+                                    </View>
+                                    <View style={{ flex: .75, position: 'relative' }}>
+                                        <Text style={{ paddingLeft: 7, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
+                                        <Text style={{ padding: 10, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>${item.sale_price}</Text>
+                                        <Ripple onPress={(e) => this.deleteToCart(e, item)}><Icon name='trash-o' size={25} color={Colors.lightgrey} /></Ripple>
+                                    </View>
+                                    <View style={{ flex: .1 }}>
+                                        <View style={{ backgroundColor: Colors.lightGrey, alignItems: 'center', width: 25, height: 85, borderColor: Colors.lightgrey, borderWidth: 1, borderRadius: 25 }}>
+                                            <Ripple onPress={(e) => this.add(e, item)}><Icon name='caret-up' size={25} color={Colors.lightgrey} /></Ripple>
+                                            <View style={{ paddingTop: 6, paddingBottom: 6 }}><Text>{item.quantity}</Text></View>
+                                            <Ripple onPress={(e) => {
+                                                if (item.quantity > 1)
+                                                    this.remove(e, item)
+                                            }}><Icon name='caret-down' size={25} color={Colors.lightgrey} /></Ripple>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
 
-                        </View>
-                    )}
-                    keyExtractor={(item, index) => item.id}
-                />
-            </ScrollView>
-        );
+                            </View>
+                        )}
+                        keyExtractor={(item, index) => item.id}
+                    />
+                </ScrollView>
+            );
+        }
     }
 }
 
