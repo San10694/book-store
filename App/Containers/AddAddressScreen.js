@@ -168,10 +168,10 @@ class AddAdressScreen extends Component {
                                     marginTop: 15,
                                     marginLeft: 20
                                 }}
-                            //onPress={this.onSignUpHandle}
+                                onPress={() => this.props.navigation.navigate('AddressListScreen')}
                             >
 
-                                <Text style={{ color: Colors.white }}>SEND OTP</Text>
+                                <Text style={{ color: Colors.white }}>Add Address</Text>
 
                             </TouchableOpacity>
                         </View>

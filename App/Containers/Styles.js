@@ -212,7 +212,7 @@ export default {
     productDetailFav: { position: 'absolute', top: 6, right: 10 },
     productPriceContainer: { marginTop: 10, alignItems: 'center' },
     productDescription: { margin: 10, alignSelf: 'center' },
-    buyContainer: { flexDirection: 'row', position: 'absolute', bottom: 13, paddingLeft: 15 },
+
     buyButton: {
         width: width * 0.90,
         height: 40,
@@ -223,10 +223,10 @@ export default {
         alignSelf: 'center'
     },
     btnText: { color: Colors.white },
-
+    checkoutContainer: { flexDirection: 'row', position: 'absolute', bottom: 13, paddingLeft: 15 },
     /// cart page 
 
-    cartContainer: { backgroundColor: Colors.background },
+    cartContainer: { backgroundColor: Colors.background, position: 'relative' },
 
 
 

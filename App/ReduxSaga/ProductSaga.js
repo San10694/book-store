@@ -1,6 +1,5 @@
 import { put } from "redux-saga/effects";
 import { types } from "../Redux/types";
-import { getProductDetails } from "../Redux/ProductRedux";
 
 export function* _getBannerList(api, action) {
     try {

@@ -12,7 +12,8 @@ const Api = () => {
     child_catgory: '/api/childcategory',
     new_products: '/api/new_products',
     product_list: '/api/browseCategory',
-    product_detail: '/api/product/'
+    product_detail: '/api/product/',
+    sign_up: '/api/request_signup_otp/'
   };
 
   const api = axios.create({
@@ -91,6 +92,21 @@ const Api = () => {
       });
   }
 
+
+  const userSignUp = (mobile) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.sign_up + `${mobile}`, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
   const getRestaurantList = () => api.get(endPoints.getBanners);
 
   return {
@@ -101,7 +117,8 @@ const Api = () => {
     getChildCategories,
     getProductList,
     getProducts,
-    getProductDetails
+    getProductDetails,
+    userSignUp
   }
 }
 

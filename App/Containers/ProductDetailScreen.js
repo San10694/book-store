@@ -68,7 +68,7 @@ class ProductDetailScreen extends Component {
           </View>
 
         </ScrollView>
-        <View style={Styles.buyContainer}>
+        <View style={Styles.checkoutContainer}>
           <Ripple
             style={Styles.buyButton}
             onPress={() => this.addProductToCart()}

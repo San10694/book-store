@@ -8,7 +8,7 @@ import { Colors, Fonts } from "../Themes";
 
 
 const menuItems =
-  [{ 'title': 'Cart', 'route': 'Home' },
+  [{ 'title': 'Cart', 'route': 'CartScreen' },
   { 'title': 'My Orders', 'route': 'Home' },
   { 'title': 'WishList', 'route': 'Home' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
@@ -65,7 +65,7 @@ export default class ProfileScreen extends Component {
             {menuItems.map((item, index) => {
               return (
                 <Ripple key={index} style={styles.menuItem}
-                // onPress={() => this.props.navigation.navigate(item.route)}
+                  onPress={() => this.props.navigation.navigate(item.route)}
                 >
                   <Text style={styles.textItem}>
                     {item.title}

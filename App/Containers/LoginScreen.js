@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
+import Ripple from "react-native-material-ripple";
 
 
 
@@ -127,7 +128,9 @@ class LoginScreen extends Component {
 
                             </TouchableOpacity>
                         </View>
-
+                        <Ripple onPress={() => {
+                            this.props.navigation.navigate('RegistrationScreen');
+                        }}><Text style={{ textAlign: 'center', paddingTop: 40 }}>Don't Have Account???</Text></Ripple>
                         {isLoading ? <ActivityIndicator mode="overlay" /> : null}
                     </ScrollView>
                 </View>

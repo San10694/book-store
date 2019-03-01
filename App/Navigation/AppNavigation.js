@@ -27,6 +27,8 @@ import ProductListScreen from "../Containers/ProductListScreen";
 import ProductDetailScreen from '../Containers/ProductDetailScreen';
 import OtpScreen from "../Containers/OtpScreen";
 import AddAddressScreen from '../Containers/AddAddressScreen';
+import AddressListScreen from '../Containers/AddressListScreen';
+
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -147,7 +149,16 @@ hile using the drawer navigator inside stack navigator.*/
       description: "AddAddressScreen",
       screen: AddAddressScreen,
       navigationOptions: {
-        title: "Otp",
+        title: "Add address",
+        // header: null
+      }
+    },
+    AddressListScreen: {
+      name: "AddressListScreen",
+      description: "AddressListScreen",
+      screen: AddressListScreen,
+      navigationOptions: {
+        title: "Address List",
         // header: null
       }
     },
