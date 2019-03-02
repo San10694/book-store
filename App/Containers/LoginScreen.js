@@ -30,10 +30,7 @@ class LoginScreen extends Component {
     onSubmit(e, mobile) {
         console.log(mobile);
         this.props.userLogin(mobile);
-        if (this.props.user.user.Error === '0000') {
-            this.props.navigation.navigate("OtpScreen", { number: mobile });
-        }
-
+        this.props.navigation.navigate("LoginOtpScreen", { number: mobile });
     }
 
 
@@ -120,7 +117,7 @@ class LoginScreen extends Component {
                                     marginTop: 15,
                                     marginHorizontal: 100
                                 }}
-                                onPress={(e, mobile) => this.onSubmit(mobile)}
+                                onPress={(e) => this.onSubmit(e, this.state.mobile)}
                             >
 
                                 <Text style={{ color: Colors.white }}>SEND OTP</Text>

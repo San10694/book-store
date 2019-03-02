@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getRestaurantList } from "../Redux/ListRedux";
+import { addAddress } from "../Redux/UserAddressRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import Fonts from '../Themes/Fonts';
-
+import { Picker } from 'react-native-picker-dropdown';
 const { width, height } = Dimensions.get('window');
 
 
@@ -17,8 +17,12 @@ class AddAdressScreen extends Component {
             name: "",
             pincode: 0,
             mobile: 0,
-            street: '',
-            state: ''
+            city: '',
+            state: '',
+            email: '',
+            other: '',
+            address_type: 'primary',
+            set_default: false,
 
         }
     }
@@ -38,8 +42,8 @@ class AddAdressScreen extends Component {
     onNumberEditHandle = (mobile) => {
         this.setState({ mobile: mobile })
     }
-    onStreetEditHandle = (street) => {
-        this.setState({ street: street })
+    onCityEditHandle = (city) => {
+        this.setState({ city: city })
     }
     onStateEditHandle = (state) => {
         this.setState({ state: state })
@@ -47,20 +51,74 @@ class AddAdressScreen extends Component {
     onPincodeEditHandle = (pincode) => {
         this.setState({ pincode: pincode })
     }
+    onEmailEditHandle = (email) => {
+        this.setState({ email: email })
+    }
+    onOtherEditHandle = (other) => {
+        this.setState({ other: other })
+    }
+    onTypeEditHandle = (other) => {
+        this.setState({ other: other })
+    }
+
+    onSubmit(e) {
+        var data = {
+            mobile: this.state.mobile,
+            name: this.state.name,
+            address_type: this.state.address_type,
+            email: this.state.email,
+            city: this.state.city,
+            state: this.state.state,
+            pincode: this.state.pincode,
+            other: this.state.other,
+            set_default: this.state.address_type === 'primary' ? 'yes' : 'no',
+            // customer_id: this.props.user.user.user_data.0.id
+        }
+        // this.props.addAddress(data);
+
+    }
+
+    selectAddress(itemValue, itemIndex) {
+        console.log(itemValue);
+        this.setState({
+            address_type: itemValue
+        });
+    }
+
 
     render() {
         const { isLoading } = this.props;
         return (
-            <View style={{ flex: 1, backgroundColor: Colors.white }}>
+            <ScrollView style={{ flex: 1, backgroundColor: Colors.white }}>
                 <View style={styles.container}>
                     <ScrollView
-                        style={{ backgroundColor: Colors.white }}
+                        style={{ backgroundColor: Colors.white, marginTop: 20, marginBottom: 20 }}
                         contentContainerStyle={styles.container}>
                         <View>
                             <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Enter Address</Text>
                         </View>
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                    <Text style={{ paddingTop: 15, paddingLeft: 20, fontSize: Fonts.size.medium_15 }}>Address Type</Text>
+                                    <Picker
+                                        selectedValue={this.state.address_type}
+                                        onValueChange={(itemValue, itemIndex) => this.selectAddress(itemValue, itemIndex)}
+                                        prompt="Choose Address Type"
+                                        style={{
+                                            height: 50,
+                                            width: 150,
+                                            alignSelf: 'center',
+                                            color: Colors.primary,
+                                        }}
+                                        cancel
+
+                                    >
+                                        <Picker.Item label="Primary" value="primary" />
+                                        <Picker.Item label="Shipping" value="shipping" />
+                                        <Picker.Item label="Billing" value="billing" />
+                                    </Picker>
+                                </View>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
@@ -81,11 +139,44 @@ class AddAdressScreen extends Component {
 
                                     <TextInput
                                         ref={(comp) => (this.username = comp)}
-                                        placeholder={"Enter Street Name"}
-                                        onChangeText={(street) => this.onStreetEditHandle(street)}
+                                        placeholder={"Enter Your Email"}
+                                        onChangeText={(email) => this.onEmailEditHandle(email)}
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
-                                        value={this.state.street}
+                                        keyboardType='email-address'
+                                        value={this.state.email}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Near by address..."}
+                                        onChangeText={(name) => this.onOtherEditHandle(name)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.other}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter City Name"}
+                                        onChangeText={(city) => this.onCityEditHandle(city)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.city}
                                         style={{
                                             height: 50,
                                             borderRadius: 5,
@@ -98,7 +189,7 @@ class AddAdressScreen extends Component {
                                     <TextInput
                                         ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter State Name"}
-                                        keyboardType="numeric"
+                                        keyboardType='name-phone-pad'
                                         onChangeText={(state) => this.onStateEditHandle(state)}
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
@@ -146,17 +237,6 @@ class AddAdressScreen extends Component {
 
                                 </View>
                             </View>
-                            {/* <View style={styles.separatorWrap}>
-                                <View style={styles.separator} />
-                                <Text style={styles.separatorText}>{Languages.Or}</Text>
-                                <View style={styles.separator} />
-                            </View> */}
-                            {/* <ButtonIndex
-                                text={Languages.FacebookLogin.toUpperCase()}
-                                icon={Icons.MaterialCommunityIcons.Facebook}
-                                containerStyle={styles.fbButton}
-                                onPress={this.onFBLoginPressHandle}
-                            /> */}
                             <TouchableOpacity
                                 style={{
                                     width: width * 0.9,
@@ -168,7 +248,7 @@ class AddAdressScreen extends Component {
                                     marginTop: 15,
                                     marginLeft: 20
                                 }}
-                                onPress={() => this.props.navigation.navigate('AddressListScreen')}
+                                onPress={(e) => this.onSubmit(e)}
                             >
 
                                 <Text style={{ color: Colors.white }}>Add Address</Text>
@@ -179,22 +259,24 @@ class AddAdressScreen extends Component {
                         {isLoading ? <ActivityIndicator mode="overlay" /> : null}
                     </ScrollView>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
 
 const mapStateToProps = state => {
-    const { restaurantList } = state;
-    console.log("State in Home Screen- ", restaurantList);
+    const { address, user } = state;
+    console.log('userrrrrrrrrrrrrr', JSON.stringify(state.user.user.user_data));
+    console.log("State in address Screen- ", address);
     return {
-        restaurantList
+        address, user
     };
+
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getRestaurantList: () => dispatch(getRestaurantList())
+        addAddress: (value) => dispatch(addAddress(value))
     };
 };
 

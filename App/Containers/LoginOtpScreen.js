@@ -4,13 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import { NavigationActions } from "react-navigation";
-import Api from "../Services";
+import { otpVerify } from '../Redux/UserRedux';
+import { connect } from "react-redux";
 
 
-const api = Api.Api();
 
-
-export default class OtpScreen extends Component {
+class LoginOtpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,42 +36,15 @@ export default class OtpScreen extends Component {
     }
 
     async  onSubmit(e, otp) {
+
+        console.log(otp);
         this.state.fcm = await AsyncStorage.getItem('fcmToken');
-
-        var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm, name: this.state.name, email: this.state.email }
-        console.log('data', JSON.stringify(data))
-        api.otpVerifyReg(data).then(response => {
-
-            console.log('otp -', JSON.stringify(response));
-            if (response.data.Error === '0000') {
-                this.props.navigation.navigate("HomeTab")
-            }
-            else {
-                Alert.alert(
-                    'Error ',
-                    'Invalid OTP',
-                    [
-                        {
-                            text: 'OK',
-                            onPress: () => {
-                                console.log('ok')
-                            },
-                        },
-                    ],
-                    {
-                        cancelable: false,
-                    }
-                );
-            }
-
-        })
-        // console.log(otp);
-        // this.state.fcm = await AsyncStorage.getItem('fcmToken');
-        // var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm }
-        // this.props.otpVerify(data);
-        // if (this.props.user.otp.Error == '0000') {
-        //     this.props.navigation.navigate("HomeTab")
+        var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm }
+        this.props.otpVerify(data);
+        // if (this.props.user.user.Error === '0000') {
+        this.props.navigation.navigate("HomeTab")
         // }
+
     }
 
     render() {
@@ -174,7 +146,24 @@ export default class OtpScreen extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    const { user } = state;
+    console.log("State in user Screen- ", JSON.stringify(user));
+    return {
+        user
+    };
+};
 
+const mapDispatchToProps = dispatch => {
+    return {
+        otpVerify: (value) => dispatch(otpVerify(value))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginOtpScreen);
 
 
 const styles = StyleSheet.create({

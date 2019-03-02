@@ -22,6 +22,7 @@ export function* userLoginProcess(api, action) {
         const response = yield api.userLogin(action.payload);
         if (response) {
             const { data } = response;
+            console.log("response login", JSON.stringify(data));
             if (data.Error === "1003") {
                 Alert.alert(
                     'Error ',
@@ -39,7 +40,7 @@ export function* userLoginProcess(api, action) {
                     }
                 );
             }
-            console.log("response ", JSON.stringify(data));
+
             yield put({ type: types.USER_LOGIN_SUCCESS, payload: data });
         } else {
 
@@ -55,7 +56,7 @@ export function* userOtpVerify(api, action) {
         const response = yield api.otpVerify(action.payload);
         if (response) {
             const { data } = response;
-            console.log("response ", JSON.stringify(data));
+            console.log("response otp", JSON.stringify(data));
             if (data.Error === "1003") {
                 Alert.alert(
                     'Error ',

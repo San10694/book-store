@@ -26,6 +26,7 @@ import OrderScreen from "../Containers/OrderScreen";
 import ProductListScreen from "../Containers/ProductListScreen";
 import ProductDetailScreen from '../Containers/ProductDetailScreen';
 import OtpScreen from "../Containers/OtpScreen";
+import LoginOtpScreen from "../Containers/LoginOtpScreen";
 import AddAddressScreen from '../Containers/AddAddressScreen';
 import AddressListScreen from '../Containers/AddressListScreen';
 

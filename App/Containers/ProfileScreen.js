@@ -9,7 +9,7 @@ import { Colors, Fonts } from "../Themes";
 
 const menuItems =
   [{ 'title': 'Cart', 'route': 'CartScreen' },
-  { 'title': 'My Orders', 'route': 'Home' },
+  { 'title': 'My Orders', 'route': 'OrderScreen' },
   { 'title': 'WishList', 'route': 'Home' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
   { 'title': 'Privacy Polices', 'route': 'Home' },

@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import { Images, Colors, Fonts } from '../Themes';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Styles from './Styles';
+import Ripple from "react-native-material-ripple";
 
 
 const bannerData = [
@@ -23,7 +25,7 @@ export default class AddressListScreen extends React.Component {
 
         return (
             <ScrollView>
-                <View >
+                <View>
 
                     <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
@@ -45,7 +47,7 @@ export default class AddressListScreen extends React.Component {
                             {bannerData.map((item, index) => {
                                 return (
                                     <RadioButton value={item.title} key={item.title}>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: 10, marginBottom: 10 }}>
                                             <View style={{ width: '80%' }}>
                                                 <Text>{item.title},</Text>
                                                 <Text>{item.city},{item.state},{item.zip},</Text>
@@ -68,7 +70,14 @@ export default class AddressListScreen extends React.Component {
                         </RadioGroup>
                     </View>
                 </View>
-
+                <View>
+                    <Ripple
+                        style={Styles.buyButton}
+                        onPress={() => this.props.navigation.navigate('AddressListScreen')}
+                    >
+                        <Text style={Styles.btnText}>Select Address</Text>
+                    </Ripple>
+                </View>
             </ScrollView>
         );
     }

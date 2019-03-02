@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
 import { connect } from "react-redux";
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Api from "../Services";
 import { userSignup } from '../Redux/UserRedux';
 import { Colors } from "../Themes";
@@ -13,6 +13,8 @@ class RegistrationScreen extends Component {
         super(props);
         this.state = {
             mobile: 0,
+            name: '',
+            email: '',
             isLoading: true
         }
     }
@@ -25,16 +27,24 @@ class RegistrationScreen extends Component {
         //this.props.getRestaurantList();
     }
 
-    onUsernameEditHandle = (mobile) => {
+    onNumberEditHandle = (mobile) => {
         this.setState({ mobile: mobile })
 
     }
+    onUsernameEditHandle = (name) => {
+        this.setState({ name: name })
 
-    onSubmit(e, mobile) {
+    }
+    onUserEmailEditHandle = (email) => {
+        this.setState({ email: email })
+
+    }
+
+    onSubmit(e, mobile, name, email) {
         console.log(mobile);
         this.props.userSignup(mobile);
 
-        this.props.navigation.navigate("OtpScreen", { number: mobile });
+        this.props.navigation.navigate("OtpScreen", { number: mobile, name: name, email: email });
 
     }
 
@@ -50,6 +60,41 @@ class RegistrationScreen extends Component {
 
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
+
+                                <View style={styles.inputWrap}>
+                                    <Icon
+                                        name={"user-o"}
+                                        size={20}
+                                        color={Colors.primary}
+                                    />
+                                    <TextInput
+                                        placeholder={"Enter Your Name"}
+                                        keyboardType='name-phone-pad'
+                                        onChangeText={(name) => this.onUsernameEditHandle(name)}
+                                        value={this.state.name}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+                                    <Icon
+                                        name={"envelope"}
+                                        size={20}
+                                        color={Colors.primary}
+                                    />
+                                    <TextInput
+                                        placeholder={"Enter Your Email"}
+                                        keyboardType='email-address'
+                                        onChangeText={(email) => this.onUserEmailEditHandle(email)}
+                                        value={this.state.email}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+                                        }}
+                                    />
+                                </View>
                                 <View style={styles.inputWrap}>
                                     <Icon
                                         name={"phone"}
@@ -59,7 +104,7 @@ class RegistrationScreen extends Component {
                                     <TextInput
                                         placeholder={"Enter Mobile No"}
                                         keyboardType="numeric"
-                                        onChangeText={(mobile) => this.onUsernameEditHandle(mobile)}
+                                        onChangeText={(mobile) => this.onNumberEditHandle(mobile)}
                                         value={this.state.mobile}
                                         style={{
                                             height: 50,
@@ -67,10 +112,11 @@ class RegistrationScreen extends Component {
                                         }}
                                     />
                                 </View>
+
                             </View>
 
                             <TouchableOpacity
-                                onPress={(e) => { this.onSubmit(e, this.state.mobile) }}
+                                onPress={(e) => { this.onSubmit(e, this.state.mobile, this.state.name, this.state.email) }}
                                 style={{
                                     width: 100,
                                     height: 40,

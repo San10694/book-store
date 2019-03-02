@@ -14,8 +14,12 @@ const Api = () => {
     product_list: '/api/browseCategory',
     product_detail: '/api/product/',
     sign_up: '/api/request_signup_otp/',
-    sign_in: '/api/request_login_otp/{$phone}',
-    otp_verify: '/api/verify_otp/'
+    sign_in: '/api/request_login_otp/',
+    otp_verify: '/api/verify_otp/',
+    add_address: '/api/add_address',
+    get_address: '/api/all_address',
+    delete_address: '/api/delete_address/',
+    login_otp: '/api/customer_login'
   };
 
   const api = axios.create({
@@ -115,7 +119,7 @@ const Api = () => {
     const formData = new FormData();
     formData.append('key', 'A123456789');
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-    console.log("API -", api.defaults);
+    console.log("API -", endPoints.sign_in + `${mobile}`);
     return api.post(endPoints.sign_in + `${mobile}`, formData)
       .catch((error) => {
         if (error && error.response) {
@@ -124,14 +128,90 @@ const Api = () => {
       });
   }
 
+  const otpVerifyReg = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('fcm_token', data.fcm);
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('phone', data.mobile);
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", endPoints.otp_verify + `${data.mobile}` + '/' + `${data.otp}`);
+    return api.post(endPoints.otp_verify + `${data.mobile}` + '/' + `${data.otp}`, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+
   const otpVerify = (data) => {
     //console.log('id', endPoints.product_detail + `${id}`);
     const formData = new FormData();
     formData.append('key', 'A123456789');
     formData.append('fcm_token', data.fcm);
+    formData.append('phone', data.mobile);
+    formData.append('otp', data.otp)
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", endPoints.login_otp);
+    return api.post(endPoints.login_otp, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+  const addAddress = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('mobile', data.mobile);
+    formData.append('address_line_1', data.other);
+    formData.append('city', data.city);
+    formData.append('state', data.state);
+    formData.append('pincode', data.pincode);
+    formData.append('address_type', data.address_type);
+    formData.append('set_default', data.set_default);
+    formData.append('customer_id', data.customer_id)
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
-    return api.post(endPoints.sign_in + `${data.mobile}` + `${data.otp}`, formData)
+    return api.post(endPoints.add_address, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+
+  const getAddress = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('customer_id', data.customer_id)
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.get_address, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+
+  const deleteAddress = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.delete_address + `${formData.address_id}`, formData)
       .catch((error) => {
         if (error && error.response) {
           const { data } = error.response;
@@ -152,7 +232,11 @@ const Api = () => {
     getProductDetails,
     userSignup,
     userLogin,
-    otpVerify
+    otpVerify,
+    addAddress,
+    getAddress,
+    deleteAddress,
+    otpVerifyReg
   }
 }
 

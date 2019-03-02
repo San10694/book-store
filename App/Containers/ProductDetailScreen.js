@@ -64,7 +64,7 @@ class ProductDetailScreen extends Component {
             <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '300' }}>{Constants.rupee}{productDetail.sale_price}</Text>
           </View>
           <View style={Styles.productDescription}>
-            <Text>{detail.description}</Text>
+            <Text>{productDetail.description}</Text>
           </View>
 
         </ScrollView>

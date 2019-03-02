@@ -15,7 +15,9 @@ import CartScreen from "../Containers/CartScreen";
 import WishListScreen from "../Containers/WishListScreen";
 import OrderScreen from "../Containers/OrderScreen";
 import ProductDetailScreen from '../Containers/ProductDetailScreen';
-import AddAddressScreen from '../Containers/AddAddressScreen';
+import AddressListScreen from '../Containers/AddressListScreen';
+import OrderDetailScreen from '../Containers/OrderDetailScreen';
+import LoginOtpScreen from '../Containers/LoginOtpScreen';
 
 export default {
 
@@ -161,6 +163,30 @@ export default {
     screen: OrderScreen,
     navigationOptions: {
       title: "OrderScreen"
+    }
+  },
+  OrderDetailScreen: {
+    name: "OrderDetailScreen",
+    description: "OrderDetailScreen",
+    screen: OrderDetailScreen,
+    navigationOptions: {
+      title: "Order Detail"
+    }
+  },
+  AddressListScreen: {
+    name: "AddressListScreen",
+    description: "AddressListScreen",
+    screen: AddressListScreen,
+    navigationOptions: {
+      title: "Order Detail"
+    }
+  },
+  LoginOtpScreen: {
+    name: "LoginOtpScreen",
+    description: "LoginOtpScreen",
+    screen: LoginOtpScreen,
+    navigationOptions: {
+      title: "Otp"
     }
   },
 

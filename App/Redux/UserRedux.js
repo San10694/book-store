@@ -5,7 +5,6 @@ const initialState = {
     isLoading: true,
     isLoggedIn: false,
     verifyOtp: false,
-    otp: ''
 };
 
 ///Action Creators
@@ -32,6 +31,8 @@ export function otpVerify(data) {
         payload: data
     };
 }
+
+
 
 export default function UserReducer(state = initialState, action) {
     console.log("user Action ", action);
@@ -61,7 +62,7 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 isLoggedIn: true,
-                user: payload
+                // user: payload
             }
         }
         case types.USER_LOGIN_SUCCESS:
@@ -69,7 +70,7 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 isLoggedIn: true,
-                user: payload
+                // user: payload
             };
 
         case types.USER_LOGIN_FAILURE:
@@ -83,14 +84,14 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 verifyOtp: true,
-                otp: payload
+                user: payload
             }
         }
         case types.OTP_VERIFY_SUCCESS:
             return {
                 ...state,
                 verifyOtp: true,
-                otp: payload
+                user: payload
             };
 
         case types.OTP_VERIFY_FAILURE:
