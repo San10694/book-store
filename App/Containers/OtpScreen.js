@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import { NavigationActions } from "react-navigation";
+import { otpVerify } from '../Redux/UserRedux';
 
 
 
@@ -13,10 +14,11 @@ class OtpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: ""
-
+            otp: 0,
+            mobile: this.props.navigation.state.params.number,
+            fcm: ''
         }
+
     }
 
     static navigationOptions = {
@@ -27,28 +29,19 @@ class OtpScreen extends Component {
         //this.props.getRestaurantList();
     }
 
-    onUsernameEditHandle = (email) => {
-        this.setState({ email: email })
-
-    }
-    onPasswordEditHandle = (password) => {
-        this.setState({ password: password })
-
+    onOTPEditHandle = (otp) => {
+        this.setState({ otp: otp })
 
     }
 
-    resetNavigation() {
-        // this.props
-        //     .navigation
-        //     .dispatch(NavigationActions.reset(
-        //         {
-        //             index: 0,
-        //             key: null,
-        //             actions: [
-        //                 NavigationActions.navigate({ routeName: 'HomeTab' })
-        //             ]
-        //         }));
-        this.props.navigation.navigate("HomeTab")
+    async  onSubmit(e, otp) {
+        console.log(otp);
+        this.state.fcm = await AsyncStorage.getItem('fcmToken');
+        var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm }
+        this.props.otpVerify(data);
+        if (this.props.user.otp.Error == '0000') {
+            this.props.navigation.navigate("HomeTab")
+        }
     }
 
     render() {
@@ -78,10 +71,10 @@ class OtpScreen extends Component {
                                         ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter  OTP"}
                                         keyboardType="numeric"
-                                        onChangeText={(email) => this.onUsernameEditHandle(email)}
+                                        onChangeText={(otp) => this.onOTPEditHandle(otp)}
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
-                                        value={this.state.email}
+                                        value={this.state.otp}
                                         style={{
                                             height: 50,
                                             borderRadius: 5,
@@ -124,7 +117,7 @@ class OtpScreen extends Component {
                                 onPress={this.onFBLoginPressHandle}
                             /> */}
                             <TouchableOpacity
-                                onPress={() => this.resetNavigation()}
+                                onPress={(e) => { this.onSubmit(e, this.state.otp) }}
                                 style={{
                                     width: 100,
                                     height: 40,
@@ -152,18 +145,19 @@ class OtpScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { restaurantList } = state;
-    console.log("State in Home Screen- ", restaurantList);
+    const { user } = state;
+    console.log("State in user Screen- ", JSON.stringify(user));
     return {
-        restaurantList
+        user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getRestaurantList: () => dispatch(getRestaurantList())
+        otpVerify: (value) => dispatch(otpVerify(value))
     };
 };
+
 
 export default connect(
     mapStateToProps,

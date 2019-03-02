@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, Dimensions, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
@@ -8,7 +8,6 @@ import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux
 import Fonts from '../Themes/Fonts';
 import { CardSection } from '../Components/CardSection';
 import { Card } from '../Components/Card';
-import { MenuIcon } from '../Components/MenuIcon';
 import Styles from './Styles';
 import { Colors, Images } from "../Themes";
 import Banner from "../Components/Banner";

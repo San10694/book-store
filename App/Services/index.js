@@ -13,7 +13,9 @@ const Api = () => {
     new_products: '/api/new_products',
     product_list: '/api/browseCategory',
     product_detail: '/api/product/',
-    sign_up: '/api/request_signup_otp/'
+    sign_up: '/api/request_signup_otp/',
+    sign_in: '/api/request_login_otp/{$phone}',
+    otp_verify: '/api/verify_otp/'
   };
 
   const api = axios.create({
@@ -93,13 +95,43 @@ const Api = () => {
   }
 
 
-  const userSignUp = (mobile) => {
+  const userSignup = (mobile) => {
     //console.log('id', endPoints.product_detail + `${id}`);
     const formData = new FormData();
     formData.append('key', 'A123456789');
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
     return api.post(endPoints.sign_up + `${mobile}`, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+
+  const userLogin = (mobile) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.sign_in + `${mobile}`, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+  const otpVerify = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('fcm_token', data.fcm);
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.sign_in + `${data.mobile}` + `${data.otp}`, formData)
       .catch((error) => {
         if (error && error.response) {
           const { data } = error.response;
@@ -118,7 +150,9 @@ const Api = () => {
     getProductList,
     getProducts,
     getProductDetails,
-    userSignUp
+    userSignup,
+    userLogin,
+    otpVerify
   }
 }
 

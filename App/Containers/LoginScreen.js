@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import Ripple from "react-native-material-ripple";
+import { userLogin } from '../Redux/UserRedux';
 
 
 
@@ -13,9 +14,7 @@ class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: ""
-
+            mobile: 0
         }
     }
 
@@ -23,19 +22,20 @@ class LoginScreen extends Component {
 
     }
 
-    componentDidMount() {
-        //this.props.getRestaurantList();
-    }
-
-    onUsernameEditHandle = (email) => {
-        this.setState({ email: email })
+    onUserNumberEditHandle = (mobile) => {
+        this.setState({ mobile: mobile })
 
     }
-    onPasswordEditHandle = (password) => {
-        this.setState({ password: password })
 
+    onSubmit(e, mobile) {
+        console.log(mobile);
+        this.props.userLogin(mobile);
+        if (this.props.user.user.Error === '0000') {
+            this.props.navigation.navigate("OtpScreen", { number: mobile });
+        }
 
     }
+
 
     render() {
         const { isLoading } = this.props;
@@ -64,10 +64,10 @@ class LoginScreen extends Component {
                                         ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter Mobile No"}
                                         keyboardType="numeric"
-                                        onChangeText={(email) => this.onUsernameEditHandle(email)}
+                                        onChangeText={(mobile) => this.onUserNumberEditHandle(mobile)}
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
-                                        value={this.state.email}
+                                        value={this.state.mobile}
                                         style={{
                                             height: 50,
                                             borderRadius: 5,
@@ -110,7 +110,6 @@ class LoginScreen extends Component {
                                 onPress={this.onFBLoginPressHandle}
                             /> */}
                             <TouchableOpacity
-                                onPress={() => { this.props.navigation.navigate("OtpScreen") }}
                                 style={{
                                     width: 100,
                                     height: 40,
@@ -121,7 +120,7 @@ class LoginScreen extends Component {
                                     marginTop: 15,
                                     marginHorizontal: 100
                                 }}
-                            //onPress={this.onSignUpHandle}
+                                onPress={(e, mobile) => this.onSubmit(mobile)}
                             >
 
                                 <Text style={{ color: Colors.white }}>SEND OTP</Text>
@@ -130,7 +129,7 @@ class LoginScreen extends Component {
                         </View>
                         <Ripple onPress={() => {
                             this.props.navigation.navigate('RegistrationScreen');
-                        }}><Text style={{ textAlign: 'center', paddingTop: 40 }}>Don't Have Account???</Text></Ripple>
+                        }}><Text style={{ textAlign: 'center', paddingTop: 40 }}>Haven't an Account???</Text></Ripple>
                         {isLoading ? <ActivityIndicator mode="overlay" /> : null}
                     </ScrollView>
                 </View>
@@ -140,16 +139,16 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { restaurantList } = state;
-    console.log("State in Home Screen- ", restaurantList);
+    const { user } = state;
+    console.log("State in user Screen- ", JSON.stringify(user));
     return {
-        restaurantList
+        user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getRestaurantList: () => dispatch(getRestaurantList())
+        userLogin: (value) => dispatch(userLogin(value))
     };
 };
 
@@ -157,6 +156,7 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(LoginScreen);
+
 
 const styles = StyleSheet.create({
     container: {

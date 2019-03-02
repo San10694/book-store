@@ -2,15 +2,18 @@ import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { userSignUp } from "../Redux/UserRedux";
+import Api from "../Services";
+import { userSignup } from '../Redux/UserRedux';
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
+// const api = Api.Api();
 
 class RegistrationScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mobile: 0
+            mobile: 0,
+            isLoading: true
         }
     }
 
@@ -29,12 +32,15 @@ class RegistrationScreen extends Component {
 
     onSubmit(e, mobile) {
         console.log(mobile);
-        this.props.userSignUp(mobile);
+        this.props.userSignup(mobile);
+
+        this.props.navigation.navigate("OtpScreen", { number: mobile });
+
     }
 
 
     render() {
-        const { isLoading } = this.props;
+        const { isLoading } = this.state;
         return (
             <View style={{ flex: 1, backgroundColor: Colors.white }}>
                 <View style={styles.container}>
@@ -93,21 +99,21 @@ class RegistrationScreen extends Component {
 
 const mapStateToProps = state => {
     const { user } = state;
-    console.log("State in user Screen- ", user);
+    console.log("State in user Screen- ", JSON.stringify(user));
     return {
         user
     };
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         userSignUp: () => dispatch(userSignUp)
-//     };
-// };
+const mapDispatchToProps = dispatch => {
+    return {
+        userSignup: (value) => dispatch(userSignup(value))
+    };
+};
 
 export default connect(
     mapStateToProps,
-    { userSignUp }
+    mapDispatchToProps
 )(RegistrationScreen);
 
 const styles = StyleSheet.create({
