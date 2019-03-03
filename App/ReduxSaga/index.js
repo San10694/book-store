@@ -4,7 +4,7 @@ import Api from "../Services";
 import { _getRestaurantList } from "./ListSaga";
 import { _getBannerList, getCategories, getProducts } from "./ProductSaga";
 import { userSignupProcess, userLoginProcess, userOtpVerify } from "./UserSaga";
-import { addUserAddress } from './UserAddressSaga';
+import { addUserAddress, getUserAddress } from './UserAddressSaga';
 
 const api = Api.Api();
 
@@ -18,4 +18,5 @@ export default function* root() {
   yield takeLatest(types.USER_LOGIN, userLoginProcess, api);
   yield takeLatest(types.OTP_VERIFY, userOtpVerify, api);
   yield takeLatest(types.ADD_ADDRESS, addUserAddress, api);
+  yield takeLatest(types.GET_ADDRESS_LIST, getUserAddress, api);
 }

@@ -173,14 +173,14 @@ export default {
       title: "Order Detail"
     }
   },
-  AddressListScreen: {
-    name: "AddressListScreen",
-    description: "AddressListScreen",
-    screen: AddressListScreen,
-    navigationOptions: {
-      title: "Order Detail"
-    }
-  },
+  // AddressListScreen: {
+  //   name: "AddressListScreen",
+  //   description: "AddressListScreen",
+  //   screen: AddressListScreen,
+  //   navigationOptions: {
+  //     title: "Order Detail"
+  //   }
+  // },
   LoginOtpScreen: {
     name: "LoginOtpScreen",
     description: "LoginOtpScreen",

@@ -7,7 +7,7 @@ export function* getUserAddress(api, action) {
         const response = yield api.getAddress(action.payload);
         if (response) {
             const { data } = response;
-            console.log("response ", data);
+            console.log("response addttttttttttttttttt", data);
             yield put({ type: types.GET_ADDRESS_LIST_SUCCESS, payload: data });
         } else {
             yield put({ type: types.GET_ADDRESS_LIST_FAILURE, payload: null });
@@ -22,7 +22,7 @@ export function* addUserAddress(api, action) {
         const response = yield api.addAddress(action.payload);
         if (response) {
             const { data } = response;
-            console.log("response ", JSON.stringify(data));
+            console.log("response addresss", JSON.stringify(data));
             yield put({ type: types.ADD_ADDRESS_SUCCESS, payload: data });
         } else {
 

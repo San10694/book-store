@@ -177,7 +177,9 @@ const Api = () => {
     formData.append('pincode', data.pincode);
     formData.append('address_type', data.address_type);
     formData.append('set_default', data.set_default);
-    formData.append('customer_id', data.customer_id)
+    formData.append('customer_id', data.customer_id);
+    formData.append('country', data.country);
+    formData.append('address_line_2', data.address_line_2);
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
     return api.post(endPoints.add_address, formData)
@@ -189,11 +191,11 @@ const Api = () => {
   }
 
 
-  const getAddress = (data) => {
+  const getAddress = (id) => {
     //console.log('id', endPoints.product_detail + `${id}`);
     const formData = new FormData();
     formData.append('key', 'A123456789');
-    formData.append('customer_id', data.customer_id)
+    formData.append('customer_id', id)
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
     return api.post(endPoints.get_address, formData)
@@ -205,13 +207,13 @@ const Api = () => {
   }
 
 
-  const deleteAddress = (data) => {
+  const deleteAddress = (id) => {
     //console.log('id', endPoints.product_detail + `${id}`);
     const formData = new FormData();
     formData.append('key', 'A123456789');
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
-    return api.post(endPoints.delete_address + `${formData.address_id}`, formData)
+    return api.post(endPoints.delete_address + `${id}`, formData)
       .catch((error) => {
         if (error && error.response) {
           const { data } = error.response;

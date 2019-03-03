@@ -18,7 +18,7 @@ export default function UserAddressReducer(state = initialState, action) {
             return {
                 ...state,
                 address: payload,
-                isFetching: true
+                isFetching: false
             };
         case types.GET_ADDRESS_LIST_FAILURE:
             return {
@@ -28,13 +28,11 @@ export default function UserAddressReducer(state = initialState, action) {
         case types.ADD_ADDRESS:
             return {
                 ...state,
-                address: payload,
                 isFetching: false
             };
         case types.ADD_ADDRESS_SUCCESS:
             return {
                 ...state,
-                address: payload,
                 isFetching: false
             };
         case types.ADD_ADDRESS_FAILURE:
@@ -53,6 +51,14 @@ export default function UserAddressReducer(state = initialState, action) {
 export function addAddress(data) {
     return {
         type: types.ADD_ADDRESS,
+        payload: data
+    };
+}
+
+
+export function getAddress(data) {
+    return {
+        type: types.GET_ADDRESS_LIST,
         payload: data
     };
 }

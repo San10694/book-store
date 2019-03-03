@@ -5,7 +5,10 @@ import { Images, Colors, Fonts } from '../Themes';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './Styles';
 import Ripple from "react-native-material-ripple";
-
+import { getAddress } from '../Redux/UserAddressRedux';
+import { connect } from "react-redux";
+import ActivityIndicator from "../Components/ActivityIndicator";
+import Api from '../Services';
 
 const bannerData = [
     { key: 1, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
@@ -13,16 +16,39 @@ const bannerData = [
     { key: 3, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
     { key: 4, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 }
 ]
+const api = Api.Api();
 
-export default class AddressListScreen extends React.Component {
+class AddressListScreen extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            addressList: []
+        }
     }
 
+    componentDidMount() {
+        this.props.getAddress(this.props.user.user.user_data[0].id);
+    }
 
+    deleteAddressData(e, id) {
+        api.deleteAddress(id).then(response => {
+            console.log('delete addd', JSON.stringify(response));
+            this.props.getAddress(this.props.user.user.user_data[0].id);
+        });
+    }
     render() {
-
+        const { data, isFetching } = this.props.address.address
+        console.log("  product -- ", JSON.stringify(data));
+        this.setState({
+            addressList = data
+        })
+        if (isFetching) {
+            return (
+                <View>
+                    <ActivityIndicator isFetching={isFetching} />
+                </View>
+            )
+        }
         return (
             <ScrollView>
                 <View>
@@ -34,7 +60,7 @@ export default class AddressListScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-                    <View>
+                    <View style={{ marginBottom: 20 }}>
                         <RadioGroup
                             size={24}
                             thickness={2}
@@ -44,14 +70,15 @@ export default class AddressListScreen extends React.Component {
                         //     this.selectAddress(index, value, this.props.addressList[index])
                         // }
                         >
-                            {bannerData.map((item, index) => {
+                            {this.state.addressList ? this.state.addressList.map((item, index) => {
                                 return (
-                                    <RadioButton value={item.title} key={item.title}>
+                                    <RadioButton value={item.name} key={item.id}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: 10, marginBottom: 10 }}>
                                             <View style={{ width: '80%' }}>
-                                                <Text>{item.title},</Text>
-                                                <Text>{item.city},{item.state},{item.zip},</Text>
-                                                <Text>{item.mobile}</Text>
+                                                <Text>{item.name},</Text>
+                                                <Text>{item.address}</Text>
+                                                <Text>{item.city},{item.state},{item.country},</Text>
+                                                <Text>{item.mobile},{item.pincode}</Text>
 
                                             </View>
                                             <View style={{
@@ -59,14 +86,14 @@ export default class AddressListScreen extends React.Component {
                                                 justifyContent: 'center',
                                                 alignItems: 'center',
                                             }}>
-                                                <TouchableOpacity>
+                                                <TouchableOpacity onPress={(e) => this.deleteAddressData(e, item.id)}>
                                                     <Icon name='trash-o' size={25} color={Colors.lightgrey} />
                                                 </TouchableOpacity>
                                             </View>
                                         </View>
                                     </RadioButton>
                                 );
-                            })}
+                            }) : null}
                         </RadioGroup>
                     </View>
                 </View>
@@ -83,3 +110,24 @@ export default class AddressListScreen extends React.Component {
     }
 }
 
+
+const mapStateToProps = state => {
+    const { address, user } = state;
+    console.log('userrrrrrrrrrrrrr', JSON.stringify(state.user.user.user_data));
+    console.log("State in address Screen- ", JSON.stringify(address));
+    return {
+        address, user
+    };
+
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getAddress: (value) => dispatch(getAddress(value))
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddressListScreen);

@@ -23,7 +23,8 @@ class AddAdressScreen extends Component {
             other: '',
             address_type: 'primary',
             set_default: false,
-
+            country: '',
+            address_line_2: ''
         }
     }
 
@@ -38,6 +39,9 @@ class AddAdressScreen extends Component {
     onUsernameEditHandle = (name) => {
         this.setState({ name: name })
 
+    }
+    onCountryEditHandle = (country) => {
+        this.setState({ country: country })
     }
     onNumberEditHandle = (mobile) => {
         this.setState({ mobile: mobile })
@@ -60,6 +64,9 @@ class AddAdressScreen extends Component {
     onTypeEditHandle = (other) => {
         this.setState({ other: other })
     }
+    onAddressLine2EditHandle = (address_line_2) => {
+        this.setState({ address_line_2: address_line_2 })
+    }
 
     onSubmit(e) {
         var data = {
@@ -72,9 +79,13 @@ class AddAdressScreen extends Component {
             pincode: this.state.pincode,
             other: this.state.other,
             set_default: this.state.address_type === 'primary' ? 'yes' : 'no',
-            // customer_id: this.props.user.user.user_data.0.id
+            customer_id: this.props.user.user.user_data[0].id,
+            country: this.state.country,
+            address_line_2: this.state.address_line_2
         }
-        // this.props.addAddress(data);
+        console.log('address formmmm', JSON.stringify(data))
+        this.props.addAddress(data);
+        this.props.navigation.navigate('AddressListScreen');
 
     }
 
@@ -194,6 +205,40 @@ class AddAdressScreen extends Component {
                                         //onSubmitEditing={this.focusPassword}
                                         returnKeyType="next"
                                         value={this.state.state}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter floor No, House No"}
+                                        keyboardType='name-phone-pad'
+                                        onChangeText={(address_line_2) => this.onAddressLine2EditHandle(address_line_2)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.address_line_2}
+                                        style={{
+                                            height: 50,
+                                            borderRadius: 5,
+
+                                        }}
+                                    />
+                                </View>
+                                <View style={styles.inputWrap}>
+
+                                    <TextInput
+                                        ref={(comp) => (this.username = comp)}
+                                        placeholder={"Enter Your Country Name"}
+                                        keyboardType='name-phone-pad'
+                                        onChangeText={(country) => this.onCountryEditHandle(country)}
+                                        //onSubmitEditing={this.focusPassword}
+                                        returnKeyType="next"
+                                        value={this.state.country}
                                         style={{
                                             height: 50,
                                             borderRadius: 5,
