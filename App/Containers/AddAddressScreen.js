@@ -85,7 +85,7 @@ class AddAdressScreen extends Component {
         }
         console.log('address formmmm', JSON.stringify(data))
         this.props.addAddress(data);
-        this.props.navigation.navigate('AddressListScreen');
+        this.props.navigation.push('AddressListScreen');
 
     }
 

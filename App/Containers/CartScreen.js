@@ -106,6 +106,15 @@ class CartScreen extends Component {
         this.updateData(this.props.cart);
     }
 
+    // move to pay
+    moveToPay() {
+        if (this.props.user.isLoggedIn === false) {
+            this.props.navigation.navigate('LoginScreen')
+        } else {
+            this.props.navigation.navigate('AddressListScreen')
+        }
+    }
+
     render() {
 
         if (this.props.cartItems.cart.length == 0) {
@@ -161,7 +170,7 @@ class CartScreen extends Component {
                     <View style={Styles.checkoutContainer}>
                         <Ripple
                             style={Styles.buyButton}
-                            onPress={() => this.props.navigation.navigate('AddressListScreen')}
+                            onPress={() => this.moveToPay()}
                         >
                             <Text style={Styles.btnText}>Checkout</Text>
                         </Ripple>
@@ -173,11 +182,11 @@ class CartScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { cartItems } = state;
+    const { cartItems, user } = state;
     const { cart } = state.cartItems;
-    console.log('cartitem---------->>>>>> ', JSON.stringify(state.cartItems));
+    console.log('cartitem user---------->>>>>> ', JSON.stringify(state.user));
     return {
-        cartItems, cart
+        cartItems, cart, user
     };
 };
 

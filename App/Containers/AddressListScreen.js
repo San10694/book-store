@@ -21,9 +21,7 @@ const api = Api.Api();
 class AddressListScreen extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            addressList: []
-        }
+
     }
 
     componentDidMount() {
@@ -39,9 +37,7 @@ class AddressListScreen extends React.Component {
     render() {
         const { data, isFetching } = this.props.address.address
         console.log("  product -- ", JSON.stringify(data));
-        this.setState({
-            addressList = data
-        })
+
         if (isFetching) {
             return (
                 <View>
@@ -70,7 +66,7 @@ class AddressListScreen extends React.Component {
                         //     this.selectAddress(index, value, this.props.addressList[index])
                         // }
                         >
-                            {this.state.addressList ? this.state.addressList.map((item, index) => {
+                            {data ? data.map((item, index) => {
                                 return (
                                     <RadioButton value={item.name} key={item.id}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: 10, marginBottom: 10 }}>
