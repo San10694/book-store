@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Api from "../Services";
-import { userSignup } from '../Redux/UserRedux';
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
-// const api = Api.Api();
+const api = Api.Api();
 
 class RegistrationScreen extends Component {
     constructor(props) {
@@ -42,10 +41,33 @@ class RegistrationScreen extends Component {
 
     onSubmit(e, mobile, name, email) {
         console.log(mobile);
-        this.props.userSignup(mobile);
+        api.userSignup(mobile).then(response => {
+            if (response.data.Error === '0000') {
+                this.props.navigation.navigate("OtpScreen", { number: mobile, name: name, email: email });
 
-        this.props.navigation.navigate("OtpScreen", { number: mobile, name: name, email: email });
+            }
+            else {
+                Alert.alert(
+                    'Error ',
+                    response.data.Message,
+                    [
+                        {
+                            text: 'OK',
+                            onPress: () => {
+                                console.log('ok')
+                            },
+                        },
+                    ],
+                    {
+                        cancelable: false,
+                    }
+                );
+            }
 
+
+            console.log('register ----------', JSON.stringify(response))
+            // this.props.navigation.navigate("OtpScreen", { number: mobile, name: name, email: email });
+        })
     }
 
 
@@ -143,24 +165,9 @@ class RegistrationScreen extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    const { user } = state;
-    console.log("State in user Screen- ", JSON.stringify(user));
-    return {
-        user
-    };
-};
 
-const mapDispatchToProps = dispatch => {
-    return {
-        userSignup: (value) => dispatch(userSignup(value))
-    };
-};
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(RegistrationScreen);
+export default RegistrationScreen;
 
 const styles = StyleSheet.create({
     container: {
@@ -191,7 +198,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         margin: 20,
-        paddingHorizontal: 10
+        // paddingHorizontal: 10
     },
     input: {
         color: Colors.text,

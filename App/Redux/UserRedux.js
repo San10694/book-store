@@ -8,11 +8,11 @@ const initialState = {
 };
 
 ///Action Creators
-export function userSignup(mobile) {
+export function otpVerifyReg(otp) {
     // console.log('ooooooooooooo', mobile);
     return {
         type: types.USER_REGISTER,
-        payload: mobile
+        payload: otp
     };
 }
 
@@ -43,12 +43,14 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 isRegister: true,
+                user: ''
             }
         }
         case types.USER_REGISTER_SUCCESS:
             return {
                 ...state,
                 isRegister: true,
+                user: ''
             };
 
         case types.USER_REGISTER_FAILURE:

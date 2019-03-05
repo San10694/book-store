@@ -81,9 +81,9 @@ class CartScreen extends Component {
                 item.totalPrice = item.quantity * item.sale_price;
                 subTotal = subTotal + item.totalPrice;
                 this.props.cartItems.subTotal = subTotal;
-                this.props.cartItems.grandTotal = grandTotal;
-                this.props.cartItems.payMoney = grandTotal;
-                // console.log('state.grandTotal', grandTotal);
+                this.props.cartItems.grandTotal = subTotal;
+                this.props.cartItems.payMoney = subTotal;
+                console.log('state.grandTotal', grandTotal);
             });
             await this.setState({
                 active: true,

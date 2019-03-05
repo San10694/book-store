@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
@@ -14,7 +14,9 @@ class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mobile: 0
+            mobile: 0,
+            numberValid: true,
+            valid: false
         }
     }
 
@@ -28,9 +30,33 @@ class LoginScreen extends Component {
     }
 
     onSubmit(e, mobile) {
-        console.log(mobile);
+        console.log('mobile', mobile);
+
         this.props.userLogin(mobile);
         this.props.navigation.navigate("LoginOtpScreen", { number: mobile });
+
+
+    }
+
+
+    validate(text, type) {
+        phn = /^(0|[1-9][0-9]{9})$/i;
+        if (type == 'phn') {
+            if (phn.test(text)) {
+                this.setState({
+                    numberValid: true,
+                    valid: true,
+                    mobile: text
+                })
+            }
+            else {
+                this.setState({
+                    numberValid: false,
+                    valid: false,
+                    mobile: text
+                })
+            }
+        }
     }
 
 
@@ -52,24 +78,22 @@ class LoginScreen extends Component {
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
-                                    <Icon
+                                    {/* <Icon
                                         name={"phone"}
                                         size={20}
                                         color={Colors.primary}
-                                    />
+                                    /> */}
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
+
                                         placeholder={"Enter Mobile No"}
                                         keyboardType="numeric"
-                                        onChangeText={(mobile) => this.onUserNumberEditHandle(mobile)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(mobile) => this.validate(mobile, 'phn')}
                                         value={this.state.mobile}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.numberValid ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
                                 {/* <View style={styles.inputWrap}>
@@ -117,7 +141,26 @@ class LoginScreen extends Component {
                                     marginTop: 15,
                                     marginHorizontal: 100
                                 }}
-                                onPress={(e) => this.onSubmit(e, this.state.mobile)}
+                                onPress={(e) => {
+                                    if (!this.state.valid) {
+                                        Alert.alert(
+                                            'Please',
+                                            'Add Validate Number',
+                                            [
+                                                {
+                                                    text: 'Cancel',
+                                                    onPress: console.log('cancel'),
+                                                    style: 'cancel',
+                                                },
+                                                { text: 'OK', onPress: () => console.log('ok') },
+                                            ],
+                                            { cancelable: false }
+                                        );
+                                    }
+                                    else {
+                                        this.onSubmit(e, this.state.mobile)
+                                    }
+                                }}
                             >
 
                                 <Text style={{ color: Colors.white }}>SEND OTP</Text>
@@ -134,7 +177,6 @@ class LoginScreen extends Component {
         );
     }
 }
-
 const mapStateToProps = state => {
     const { user } = state;
     console.log("State in user Screen- ", JSON.stringify(user));
@@ -142,19 +184,15 @@ const mapStateToProps = state => {
         user
     };
 };
-
 const mapDispatchToProps = dispatch => {
     return {
         userLogin: (value) => dispatch(userLogin(value))
     };
 };
-
 export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(LoginScreen);
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -184,7 +222,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         margin: 20,
-        paddingHorizontal: 10
+        // paddingHorizontal: 10
     },
     input: {
         color: Colors.text,
