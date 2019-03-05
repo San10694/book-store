@@ -46,7 +46,7 @@ class HomeScreen extends Component {
     this.props.getBannerList();
     this.props.getCategories();
     this.props.getProducts(1);
-    this.props.user.user && this.props.user.user.user_data[0] ? AsyncStorage.setItem('name', this.props.user.user.user_data[0].name) : null;
+    this.props.user.user && this.props.user.user.user_data != null ? AsyncStorage.setItem('name', this.props.user.user.user_data[0].name) : null;
   }
 
   onPress(item) {

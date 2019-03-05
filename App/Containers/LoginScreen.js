@@ -31,9 +31,8 @@ class LoginScreen extends Component {
 
     onSubmit(e, mobile) {
         console.log('mobile', mobile);
-
-        this.props.userLogin(mobile);
-        this.props.navigation.navigate("LoginOtpScreen", { number: mobile });
+        var data = { mobile: mobile, navigate: this.props.navigation.navigate }
+        this.props.userLogin(data);
 
 
     }
@@ -96,6 +95,9 @@ class LoginScreen extends Component {
                                         }, !this.state.numberValid ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.numberValid ? 'Invalid phone number, must be 10 digits' : ''}</Text>
                                 {/* <View style={styles.inputWrap}>
                                     <Icon
                                         name={"lock-outline"}
@@ -145,7 +147,7 @@ class LoginScreen extends Component {
                                     if (!this.state.valid) {
                                         Alert.alert(
                                             'Please',
-                                            'Add Validate Number',
+                                            'Enter Your Valid Number',
                                             [
                                                 {
                                                     text: 'Cancel',
@@ -221,7 +223,9 @@ const styles = StyleSheet.create({
         borderColor: Colors.blackDivide,
         borderWidth: 1,
         borderRadius: 10,
-        margin: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        marginBottom: 5
         // paddingHorizontal: 10
     },
     input: {

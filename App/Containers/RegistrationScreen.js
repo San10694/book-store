@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Api from "../Services";
@@ -11,10 +11,13 @@ class RegistrationScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mobile: 0,
+            mobile: '',
             name: '',
             email: '',
-            isLoading: true
+            isLoading: true,
+            numberValid: true,
+            emailValid: true,
+            nameValid: true
         }
     }
 
@@ -26,17 +29,52 @@ class RegistrationScreen extends Component {
         //this.props.getRestaurantList();
     }
 
-    onNumberEditHandle = (mobile) => {
-        this.setState({ mobile: mobile })
 
-    }
-    onUsernameEditHandle = (name) => {
-        this.setState({ name: name })
-
-    }
-    onUserEmailEditHandle = (email) => {
-        this.setState({ email: email })
-
+    validate(text, type) {
+        phn = /^(0|[1-9][0-9]{9})$/i;
+        email = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        if (type == 'phn') {
+            if (phn.test(text)) {
+                this.setState({
+                    numberValid: true,
+                    mobile: text
+                })
+            }
+            else {
+                this.setState({
+                    numberValid: false,
+                    mobile: text
+                })
+            }
+        }
+        else if (type == 'email') {
+            if (email.test(text)) {
+                this.setState({
+                    emailValid: true,
+                    email: text
+                })
+            }
+            else {
+                this.setState({
+                    email: text,
+                    emailValid: false
+                })
+            }
+        }
+        else {
+            if (text.length > 4) {
+                this.setState({
+                    nameValid: true,
+                    name: text
+                })
+            }
+            else {
+                this.setState({
+                    name: text,
+                    nameValid: false
+                })
+            }
+        }
     }
 
     onSubmit(e, mobile, name, email) {
@@ -66,7 +104,6 @@ class RegistrationScreen extends Component {
 
 
             console.log('register ----------', JSON.stringify(response))
-            // this.props.navigation.navigate("OtpScreen", { number: mobile, name: name, email: email });
         })
     }
 
@@ -84,61 +121,80 @@ class RegistrationScreen extends Component {
                             <View style={styles.loginForm}>
 
                                 <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"user-o"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
+
                                     <TextInput
                                         placeholder={"Enter Your Name"}
                                         keyboardType='name-phone-pad'
-                                        onChangeText={(name) => this.onUsernameEditHandle(name)}
+                                        onChangeText={(name) => this.validate(name, 'name')}
                                         value={this.state.name}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.nameValid ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
+
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.nameValid ? 'Must be greater then 4 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"envelope"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
+
                                     <TextInput
                                         placeholder={"Enter Your Email"}
                                         keyboardType='email-address'
-                                        onChangeText={(email) => this.onUserEmailEditHandle(email)}
+                                        onChangeText={(email) => this.validate(email, 'email')}
                                         value={this.state.email}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.emailValid ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.emailValid ? 'Invalid email address' : ''}</Text>
                                 <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"phone"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
+
                                     <TextInput
                                         placeholder={"Enter Mobile No"}
                                         keyboardType="numeric"
-                                        onChangeText={(mobile) => this.onNumberEditHandle(mobile)}
+                                        onChangeText={(mobile) => this.validate(mobile, 'phn')}
                                         value={this.state.mobile}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.numberValid ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
-
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.numberValid ? 'Invalid phone number, must be 10 digits' : ''}</Text>
                             </View>
 
                             <TouchableOpacity
-                                onPress={(e) => { this.onSubmit(e, this.state.mobile, this.state.name, this.state.email) }}
+                                onPress={(e) => {
+                                    if (!this.state.numberValid || !this.state.nameValid || !this.state.emailValid) {
+                                        Alert.alert(
+                                            'Please Filled All Fields',
+                                            'All Field is required and should be Validate',
+                                            [
+                                                {
+                                                    text: 'Cancel',
+                                                    onPress: console.log('cancel'),
+                                                    style: 'cancel',
+                                                },
+                                                { text: 'OK', onPress: () => console.log('ok') },
+                                            ],
+                                            { cancelable: false }
+                                        );
+                                    }
+                                    else {
+                                        this.onSubmit(e, this.state.mobile, this.state.name, this.state.email)
+                                    }
+                                }}
                                 style={{
                                     width: 100,
                                     height: 40,
@@ -192,12 +248,14 @@ const styles = StyleSheet.create({
     },
     loginForm: {},
     inputWrap: {
-        flexDirection: "row",
+
         alignItems: "center",
         borderColor: Colors.blackDivide,
         borderWidth: 1,
         borderRadius: 10,
-        margin: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        marginBottom: 14
         // paddingHorizontal: 10
     },
     input: {

@@ -166,14 +166,7 @@ export default {
   //     title: "Order Detail"
   //   }
   // },
-  LoginOtpScreen: {
-    name: "LoginOtpScreen",
-    description: "LoginOtpScreen",
-    screen: LoginOtpScreen,
-    navigationOptions: {
-      title: "Otp"
-    }
-  },
+
 
 };
 

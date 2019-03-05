@@ -16,11 +16,11 @@ export function otpVerifyReg(otp) {
     };
 }
 
-export function userLogin(mobile) {
+export function userLogin(data) {
     // console.log('ooooooooooooo', mobile);
     return {
         type: types.USER_LOGIN,
-        payload: mobile
+        payload: data
     };
 }
 

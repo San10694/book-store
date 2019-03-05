@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert, AsyncStorage } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert, AsyncStorage, Dimensions } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
@@ -7,17 +7,17 @@ import { NavigationActions } from "react-navigation";
 import { otpVerify } from '../Redux/UserRedux';
 import { connect } from "react-redux";
 
-
-
 class LoginOtpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            otp: 0,
+            otp: '',
             mobile: this.props.navigation.state.params.number,
             name: this.props.navigation.state.params.name,
             email: this.props.navigation.state.params.email,
-            fcm: ''
+            fcm: '',
+            numberValid: true,
+            valid: false
         }
 
     }
@@ -39,12 +39,28 @@ class LoginOtpScreen extends Component {
 
         console.log(otp);
         this.state.fcm = await AsyncStorage.getItem('fcmToken');
-        var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm }
+        var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm, navigate: this.props.navigation.navigate }
         this.props.otpVerify(data);
-        // if (this.props.user.user.Error === '0000') {
-        this.props.navigation.navigate("HomeTab")
-        // }
+        // this.props.navigation.navigate("HomeTab")
 
+    }
+
+    validate(text) {
+
+        if (text.length === 4) {
+            this.setState({
+                numberValid: true,
+                valid: true,
+                otp: text
+            })
+        }
+        else {
+            this.setState({
+                numberValid: false,
+                valid: false,
+                otp: text
+            })
+        }
     }
 
     render() {
@@ -65,62 +81,46 @@ class LoginOtpScreen extends Component {
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"phone"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
+
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter  OTP"}
                                         keyboardType="numeric"
-                                        onChangeText={(otp) => this.onOTPEditHandle(otp)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(otp) => this.validate(otp)}
                                         value={this.state.otp}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.numberValid ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
-                                {/* <View style={styles.inputWrap}>
-                                    <Icon
-                                        name={"lock-outline"}
-                                        size={20}
-                                        color={Colors.primary}
-                                    />
-                                    <TextInput
-                                        ref={(comp) => (this.password = comp)}
-                                        placeholder={"password"}
-                                        onChangeText={(password) => this.onPasswordEditHandle(password)}
-                                        secureTextEntry
-                                        returnKeyType="go"
-                                        value={this.state.password}
-                                    />
-                                </View> */}
-                                {/* <ButtonIndex
-                                    text={Languages.Login.toUpperCase()}
-                                    containerStyle={styles.loginButton}
-                                    textStyle={styles.textLogin}
-                                    onPress={this.onLoginPressHandle}
-                                    textColor={text}
-                                /> */}
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.numberValid ? 'Invalid OTP, must be 4 digits' : ''}</Text>
+
                             </View>
-                            {/* <View style={styles.separatorWrap}>
-                                <View style={styles.separator} />
-                                <Text style={styles.separatorText}>{Languages.Or}</Text>
-                                <View style={styles.separator} />
-                            </View> */}
-                            {/* <ButtonIndex
-                                text={Languages.FacebookLogin.toUpperCase()}
-                                icon={Icons.MaterialCommunityIcons.Facebook}
-                                containerStyle={styles.fbButton}
-                                onPress={this.onFBLoginPressHandle}
-                            /> */}
+
                             <TouchableOpacity
-                                onPress={(e) => { this.onSubmit(e, this.state.otp) }}
+                                onPress={(e) => {
+                                    if (!this.state.valid) {
+                                        Alert.alert(
+                                            'Please',
+                                            'Enter Correct OTP',
+                                            [
+                                                {
+                                                    text: 'Cancel',
+                                                    onPress: console.log('cancel'),
+                                                    style: 'cancel',
+                                                },
+                                                { text: 'OK', onPress: () => console.log('ok') },
+                                            ],
+                                            { cancelable: false }
+                                        );
+                                    }
+                                    else {
+                                        this.onSubmit(e, this.state.otp)
+                                    }
+                                }}
                                 style={{
                                     width: 100,
                                     height: 40,
@@ -194,8 +194,10 @@ const styles = StyleSheet.create({
         borderColor: Colors.blackDivide,
         borderWidth: 1,
         borderRadius: 10,
-        margin: 20,
-        paddingHorizontal: 10
+        marginLeft: 20,
+        marginRight: 20,
+        marginBottom: 5
+        // paddingHorizontal: 10
     },
     input: {
         color: Colors.text,

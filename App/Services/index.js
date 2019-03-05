@@ -137,7 +137,7 @@ const Api = () => {
     formData.append('email', data.email);
     formData.append('phone', data.mobile);
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-    console.log("API -", endPoints.otp_verify + `${data.mobile}` + '/' + `${data.otp}`);
+
     return api.post(endPoints.otp_verify + `${data.mobile}` + '/' + `${data.otp}`, formData)
       .catch((error) => {
         if (error && error.response) {

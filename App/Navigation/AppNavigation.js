@@ -187,6 +187,14 @@ hile using the drawer navigator inside stack navigator.*/
         title: "Order Detail"
       }
     },
+    LoginOtpScreen: {
+      name: "LoginOtpScreen",
+      description: "LoginOtpScreen",
+      screen: LoginOtpScreen,
+      navigationOptions: {
+        title: "Otp"
+      }
+    }
     // RegistrationScreen: {
     //   name: "RegistrationScreen",
     //   description: "RegistrationScreen",
