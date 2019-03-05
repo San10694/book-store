@@ -48,7 +48,6 @@ class AddressListScreen extends React.Component {
         return (
             <ScrollView>
                 <View>
-
                     <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
                         <TouchableOpacity style={{ backgroundColor: Colors.primary }} onPress={() => this.props.navigation.navigate('AddAddressScreen')}>

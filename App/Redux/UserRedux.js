@@ -31,6 +31,13 @@ export function otpVerify(data) {
         payload: data
     };
 }
+export function logout() {
+    // console.log('ooooooooooooo', mobile);
+    return {
+        type: types.LOG_OUT,
+        payload: null
+    };
+}
 
 
 
@@ -94,6 +101,12 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 verifyOtp: true,
                 user: payload
+            };
+        case types.LOG_OUT:
+            return {
+                ...state,
+                verifyOtp: true,
+                user: null
             };
 
         case types.OTP_VERIFY_FAILURE:

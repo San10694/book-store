@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
 import { Colors } from '../Themes'
 import { connect } from "react-redux";
+import { logout } from "../Redux/UserRedux";
 
 
 
@@ -23,7 +24,7 @@ const menuItems =
   { 'title': 'ABOUT US', 'route': 'AboutScreen' },
   { 'title': 'CONTACT', 'route': 'ContactScreen' },
   { 'title': 'SETTING', 'route': 'Profile' },
-  { 'title': 'LOGIN', 'route': 'LoginScreen' },
+    //{ 'title': 'LOGIN', 'route': 'LoginScreen' },
   ]
 
 class DrawerScreen extends Component {
@@ -36,22 +37,17 @@ class DrawerScreen extends Component {
 
   }
 
-  navigateToScreen = route => () => {
+  navigateToScreen(route) {
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
     this.props.navigation.dispatch(DrawerActions.closeDrawer());
   };
-  async componentDidMount() {
-    this.state.userName = await AsyncStorage.getItem('name');
-    this.setState({
-      userName: userName
-    })
-  }
+
 
   render() {
-
+    const { user } = this.props.user;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -69,18 +65,41 @@ class DrawerScreen extends Component {
                 </View>
               </View>
               <Text style={styles.userName}>
-                {this.state.userName != null ? this.state.userName : 'GUEST'}
+                {user && user.user_data ? user.user_data[0].name != null ? user.user_data[0].name : null : 'GUEST'}
               </Text>
             </View>
             {menuItems.map((item, index) => {
               return (
-                <Ripple key={index} style={styles.menuItem} onPress={this.navigateToScreen(item.route)}>
+                <Ripple key={index} style={styles.menuItem} onPress={() => {
+                  this.navigateToScreen(item.route)
+                }}>
                   <Text style={styles.textItem}>
                     {item.title}
                   </Text>
                 </Ripple>
               )
             })
+            }
+            {user ?
+              <Ripple style={styles.menuItem}
+                onPress={() => {
+                  this.navigateToScreen("LoginScreen");
+                  this.props.logout()
+                }}
+              >
+                <Text style={styles.textItem}>
+                  LOGOUT
+                  </Text>
+              </Ripple> :
+              <Ripple style={styles.menuItem}
+                onPress={() => {
+                  this.navigateToScreen("LoginScreen");
+                }}
+              >
+                <Text style={styles.textItem}>
+                  LOGIN
+                  </Text>
+              </Ripple>
             }
           </View>
         </ScrollView>
@@ -89,9 +108,25 @@ class DrawerScreen extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  const { user } = state;
+  return {
+    user
+  };
+};
 
-export default DrawerScreen;
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
 
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DrawerScreen);
 
 
 const styles = StyleSheet.create({
