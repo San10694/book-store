@@ -5,7 +5,7 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import Navigation from "./App/Navigation/AppNavigation";
 import configureStore from "./App/Redux/ConfigureStore";
-import SplashScreen from 'react-native-smart-splash-screen';
+//import SplashScreen from 'react-native-smart-splash-screen';
 import firebase from 'react-native-firebase';
 
 // import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,11 +21,11 @@ export default class App extends Component {
   async componentDidMount() {
     this.checkPermission();
     //SplashScreen.close(SplashScreen.animationType.scale, 850, 500)
-    SplashScreen.close({
-      animationType: SplashScreen.animationType.scale,
-      duration: 850,
-      delay: 500,
-    })
+    // SplashScreen.close({
+    //   animationType: SplashScreen.animationType.scale,
+    //   duration: 850,
+    //   delay: 500,
+    // })
   }
   //1
   async checkPermission() {

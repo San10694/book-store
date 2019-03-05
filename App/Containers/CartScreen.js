@@ -122,8 +122,8 @@ class CartScreen extends Component {
         }
         else {
             return (
-                <View style={Styles.productDetailContainer}>
-                    <ScrollView>
+                <View style={{ flex: 1 }}>
+                    <ScrollView style={Styles.productDetailContainer}>
                         <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
                             <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
                                 <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
