@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ripple from 'react-native-material-ripple';
@@ -45,7 +45,8 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.props.getBannerList();
     this.props.getCategories();
-    this.props.getProducts(1)
+    this.props.getProducts(1);
+    this.props.user.user && this.props.user.user.user_data != null ? AsyncStorage.setItem('name', this.props.user.user.user_data[0].name) : null;
   }
 
   onPress(item) {
@@ -163,11 +164,12 @@ class HomeScreen extends Component {
 
 
 const mapStateToProps = state => {
-  const { restaurantList, product } = state;
-  console.log("State in Home Screen- ", product);
+  const { restaurantList, product, user } = state;
+  console.log("State in Home Screen- ", JSON.stringify(user));
   return {
     restaurantList,
-    product
+    product,
+    user
   };
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, Text, View, AsyncStorage } from "react-native";
 import { MenuIcon } from '../Components/MenuIcon';
 import { DrawerActions } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,6 +17,21 @@ const menuItems =
   { 'title': 'About Us', 'route': 'AboutScreen' },
   ]
 export default class ProfileScreen extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: ''
+    }
+
+  }
+
+  async componentDidMount() {
+    this.state.userName = await AsyncStorage.getItem('name');
+    this.setState({
+      userName: userName
+    })
+  }
 
   // static navigationOptions = ({ navigation }) => ({
   //   //  header: null,
@@ -57,8 +72,8 @@ export default class ProfileScreen extends Component {
               </View>
             </View>
             <Text style={styles.userName}>
-              GUEST
-			       	</Text>
+              {this.state.userName != null ? this.state.userName : 'GUEST'}
+            </Text>
           </View>
           <View style={{ height: 10, backgroundColor: Colors.lightGrey }}></View>
           <View style={{ backgroundColor: Colors.white }}>

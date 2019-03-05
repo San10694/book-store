@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   createStackNavigator,
   createDrawerNavigator,
@@ -29,7 +29,7 @@ import OtpScreen from "../Containers/OtpScreen";
 import LoginOtpScreen from "../Containers/LoginOtpScreen";
 import AddAddressScreen from '../Containers/AddAddressScreen';
 import AddressListScreen from '../Containers/AddressListScreen';
-
+import OrderDetailScreen from '../Containers/OrderDetailScreen';
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -163,14 +163,38 @@ hile using the drawer navigator inside stack navigator.*/
         // header: null
       }
     },
-    // LoginScreen: {
-    //   name: "LoginScreen",
-    //   description: "LoginScreen",
-    //   screen: LoginScreen,
-    //   navigationOptions: {
-    //     title: "Login Screen"
-    //   }
-    // },
+    LoginScreen: {
+      name: "LoginScreen",
+      description: "LoginScreen",
+      screen: LoginScreen,
+      navigationOptions: {
+        title: "Login Screen"
+      }
+    },
+    OrderScreen: {
+      name: "OrderScreen",
+      description: "OrderScreen",
+      screen: OrderScreen,
+      navigationOptions: {
+        title: "OrderScreen"
+      }
+    },
+    OrderDetailScreen: {
+      name: "OrderDetailScreen",
+      description: "OrderDetailScreen",
+      screen: OrderDetailScreen,
+      navigationOptions: {
+        title: "Order Detail"
+      }
+    },
+    LoginOtpScreen: {
+      name: "LoginOtpScreen",
+      description: "LoginOtpScreen",
+      screen: LoginOtpScreen,
+      navigationOptions: {
+        title: "Otp"
+      }
+    }
     // RegistrationScreen: {
     //   name: "RegistrationScreen",
     //   description: "RegistrationScreen",

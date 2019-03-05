@@ -228,6 +228,13 @@ export default {
 
     cartContainer: { backgroundColor: Colors.background, position: 'relative' },
 
-
+    error: {
+        color: Colors.error,
+        marginTop: -4,
+        marginLeft: 10,
+    },
+    formWrapper: {
+        marginBottom: 7,
+    },
 
 }

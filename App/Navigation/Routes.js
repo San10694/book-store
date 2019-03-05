@@ -157,22 +157,7 @@ export default {
       title: "WishList Screen"
     }
   },
-  OrderScreen: {
-    name: "OrderScreen",
-    description: "OrderScreen",
-    screen: OrderScreen,
-    navigationOptions: {
-      title: "OrderScreen"
-    }
-  },
-  OrderDetailScreen: {
-    name: "OrderDetailScreen",
-    description: "OrderDetailScreen",
-    screen: OrderDetailScreen,
-    navigationOptions: {
-      title: "Order Detail"
-    }
-  },
+
   // AddressListScreen: {
   //   name: "AddressListScreen",
   //   description: "AddressListScreen",
@@ -181,14 +166,7 @@ export default {
   //     title: "Order Detail"
   //   }
   // },
-  LoginOtpScreen: {
-    name: "LoginOtpScreen",
-    description: "LoginOtpScreen",
-    screen: LoginOtpScreen,
-    navigationOptions: {
-      title: "Otp"
-    }
-  },
+
 
 };
 

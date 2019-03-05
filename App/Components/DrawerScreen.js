@@ -6,12 +6,14 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from "react-native";
 import { DrawerActions } from "react-navigation";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
 import { Colors } from '../Themes'
+import { connect } from "react-redux";
 
 
 
@@ -22,11 +24,17 @@ const menuItems =
   { 'title': 'CONTACT', 'route': 'ContactScreen' },
   { 'title': 'SETTING', 'route': 'Profile' },
   { 'title': 'LOGIN', 'route': 'LoginScreen' },
-  { 'title': 'NEWS', 'route': 'Home' },
   ]
 
 class DrawerScreen extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: ''
+    }
+
+  }
 
   navigateToScreen = route => () => {
     const navigateAction = NavigationActions.navigate({
@@ -35,9 +43,15 @@ class DrawerScreen extends Component {
     this.props.navigation.dispatch(navigateAction);
     this.props.navigation.dispatch(DrawerActions.closeDrawer());
   };
-
+  async componentDidMount() {
+    this.state.userName = await AsyncStorage.getItem('name');
+    this.setState({
+      userName: userName
+    })
+  }
 
   render() {
+
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -55,8 +69,8 @@ class DrawerScreen extends Component {
                 </View>
               </View>
               <Text style={styles.userName}>
-                GUEST
-			       	</Text>
+                {this.state.userName != null ? this.state.userName : 'GUEST'}
+              </Text>
             </View>
             {menuItems.map((item, index) => {
               return (
@@ -75,7 +89,10 @@ class DrawerScreen extends Component {
   }
 }
 
+
 export default DrawerScreen;
+
+
 
 const styles = StyleSheet.create({
   container: {

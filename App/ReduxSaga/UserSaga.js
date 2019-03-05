@@ -4,10 +4,33 @@ import { Alert } from 'react-native';
 
 export function* userSignupProcess(api, action) {
     try {
-        const response = yield api.userSignup(action.payload);
+        const response = yield api.otpVerifyReg(action.payload);
         if (response) {
+
+            console.log("response ", JSON.stringify(response));
             const { data } = response;
-            console.log("response ", data);
+            console.log("response login", JSON.stringify(data));
+            if (data.Error === "0000") {
+                action.payload.navigate('HomeTab')
+            }
+            else {
+                Alert.alert(
+                    'Error ',
+                    data.Message,
+                    [
+                        {
+                            text: 'OK',
+                            onPress: () => {
+                                console.log('ok')
+                            },
+                        },
+                    ],
+                    {
+                        cancelable: false,
+                    }
+                );
+            }
+
             yield put({ type: types.USER_REGISTER_SUCCESS, payload: data });
         } else {
             yield put({ type: types.USER_REGISTER_FAILURE, payload: null });
@@ -19,14 +42,19 @@ export function* userSignupProcess(api, action) {
 
 export function* userLoginProcess(api, action) {
     try {
-        const response = yield api.userLogin(action.payload);
+        const response = yield api.userLogin(action.payload.mobile);
         if (response) {
             const { data } = response;
             console.log("response login", JSON.stringify(data));
-            if (data.Error === "1003") {
+
+            if (data.Error === "0000") {
+                action.payload.navigate("LoginOtpScreen", { number: action.payload.mobile });
+
+            }
+            else {
                 Alert.alert(
                     'Error ',
-                    'User does not Exist',
+                    data.Message,
                     [
                         {
                             text: 'OK',
@@ -57,10 +85,13 @@ export function* userOtpVerify(api, action) {
         if (response) {
             const { data } = response;
             console.log("response otp", JSON.stringify(data));
-            if (data.Error === "1003") {
+            if (data.Error === "0000") {
+                action.payload.navigate('HomeTab')
+            }
+            else {
                 Alert.alert(
                     'Error ',
-                    'Invalid OTP',
+                    data.Message,
                     [
                         {
                             text: 'OK',

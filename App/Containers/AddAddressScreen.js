@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Dimensions } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Dimensions, Alert } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { addAddress } from "../Redux/UserAddressRedux";
@@ -15,7 +15,7 @@ class AddAdressScreen extends Component {
         super(props);
         this.state = {
             name: "",
-            pincode: 0,
+            pincode: '',
             mobile: 0,
             city: '',
             state: '',
@@ -24,7 +24,16 @@ class AddAdressScreen extends Component {
             address_type: 'primary',
             set_default: false,
             country: '',
-            address_line_2: ''
+            address_line_2: '',
+            nameValidate: true,
+            pincodeValidate: true,
+            mobileValidate: true,
+            cityValidate: true,
+            stateValidate: true,
+            emailValidate: true,
+            otherValidate: true,
+            countryValidate: true,
+            address2Validate: true,
         }
     }
 
@@ -36,36 +45,166 @@ class AddAdressScreen extends Component {
         //this.props.getRestaurantList();
     }
 
-    onUsernameEditHandle = (name) => {
-        this.setState({ name: name })
+    // onUsernameEditHandle = (name) => {
+    //     this.setState({ name: name })
 
-    }
-    onCountryEditHandle = (country) => {
-        this.setState({ country: country })
-    }
-    onNumberEditHandle = (mobile) => {
-        this.setState({ mobile: mobile })
-    }
-    onCityEditHandle = (city) => {
-        this.setState({ city: city })
-    }
-    onStateEditHandle = (state) => {
-        this.setState({ state: state })
-    }
-    onPincodeEditHandle = (pincode) => {
-        this.setState({ pincode: pincode })
-    }
-    onEmailEditHandle = (email) => {
-        this.setState({ email: email })
-    }
-    onOtherEditHandle = (other) => {
-        this.setState({ other: other })
-    }
-    onTypeEditHandle = (other) => {
-        this.setState({ other: other })
-    }
-    onAddressLine2EditHandle = (address_line_2) => {
-        this.setState({ address_line_2: address_line_2 })
+    // }
+    // onCountryEditHandle = (country) => {
+    //     this.setState({ country: country })
+    // }
+    // onNumberEditHandle = (mobile) => {
+    //     this.setState({ mobile: mobile })
+    // }
+    // onCityEditHandle = (city) => {
+    //     this.setState({ city: city })
+    // }
+    // onStateEditHandle = (state) => {
+    //     this.setState({ state: state })
+    // }
+    // onPincodeEditHandle = (pincode) => {
+    //     this.setState({ pincode: pincode })
+    // }
+    // onEmailEditHandle = (email) => {
+    //     this.setState({ email: email })
+    // }
+    // onOtherEditHandle = (other) => {
+    //     this.setState({ other: other })
+    // }
+
+    // onAddressLine2EditHandle = (address_line_2) => {
+    //     this.setState({ address_line_2: address_line_2 })
+    // }
+
+    validate(text, type) {
+        phn = /^(0|[1-9][0-9]{9})$/i;
+        email = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+        if (type == 'phn') {
+            if (phn.test(text)) {
+                this.setState({
+                    mobileValidate: true,
+                    mobile: text
+                })
+            }
+            else {
+                this.setState({
+                    mobileValidate: false,
+                    mobile: text
+                })
+            }
+        }
+        else if (type == 'email') {
+            if (email.test(text)) {
+                this.setState({
+                    emailValidate: true,
+                    email: text
+                })
+            }
+            else {
+                this.setState({
+                    email: text,
+                    emailValidate: false
+                })
+            }
+        }
+        else if (type == 'name') {
+            if (text.length > 4) {
+                this.setState({
+                    nameValidate: true,
+                    name: text
+                })
+            }
+            else {
+                this.setState({
+                    name: text,
+                    nameValidate: false
+                })
+            }
+        }
+        else if (type == 'city') {
+            if (text.length > 2) {
+                this.setState({
+                    cityValidate: true,
+                    city: text
+                })
+            }
+            else {
+                this.setState({
+                    city: text,
+                    cityValidate: false
+                })
+            }
+        }
+        else if (type == 'state') {
+            if (text.length > 4) {
+                this.setState({
+                    stateValidate: true,
+                    state: text
+                })
+            }
+            else {
+                this.setState({
+                    state: text,
+                    stateValidate: false
+                })
+            }
+        }
+        else if (type == 'country') {
+            if (text.length > 2) {
+                this.setState({
+                    countryValidate: true,
+                    country: text
+                })
+            }
+            else {
+                this.setState({
+                    country: text,
+                    countryValidate: false
+                })
+            }
+        }
+        else if (type == 'pincode') {
+            if (text.length == 6) {
+                this.setState({
+                    pincodeValidate: true,
+                    pincode: text
+                })
+            }
+            else {
+                this.setState({
+                    pincode: text,
+                    pincodeValidate: false
+                })
+            }
+        }
+        else if (type == 'other') {
+            if (text.length > 10) {
+                this.setState({
+                    otherValidate: true,
+                    other: text
+                })
+            }
+            else {
+                this.setState({
+                    other: text,
+                    otherValidate: false
+                })
+            }
+        }
+        else if (type == 'address2') {
+            if (text.length > 10) {
+                this.setState({
+                    address2Validate: true,
+                    address_line_2: text
+                })
+            }
+            else {
+                this.setState({
+                    address2Validate: text,
+                    address_line_2: false
+                })
+            }
+        }
+        else { }
     }
 
     onSubmit(e) {
@@ -133,154 +272,159 @@ class AddAdressScreen extends Component {
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter Your Name"}
-                                        onChangeText={(name) => this.onUsernameEditHandle(name)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(name) => this.validate(name, 'name')}
                                         value={this.state.name}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.nameValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.nameValidate ? 'Must be greater than 4 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
+
                                         placeholder={"Enter Your Email"}
-                                        onChangeText={(email) => this.onEmailEditHandle(email)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(email) => this.validate(email, 'email')}
                                         keyboardType='email-address'
                                         value={this.state.email}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.emailValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.emailValidate ? 'Invalid email address' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Near by address..."}
-                                        onChangeText={(name) => this.onOtherEditHandle(name)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(other) => this.validate(other, 'other')}
                                         value={this.state.other}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.otherValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.otherValidate ? 'Invalid OTP, must be 4 digits' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter City Name"}
-                                        onChangeText={(city) => this.onCityEditHandle(city)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(city) => this.validate(city, 'city')}
                                         value={this.state.city}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.cityValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.cityValidate ? 'City name must be greater than 4 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter State Name"}
                                         keyboardType='name-phone-pad'
-                                        onChangeText={(state) => this.onStateEditHandle(state)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(state) => this.validate(state, 'state')}
                                         value={this.state.state}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.stateValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.stateValidate ? 'State name must be greater than 4 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter floor No, House No"}
                                         keyboardType='name-phone-pad'
-                                        onChangeText={(address_line_2) => this.onAddressLine2EditHandle(address_line_2)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(address_line_2) => this.validate(address_line_2, 'address2')}
+
                                         value={this.state.address_line_2}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.address2Validate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.address2Validate ? 'Address must be greater than 10 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter Your Country Name"}
                                         keyboardType='name-phone-pad'
-                                        onChangeText={(country) => this.onCountryEditHandle(country)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(country) => this.validate(country, 'country')}
+
                                         value={this.state.country}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.countryValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.countryValidate ? 'Country name, must be greater than 4 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter Mobile No"}
                                         keyboardType="numeric"
-                                        onChangeText={(mobile) => this.onNumberEditHandle(mobile)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(mobile) => this.validate(mobile, 'phn')}
+
                                         value={this.state.mobile}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.mobileValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.mobileValidate ? 'Invalid phone number, must be 10 digits' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
-                                        ref={(comp) => (this.username = comp)}
                                         placeholder={"Enter PinCode No"}
-                                        onChangeText={(pincode) => this.onPincodeEditHandle(pincode)}
-                                        //onSubmitEditing={this.focusPassword}
-                                        returnKeyType="next"
+                                        onChangeText={(pincode) => this.validate(pincode, 'pincode')}
+
                                         keyboardType="numeric"
                                         value={this.state.pincode}
-                                        style={{
+                                        style={[{
                                             height: 50,
                                             borderRadius: 5,
-
-                                        }}
+                                            width: Dimensions.get('screen').width * .88
+                                        }, !this.state.pincodeValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
                                     />
 
                                 </View>
+                                <Text
+                                    style={{ color: Colors.red, marginLeft: 24 }}
+                                >{!this.state.pincodeValidate ? 'Invalid OTP, must be 4 digits' : ''}</Text>
                             </View>
                             <TouchableOpacity
                                 style={{
@@ -293,7 +437,35 @@ class AddAdressScreen extends Component {
                                     marginTop: 15,
                                     marginLeft: 20
                                 }}
-                                onPress={(e) => this.onSubmit(e)}
+                                onPress={(e) => {
+                                    if (!this.state.nameValidate,
+                                        !this.state.pincodeValidate,
+                                        !this.state.mobileValidate,
+                                        !this.state.cityValidate,
+                                        !this.state.stateValidate,
+                                        !this.state.emailValidate,
+                                        !this.state.otherValidate,
+                                        !this.state.countryValidate,
+                                        !this.state.address2Validate) {
+                                        Alert.alert(
+                                            'Please Filled All Fields',
+                                            'All Field is required and should be Validate',
+                                            [
+                                                {
+                                                    text: 'Cancel',
+                                                    onPress: console.log('cancel'),
+                                                    style: 'cancel',
+                                                },
+                                                { text: 'OK', onPress: () => console.log('ok') },
+                                            ],
+                                            { cancelable: false }
+                                        );
+                                    }
+                                    else {
+                                        this.onSubmit(e)
+                                    }
+                                }
+                                }
                             >
 
                                 <Text style={{ color: Colors.white }}>Add Address</Text>
