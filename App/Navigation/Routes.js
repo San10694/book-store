@@ -11,13 +11,6 @@ import { View } from 'react-native';
 import CategoryScreen from '../Containers/CategoryScreen';
 import LoginScreen from "../Containers/LoginScreen";
 import RegistrationScreen from "../Containers/RegistrationScreen";
-import CartScreen from "../Containers/CartScreen";
-import WishListScreen from "../Containers/WishListScreen";
-import OrderScreen from "../Containers/OrderScreen";
-import ProductDetailScreen from '../Containers/ProductDetailScreen';
-import AddressListScreen from '../Containers/AddressListScreen';
-import OrderDetailScreen from '../Containers/OrderDetailScreen';
-import LoginOtpScreen from '../Containers/LoginOtpScreen';
 
 export default {
 
@@ -99,14 +92,14 @@ export default {
         allowFontScaling: false
       }
     }),
-  AboutScreen: {
-    name: "AboutScreen",
-    description: "AboutScreen",
-    screen: AboutScreen,
-    navigationOptions: {
-      title: "About Screen"
-    }
-  },
+  // AboutScreen: {
+  //   name: "AboutScreen",
+  //   description: "AboutScreen",
+  //   screen: AboutScreen,
+  //   navigationOptions: {
+  //     title: "About Screen"
+  //   }
+  // },
   // ProductDetailScreen: {
   //   name: "ProductDetailScreen",
   //   description: "ProductDetailScreen",
@@ -116,14 +109,14 @@ export default {
   //     // header: null
   //   }
   // },
-  ContactScreen: {
-    name: "ContactScreen",
-    description: "ContactScreen",
-    screen: ContactScreen,
-    navigationOptions: {
-      title: "Contact Screen"
-    }
-  },
+  // ContactScreen: {
+  //   name: "ContactScreen",
+  //   description: "ContactScreen",
+  //   screen: ContactScreen,
+  //   navigationOptions: {
+  //     title: "Contact Screen"
+  //   }
+  // },
 
   LoginScreen: {
     name: "LoginScreen",
@@ -140,34 +133,7 @@ export default {
     navigationOptions: {
       title: "Registration Screen"
     }
-  },
-  // CartScreen: {
-  //   name: "CartScreen",
-  //   description: "CartScreen",
-  //   screen: CartScreen,
-  //   navigationOptions: {
-  //     title: "Cart Screen"
-  //   }
-  // },
-  WishListScreen: {
-    name: "WishListScreen",
-    description: "WishListScreen",
-    screen: WishListScreen,
-    navigationOptions: {
-      title: "WishList Screen"
-    }
-  },
-
-  // AddressListScreen: {
-  //   name: "AddressListScreen",
-  //   description: "AddressListScreen",
-  //   screen: AddressListScreen,
-  //   navigationOptions: {
-  //     title: "Order Detail"
-  //   }
-  // },
-
-
+  }
 };
 
 //CategoryScreen

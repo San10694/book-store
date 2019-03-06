@@ -31,8 +31,8 @@ import AddAddressScreen from '../Containers/AddAddressScreen';
 import AddressListScreen from '../Containers/AddressListScreen';
 import OrderDetailScreen from '../Containers/OrderDetailScreen';
 import PaymentScreen from '../Containers/PaymentScreen';
-import PolicyScreen from '../Containers/PolicyScreen';
-import TermAndConditionScreen from '../Containers/TermAndConditionScreen';
+import TermsScreen from '../Containers/TermsScreen';
+import PrivacyScreen from '../Containers/PrivacyScreen';
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -85,15 +85,6 @@ hile using the drawer navigator inside stack navigator.*/
     DrawerNavigator: {
       screen: DrawerNavigator
     },
-    // HomeScreen: {
-    //   name: "HomeScreen",
-    //   description: "HomeScreen",
-    //   screen: HomeScreen,
-    //   navigationOptions: {
-    //     title: "Home Screen",
-    //     header: null
-    //   }
-    // },
     SubCategoryScreen: {
       name: "SubCategoryScreen",
       description: "SubCategoryScreen",
@@ -206,22 +197,22 @@ hile using the drawer navigator inside stack navigator.*/
         title: "Otp"
       }
     },
-    TermAndConditionScreen: {
-      name: "TermAndConditionScreen",
-      description: "TermAndConditionScreen",
-      screen: TermAndConditionScreen,
-      navigationOptions: {
-        title: "Terms & Conditions"
-      }
-    },
-    PolicyScreen: {
-      name: "PolicyScreen",
-      description: "PolicyScreen",
-      screen: PolicyScreen,
-      navigationOptions: {
-        title: "Privacy Policies"
-      }
-    }
+    // TermAndConditionScreen: {
+    //   name: "TermAndConditionScreen",
+    //   description: "TermAndConditionScreen",
+    //   screen: TermAndConditionScreen,
+    //   navigationOptions: {
+    //     title: "Terms & Conditions"
+    //   }
+    // },
+    // PolicyScreen: {
+    //   name: "PolicyScreen",
+    //   description: "PolicyScreen",
+    //   screen: PolicyScreen,
+    //   navigationOptions: {
+    //     title: "Privacy Policies"
+    //   }
+    // }
 
     // RegistrationScreen: {
     //   name: "RegistrationScreen",
@@ -239,22 +230,46 @@ hile using the drawer navigator inside stack navigator.*/
     //     title: "Cart Screen"
     //   }
     // },
-    // WishListScreen: {
-    //   name: "WishListScreen",
-    //   description: "WishListScreen",
-    //   screen: WishListScreen,
-    //   navigationOptions: {
-    //     title: "WishList Screen"
-    //   }
-    // },
-    // OrderScreen: {
-    //   name: "OrderScreen",
-    //   description: "OrderScreen",
-    //   screen: OrderScreen,
-    //   navigationOptions: {
-    //     title: "OrderScreen"
-    //   }
-    // },
+    WishListScreen: {
+      name: "WishListScreen",
+      description: "WishListScreen",
+      screen: WishListScreen,
+      navigationOptions: {
+        title: "WishList"
+      }
+    },
+    ContactScreen: {
+      name: "ContactScreen",
+      description: "ContactScreen",
+      screen: ContactScreen,
+      navigationOptions: {
+        title: "Contact Screen"
+      }
+    },
+    AboutScreen: {
+      name: "AboutScreen",
+      description: "AboutScreen",
+      screen: AboutScreen,
+      navigationOptions: {
+        title: "About Screen"
+      }
+    },
+    PrivacyScreen: {
+      name: "PrivacyScreen",
+      description: "PrivacyScreen",
+      screen: PrivacyScreen,
+      navigationOptions: {
+        title: "Privacy Policy"
+      }
+    },
+    TermsScreen: {
+      name: "TermsScreen",
+      description: "TermsScreen",
+      screen: TermsScreen,
+      navigationOptions: {
+        title: "Terms And Conditions"
+      }
+    },
   },
   {
     navigationOptions: ({ navigation }) => ({

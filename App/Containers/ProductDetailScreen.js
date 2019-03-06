@@ -20,7 +20,8 @@ class ProductDetailScreen extends Component {
 
     this.state = {
       id: props.navigation.state.params.product_id,
-      productDetail: null//props.navigation.state.params.product
+      productDetail: null,//props.navigation.state.params.product
+      isFavourite: false
     }
     // console.log('productDetails--', JSON.stringify(this.props.navigation.state.params.product));
   }
@@ -58,7 +59,15 @@ class ProductDetailScreen extends Component {
           <View style={Styles.productdetailSubContainer}>
             <Image source={{ uri: productDetail.image ? imageUrl + productDetail.image[0].path : null }}
               style={Styles.ProductDetailImg} />
-            <Icon name='heart' size={25} color={Colors.lightGrey} style={Styles.productDetailFav} />
+            <Ripple style={Styles.productDetailFav}
+              onPress={() => {
+                this.setState({ isFavourite: !this.state.isFavourite })
+              }}>
+              {this.state.isFavourite ?
+                <Icon name='heart' size={25} color={Colors.error} /> :
+                <Icon name='heart' size={25} color={Colors.Text} />
+              }
+            </Ripple>
           </View>
           <View style={Styles.productPriceContainer}>
             <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{productDetail.title}</Text>

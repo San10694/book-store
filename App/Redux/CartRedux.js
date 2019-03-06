@@ -38,7 +38,7 @@ const INITIAL_STATE = {
 };
 
 export default function CartReducer(state = INITIAL_STATE, action) {
-    console.log('action-------', JSON.stringify(action));
+    //console.log('CartReducer - >', action);
     switch (action.type) {
 
         case types.ADD_CART_ITEM: {
@@ -109,27 +109,19 @@ export default function CartReducer(state = INITIAL_STATE, action) {
 };
 
 const calculatePrice = state => {
-    console.log('first time====================');
-    console.log('cartttttttt', state.cart);
-
     var subTotal = 0.0;
     var grandTotal = 0.0;
     var payMoney = 0.0;
     var tax = 0.0;
     state.cart.map(item => {
-        console.log('quan', item.quantity);
         item.totalPrice = (item.quantity) * Number(item.sale_price);
         subTotal = subTotal + item.totalPrice;
         grandTotal = subTotal;
-        console.log('subTotal-' + subTotal);
         state.subTotal = subTotal;
         state.grandTotal = grandTotal;
         state.payMoney = grandTotal;
-        // state.tax = tax;
-        console.log('state.grandTotal', grandTotal);
         return subTotal, grandTotal, payMoney;
     });
-
 };
 
 const calculatePrice1 = (state, action) => {
@@ -137,14 +129,10 @@ const calculatePrice1 = (state, action) => {
     var grandTotal = 0.0;
     var payMoney = 0.0;
     var tax = 0.0;
-    console.log('ca	llllll');
-
     state.cart.map(item => {
         item.totalPrice = ((item.quantity) * Number(item.sale_price));
         subTotal = subTotal + item.totalPrice;
-        console.log('item tttotal ', item.totalPrice);
         grandTotal = subTotal;
-        console.log('subTotal-' + subTotal);
         state.subTotal = subTotal;
         state.grandTotal = grandTotal;
         state.payMoney = grandTotal;
@@ -155,9 +143,6 @@ const calculatePrice1 = (state, action) => {
 
 
 const compareCartItem = (cartItem, product) => {
-    if (cartItem.product_id === product.product_id) {
-        // console.log('compare_cartItems is  TRUE!!');
-    }
     return cartItem.product_id === product.product_id;
 };
 
@@ -173,15 +158,15 @@ const cartItem = (
         case types.ADD_CART_ITEM: {
             return state.product_id === undefined
                 ? Object.assign({}, state, action.product, {
-                    totalPrice: ((action.product.quantity + 1) * Number(action.product.sale_price)),
+                    totalPrice: ((state.quantity + 1) * Number(action.product.sale_price)),
                     sale_price: Number(action.product.sale_price),
+
                 })
                 : !compareCartItem(state, action.product)
                     ? state
                     : Object.assign({}, state, {
-                        totalPrice:
-                            ((action.product.quantity + 1) * Number(action.product.sale_price)),
-                        quantity: action.product.quantity + 1,
+                        totalPrice: ((state.quantity + 1) * Number(action.product.sale_price)),
+                        quantity: state.quantity + 1,
                     });
         }
 
@@ -190,8 +175,8 @@ const cartItem = (
             return !compareCartItem(state, action.product)
                 ? state
                 : Object.assign({}, state, {
-                    quantity: action.product.quantity - 1,
-                    totalPrice: action.product.quantity * Number(action.product.sale_price),
+                    quantity: state.quantity - 1,
+                    totalPrice: state.quantity * Number(action.product.sale_price),
                 });
 
         default:

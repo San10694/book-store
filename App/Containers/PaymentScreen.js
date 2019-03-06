@@ -50,7 +50,7 @@ export default class PaymentScreen extends Component {
                         style={Styles.buyButton}
                         onPress={() => this.props.navigation.navigate('HomeTab')}
                     >
-                        <Text style={Styles.btnText}>Proceed To Pay</Text>
+                        <Text style={Styles.btnText}>Place Order</Text>
                     </Ripple>
                 </View>
 

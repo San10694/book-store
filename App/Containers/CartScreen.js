@@ -19,7 +19,6 @@ class CartScreen extends Component {
             subTotal: this.props.cartItems.subTotal,
             grandTotal: this.props.cartItems.grandTotal,
         }
-
     }
 
     static navigationOptions = {
@@ -29,6 +28,7 @@ class CartScreen extends Component {
     componentDidMount() {
         this.updateData(this.props.cart);
     }
+
 
     //increase product quantity
     add(e, item) {
@@ -44,13 +44,12 @@ class CartScreen extends Component {
     }
 
     //decrease product quantity
-    async remove(e, item) {
-        console.log('remove cartItems!!-');
+    remove(e, item) {
         this.state.count >= 1
             ? this.setState({ count: this.state.count - 1 })
             : this.setState({ count: this.state.count });
-        console.log('state', this.state.count);
-        await this.props.removeCartItem(item);
+        // console.log('state', this.state.count);
+        this.props.removeCartItem(item);
         this.setState({
             subTotal: this.props.cartItems.subTotal,
             grandTotal: this.props.cartItems.grandTotal,
@@ -60,7 +59,6 @@ class CartScreen extends Component {
     }
 
     async updateData(cart) {
-        console.log('qqqqqqqqqqqqqqqqq', cart[0].min_order_quantity);
         var subTotal = 0.0;
         var grandTotal = 0.0;
         var payMoney = 0.0;
@@ -70,35 +68,20 @@ class CartScreen extends Component {
                 subTotal: 0.0,
                 grandTotal: 0.0,
             });
-            this.props.cartItems.subTotal = this.state.subTotal;
-            this.props.cartItems.grandTotal = this.state.grandTotal;
         } else {
             var subTotal = 0.0;
             var grandTotal = 0.0;
             var tax = 0.0;
-            // console.log('state.cart.length', this.props.cart.length);
             this.props.cart.map(item => {
-                item.totalPrice = Number(item.quantity) * item.sale_price;
-                subTotal = subTotal + item.quantity * item.sale_price;
-                this.props.cartItems.subTotal = subTotal;
-                this.props.cartItems.grandTotal = subTotal;
-                this.props.cartItems.payMoney = subTotal;
-                console.log('state.grandTotal', subTotal);
-                console.log('priceeeeeeeee', Number(item.quantity))
+                item.totalPrice = item.quantity * item.sale_price;
+                subTotal = subTotal + item.totalPrice;
             });
             await this.setState({
                 active: true,
-                subTotal: this.props.cartItems.subTotal,
-                grandTotal: this.props.cartItems.grandTotal
+                subTotal: subTotal,
+                grandTotal: subTotal
             });
-            this.state.subTotal = this.props.cartItems.subTotal;
-            this.state.grandTotal = this.props.cartItems.grandTotal;
-            console.log(
-                "grandtotal====>" + this.props.cartItems.subTotal + "" + this.state.subTotal
-            );
-            console.log('cart length', this.props.cart.length);
         }
-
     }
     // delete card item
     deleteToCart(e, item) {
@@ -121,7 +104,6 @@ class CartScreen extends Component {
         await this.props.deleteCartItem(item);
         this.updateData(this.props.cart);
     }
-
     // move to pay
     moveToPay() {
         if (this.props.user.isLoggedIn === false) {
@@ -131,10 +113,44 @@ class CartScreen extends Component {
         }
     }
 
-    render() {
+    showAlert(item) {
+        Alert.alert(
+            '',
+            'Are you sure you want to remove this product?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => this.deleteToCart(item) },
+            ]
+        );
+    }
 
-        if (this.props.cartItems.cart.length == 0) {
-            return <View></View>
+    render() {
+        const { cartItems } = this.props
+        console.log("Cart Items - ", cartItems)
+        if (cartItems.cart.length == 0) {
+            return <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
+                <Text style={{ fontSize: 18, fontWeight: '600' }}>Your Cart is empty </Text>
+                {/* <Ripple
+                    style={{
+                        width: 100,
+                        height: 35,
+                        backgroundColor: Colors.primary,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: 5,
+                        alignSelf: 'center',
+                        marginTop: 20
+                    }}
+                    onPress={() => { this.props.navigation.navigate("HomeTab") }}
+                >
+                    <Text style={Styles.btnText}>Add Items</Text>
+                </Ripple> */}
+
+            </View>
         }
         else {
             return (
@@ -147,7 +163,7 @@ class CartScreen extends Component {
                             </View>
                         </View>
                         <FlatList
-                            data={this.props.cartItems.cart}
+                            data={cartItems.cart}
                             renderItem={({ item }) => (
                                 <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
 
@@ -163,7 +179,9 @@ class CartScreen extends Component {
                                         <View style={{ flex: .75, position: 'relative' }}>
                                             <Text style={{ paddingLeft: 7, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
                                             <Text style={{ padding: 10, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>{Constants.rupee}{item.sale_price}</Text>
-                                            <Ripple onPress={(e) => this.deleteToCart(e, item)}><Icon name='trash-o' size={25} color={Colors.lightgrey} /></Ripple>
+                                            <Ripple onPress={() => this.showAlert(item)} >
+                                                <Icon name='trash-o' size={25} color={Colors.lightgrey} />
+                                            </Ripple>
                                         </View>
                                         <View style={{ flex: .1 }}>
                                             <View style={{ backgroundColor: Colors.lightGrey, alignItems: 'center', width: 25, height: 85, borderColor: Colors.lightgrey, borderWidth: 1, borderRadius: 25 }}>
@@ -200,7 +218,7 @@ class CartScreen extends Component {
 const mapStateToProps = state => {
     const { cartItems, user } = state;
     const { cart } = state.cartItems;
-    console.log('cartitem user---------->>>>>> ', JSON.stringify(state.user));
+    console.log('cartitem USER-> ', user);
     return {
         cartItems, cart, user
     };

@@ -42,7 +42,7 @@ export function logout() {
 
 
 export default function UserReducer(state = initialState, action) {
-    console.log("user Action ", action);
+    //console.log("user Action ", action);
     const { payload } = action;
     switch (action.type) {
 

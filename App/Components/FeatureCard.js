@@ -25,7 +25,7 @@ class FeatureCard extends PureComponent {
                             <Image source={{ uri: image ? image : Images.burdon }} style={imageStyle} resizeMode='stretch' />
                             : <Image source={Images.burdon} style={imageStyle} resizeMode='stretch' />
                         }
-                        <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} />
+                        {/* <Icon name='heart' size={25} color={Colors.lightgrey} style={Styles.favIcon} /> */}
                         <Text style={Styles.bookName}>{title}</Text>
                         <Text style={{ textAlign: 'left', fontWeight: 'bold' }}>{Constants.rupee}{price}</Text>
                     </View>
