@@ -5,6 +5,7 @@ import { DrawerActions } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
 import { Colors, Fonts } from "../Themes";
+import { connect } from 'react-redux';
 
 
 const menuItems =
@@ -12,11 +13,11 @@ const menuItems =
   { 'title': 'My Orders', 'route': 'OrderScreen' },
   { 'title': 'WishList', 'route': 'Home' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
-  { 'title': 'Privacy Polices', 'route': 'Home' },
-  { 'title': 'Terms & Conditions', 'route': 'Home' },
+  { 'title': 'Privacy Polices', 'route': 'PolicyScreen' },
+  { 'title': 'Terms & Conditions', 'route': 'TermAndConditionScreen' },
   { 'title': 'About Us', 'route': 'AboutScreen' },
   ]
-export default class ProfileScreen extends Component {
+class ProfileScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -26,12 +27,6 @@ export default class ProfileScreen extends Component {
 
   }
 
-  async componentDidMount() {
-    this.state.userName = await AsyncStorage.getItem('name');
-    this.setState({
-      userName: userName
-    })
-  }
 
   // static navigationOptions = ({ navigation }) => ({
   //   //  header: null,
@@ -56,6 +51,7 @@ export default class ProfileScreen extends Component {
   // })
 
   render() {
+    const { user } = this.props.user;
     return (
       <View style={styles.container}>
         <ScrollView style={{ backgroundColor: Colors.white }}>
@@ -72,7 +68,8 @@ export default class ProfileScreen extends Component {
               </View>
             </View>
             <Text style={styles.userName}>
-              {this.state.userName != null ? this.state.userName : 'GUEST'}
+              {user && user.user_data ? user.user_data[0].name != null ? user.user_data[0].name : null : 'GUEST'}
+
             </Text>
           </View>
           <View style={{ height: 10, backgroundColor: Colors.lightGrey }}></View>
@@ -95,6 +92,21 @@ export default class ProfileScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { user } = state;
+  //console.log("user in Profile Screen- ", JSON.stringify(user));
+  return {
+    user
+  };
+};
+
+
+
+export default connect(
+  mapStateToProps,
+  null
+)(ProfileScreen);
 
 const styles = StyleSheet.create({
   container: {

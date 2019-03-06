@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, Image, ScrollView, FlatList, TouchableOpacity } from "react-native";
+import { Text, View, Image, ScrollView, FlatList, TouchableOpacity, Alert } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Fonts from '../Themes/Fonts';
 import Ripple from "react-native-material-ripple";
@@ -101,8 +101,23 @@ class CartScreen extends Component {
 
     }
     // delete card item
-    async deleteToCart(e, item) {
-        console.log("delete cartItems!!");
+    deleteToCart(e, item) {
+        Alert.alert(
+            'ohhhh!', 'Do you want to remove cart!',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: console.log('cancel'),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => this.deleteCartData(item) },
+            ],
+            { cancelable: false }
+        );
+
+    }
+
+    async  deleteCartData(item) {
         await this.props.deleteCartItem(item);
         this.updateData(this.props.cart);
     }
@@ -123,8 +138,8 @@ class CartScreen extends Component {
         }
         else {
             return (
-                <View style={Styles.productDetailContainer}>
-                    <ScrollView>
+                <View style={{ flex: 1 }}>
+                    <ScrollView style={Styles.productDetailContainer}>
                         <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
                             <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
                                 <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>

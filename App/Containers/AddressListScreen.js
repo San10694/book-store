@@ -10,18 +10,20 @@ import { connect } from "react-redux";
 import ActivityIndicator from "../Components/ActivityIndicator";
 import Api from '../Services';
 
-const bannerData = [
-    { key: 1, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
-    { key: 2, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
-    { key: 3, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
-    { key: 4, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 }
-]
+// const bannerData = [
+//     { key: 1, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
+//     { key: 2, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
+//     { key: 3, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
+//     { key: 4, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 }
+// ]
 const api = Api.Api();
 
 class AddressListScreen extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            isSelect: false,
+        }
     }
 
     componentDidMount() {
@@ -29,11 +31,42 @@ class AddressListScreen extends React.Component {
     }
 
     deleteAddressData(e, id) {
+        Alert.alert('ohhhh!', 'Do you want to delete address!', [
+            { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            {
+                text: 'OK', onPress: () => this.deleteUserAddressData(id)
+            },
+        ], {
+                canceLabel: false,
+            });
+    }
+
+    deleteUserAddressData(id) {
         api.deleteAddress(id).then(response => {
             console.log('delete addd', JSON.stringify(response));
             this.props.getAddress(this.props.user.user.user_data[0].id);
         });
     }
+
+    selectAddress(index, value, selectAddress) {
+        this.setState({
+            isSelect: true
+        })
+    }
+
+
+    moveToPay(e) {
+        //	console.log('move');
+        if (this.state.isSelect === false) {
+            Alert.alert('Please!', 'Select Address !', [{ text: 'OK', onPress: () => console.log('ok') }], {
+                canceLabel: false,
+            });
+        } else {
+            this.props.navigation.navigate('PaymentScreen');
+        }
+    }
+
+
     render() {
         const { data, isFetching } = this.props.address.address
         console.log("  product -- ", JSON.stringify(data));
@@ -48,7 +81,6 @@ class AddressListScreen extends React.Component {
         return (
             <ScrollView>
                 <View>
-
                     <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
                         <TouchableOpacity style={{ backgroundColor: Colors.primary }} onPress={() => this.props.navigation.navigate('AddAddressScreen')}>
@@ -62,9 +94,9 @@ class AddressListScreen extends React.Component {
                             thickness={2}
                             color={Colors.primary}
                             highlightColor={Colors.lightgrey}
-                        // onSelect={(index, value) =>
-                        //     this.selectAddress(index, value, this.props.addressList[index])
-                        // }
+                            onSelect={(index, value) =>
+                                this.selectAddress(index, value, data[index])
+                            }
                         >
                             {data ? data.map((item, index) => {
                                 return (
@@ -96,7 +128,7 @@ class AddressListScreen extends React.Component {
                 <View>
                     <Ripple
                         style={Styles.buyButton}
-                        onPress={() => this.props.navigation.navigate('AddressListScreen')}
+                        onPress={(e) => this.moveToPay(e)}
                     >
                         <Text style={Styles.btnText}>Select Address</Text>
                     </Ripple>
