@@ -82,15 +82,6 @@ hile using the drawer navigator inside stack navigator.*/
     DrawerNavigator: {
       screen: DrawerNavigator
     },
-    // HomeScreen: {
-    //   name: "HomeScreen",
-    //   description: "HomeScreen",
-    //   screen: HomeScreen,
-    //   navigationOptions: {
-    //     title: "Home Screen",
-    //     header: null
-    //   }
-    // },
     SubCategoryScreen: {
       name: "SubCategoryScreen",
       description: "SubCategoryScreen",
@@ -194,7 +185,7 @@ hile using the drawer navigator inside stack navigator.*/
       navigationOptions: {
         title: "Otp"
       }
-    }
+    },
     // RegistrationScreen: {
     //   name: "RegistrationScreen",
     //   description: "RegistrationScreen",
@@ -211,14 +202,30 @@ hile using the drawer navigator inside stack navigator.*/
     //     title: "Cart Screen"
     //   }
     // },
-    // WishListScreen: {
-    //   name: "WishListScreen",
-    //   description: "WishListScreen",
-    //   screen: WishListScreen,
-    //   navigationOptions: {
-    //     title: "WishList Screen"
-    //   }
-    // },
+    WishListScreen: {
+      name: "WishListScreen",
+      description: "WishListScreen",
+      screen: WishListScreen,
+      navigationOptions: {
+        title: "WishList"
+      }
+    },
+    ContactScreen: {
+      name: "ContactScreen",
+      description: "ContactScreen",
+      screen: ContactScreen,
+      navigationOptions: {
+        title: "Contact Screen"
+      }
+    },
+    AboutScreen: {
+      name: "AboutScreen",
+      description: "AboutScreen",
+      screen: AboutScreen,
+      navigationOptions: {
+        title: "About Screen"
+      }
+    },
     // OrderScreen: {
     //   name: "OrderScreen",
     //   description: "OrderScreen",

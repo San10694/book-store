@@ -11,10 +11,10 @@ import { connect } from 'react-redux';
 const menuItems =
   [{ 'title': 'Cart', 'route': 'CartScreen' },
   { 'title': 'My Orders', 'route': 'OrderScreen' },
-  { 'title': 'WishList', 'route': 'Home' },
+  { 'title': 'WishList', 'route': 'WishListScreen' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
-  { 'title': 'Privacy Polices', 'route': 'Home' },
-  { 'title': 'Terms & Conditions', 'route': 'Home' },
+  { 'title': 'Privacy Polices', 'route': 'AboutScreen' },
+  { 'title': 'Terms & Conditions', 'route': 'AboutScreen' },
   { 'title': 'About Us', 'route': 'AboutScreen' },
   ]
 class ProfileScreen extends Component {
