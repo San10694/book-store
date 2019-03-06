@@ -78,12 +78,13 @@ class CartScreen extends Component {
             var tax = 0.0;
             // console.log('state.cart.length', this.props.cart.length);
             this.props.cart.map(item => {
-                item.totalPrice = item.quantity * item.sale_price;
-                subTotal = subTotal + item.totalPrice;
+                item.totalPrice = Number(item.quantity) * item.sale_price;
+                subTotal = subTotal + item.quantity * item.sale_price;
                 this.props.cartItems.subTotal = subTotal;
                 this.props.cartItems.grandTotal = subTotal;
                 this.props.cartItems.payMoney = subTotal;
-                console.log('state.grandTotal', grandTotal);
+                console.log('state.grandTotal', subTotal);
+                console.log('priceeeeeeeee', Number(item.quantity))
             });
             await this.setState({
                 active: true,

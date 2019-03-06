@@ -33,12 +33,14 @@ class ProductDetailScreen extends Component {
       const { data } = response ? response.data : []
       // console.log('getProductDetails -', data[0]);
       this.setState({ productDetail: data[0] })
+
       // console.log('getProductDetails -', JSON.stringify(data));
     })
   }
 
   // add to cart
   addProductToCart() {
+
     console.log('product----------->' + JSON.stringify(this.state.productDetail));
     this.props.addToCart(this.state.productDetail);
     this.props.navigation.navigate('CartScreen');
