@@ -209,7 +209,7 @@ export default {
         width: width * 0.6,
         height: 140,
     },
-    productDetailFav: { position: 'absolute', top: 6, right: 10 },
+    productDetailFav: { position: 'absolute', top: 6, right: 1 },
     productPriceContainer: { marginTop: 10, alignItems: 'center' },
     productDescription: { margin: 10, alignSelf: 'center' },
 

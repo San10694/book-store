@@ -30,6 +30,8 @@ import LoginOtpScreen from "../Containers/LoginOtpScreen";
 import AddAddressScreen from '../Containers/AddAddressScreen';
 import AddressListScreen from '../Containers/AddressListScreen';
 import OrderDetailScreen from '../Containers/OrderDetailScreen';
+import TermsScreen from '../Containers/TermsScreen';
+import PrivacyScreen from '../Containers/PrivacyScreen';
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -226,14 +228,22 @@ hile using the drawer navigator inside stack navigator.*/
         title: "About Screen"
       }
     },
-    // OrderScreen: {
-    //   name: "OrderScreen",
-    //   description: "OrderScreen",
-    //   screen: OrderScreen,
-    //   navigationOptions: {
-    //     title: "OrderScreen"
-    //   }
-    // },
+    PrivacyScreen: {
+      name: "PrivacyScreen",
+      description: "PrivacyScreen",
+      screen: PrivacyScreen,
+      navigationOptions: {
+        title: "Privacy Policy"
+      }
+    },
+    TermsScreen: {
+      name: "TermsScreen",
+      description: "TermsScreen",
+      screen: TermsScreen,
+      navigationOptions: {
+        title: "Terms And Conditions"
+      }
+    },
   },
   {
     navigationOptions: ({ navigation }) => ({

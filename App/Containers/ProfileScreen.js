@@ -13,8 +13,8 @@ const menuItems =
   { 'title': 'My Orders', 'route': 'OrderScreen' },
   { 'title': 'WishList', 'route': 'WishListScreen' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
-  { 'title': 'Privacy Polices', 'route': 'AboutScreen' },
-  { 'title': 'Terms & Conditions', 'route': 'AboutScreen' },
+  { 'title': 'Privacy Polices', 'route': 'PrivacyScreen' },
+  { 'title': 'Terms & Conditions', 'route': 'TermsScreen' },
   { 'title': 'About Us', 'route': 'AboutScreen' },
   ]
 class ProfileScreen extends Component {
