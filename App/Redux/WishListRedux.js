@@ -1,33 +1,29 @@
-import { types } from "./types";
+const types = {
+    ADD_WISHLIST_ITEM: "ADD_WISHLIST_ITEM",
+    REMOVE_WISHLIST_ITEM: "REMOVE_WISHLIST_ITEM",
+    EMPTY_WISHLIST: "EMPTY_WISHLIST",
+};
+
+
 
 export function addWishListItem(product) {
-    return {
-        type: types.ADD_WISHLIST_ITEM,
-        payload: product,
-    };
-}
-
+    return { type: types.ADD_WISHLIST_ITEM, product };
+};
 export function removeWishListItem(product) {
-    return {
-        type: types.REMOVE_WISHLIST_ITEM,
-        payload: product,
-    };
-}
+    return { type: types.REMOVE_WISHLIST_ITEM, product };
+};
 export function emptyWishList() {
-    return {
-        type: types.EMPTY_WISHLIST,
-    };
-}
-
+    return { type: types.EMPTY_WISHLIST };
+};
 
 const initialState = {
     wishListItems: [],
     total: 0,
+    totalPrice: 0,
 };
 
 export default function WishListReducer(state = initialState, action) {
     const { type } = action;
-    console.log('product', action);
     switch (type) {
         case types.ADD_WISHLIST_ITEM: {
             const isExisted = state.wishListItems.some((wishListItem) =>
@@ -68,17 +64,16 @@ export default function WishListReducer(state = initialState, action) {
 };
 
 const compareWishListItem = (wishListItem, action) => {
-    return wishListItem.product_id === action.payload.product_id;
+    return wishListItem.product.product_id === action.product.product_id;
 };
 
 const wishListItem = (
-    state = { product: undefined, variation: undefined, favouriteItem: false },
+    state = { product: undefined, variation: undefined },
     action
 ) => {
     switch (action.type) {
         case types.ADD_WISHLIST_ITEM:
-            return Object.assign({}, state, action.payload, { favouriteItem: true });
-
+            return Object.assign({}, state, { product: action.product });
         default:
             return state;
     }

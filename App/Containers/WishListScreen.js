@@ -3,10 +3,7 @@ import { TouchableOpacity, StyleSheet, Text, View, FlatList, ScrollView, Image }
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
-import { Colors, Images, Fonts } from "../Themes";
-import { addWishListItem } from '../Redux/WishListRedux';
-import { connect } from "react-redux";
-
+import { Colors, Images, Fonts, Constants } from "../Themes";
 
 
 const bannerData = [
@@ -30,23 +27,23 @@ class WishListScreen extends Component {
     }
 
     render() {
+        const { wishList } = this.props
         return (
             <View>
                 <ScrollView style={styles.Container}>
                     <FlatList
-                        data={bannerData}
+                        data={wishList.wishListItems}
                         renderItem={({ item }) => (
                             <TouchableOpacity style={styles.ItemContainer}>
                                 <View style={styles.ItemImgContent}>
                                     <View style={styles.ImgWrapper}>
-                                        <Image source={item.image} style={styles.Img} />
+                                        <Image source={{ uri: item.product.image ? Constants.IMAGE_URL + item.product.image[0].path : null }} style={styles.Img} />
                                     </View>
                                 </View>
                                 <View style={styles.ItemContent}>
-                                    <Text style={styles.Title}>{item.title}</Text>
-                                    <Text style={styles.Price}>${item.price}</Text>
-                                    <Text style={styles.Date}>26-02-19
-                            </Text>
+                                    <Text style={styles.Title}>{item.product.title}</Text>
+                                    <Text style={styles.Price}>${item.product.sale_price}</Text>
+
                                 </View>
                                 <View style={styles.btnWrap}>
                                     {/* <TouchableOpacity
@@ -70,10 +67,10 @@ class WishListScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { wishItems } = state;
-    console.log('wishItems -> ', JSON.stringify(wishItems));
+    const { wishList } = state;
+    console.log("wishList in wishList Screen- ", wishList);
     return {
-        wishItems
+        wishList
     };
 };
 
@@ -86,7 +83,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProductDetailScreen);
+)(WishListScreen);
 
 
 

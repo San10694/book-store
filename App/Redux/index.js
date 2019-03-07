@@ -4,15 +4,16 @@ import ProductReducer from "./ProductRedux";
 import CartReducer from "./CartRedux";
 import UserReducer from './UserRedux';
 import UserAddressReducer from './UserAddressRedux';
-import WishListReducer from './WishListRedux';
+import WishListReducer from "./WishListRedux";
 
 const rootReducer = combineReducers({
   restaurantList: ListReducer,
   product: ProductReducer,
   cartItems: CartReducer,
+  wishList: WishListReducer,
   user: UserReducer,
   address: UserAddressReducer,
-  wishItems: WishListReducer
+  wishList: WishListReducer
 });
 
 export default rootReducer;

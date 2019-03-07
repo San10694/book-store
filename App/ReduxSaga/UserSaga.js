@@ -3,14 +3,14 @@ import { types } from "../Redux/types";
 import { Alert } from 'react-native';
 
 export function* userSignupProcess(api, action) {
+    const { payload } = action
     try {
-        const response = yield api.otpVerifyReg(action.payload);
+        const response = yield api.otpVerifyReg(payload);
         if (response) {
-            console.log("response ", JSON.stringify(response));
+            console.log("userSignupProcess response- ", response);
             const { data } = response;
-            console.log("response login", JSON.stringify(data));
             if (data.Error === "0000") {
-                action.payload.navigate('HomeTab')
+                payload.navigate('HomeTab')
             }
             else {
                 Alert.alert(
@@ -40,14 +40,16 @@ export function* userSignupProcess(api, action) {
 }
 
 export function* userLoginProcess(api, action) {
+    const { payload } = action
+
     try {
-        const response = yield api.userLogin(action.payload.mobile);
+        const response = yield api.userLogin(payload.mobile);
         if (response) {
             const { data } = response;
-            console.log("response login", JSON.stringify(data));
+            console.log("userLoginProcess response- ", response);
 
             if (data.Error === "0000") {
-                action.payload.navigate("LoginOtpScreen", { number: action.payload.mobile });
+                payload.navigate("LoginOtpScreen", { number: payload.mobile });
 
             }
             else {
@@ -79,13 +81,15 @@ export function* userLoginProcess(api, action) {
 }
 
 export function* userOtpVerify(api, action) {
+    const { payload } = action;
     try {
-        const response = yield api.otpVerify(action.payload);
+        const response = yield api.otpVerify(payload);
+        console.log("userOtpVerify response- ", response);
         if (response) {
             const { data } = response;
-            console.log("response otp", JSON.stringify(data));
+
             if (data.Error === "0000") {
-                action.payload.navigate('HomeTab')
+                payload.navigate('HomeTab')
             }
             else {
                 Alert.alert(

@@ -194,42 +194,10 @@ hile using the drawer navigator inside stack navigator.*/
       description: "PaymentScreen",
       screen: PaymentScreen,
       navigationOptions: {
-        title: "Otp"
+        title: "Payment"
       }
     },
-    // TermAndConditionScreen: {
-    //   name: "TermAndConditionScreen",
-    //   description: "TermAndConditionScreen",
-    //   screen: TermAndConditionScreen,
-    //   navigationOptions: {
-    //     title: "Terms & Conditions"
-    //   }
-    // },
-    // PolicyScreen: {
-    //   name: "PolicyScreen",
-    //   description: "PolicyScreen",
-    //   screen: PolicyScreen,
-    //   navigationOptions: {
-    //     title: "Privacy Policies"
-    //   }
-    // }
 
-    // RegistrationScreen: {
-    //   name: "RegistrationScreen",
-    //   description: "RegistrationScreen",
-    //   screen: RegistrationScreen,
-    //   navigationOptions: {
-    //     title: "Registration Screen"
-    //   }
-    // },
-    // CartScreen: {
-    //   name: "CartScreen",
-    //   description: "CartScreen",
-    //   screen: CartScreen,
-    //   navigationOptions: {
-    //     title: "Cart Screen"
-    //   }
-    // },
     WishListScreen: {
       name: "WishListScreen",
       description: "WishListScreen",

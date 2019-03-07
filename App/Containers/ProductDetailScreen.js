@@ -39,20 +39,20 @@ class ProductDetailScreen extends Component {
     this.setState({ isFavourite: !this.state.isFavourite })
   }
 
-  // findMyId() {
-  //   console.log('idddddddddd')
-  //   if (this.props.wishItems && this.props.wishItems.wishItems.length > 0) {
-  //     for (wishIndex = 0; wishIndex <= this.props.wishItems.wishItems.length; wishIndex++) {
-  //       // if (this.props.wishItems.wishItems[wishIndex].product_id === this.state.productDetail.product_id) {
-  //       this.setState({
-  //         isFavourite = true
-  //       })
-  //       // }
-  //       console.log('sttttttttttt', this.state.isFavourite)
-  //     }
-  //   }
-  //   console.log('sttyyyyyyyyyttttttttt', this.state.isFavourite)
-  // }
+  findMyId() {
+    console.log('idddddddddd')
+    if (this.props.wishItems && this.props.wishItems.wishItems.length > 0) {
+      for (wishIndex = 0; wishIndex <= this.props.wishItems.wishItems.length; wishIndex++) {
+        // if (this.props.wishItems.wishItems[wishIndex].product_id === this.state.productDetail.product_id) {
+        this.setState({
+          isFavourite = true
+        })
+        // }
+        console.log('sttttttttttt', this.state.isFavourite)
+      }
+    }
+    console.log('sttyyyyyyyyyttttttttt', this.state.isFavourite)
+  }
 
   componentDidMount() {
     // this.setState({ productDetail: this.props.navigation.state.params.product })
@@ -84,13 +84,27 @@ class ProductDetailScreen extends Component {
           <View style={Styles.productdetailSubContainer}>
             <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
               style={Styles.ProductDetailImg} />
-            <Ripple style={Styles.productDetailFav}
-              onPress={() => this.addToWishList()}>
-              {this.state.isFavourite ?
-                <Icon name='heart' size={25} color={Colors.error} /> :
+            {this.state.isFavourite ?
+              <Ripple style={Styles.productDetailFav}
+                onPress={() => {
+                  this.setState({ isFavourite: !this.state.isFavourite })
+                  this.props.removeWishListItem(productDetail)
+                }}>
+
+                <Icon name='heart' size={25} color={Colors.error} />
+
+
+              </Ripple>
+              :
+              <Ripple style={Styles.productDetailFav}
+                onPress={() => {
+                  this.setState({ isFavourite: !this.state.isFavourite })
+                  this.props.addWishListItem(productDetail)
+                }}>
                 <Icon name='heart' size={25} color={Colors.Text} />
-              }
-            </Ripple>
+
+              </Ripple>
+            }
           </View>
           <View style={Styles.productPriceContainer}>
             <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{productDetail.title}</Text>
@@ -116,10 +130,10 @@ class ProductDetailScreen extends Component {
 }
 
 const mapStateToProps = state => {
-  const { cartItems, wishItems } = state;
-  console.log('wishItems -> ', JSON.stringify(wishItems));
+  const { cartItems, wishList } = state;
+  console.log('wishList -> ', wishList);
   return {
-    cartItems, wishItems
+    cartItems, wishList
   };
 };
 
