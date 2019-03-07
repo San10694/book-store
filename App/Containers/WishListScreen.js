@@ -2,39 +2,34 @@ import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, Text, View, FlatList, ScrollView, Image } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors, Images, Fonts, Constants } from "../Themes";
-
-
-const bannerData = [
-    { key: 1, title: 'Harry Poter part -1', price: 50, image: Images.burdon },
-    { key: 2, title: 'Harry Poter part -2', price: 50, image: Images.burdon },
-    { key: 3, title: 'Harry Poter part -3', price: 50, image: Images.burdon },
-    { key: 4, title: 'Harry Poter part -4', price: 50, image: Images.burdon }
-]
+import { removeWishListItem } from "../Redux/WishListRedux";
+import Ripple from "react-native-material-ripple";
 
 class WishListScreen extends Component {
     constructor(props) {
         super(props);
     }
 
-    static navigationOptions = {
-
-    }
-
-    componentDidMount() {
-        //this.props.getRestaurantList();
-    }
 
     render() {
-        const { wishList } = this.props
+        const { wishList } = this.props;
+        if (wishList.wishListItems.length == 0) {
+            return <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
+                <Text style={{ fontSize: 18, fontWeight: '600' }}>Wish List is empty </Text>
+            </View>
+        }
         return (
             <View>
                 <ScrollView style={styles.Container}>
                     <FlatList
                         data={wishList.wishListItems}
                         renderItem={({ item }) => (
-                            <TouchableOpacity style={styles.ItemContainer}>
+                            <TouchableOpacity style={styles.ItemContainer}
+                                onPress={() => {
+                                    this.props.navigation.navigate('ProductDetailScreen', { product_id: item.product.product_id, title: item.product.name, product: item.product });
+
+                                }}>
                                 <View style={styles.ItemImgContent}>
                                     <View style={styles.ImgWrapper}>
                                         <Image source={{ uri: item.product.image ? Constants.IMAGE_URL + item.product.image[0].path : null }} style={styles.Img} />
@@ -46,14 +41,14 @@ class WishListScreen extends Component {
 
                                 </View>
                                 <View style={styles.btnWrap}>
-                                    {/* <TouchableOpacity
+                                    <Ripple
                                         style={styles.btn}
-                                        onPress={() => this.props.navigation.navigate('OrderDetailScreen')}
+                                        onPress={() => this.props.removeWishListItem(item.product)}
                                     >
                                         <Text style={styles.btnText}>
-                                            ADD To Cart
+                                            Remove
                                 </Text>
-                                    </TouchableOpacity> */}
+                                    </Ripple>
 
                                 </View>
                             </TouchableOpacity>
@@ -68,7 +63,7 @@ class WishListScreen extends Component {
 
 const mapStateToProps = state => {
     const { wishList } = state;
-    console.log("wishList in wishList Screen- ", wishList);
+    // console.log("wishList in wishList Screen- ", wishList);
     return {
         wishList
     };
@@ -76,7 +71,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getRestaurantList: () => dispatch(getRestaurantList())
+        removeWishListItem: item => dispatch(removeWishListItem(item))
     };
 };
 
