@@ -83,7 +83,24 @@ class CartScreen extends Component {
     }
     // delete card item
     deleteToCart(item) {
-        this.props.deleteCartItem(item);
+        Alert.alert(
+            '',
+            'Are you sure you want to remove this product ?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: console.log('cancel'),
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => this.deleteCartData(item) },
+            ],
+            { cancelable: false }
+        );
+
+    }
+
+    async  deleteCartData(item) {
+        await this.props.deleteCartItem(item);
         this.updateData(this.props.cart);
     }
     // move to pay
@@ -161,7 +178,7 @@ class CartScreen extends Component {
                                         <View style={{ flex: .75, position: 'relative' }}>
                                             <Text style={{ paddingLeft: 7, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
                                             <Text style={{ padding: 10, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>{Constants.rupee}{item.sale_price}</Text>
-                                            <Ripple onPress={() => this.showAlert(item)} >
+                                            <Ripple onPress={() => this.deleteToCart(item)} >
                                                 <Icon name='trash-o' size={25} color={Colors.lightgrey} />
                                             </Ripple>
                                         </View>

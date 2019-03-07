@@ -30,6 +30,7 @@ import LoginOtpScreen from "../Containers/LoginOtpScreen";
 import AddAddressScreen from '../Containers/AddAddressScreen';
 import AddressListScreen from '../Containers/AddressListScreen';
 import OrderDetailScreen from '../Containers/OrderDetailScreen';
+import PaymentScreen from '../Containers/PaymentScreen';
 import TermsScreen from '../Containers/TermsScreen';
 import PrivacyScreen from '../Containers/PrivacyScreen';
 
@@ -188,6 +189,31 @@ hile using the drawer navigator inside stack navigator.*/
         title: "Otp"
       }
     },
+    PaymentScreen: {
+      name: "PaymentScreen",
+      description: "PaymentScreen",
+      screen: PaymentScreen,
+      navigationOptions: {
+        title: "Otp"
+      }
+    },
+    // TermAndConditionScreen: {
+    //   name: "TermAndConditionScreen",
+    //   description: "TermAndConditionScreen",
+    //   screen: TermAndConditionScreen,
+    //   navigationOptions: {
+    //     title: "Terms & Conditions"
+    //   }
+    // },
+    // PolicyScreen: {
+    //   name: "PolicyScreen",
+    //   description: "PolicyScreen",
+    //   screen: PolicyScreen,
+    //   navigationOptions: {
+    //     title: "Privacy Policies"
+    //   }
+    // }
+
     // RegistrationScreen: {
     //   name: "RegistrationScreen",
     //   description: "RegistrationScreen",

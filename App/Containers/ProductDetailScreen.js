@@ -33,6 +33,7 @@ class ProductDetailScreen extends Component {
       const { data } = response ? response.data : []
       // console.log('getProductDetails -', data[0]);
       this.setState({ productDetail: data[0] })
+
       // console.log('getProductDetails -', JSON.stringify(data));
     })
   }

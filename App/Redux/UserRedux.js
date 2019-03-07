@@ -57,7 +57,7 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 isRegister: true,
-                user: ''
+                user: payload
             };
 
         case types.USER_REGISTER_FAILURE:
