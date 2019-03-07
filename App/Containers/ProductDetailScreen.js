@@ -8,6 +8,7 @@ import Api from "../Services";
 import { connect } from "react-redux";
 import { addToCart } from '../Redux/CartRedux';
 import Ripple from "react-native-material-ripple";
+import { addWishListItem, removeWishListItem } from "../Redux/WishListRedux";
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
 
@@ -57,15 +58,27 @@ class ProductDetailScreen extends Component {
           <View style={Styles.productdetailSubContainer}>
             <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
               style={Styles.ProductDetailImg} />
-            <Ripple style={Styles.productDetailFav}
-              onPress={() => {
-                this.setState({ isFavourite: !this.state.isFavourite })
-              }}>
-              {this.state.isFavourite ?
-                <Icon name='heart' size={25} color={Colors.error} /> :
+            {this.state.isFavourite ?
+              <Ripple style={Styles.productDetailFav}
+                onPress={() => {
+                  this.setState({ isFavourite: !this.state.isFavourite })
+                  this.props.removeWishListItem(productDetail)
+                }}>
+
+                <Icon name='heart' size={25} color={Colors.error} />
+
+
+              </Ripple>
+              :
+              <Ripple style={Styles.productDetailFav}
+                onPress={() => {
+                  this.setState({ isFavourite: !this.state.isFavourite })
+                  this.props.addWishListItem(productDetail)
+                }}>
                 <Icon name='heart' size={25} color={Colors.Text} />
-              }
-            </Ripple>
+
+              </Ripple>
+            }
           </View>
           <View style={Styles.productPriceContainer}>
             <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{productDetail.title}</Text>
@@ -91,8 +104,8 @@ class ProductDetailScreen extends Component {
 }
 
 const mapStateToProps = state => {
-  const { cartItems } = state;
-  console.log('cartitem -> ', cartItems);
+  const { cartItems, wishList } = state;
+  console.log('wishList -> ', wishList);
   return {
     cartItems
   };
@@ -101,6 +114,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addToCart: item => dispatch(addToCart(item)),
+    addWishListItem: item => dispatch(addWishListItem(item)),
+    removeWishListItem: item => dispatch(removeWishListItem(item)),
+
   }
 };
 
