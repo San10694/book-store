@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //export const BASE_URL = "http://104.211.215.126/ApiStaging/"
-export const BASE_URL = "http://vemulate.com";
+export const BASE_URL = "http://68.183.94.56";
 
 const Api = () => {
 

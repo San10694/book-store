@@ -1,25 +1,24 @@
 import { types } from "./types";
 
-export const actions = {
-    addWishListItem: (dispatch, product) => {
-        dispatch({
-            type: types.ADD_WISHLIST_ITEM,
-            product,
-        });
-    },
+export function addWishListItem(product) {
+    return {
+        type: types.ADD_WISHLIST_ITEM,
+        payload: product,
+    };
+}
 
-    removeWishListItem: (dispatch, product) => {
-        dispatch({
-            type: types.REMOVE_WISHLIST_ITEM,
-            product,
-        });
-    },
-    emptyWishList: (dispatch) => {
-        dispatch({
-            type: types.EMPTY_WISHLIST,
-        });
-    },
-};
+export function removeWishListItem(product) {
+    return {
+        type: types.REMOVE_WISHLIST_ITEM,
+        payload: product,
+    };
+}
+export function emptyWishList() {
+    return {
+        type: types.EMPTY_WISHLIST,
+    };
+}
+
 
 const initialState = {
     wishListItems: [],
@@ -27,7 +26,7 @@ const initialState = {
     totalPrice: 0,
 };
 
-export const reducer = (state = initialState, action) => {
+export default function WishListReducer(state = initialState, action) {
     const { type } = action;
 
     switch (type) {

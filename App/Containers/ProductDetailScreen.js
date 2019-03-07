@@ -7,6 +7,7 @@ import Styles from './Styles';
 import Api from "../Services";
 import { connect } from "react-redux";
 import { addToCart } from '../Redux/CartRedux';
+import { addWishListItem, removeWishListItem } from '../Redux/WishListRedux';
 import Ripple from "react-native-material-ripple";
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
@@ -26,6 +27,14 @@ class ProductDetailScreen extends Component {
     // console.log('productDetails--', JSON.stringify(this.props.navigation.state.params.product));
   }
 
+  addToWishList() {
+    if (!this.state.isFavourite) {
+      this.props.addToWishList(this.state.productDetail);
+    } else {
+      this.props.removeWishListItem(this.state.productDetail);
+    }
+    this.setState({ isFavourite: !this.state.isFavourite })
+  }
 
   componentDidMount() {
     // this.setState({ productDetail: this.props.navigation.state.params.product })
@@ -60,9 +69,7 @@ class ProductDetailScreen extends Component {
             <Image source={{ uri: productDetail.image ? imageUrl + productDetail.image[0].path : null }}
               style={Styles.ProductDetailImg} />
             <Ripple style={Styles.productDetailFav}
-              onPress={() => {
-                this.setState({ isFavourite: !this.state.isFavourite })
-              }}>
+              onPress={() => this.addToWishList()}>
               {this.state.isFavourite ?
                 <Icon name='heart' size={25} color={Colors.error} /> :
                 <Icon name='heart' size={25} color={Colors.Text} />
@@ -93,16 +100,18 @@ class ProductDetailScreen extends Component {
 }
 
 const mapStateToProps = state => {
-  const { cartItems } = state;
-  console.log('cartitem -> ', cartItems);
+  const { cartItems, wishItems } = state;
+  console.log('wishItems -> ', JSON.stringify(wishItems));
   return {
-    cartItems
+    cartItems, wishItems
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     addToCart: item => dispatch(addToCart(item)),
+    addWishListItem: item => dispatch(addWishListItem(item)),
+    removeWishListItem: item => dispatch(removeWishListItem(item)),
   }
 };
 
