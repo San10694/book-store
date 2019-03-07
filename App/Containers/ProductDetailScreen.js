@@ -22,9 +22,8 @@ class ProductDetailScreen extends Component {
       id: props.navigation.state.params.product_id,
       productDetail: null,//props.navigation.state.params.product
       isFavourite: false,
-      wishIndex: 0
     }
-    // console.log('productDetails--', JSON.stringify(this.props.navigation.state.params.product));
+
   }
 
 
@@ -40,18 +39,13 @@ class ProductDetailScreen extends Component {
   }
 
   findMyId() {
-    console.log('idddddddddd')
-    if (this.props.wishItems && this.props.wishItems.wishItems.length > 0) {
-      for (wishIndex = 0; wishIndex <= this.props.wishItems.wishItems.length; wishIndex++) {
-        // if (this.props.wishItems.wishItems[wishIndex].product_id === this.state.productDetail.product_id) {
-        this.setState({
-          isFavourite = true
-        })
-        // }
-        console.log('sttttttttttt', this.state.isFavourite)
-      }
+    if (this.props.wishList.wishListItems.length > 0) {
+      this.props.wishList.wishListItems.forEach(item => {
+        if (item.product.product_id === this.state.id) {
+          this.state.isFavourite = true
+        }
+      })
     }
-    console.log('sttyyyyyyyyyttttttttt', this.state.isFavourite)
   }
 
   componentDidMount() {
@@ -61,8 +55,10 @@ class ProductDetailScreen extends Component {
       const { data } = response ? response.data : []
       // console.log('getProductDetails -', data[0]);
       this.setState({ productDetail: data[0] })
+
       // console.log('getProductDetails -', JSON.stringify(data));
     })
+    this.findMyId();
   }
 
   // add to cart
@@ -131,7 +127,7 @@ class ProductDetailScreen extends Component {
 
 const mapStateToProps = state => {
   const { cartItems, wishList } = state;
-  console.log('wishList -> ', wishList);
+  console.log('wishList -> ', JSON.stringify(wishList));
   return {
     cartItems, wishList
   };
