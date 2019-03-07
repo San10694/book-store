@@ -12,7 +12,6 @@ import Ripple from "react-native-material-ripple";
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
 
-const imageUrl = 'http://vemulate.com/image/'
 const api = Api.Api();
 
 class ProductDetailScreen extends Component {
@@ -22,19 +21,38 @@ class ProductDetailScreen extends Component {
     this.state = {
       id: props.navigation.state.params.product_id,
       productDetail: null,//props.navigation.state.params.product
-      isFavourite: false
+      isFavourite: false,
+      wishIndex: 0
     }
     // console.log('productDetails--', JSON.stringify(this.props.navigation.state.params.product));
   }
 
+
   addToWishList() {
     if (!this.state.isFavourite) {
-      this.props.addToWishList(this.state.productDetail);
+      console.log('addddd')
+      this.props.addWishListItem(this.state.productDetail);
     } else {
+      console.log('remove')
       this.props.removeWishListItem(this.state.productDetail);
     }
     this.setState({ isFavourite: !this.state.isFavourite })
   }
+
+  // findMyId() {
+  //   console.log('idddddddddd')
+  //   if (this.props.wishItems && this.props.wishItems.wishItems.length > 0) {
+  //     for (wishIndex = 0; wishIndex <= this.props.wishItems.wishItems.length; wishIndex++) {
+  //       // if (this.props.wishItems.wishItems[wishIndex].product_id === this.state.productDetail.product_id) {
+  //       this.setState({
+  //         isFavourite = true
+  //       })
+  //       // }
+  //       console.log('sttttttttttt', this.state.isFavourite)
+  //     }
+  //   }
+  //   console.log('sttyyyyyyyyyttttttttt', this.state.isFavourite)
+  // }
 
   componentDidMount() {
     // this.setState({ productDetail: this.props.navigation.state.params.product })
@@ -43,15 +61,13 @@ class ProductDetailScreen extends Component {
       const { data } = response ? response.data : []
       // console.log('getProductDetails -', data[0]);
       this.setState({ productDetail: data[0] })
-
       // console.log('getProductDetails -', JSON.stringify(data));
     })
   }
 
   // add to cart
   addProductToCart() {
-
-    console.log('product----------->' + JSON.stringify(this.state.productDetail));
+    //console.log('product----------->' + JSON.stringify(this.state.productDetail));
     this.props.addToCart(this.state.productDetail);
     this.props.navigation.navigate('CartScreen');
   }
@@ -61,12 +77,12 @@ class ProductDetailScreen extends Component {
     if (productDetail == null) {
       return <View></View>
     }
-    console.log(imageUrl + productDetail.image[0].path);
+    //console.log(Constants.IMAGE_URL + productDetail.image[0].path);
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={Styles.productDetailContainer}>
           <View style={Styles.productdetailSubContainer}>
-            <Image source={{ uri: productDetail.image ? imageUrl + productDetail.image[0].path : null }}
+            <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
               style={Styles.ProductDetailImg} />
             <Ripple style={Styles.productDetailFav}
               onPress={() => this.addToWishList()}>

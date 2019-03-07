@@ -9,7 +9,7 @@ import Fonts from '../Themes/Fonts';
 import { CardSection } from '../Components/CardSection';
 import { Card } from '../Components/Card';
 import Styles from './Styles';
-import { Colors, Images } from "../Themes";
+import { Colors, Images, Constants } from "../Themes";
 import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
 import ActivityIndicator from "../Components/ActivityIndicator";
@@ -31,7 +31,6 @@ const _categories = [
   { key: 6, title: 'Thriller', icon: 'book', color: Colors.darkRed },
 ]
 
-const imageUrl = 'http://vemulate.com/image/'
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -75,7 +74,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             banner ? banner.banners.map((item, index) => {
-              return <Banner key={index} image={imageUrl + item.image_link}
+              return <Banner key={index} image={Constants.IMAGE_URL + item.image_link}
                 title={item.title} price={item.price} imageStyle={Styles.bookImg} />
             }) : null
           }
@@ -128,7 +127,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.sale.map((item, index) => {
-              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? imageUrl + item.image.path : null}
+              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             }) : null
           }
@@ -137,7 +136,7 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.featured.map((item, index) => {
-              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? imageUrl + item.image.path : null}
+              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }
@@ -146,11 +145,11 @@ class HomeScreen extends Component {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {
             productDetails ? productDetails.online.map((item, index) => {
-              //   return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+              //   return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
               //     title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
               // }) : null
               return <FeatureCard onPress={() => this.onPress(item)}
-                key={index} image={item.image ? imageUrl + item.image.path : null}
+                key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
                 title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
             }) : null
           }

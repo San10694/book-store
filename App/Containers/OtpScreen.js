@@ -34,7 +34,6 @@ class OtpScreen extends Component {
 
     onOTPEditHandle = (otp) => {
         this.setState({ otp: otp })
-
     }
 
     onSubmit(e, otp) {

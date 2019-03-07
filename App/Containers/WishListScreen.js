@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors, Images, Fonts } from "../Themes";
+import { addWishListItem } from '../Redux/WishListRedux';
+import { connect } from "react-redux";
+
 
 
 const bannerData = [
@@ -67,23 +70,25 @@ class WishListScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { restaurantList } = state;
-    console.log("State in Home Screen- ", restaurantList);
+    const { wishItems } = state;
+    console.log('wishItems -> ', JSON.stringify(wishItems));
     return {
-        restaurantList
+        wishItems
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getRestaurantList: () => dispatch(getRestaurantList())
-    };
+        addWishListItem: item => dispatch(addWishListItem(item)),
+    }
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(WishListScreen);
+)(ProductDetailScreen);
+
+
 
 const styles = StyleSheet.create({
     Container: {

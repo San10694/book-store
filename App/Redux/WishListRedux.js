@@ -23,12 +23,11 @@ export function emptyWishList() {
 const initialState = {
     wishListItems: [],
     total: 0,
-    totalPrice: 0,
 };
 
 export default function WishListReducer(state = initialState, action) {
     const { type } = action;
-
+    console.log('product', action);
     switch (type) {
         case types.ADD_WISHLIST_ITEM: {
             const isExisted = state.wishListItems.some((wishListItem) =>
@@ -69,16 +68,17 @@ export default function WishListReducer(state = initialState, action) {
 };
 
 const compareWishListItem = (wishListItem, action) => {
-    return wishListItem.product.id === action.product.id;
+    return wishListItem.product_id === action.payload.product_id;
 };
 
 const wishListItem = (
-    state = { product: undefined, variation: undefined },
+    state = { product: undefined, variation: undefined, favouriteItem: false },
     action
 ) => {
     switch (action.type) {
         case types.ADD_WISHLIST_ITEM:
-            return Object.assign({}, state, { product: action.product });
+            return Object.assign({}, state, action.payload, { favouriteItem: true });
+
         default:
             return state;
     }

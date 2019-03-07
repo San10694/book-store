@@ -6,7 +6,6 @@ export function* userSignupProcess(api, action) {
     try {
         const response = yield api.otpVerifyReg(action.payload);
         if (response) {
-
             console.log("response ", JSON.stringify(response));
             const { data } = response;
             console.log("response login", JSON.stringify(data));

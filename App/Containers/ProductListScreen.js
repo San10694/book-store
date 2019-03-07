@@ -4,12 +4,11 @@ import { connect } from "react-redux";
 import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
 import Styles from './Styles';
-import { Colors, Images } from "../Themes";
+import { Colors, Images, Constants } from "../Themes";
 import FeatureCard from "../Components/FeatureCard";
 import Api from "../Services";
 
 
-const imageUrl = 'http://vemulate.com/image/'
 const api = Api.Api();
 class ProductListScreen extends Component {
 
@@ -45,7 +44,7 @@ class ProductListScreen extends Component {
                 <View style={{ flexWrap: "wrap" }}>
                     {
                         productList ? productList.map((item, index) => {
-                            return <FeatureCard key={index} image={item.image ? imageUrl + item.image.path : null}
+                            return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
                                 title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg}
                                 onPress={() => {
                                     this.props.navigation.navigate('ProductDetailScreen', { product_id: item.id, title: item.name, product: item });
