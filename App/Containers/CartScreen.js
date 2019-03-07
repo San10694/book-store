@@ -84,21 +84,6 @@ class CartScreen extends Component {
         }
     }
     // delete card item
-    deleteToCart(e, item) {
-        Alert.alert(
-            'ohhhh!', 'Do you want to remove cart!',
-            [
-                {
-                    text: 'Cancel',
-                    onPress: console.log('cancel'),
-                    style: 'cancel',
-                },
-                { text: 'OK', onPress: () => this.deleteCartData(item) },
-            ],
-            { cancelable: false }
-        );
-
-    }
 
     async  deleteCartData(item) {
         await this.props.deleteCartItem(item);

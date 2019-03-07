@@ -37,12 +37,11 @@ class OtpScreen extends Component {
 
     }
 
-    async  onSubmit(e, otp) {
-        this.state.fcm = await AsyncStorage.getItem('fcmToken');
+    onSubmit(e, otp) {
+        this.state.fcm = AsyncStorage.getItem('fcmToken');
         const { navigate } = this.props.navigation;
         var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm, name: this.state.name, email: this.state.email, navigate: navigate }
         this.props.otpVerifyReg(data);
-
     }
 
     validate(text) {
