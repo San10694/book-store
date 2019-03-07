@@ -8,8 +8,6 @@ import { addToCart, deleteCartItem, removeCartItem } from '../Redux/CartRedux';
 import Styles from './Styles';
 import { Colors, Images, Constants } from "../Themes";
 
-const imageUrl = 'http://vemulate.com/image/'
-
 
 class CartScreen extends Component {
     constructor(props) {
@@ -155,7 +153,7 @@ class CartScreen extends Component {
                                         <View style={{
                                             flex: .3, width: 85, height: 85, marginRight: 5,
                                         }}>
-                                            <Image source={{ uri: item.image ? imageUrl + item.image[0].path : null }} style={{
+                                            <Image source={{ uri: item.image ? Constants.IMAGE_URL + item.image[0].path : null }} style={{
                                                 width: 85, height: 85, borderWidth: 3,
                                                 borderColor: Colors.lightGrey
                                             }} />

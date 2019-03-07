@@ -11,7 +11,6 @@ import Ripple from "react-native-material-ripple";
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
 
-const imageUrl = 'http://vemulate.com/image/'
 const api = Api.Api();
 
 class ProductDetailScreen extends Component {
@@ -40,7 +39,7 @@ class ProductDetailScreen extends Component {
 
   // add to cart
   addProductToCart() {
-    console.log('product----------->' + JSON.stringify(this.state.productDetail));
+    //console.log('product----------->' + JSON.stringify(this.state.productDetail));
     this.props.addToCart(this.state.productDetail);
     this.props.navigation.navigate('CartScreen');
   }
@@ -50,12 +49,12 @@ class ProductDetailScreen extends Component {
     if (productDetail == null) {
       return <View></View>
     }
-    console.log(imageUrl + productDetail.image[0].path);
+    //console.log(Constants.IMAGE_URL + productDetail.image[0].path);
     return (
       <View style={{ flex: 1 }}>
         <ScrollView style={Styles.productDetailContainer}>
           <View style={Styles.productdetailSubContainer}>
-            <Image source={{ uri: productDetail.image ? imageUrl + productDetail.image[0].path : null }}
+            <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
               style={Styles.ProductDetailImg} />
             <Ripple style={Styles.productDetailFav}
               onPress={() => {
