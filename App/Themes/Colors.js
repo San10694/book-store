@@ -1,6 +1,7 @@
 
 const Colors = {
     primary: '#00BCD4',
+    primaryLight: '#a1f4ff',
     white: '#fff',
     black: '#000',
     // navigation bar
