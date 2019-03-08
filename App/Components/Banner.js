@@ -19,9 +19,9 @@ class Banner extends PureComponent {
         return (
             <Ripple onPress={onPress}>
                 <View style={[styleSheet.cardSectionContainer]} >
-                    <View style={Styles.favContainer}>
+                    {/* <View style={Styles.favContainer}>
                         <Icon name="heart" size={25} color={Colors.lightGrey} />
-                    </View>
+                    </View> */}
                     <View style={Styles.imgContainer}>
                         <Image source={{ uri: image }} style={imageStyle} resizeMode='stretch' />
                     </View>

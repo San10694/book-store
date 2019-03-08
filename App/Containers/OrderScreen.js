@@ -3,7 +3,7 @@ import { TouchableOpacity, StyleSheet, Text, View, ScrollView, Image, FlatList }
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
-import { Colors, Images, Fonts } from "../Themes";
+import { Colors, Images, Fonts, Constants } from "../Themes";
 
 const bannerData = [
     { key: 1, title: 'Harry Poter part -1', price: 50, image: Images.burdon },
@@ -40,7 +40,7 @@ class OrderScreen extends Component {
                                 </View>
                                 <View style={styles.ItemContent}>
                                     <Text style={styles.Title}>{item.title}</Text>
-                                    <Text style={styles.Price}>${item.price}</Text>
+                                    <Text style={styles.Price}>{Constants.rupee}{item.price}</Text>
                                     <Text style={styles.Date}>26-02-19
                                 </Text>
                                 </View>

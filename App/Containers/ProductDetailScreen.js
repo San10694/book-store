@@ -42,7 +42,7 @@ class ProductDetailScreen extends Component {
     if (this.props.wishList.wishListItems.length > 0) {
       this.props.wishList.wishListItems.forEach(item => {
         if (item.product.product_id === this.state.id) {
-          this.state.isFavourite = true
+          this.setState({ isFavourite: true })
         }
       })
     }
@@ -97,7 +97,7 @@ class ProductDetailScreen extends Component {
                   this.setState({ isFavourite: !this.state.isFavourite })
                   this.props.addWishListItem(productDetail)
                 }}>
-                <Icon name='heart' size={25} color={Colors.Text} />
+                <Icon name='heart' size={25} color={Colors.primary} />
 
               </Ripple>
             }

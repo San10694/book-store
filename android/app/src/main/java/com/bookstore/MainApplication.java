@@ -9,9 +9,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; 
-import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
-import com.reactnativecomponent.splashscreen.RCTSplashScreenPackage;    //import package
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; //import package
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,14 +24,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new RNFirebasePackage(),
-            new RNFirebaseMessagingPackage(),
-            new RNFirebaseNotificationsPackage(),
-            new RCTSplashScreenPackage(),
-            new VectorIconsPackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(),
+          new RNFirebaseMessagingPackage(), new RNFirebaseNotificationsPackage(), new VectorIconsPackage());
     }
 
     @Override

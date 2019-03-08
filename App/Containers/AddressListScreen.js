@@ -27,7 +27,10 @@ class AddressListScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getAddress(this.props.user.user.user_data[0].id);
+        const { user } = this.props;
+        if (user.user) {
+            this.props.getAddress(user.user.user_data[0].id);
+        }
     }
 
     deleteAddressData(e, id) {
@@ -69,7 +72,7 @@ class AddressListScreen extends React.Component {
 
     render() {
         const { data, isFetching } = this.props.address.address
-        console.log("  product -- ", JSON.stringify(data));
+        // console.log("  product -- ", JSON.stringify(data));
 
         if (isFetching) {
             return (
@@ -141,8 +144,8 @@ class AddressListScreen extends React.Component {
 
 const mapStateToProps = state => {
     const { address, user } = state;
-    console.log('userrrrrrrrrrrrrr', JSON.stringify(state.user.user.user_data));
-    console.log("State in address Screen- ", JSON.stringify(address));
+    //console.log('user', JSON.stringify(state.user.user.user_data));
+    //console.log("State in address Screen- ", JSON.stringify(address));
     return {
         address, user
     };

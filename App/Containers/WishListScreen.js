@@ -37,7 +37,7 @@ class WishListScreen extends Component {
                                 </View>
                                 <View style={styles.ItemContent}>
                                     <Text style={styles.Title}>{item.product.title}</Text>
-                                    <Text style={styles.Price}>${item.product.sale_price}</Text>
+                                    <Text style={styles.Price}>{Constants.rupee}{item.product.sale_price}</Text>
 
                                 </View>
                                 <View style={styles.btnWrap}>
