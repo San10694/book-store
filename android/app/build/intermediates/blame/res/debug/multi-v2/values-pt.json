@@ -4,7 +4,7 @@
             "outputFile": "/Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/7ec8115049899e0ad4cfb5a9886129a0/res/values-pt/values-pt.xml",
+                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/e70cabbc3c5662ace823e69133ed1759/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/93ea944e5413c4fc195adfe93cc4db11/res/values-pt/values-pt.xml",
+                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5ea47e5d12c505a9a428009886ffb2f1/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
