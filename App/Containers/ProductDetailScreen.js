@@ -51,7 +51,7 @@ class ProductDetailScreen extends Component {
   componentDidMount() {
     // this.setState({ productDetail: this.props.navigation.state.params.product })
     api.getProductDetails(this.state.id).then(response => {
-      // console.log("res--", response);
+      console.log("getProductDetails--", response, "--id ", this.state.id);
       const { data } = response ? response.data : []
       // console.log('getProductDetails -', data[0]);
       this.setState({ productDetail: data[0] })

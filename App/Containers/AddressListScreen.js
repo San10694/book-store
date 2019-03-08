@@ -29,7 +29,7 @@ class AddressListScreen extends React.Component {
     componentDidMount() {
         const { user } = this.props;
         if (user.user) {
-            this.props.getAddress(user.user.user_data[0].id);
+            this.props.getAddress(user.user.user_data.id);
         }
     }
 
@@ -47,7 +47,7 @@ class AddressListScreen extends React.Component {
     deleteUserAddressData(id) {
         api.deleteAddress(id).then(response => {
             console.log('delete addd', JSON.stringify(response));
-            this.props.getAddress(this.props.user.user.user_data[0].id);
+            this.props.getAddress(this.props.user.user.user_data.id);
         });
     }
 

@@ -1,6 +1,6 @@
 import { types } from "./types";
 const initialState = {
-    user: '',
+    user: null,
     isRegister: false,
     isLoading: true,
     isLoggedIn: false,
@@ -93,7 +93,7 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 verifyOtp: true,
-                user: payload
+                user: null
             }
         }
         case types.OTP_VERIFY_SUCCESS:

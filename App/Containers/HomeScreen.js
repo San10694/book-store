@@ -45,7 +45,7 @@ class HomeScreen extends Component {
     this.props.getBannerList();
     this.props.getCategories();
     this.props.getProducts(1);
-    this.props.user.user && this.props.user.user.user_data != null ? AsyncStorage.setItem('name', this.props.user.user.user_data[0].name) : null;
+    this.props.user.user && this.props.user.user.user_data != null ? AsyncStorage.setItem('name', this.props.user.user.user_data.name) : null;
   }
 
   onPress(item) {
@@ -163,7 +163,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = state => {
   const { restaurantList, product, user } = state;
-  //console.log("State in Home Screen- ", JSON.stringify(user));
+  console.log("USER  in Home Screen- ", (user));
   return {
     restaurantList,
     product,

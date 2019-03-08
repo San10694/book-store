@@ -68,7 +68,7 @@ class ProfileScreen extends Component {
               </View>
             </View>
             <Text style={styles.userName}>
-              {user && user.user_data ? user.user_data[0].name != null ? user.user_data[0].name : null : 'GUEST'}
+              {user && user.user_data ? user.user_data != null ? user.user_data.name : null : 'GUEST'}
 
             </Text>
           </View>

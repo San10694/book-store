@@ -6,8 +6,8 @@ export function* userSignupProcess(api, action) {
     const { payload } = action
     try {
         const response = yield api.otpVerifyReg(payload);
+        console.log("userSignupProcess response- ", response);
         if (response) {
-            console.log("userSignupProcess response- ", response);
             const { data } = response;
             if (data.Error === "0000") {
                 payload.navigate('HomeTab')

@@ -2,7 +2,7 @@ import axios from "axios";
 
 //export const BASE_URL = "http://104.211.215.126/ApiStaging/"
 export const BASE_URL = "http://68.183.94.56";
-// export const BASE_URL = "http://titlezstore.in"
+//export const BASE_URL = "http://titlezstore.in"
 //export const BASE_URL = "http://vemulate.com";
 
 const Api = () => {
@@ -160,6 +160,7 @@ const Api = () => {
     console.log("API -", endPoints.login_otp);
     return api.post(endPoints.login_otp, formData)
       .catch((error) => {
+        console.log("otpVerify ERROR ", error)
         if (error && error.response) {
           const { data } = error.response;
         }

@@ -218,7 +218,7 @@ class AddAdressScreen extends Component {
             pincode: this.state.pincode,
             other: this.state.other,
             set_default: this.state.address_type === 'primary' ? 'yes' : 'no',
-            customer_id: this.props.user.user.user_data[0].id,
+            customer_id: this.props.user.user.user_data.id,
             country: this.state.country,
             address_line_2: this.state.address_line_2
         }
