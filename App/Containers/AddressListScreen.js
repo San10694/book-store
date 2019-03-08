@@ -78,6 +78,7 @@ class AddressListScreen extends React.Component {
                 </View>
             )
         }
+
         return (
             <ScrollView>
                 <View>
@@ -126,15 +127,18 @@ class AddressListScreen extends React.Component {
                     </View>
                 </View>
                 <View>
+
                     <Ripple
                         style={Styles.buyButton}
                         onPress={(e) => this.moveToPay(e)}
                     >
                         <Text style={Styles.btnText}>Select Address</Text>
                     </Ripple>
+
                 </View>
             </ScrollView>
         );
+
     }
 }
 

@@ -222,6 +222,15 @@ export default {
         borderRadius: 5,
         alignSelf: 'center'
     },
+    disableButton: {
+        width: width * 0.90,
+        height: 40,
+        backgroundColor: Colors.primaryLight,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
+        alignSelf: 'center'
+    },
     btnText: { color: Colors.white },
     checkoutContainer: { flexDirection: 'row', position: 'absolute', bottom: 13, paddingLeft: 15 },
     /// cart page 

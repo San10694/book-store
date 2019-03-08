@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Dimensions, Alert } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { addAddress } from "../Redux/UserAddressRedux";
+import { addAddress, getAddress } from "../Redux/UserAddressRedux";
 import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import Fonts from '../Themes/Fonts';
@@ -24,7 +24,7 @@ class AddAdressScreen extends Component {
             address_type: 'primary',
             set_default: false,
             country: '',
-            address_line_2: '',
+            address: '',
             nameValidate: true,
             pincodeValidate: true,
             mobileValidate: true,
@@ -34,6 +34,15 @@ class AddAdressScreen extends Component {
             otherValidate: true,
             countryValidate: true,
             address2Validate: true,
+            nameValid: false,
+            pincodeValid: false,
+            mobileValid: false,
+            cityValid: false,
+            stateValid: false,
+            emailValid: false,
+            otherValid: false,
+            countryValid: false,
+            address2Valid: false,
         }
     }
 
@@ -82,13 +91,15 @@ class AddAdressScreen extends Component {
             if (phn.test(text)) {
                 this.setState({
                     mobileValidate: true,
-                    mobile: text
+                    mobile: text,
+                    mobileValid: true
                 })
             }
             else {
                 this.setState({
                     mobileValidate: false,
-                    mobile: text
+                    mobile: text,
+                    mobileValid: false
                 })
             }
         }
@@ -96,13 +107,15 @@ class AddAdressScreen extends Component {
             if (email.test(text)) {
                 this.setState({
                     emailValidate: true,
-                    email: text
+                    email: text,
+                    emailValid: true
                 })
             }
             else {
                 this.setState({
                     email: text,
-                    emailValidate: false
+                    emailValidate: false,
+                    emailValid: false
                 })
             }
         }
@@ -110,13 +123,15 @@ class AddAdressScreen extends Component {
             if (text.length > 4) {
                 this.setState({
                     nameValidate: true,
-                    name: text
+                    name: text,
+                    nameValid: true
                 })
             }
             else {
                 this.setState({
                     name: text,
-                    nameValidate: false
+                    nameValidate: false,
+                    nameValid: false
                 })
             }
         }
@@ -124,27 +139,31 @@ class AddAdressScreen extends Component {
             if (text.length > 2) {
                 this.setState({
                     cityValidate: true,
-                    city: text
+                    city: text,
+                    cityValid: true
                 })
             }
             else {
                 this.setState({
                     city: text,
-                    cityValidate: false
+                    cityValidate: false,
+                    cityValid: false
                 })
             }
         }
         else if (type == 'state') {
-            if (text.length > 4) {
+            if (text.length > 0) {
                 this.setState({
                     stateValidate: true,
-                    state: text
+                    state: text,
+                    stateValid: true
                 })
             }
             else {
                 this.setState({
                     state: text,
-                    stateValidate: false
+                    stateValidate: false,
+                    stateValid: false
                 })
             }
         }
@@ -152,13 +171,15 @@ class AddAdressScreen extends Component {
             if (text.length > 2) {
                 this.setState({
                     countryValidate: true,
-                    country: text
+                    country: text,
+                    countryValid: true
                 })
             }
             else {
                 this.setState({
                     country: text,
-                    countryValidate: false
+                    countryValidate: false,
+                    countryValid: false
                 })
             }
         }
@@ -166,13 +187,15 @@ class AddAdressScreen extends Component {
             if (text.length == 6) {
                 this.setState({
                     pincodeValidate: true,
-                    pincode: text
+                    pincode: text,
+                    pincodeValid: true
                 })
             }
             else {
                 this.setState({
                     pincode: text,
-                    pincodeValidate: false
+                    pincodeValidate: false,
+                    pincodeValid: false
                 })
             }
         }
@@ -180,27 +203,31 @@ class AddAdressScreen extends Component {
             if (text.length > 10) {
                 this.setState({
                     otherValidate: true,
-                    other: text
+                    other: text,
+                    otherValid: true
                 })
             }
             else {
                 this.setState({
                     other: text,
-                    otherValidate: false
+                    otherValidate: false,
+                    otherValid: false
                 })
             }
         }
-        else if (type == 'address2') {
+        else if (type == 'address') {
             if (text.length > 10) {
                 this.setState({
                     address2Validate: true,
-                    address_line_2: text
+                    address: text,
+                    address2Valid: true
                 })
             }
             else {
                 this.setState({
-                    address2Validate: text,
-                    address_line_2: false
+                    address2Validate: false,
+                    address: text,
+                    address2Valid: false
                 })
             }
         }
@@ -222,9 +249,9 @@ class AddAdressScreen extends Component {
             country: this.state.country,
             address_line_2: this.state.address_line_2
         }
-        console.log('address formmmm', JSON.stringify(data))
-        this.props.addAddress(data);
-        this.props.navigation.push('AddressListScreen');
+        var addressData = { data: data, navigate: this.props.navigation.push };
+        // console.log('address formmmm', JSON.stringify(data))
+        this.props.addAddress(addressData);
 
     }
 
@@ -318,7 +345,7 @@ class AddAdressScreen extends Component {
                                 </View>
                                 <Text
                                     style={{ color: Colors.red, marginLeft: 24 }}
-                                >{!this.state.otherValidate ? 'Invalid OTP, must be 4 digits' : ''}</Text>
+                                >{!this.state.otherValidate ? 'Address must be greater than 10 characters' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
@@ -351,15 +378,15 @@ class AddAdressScreen extends Component {
                                 </View>
                                 <Text
                                     style={{ color: Colors.red, marginLeft: 24 }}
-                                >{!this.state.stateValidate ? 'State name must be greater than 4 characters' : ''}</Text>
+                                >{!this.state.stateValidate ? 'State name must be required' : ''}</Text>
                                 <View style={styles.inputWrap}>
 
                                     <TextInput
                                         placeholder={"Enter floor No, House No"}
                                         keyboardType='name-phone-pad'
-                                        onChangeText={(address_line_2) => this.validate(address_line_2, 'address2')}
+                                        onChangeText={(address) => this.validate(address, 'address')}
 
-                                        value={this.state.address_line_2}
+                                        value={this.state.address}
                                         style={[{
                                             height: 50,
                                             borderRadius: 5,
@@ -424,7 +451,7 @@ class AddAdressScreen extends Component {
                                 </View>
                                 <Text
                                     style={{ color: Colors.red, marginLeft: 24 }}
-                                >{!this.state.pincodeValidate ? 'Invalid OTP, must be 4 digits' : ''}</Text>
+                                >{!this.state.pincodeValidate ? 'Invalid Pincode, must be 6 digits' : ''}</Text>
                             </View>
                             <TouchableOpacity
                                 style={{
@@ -438,15 +465,16 @@ class AddAdressScreen extends Component {
                                     marginLeft: 20
                                 }}
                                 onPress={(e) => {
-                                    if (!this.state.nameValidate,
-                                        !this.state.pincodeValidate,
-                                        !this.state.mobileValidate,
-                                        !this.state.cityValidate,
-                                        !this.state.stateValidate,
-                                        !this.state.emailValidate,
-                                        !this.state.otherValidate,
-                                        !this.state.countryValidate,
-                                        !this.state.address2Validate) {
+
+                                    if (!this.state.nameValid ||
+                                        !this.state.pincodeValid ||
+                                        !this.state.mobileValid ||
+                                        !this.state.cityValid ||
+                                        !this.state.stateValid ||
+                                        !this.state.emailValid ||
+                                        !this.state.otherValid ||
+                                        !this.state.countryValid ||
+                                        !this.state.address2Valid) {
                                         Alert.alert(
                                             'Please Filled All Fields',
                                             'All Field is required and should be Validate',
@@ -493,7 +521,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addAddress: (value) => dispatch(addAddress(value))
+        addAddress: (value) => dispatch(addAddress(value)),
+        getAddress: (value) => dispatch(getAddress(value))
     };
 };
 
