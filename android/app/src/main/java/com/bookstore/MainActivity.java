@@ -1,7 +1,6 @@
 package com.bookstore;
 
 import com.facebook.react.ReactActivity;
-import com.reactnativecomponent.splashscreen.RCTSplashScreen; 
 
 public class MainActivity extends ReactActivity {
 
