@@ -105,7 +105,7 @@ class CartScreen extends Component {
     }
     // move to pay
     moveToPay() {
-        if (this.props.user.user) {
+        if (this.props.user.user && this.props.user.isLoggedIn) {
             this.props.navigation.navigate('AddressListScreen')
         } else {
             this.props.navigation.navigate('LoginScreen')

@@ -74,15 +74,14 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 isLoading: false,
                 isLoggedIn: false,
-                // user: payload
+                user: null
             }
         }
         case types.USER_LOGIN_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                isLoggedIn: payload.Status === 'success' ? true : false,
-                // user: payload
+                user: payload
             };
 
         case types.USER_LOGIN_FAILURE:

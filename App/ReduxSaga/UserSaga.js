@@ -51,7 +51,6 @@ export function* userLoginProcess(api, action) {
 
             if (data.Error === "0000") {
                 payload.navigate("LoginOtpScreen", { number: payload.mobile });
-
             }
             else {
                 Alert.alert(
