@@ -4,6 +4,7 @@ ADDED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/m
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml:1:1-26:12
+MERGED from [:react-native-splash-screen] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-14:12
 MERGED from [:react-native-firebase] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-firebase/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:react-native-vector-icons] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.57.1] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/react-native-0.57.1.aar/c396930f79ae623ac0e14c47f837fbbf/AndroidManifest.xml:2:1-15:12
@@ -83,6 +84,8 @@ MERGED from [com.facebook.react:react-native:0.57.1] /Users/sandeeptiwari/.gradl
 		ADDED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml:5:22-75
 application
 ADDED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml:7:5-24:19
+MERGED from [:react-native-splash-screen] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-12:19
+MERGED from [:react-native-splash-screen] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:11:5-12:19
 MERGED from [com.facebook.react:react-native:0.57.1] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/react-native-0.57.1.aar/c396930f79ae623ac0e14c47f837fbbf/AndroidManifest.xml:13:5-20
 MERGED from [com.facebook.react:react-native:0.57.1] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/react-native-0.57.1.aar/c396930f79ae623ac0e14c47f837fbbf/AndroidManifest.xml:13:5-20
 MERGED from [com.google.firebase:firebase-messaging:15.0.2] /Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/firebase-messaging-15.0.2.aar/017c340596fa4cb273eb9c23ccc56f08/AndroidManifest.xml:22:5-35:19
@@ -157,6 +160,8 @@ uses-sdk
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/src/main/AndroidManifest.xml
+MERGED from [:react-native-splash-screen] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-splash-screen] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-splash-screen/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-firebase] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-firebase/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-firebase] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-firebase/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/sandeeptiwari/Desktop/ReactNative/book-store/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/debug/AndroidManifest.xml:7:5-9:41
