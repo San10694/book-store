@@ -23,11 +23,12 @@ class AddressListScreen extends React.Component {
         super(props);
         this.state = {
             isSelect: false,
+            selectAddress: null
         }
     }
 
     componentDidMount() {
-        const { user } = this.props;
+        const { user, cartItems } = this.props;
         if (user.user) {
             this.props.getAddress(user.user.user_data.id);
         }
@@ -52,9 +53,13 @@ class AddressListScreen extends React.Component {
     }
 
     selectAddress(index, value, selectAddress) {
+        const { user, cartItems } = this.props;
         this.setState({
-            isSelect: true
+            isSelect: true,
         })
+        console.log('selectAddress', selectAddress);
+        var data = { customer_id: user.user.user_data.id, data: cartItems.cart, shipping_id: selectAddress.id, address_id: selectAddress.id, promo_balance: null, payment_type_id: null }
+        console.log('dattta', JSON.stringify(data))
     }
 
 
@@ -151,11 +156,11 @@ class AddressListScreen extends React.Component {
 
 
 const mapStateToProps = state => {
-    const { address, user } = state;
+    const { address, user, cartItems } = state;
     //console.log('user', JSON.stringify(state.user.user.user_data));
     //console.log("State in address Screen- ", JSON.stringify(address));
     return {
-        address, user
+        address, user, cartItems
     };
 
 };

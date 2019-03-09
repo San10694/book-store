@@ -21,7 +21,10 @@ const Api = () => {
     add_address: '/api/add_address',
     get_address: '/api/all_address',
     delete_address: '/api/delete_address/',
-    login_otp: '/api/customer_login'
+    login_otp: '/api/customer_login',
+    order_list: '/api/myorders',
+    order_detail: '/api/order_details/',
+    order_place: '/api/order_place'
   };
 
   const api = axios.create({
@@ -225,6 +228,58 @@ const Api = () => {
       });
   }
 
+
+  const getOrderList = (id) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('customer_id', id);
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.order_list, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+
+  const getOrderDetail = (id) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.order_detail + `${id}`, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
+
+  const orderPlace = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('customer_id', data.customer_id);
+    formData.append('data', data.data);
+    formData.append('shipping_id', data.shipping_id);
+    formData.append('address_id', data.address_id);
+    formData.append('promo_balance', data.promo_balance);
+    formData.append('payment_type_id', data.payment_type_id);
+    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    console.log("API -", api.defaults);
+    return api.post(endPoints.order_place, formData)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
   const getRestaurantList = () => api.get(endPoints.getBanners);
 
   return {
@@ -242,7 +297,10 @@ const Api = () => {
     addAddress,
     getAddress,
     deleteAddress,
-    otpVerifyReg
+    otpVerifyReg,
+    getOrderList,
+    getOrderDetail,
+    orderPlace
   }
 }
 

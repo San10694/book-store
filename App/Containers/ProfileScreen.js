@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 const menuItems =
   [{ 'title': 'Cart', 'route': 'CartScreen' },
-  { 'title': 'My Orders', 'route': 'OrderScreen' },
+  // { 'title': 'My Orders', 'route': 'OrderScreen' },
   { 'title': 'WishList', 'route': 'WishListScreen' },
   { 'title': 'Contact Us', 'route': 'ContactScreen' },
   { 'title': 'Privacy Polices', 'route': 'PrivacyScreen' },
@@ -74,6 +74,19 @@ class ProfileScreen extends Component {
           </View>
           <View style={{ height: 10, backgroundColor: Colors.lightGrey }}></View>
           <View style={{ backgroundColor: Colors.white }}>
+
+            {user && this.props.user.isLoggedIn ?
+              <Ripple style={styles.menuItem}
+                onPress={() => {
+                  this.props.navigation.navigate("OrderScreen");
+                }}
+              >
+                <Text style={styles.textItem}>
+                  My Orders
+                  </Text>
+              </Ripple> :
+              <View></View>
+            }
             {menuItems.map((item, index) => {
               return (
                 <Ripple key={index} style={styles.menuItem}

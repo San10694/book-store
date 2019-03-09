@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors, Images, Fonts, Constants } from "../Themes";
+import Api from "../Services";
+import ActivityIndicator from '../Components/ActivityIndicator';
+const api = Api.Api();
+import Moment from 'moment';
 
 const bannerData = [
     { key: 1, title: 'Harry Poter part -1', price: 50, image: Images.burdon },
@@ -15,6 +19,9 @@ const bannerData = [
 class OrderScreen extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            orderList: []
+        }
     }
 
     static navigationOptions = {
@@ -22,32 +29,43 @@ class OrderScreen extends Component {
     }
 
     componentDidMount() {
-        //this.props.getRestaurantList();
+        const { user } = this.props;
+        if (user.user) {
+            api.getOrderList(7).then(response => {
+                const { data } = response ? response.data : []
+                this.setState({ orderList: data })
+                console.log("orderList List - ", JSON.stringify(data));
+            })
+        }
     }
 
     render() {
+        const { orderList } = this.state;
+        if (orderList == null) {
+            return <View></View>
+        }
         return (
             <View>
                 <ScrollView style={styles.Container}>
                     <FlatList
-                        data={bannerData}
+                        data={orderList}
                         renderItem={({ item }) => (
                             <View style={styles.ItemContainer}>
                                 <View style={styles.ItemImgContent}>
                                     <View style={styles.ImgWrapper}>
-                                        <Image source={item.image} style={styles.Img} />
+                                        <Image source={Images.burdon} style={styles.Img} />
                                     </View>
                                 </View>
                                 <View style={styles.ItemContent}>
                                     <Text style={styles.Title}>{item.title}</Text>
-                                    <Text style={styles.Price}>{Constants.rupee}{item.price}</Text>
-                                    <Text style={styles.Date}>26-02-19
-                                </Text>
+                                    <Text style={styles.Price}>{Constants.rupee}{item.grand_total}</Text>
+                                    <Text style={styles.Date}>{Moment(item.sale_datetime).format('DD-MMM-YYYY')}
+                                    </Text>
                                 </View>
                                 <View style={styles.btnWrap}>
                                     <TouchableOpacity
                                         style={styles.btn}
-                                        onPress={() => this.props.navigation.navigate('OrderDetailScreen')}
+                                        onPress={() => this.props.navigation.navigate('OrderDetailScreen', { id: item.order_id })}
                                     >
                                         <Text style={styles.btnText}>
                                             View
@@ -65,23 +83,22 @@ class OrderScreen extends Component {
     }
 }
 
+
 const mapStateToProps = state => {
-    const { restaurantList } = state;
-    console.log("State in Home Screen- ", restaurantList);
+    const { user } = state;
+    console.log('userrrrrrrrrrrrrr', JSON.stringify(state.user.user.user_data));
     return {
-        restaurantList
+        user
     };
+
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getRestaurantList: () => dispatch(getRestaurantList())
-    };
-};
+
+
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
 )(OrderScreen);
 
 const styles = StyleSheet.create({

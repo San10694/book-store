@@ -17,32 +17,30 @@ const api = Api.Api();
 class OrderDetailScreen extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            orderDetail: null,
+            id: props.navigation.state.params.id,
+        }
 
-        // this.state = {
-        //     id: props.navigation.state.params.product_id,
-        //     productDetail: null//props.navigation.state.params.product
-        // }
-        // console.log('productDetails--', JSON.stringify(this.props.navigation.state.params.product));
     }
 
 
-    // componentDidMount() {
-    //     // this.setState({ productDetail: this.props.navigation.state.params.product })
-    //     api.getProductDetails(this.state.id).then(response => {
-    //         // console.log("res--", response);
-    //         const { data } = response ? response.data : []
-    //         // console.log('getProductDetails -', data[0]);
-    //         this.setState({ productDetail: data[0] })
-    //         // console.log('getProductDetails -', JSON.stringify(data));
-    //     })
-    // }
+    componentDidMount() {
+        // this.setState({ productDetail: this.props.navigation.state.params.product })
+        api.getOrderDetail(this.state.id).then(response => {
+            const { data } = response ? response.data : []
+            // console.log('getProductDetails -', data);
+            console.log('getProductDetails -', JSON.stringify(data));
+            this.setState({ orderDetail: data[0] })
+        })
+    }
 
 
     render() {
-        // const { orderDetail } = this.state;
-        // if (orderDetail == null) {
-        //     return <View></View>
-        // }
+        const { orderDetail } = this.state;
+        if (orderDetail == null) {
+            return <View></View>
+        }
         // console.log(imageUrl + productDetail.image[0].path);
         return (
             <View style={{ flex: 1 }}>
@@ -54,7 +52,7 @@ class OrderDetailScreen extends Component {
                     <View style={Styles.productPriceContainer}>
                         <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{detail.title}</Text>
                         {/* <Text style={{ fontSize: Fonts.size.input, fontWeight: '400' }}>{productDetail.shopname}</Text> */}
-                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '300' }}>{Constants.rupee}{detail.price}</Text>
+                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '300' }}>{Constants.rupee}{detail.grand_total}</Text>
                     </View>
                     <View style={Styles.productDescription}>
                         <Text>{detail.description}</Text>
