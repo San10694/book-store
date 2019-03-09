@@ -4,6 +4,7 @@ import { Alert } from 'react-native';
 
 export function* userSignupProcess(api, action) {
     const { payload } = action
+    console.log("userSignupProcess payload -m ", payload)
     try {
         const response = yield api.otpVerifyReg(payload);
         console.log("userSignupProcess response- ", response);
@@ -41,7 +42,7 @@ export function* userSignupProcess(api, action) {
 
 export function* userLoginProcess(api, action) {
     const { payload } = action
-
+    console.log("userLoginProcess payload -m ", payload)
     try {
         const response = yield api.userLogin(payload.mobile);
         if (response) {
@@ -82,6 +83,7 @@ export function* userLoginProcess(api, action) {
 
 export function* userOtpVerify(api, action) {
     const { payload } = action;
+    console.log("userVerifyOtp payload -m ", payload)
     try {
         const response = yield api.otpVerify(payload);
         console.log("userOtpVerify response- ", response);

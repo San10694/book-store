@@ -142,6 +142,7 @@ const Api = () => {
 
     return api.post(endPoints.otp_verify + `${data.mobile}` + '/' + `${data.otp}`, formData)
       .catch((error) => {
+        console.log("otpVerifyReg ERROR ", error)
         if (error && error.response) {
           const { data } = error.response;
         }

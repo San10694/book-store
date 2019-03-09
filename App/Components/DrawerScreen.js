@@ -80,7 +80,7 @@ class DrawerScreen extends Component {
               )
             })
             }
-            {user ?
+            {user && this.props.user.isLoggedIn ?
               <Ripple style={styles.menuItem}
                 onPress={() => {
                   this.navigateToScreen("LoginScreen");
