@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Dimensions, KeyboardAvoidingView, Alert } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, Platform, View, Dimensions, KeyboardAvoidingView, Alert } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { addAddress, getAddress } from "../Redux/UserAddressRedux";
@@ -271,7 +271,7 @@ class AddAdressScreen extends Component {
                     <ScrollView
                         style={{ backgroundColor: Colors.white, marginTop: 20, marginBottom: 20 }}
                         contentContainerStyle={styles.container}>
-                        <KeyboardAvoidingView behavior="position" enabled>
+                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "padding"} enabled>
 
                             <View>
                                 <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Enter Address</Text>

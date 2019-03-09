@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, KeyboardAvoidingView, Alert, Dimensions } from "react-native";
+import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Platform, KeyboardAvoidingView, Alert, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Api from "../Services";
@@ -78,7 +78,6 @@ class RegistrationScreen extends Component {
     }
 
     onSubmit(e, mobile, name, email) {
-        console.log(mobile);
         api.userSignup(mobile).then(response => {
             if (response.data.Error === '0000') {
                 this.props.navigation.navigate("OtpScreen", { number: mobile, name: name, email: email });
@@ -101,9 +100,7 @@ class RegistrationScreen extends Component {
                     }
                 );
             }
-
-
-            console.log('register ----------', JSON.stringify(response))
+            //console.log('register onSubmit - ', response)
         })
     }
 
@@ -116,7 +113,7 @@ class RegistrationScreen extends Component {
                     <ScrollView
                         style={{ backgroundColor: Colors.white }}
                         contentContainerStyle={styles.container}>
-                        <KeyboardAvoidingView behavior="position" enabled>
+                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : null} enabled>
 
                             <Text
                                 style={{
