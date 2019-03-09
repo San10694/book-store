@@ -63,7 +63,7 @@ class OtpScreen extends Component {
     }
 
     render() {
-        const { isLoading } = this.props;
+        const { isLoading } = this.props.user;
         return (
             <View style={{ flex: 1, backgroundColor: Colors.white }}>
                 <View style={styles.container}>
@@ -75,7 +75,7 @@ class OtpScreen extends Component {
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
                                     <TextInput
-                                        placeholder={"Enter  OTP"}
+                                        placeholder={"Please enter 4 digit OTP "}
                                         keyboardType="numeric"
                                         onChangeText={(otp) => this.validate(otp)}
                                         value={this.state.otp}
@@ -128,8 +128,7 @@ class OtpScreen extends Component {
 
                             </TouchableOpacity>
                         </View>
-
-                        {isLoading ? <ActivityIndicator mode="overlay" /> : null}
+                        <ActivityIndicator isFetching={isLoading} />
                     </ScrollView>
                 </View>
             </View>
@@ -139,7 +138,7 @@ class OtpScreen extends Component {
 
 const mapStateToProps = state => {
     const { user } = state;
-    console.log("State in user Screen- ", JSON.stringify(user));
+    console.log("State in OTP Screen- ", JSON.stringify(user));
     return {
         user
     };

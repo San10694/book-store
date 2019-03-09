@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors, Fonts } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import Ripple from "react-native-material-ripple";
@@ -30,7 +29,6 @@ class LoginScreen extends Component {
     }
 
     onSubmit(e, mobile) {
-        console.log('mobile', mobile);
         var data = { mobile: mobile, navigate: this.props.navigation.navigate }
         this.props.userLogin(data);
 
@@ -60,7 +58,15 @@ class LoginScreen extends Component {
 
 
     render() {
-        const { isLoading } = this.props;
+        const { isLoading } = this.props.user;
+        console.log("isLoading ", isLoading)
+        // if (isLoading) {
+        //     return (
+        //         <View>
+        //             <ActivityIndicator isFetching={isLoading} />
+        //         </View>
+        //     )
+        // }
         return (
             <View style={{ flex: 1, backgroundColor: Colors.white }}>
                 <View style={styles.container}>
@@ -173,15 +179,14 @@ class LoginScreen extends Component {
                                     }
                                 }}
                             >
-
                                 <Text style={{ color: Colors.white }}>SEND OTP</Text>
-
                             </TouchableOpacity>
                         </View>
-                        <Ripple onPress={() => { this.props.navigation.navigate('RegistrationScreen') }}>
-                            <Text style={{ textAlign: 'center', paddingTop: 40 }}>Don't have Account ?</Text>
-                        </Ripple>
-                        {isLoading ? <ActivityIndicator mode="overlay" /> : null}
+                        <ActivityIndicator isFetching={isLoading} />
+                        <TouchableOpacity onPress={() => { this.props.navigation.navigate('RegistrationScreen') }}>
+                            <Text style={{ textAlign: 'center', paddingTop: 40, color: Colors.primary }}>Don't have an Account? Create one.</Text>
+                        </TouchableOpacity>
+
                     </ScrollView>
                 </View>
             </View>
@@ -190,7 +195,7 @@ class LoginScreen extends Component {
 }
 const mapStateToProps = state => {
     const { user } = state;
-    console.log("State in user Screen- ", JSON.stringify(user));
+    console.log("State in Login Screen- ", user);
     return {
         user
     };
@@ -200,10 +205,10 @@ const mapDispatchToProps = dispatch => {
         userLogin: (value) => dispatch(userLogin(value))
     };
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LoginScreen);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

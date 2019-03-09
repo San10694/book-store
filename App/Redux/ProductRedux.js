@@ -42,6 +42,11 @@ export default function ProductReducer(state = initialState, action) {
                 productDetails: payload
             };
 
+        case types.RESET_LOADER:
+            return {
+                ...state,
+                isFetching: false,
+            };
 
         default:
             return state;

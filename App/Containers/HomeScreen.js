@@ -13,6 +13,7 @@ import { Colors, Images, Constants } from "../Themes";
 import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
 import ActivityIndicator from "../Components/ActivityIndicator";
+import { resetLoader } from "../Redux/UserRedux";
 
 
 const bannerData = [
@@ -42,6 +43,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
+    this.props.resetLoader();
     this.props.getBannerList();
     this.props.getCategories();
     this.props.getProducts(1);
@@ -177,6 +179,7 @@ const mapDispatchToProps = dispatch => {
     getBannerList: () => dispatch(getBannerList()),
     getCategories: () => dispatch(getCategories()),
     getProducts: (flag) => dispatch(getProducts(flag)),
+    resetLoader: () => dispatch(resetLoader()),
   };
 };
 

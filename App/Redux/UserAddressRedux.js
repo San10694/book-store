@@ -41,6 +41,12 @@ export default function UserAddressReducer(state = initialState, action) {
                 isFetching: false
             };
 
+        case types.RESET_LOADER:
+            return {
+                ...state,
+                isFetching: false,
+            };
+
 
         default:
             return state;

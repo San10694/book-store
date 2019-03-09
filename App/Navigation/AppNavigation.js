@@ -135,7 +135,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "OtpScreen",
       screen: OtpScreen,
       navigationOptions: {
-        title: "Otp",
+        title: "OTP",
         // header: null
       }
     },
@@ -170,7 +170,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "OrderScreen",
       screen: OrderScreen,
       navigationOptions: {
-        title: "OrderScreen"
+        title: "Your Orders"
       }
     },
     OrderDetailScreen: {
@@ -178,15 +178,16 @@ hile using the drawer navigator inside stack navigator.*/
       description: "OrderDetailScreen",
       screen: OrderDetailScreen,
       navigationOptions: {
-        title: "Order Detail"
+        title: "Order Details"
       }
     },
+
     LoginOtpScreen: {
       name: "LoginOtpScreen",
       description: "LoginOtpScreen",
       screen: LoginOtpScreen,
       navigationOptions: {
-        title: "Otp"
+        title: "OTP"
       }
     },
     PaymentScreen: {
