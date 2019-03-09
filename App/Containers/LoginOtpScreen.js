@@ -26,8 +26,9 @@ class LoginOtpScreen extends Component {
 
     }
 
-    componentDidMount() {
-        //this.props.getRestaurantList();
+    async componentDidMount() {
+        let fcmToken = await AsyncStorage.getItem('fcmToken');
+        this.setState({ fcm: fcmToken })
     }
 
     onOTPEditHandle = (otp) => {
@@ -36,11 +37,11 @@ class LoginOtpScreen extends Component {
     }
 
     async  onSubmit(e, otp) {
-
-        console.log(otp);
-        this.state.fcm = await AsyncStorage.getItem('fcmToken');
+        const { navigation } = this.props;
+        // let fcmToken = await AsyncStorage.getItem('fcmToken');
+        // this.setState({ fcm: fcmToken })
         var data = { mobile: this.state.mobile, otp: otp, fcm: this.state.fcm, navigate: this.props.navigation.navigate }
-        this.props.otpVerify(data);
+        this.props.otpVerify(data, navigation);
         // this.props.navigation.navigate("HomeTab")
 
     }
@@ -156,7 +157,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        otpVerify: (value) => dispatch(otpVerify(value))
+        otpVerify: (value, navigation) => dispatch(otpVerify(value, navigation))
     };
 };
 

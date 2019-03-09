@@ -8,11 +8,11 @@ const initialState = {
 };
 
 ///Action Creators
-export function otpVerifyReg(otp) {
+export function otpVerifyReg(data) {
     // console.log('ooooooooooooo', mobile);
     return {
         type: types.USER_REGISTER,
-        payload: otp
+        payload: data
     };
 }
 
