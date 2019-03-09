@@ -3,7 +3,7 @@ import { TouchableOpacity, ScrollView, StyleSheet, TextInput, Text, View, Alert,
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { getRestaurantList } from "../Redux/ListRedux";
-import { Colors } from "../Themes";
+import { Colors, Fonts } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import Ripple from "react-native-material-ripple";
 import { userLogin } from '../Redux/UserRedux';
@@ -74,6 +74,15 @@ class LoginScreen extends Component {
                                 resizeMode="contain"
                             />
                         </View> */}
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                fontSize: Fonts.size.h4,
+                                marginBottom: 50,
+                                fontWeight: 'bold',
+                                color: Colors.primary,
+                                fontFamily: Fonts.type.gotham_bold
+                            }}>Login</Text>
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
