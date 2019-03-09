@@ -12,6 +12,12 @@ import Api from "../Services";
 const api = Api.Api();
 class ProductListScreen extends Component {
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.state.params.title
+        }
+    }
+
     constructor(props) {
         super(props);
 

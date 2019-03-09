@@ -178,9 +178,9 @@ class LoginScreen extends Component {
 
                             </TouchableOpacity>
                         </View>
-                        <Ripple onPress={() => {
-                            this.props.navigation.navigate('RegistrationScreen');
-                        }}><Text style={{ textAlign: 'center', paddingTop: 40 }}>Haven't an Account???</Text></Ripple>
+                        <Ripple onPress={() => { this.props.navigation.navigate('RegistrationScreen') }}>
+                            <Text style={{ textAlign: 'center', paddingTop: 40 }}>Don't have Account ?</Text>
+                        </Ripple>
                         {isLoading ? <ActivityIndicator mode="overlay" /> : null}
                     </ScrollView>
                 </View>

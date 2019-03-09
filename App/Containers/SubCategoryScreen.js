@@ -13,11 +13,11 @@ const api = Api.Api();
 
 class SubCategoryScreen extends Component {
 
-    // static navigationOptions = ({ navigation }) => {
-    //     return {
-    //         title : navigation.state.params.title
-    //     }
-    // }
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.state.params.title
+        }
+    }
 
 
 
@@ -46,7 +46,7 @@ class SubCategoryScreen extends Component {
             return <View></View>
         }
         return (
-            <ScrollView>
+            <ScrollView style={{ backgroundColor: Colors.background }}>
                 {subCategories ? subCategories.map((item, index) => {
                     return (
                         <View key={item.id}>

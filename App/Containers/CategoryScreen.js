@@ -22,7 +22,7 @@ class CategoryScreen extends Component {
             return <View></View>
         }
         return (
-            <ScrollView>
+            <ScrollView style={{ backgroundColor: Colors.background }} >
                 {categories ? categories.map((item, index) => {
                     return (
                         <View key={item.id}>
