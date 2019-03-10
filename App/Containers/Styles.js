@@ -206,8 +206,8 @@ export default {
         marginTop: 20,
     },
     ProductDetailImg: {
-        width: width * 0.6,
-        height: 140,
+        width: width * 0.65,
+        height: height * 0.45,
     },
     productDetailFav: { position: 'absolute', top: 6, right: 1 },
     productPriceContainer: { marginTop: 10, alignItems: 'center' },
@@ -222,6 +222,26 @@ export default {
         borderRadius: 5,
         alignSelf: 'center'
     },
+    detailBottomPriceBtn: {
+        width: width * 0.5,
+        height: 40,
+        backgroundColor: Colors.white,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // borderRadius: 5,
+        alignSelf: 'center',
+        borderColor: Colors.lightgrey,
+        borderWidth: 1
+    },
+    detailBottomButton: {
+        width: width * 0.5,
+        height: 40,
+        backgroundColor: Colors.primary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // borderRadius: 5,
+        alignSelf: 'center'
+    },
     disableButton: {
         width: width * 0.90,
         height: 40,
@@ -232,6 +252,17 @@ export default {
         alignSelf: 'center'
     },
     btnText: { color: Colors.white },
+    BuyContainer: {
+        flexDirection: 'row', position: 'absolute', bottom: 0, shadowColor: Colors.lightgrey,
+
+        shadowOffset: {
+            width: 2,
+            height: 3
+        },
+        shadowRadius: 3,
+        shadowOpacity: 0.5
+    },
+
     checkoutContainer: { flexDirection: 'row', position: 'absolute', bottom: 13, paddingLeft: 15 },
     /// cart page 
 

@@ -139,7 +139,7 @@ class HomeScreen extends Component {
           {
             productDetails ? productDetails.featured.map((item, index) => {
               return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
+                title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             }) : null
           }
         </ScrollView>
@@ -152,7 +152,7 @@ class HomeScreen extends Component {
               // }) : null
               return <FeatureCard onPress={() => this.onPress(item)}
                 key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                title={item.title} price={item.sale_price} style={Styles.featureContainer} imageStyle={Styles.featureImg} />
+                title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
             }) : null
           }
         </ScrollView >
