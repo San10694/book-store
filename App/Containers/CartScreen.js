@@ -165,7 +165,7 @@ class CartScreen extends Component {
                         <FlatList
                             data={cartItems.cart}
                             renderItem={({ item }) => (
-                                <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                                <View key={item.product_id} style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
 
                                     <View style={{ padding: 20, flex: 1, flexDirection: 'row', }}>
                                         <View style={{

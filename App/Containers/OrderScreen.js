@@ -18,7 +18,8 @@ class OrderScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderList: []
+            orderList: null,
+            isFetching: false
         }
     }
 
@@ -29,18 +30,21 @@ class OrderScreen extends Component {
     componentDidMount() {
         const { user } = this.props;
         if (user.user) {
-            api.getOrderList(7).then(response => {
+            this.setState({ isFetching: true })
+            api.getOrderList(user.user.user_data.id).then(response => {
+                console.log("orderList List - ", (response.data));
                 const { data } = response ? response.data : []
+                this.setState({ isFetching: false })
                 this.setState({ orderList: data })
-                console.log("orderList List - ", JSON.stringify(data));
+
             })
         }
     }
 
     render() {
-        const { orderList } = this.state;
-        if (orderList == null) {
-            return <View></View>
+        const { orderList, isFetching } = this.state;
+        if (!orderList) {
+            return <ActivityIndicator isFetching={isFetching} />
         }
         return (
             <View>
@@ -48,17 +52,20 @@ class OrderScreen extends Component {
                     <FlatList
                         data={orderList}
                         renderItem={({ item }) => (
-                            <View style={styles.ItemContainer}>
-                                <View style={styles.ItemImgContent}>
+                            <View key={item.order_id} style={styles.ItemContainer}>
+                                {/* <View style={styles.ItemImgContent}>
                                     <View style={styles.ImgWrapper}>
                                         <Image source={Images.burdon} style={styles.Img} />
                                     </View>
-                                </View>
+                                </View> */}
                                 <View style={styles.ItemContent}>
-                                    <Text style={styles.Title}>{item.title}</Text>
-                                    <Text style={styles.Price}>{Constants.rupee}{item.grand_total}</Text>
-                                    <Text style={styles.Date}>{Moment(item.sale_datetime).format('DD-MMM-YYYY')}
+                                    <Text style={styles.Title}>Order Id : {item.order_id}</Text>
+                                    <Text style={styles.Date}>Payment Mode : {item.payment_type}</Text>
+                                    <Text style={styles.Date}>Order Date : {Moment(item.sale_datetime).format('DD-MMM-YYYY')}
                                     </Text>
+                                    <Text style={styles.Date}>Payment Status : {item.payment_status}</Text>
+                                    <Text style={styles.Price}>Order Total : {Constants.rupee}{item.grand_total}</Text>
+
                                 </View>
                                 <View style={styles.btnWrap}>
                                     <TouchableOpacity
@@ -73,7 +80,7 @@ class OrderScreen extends Component {
                                 </View>
                             </View>
                         )}
-                        keyExtractor={(item, index) => item._id}
+                        keyExtractor={(item, index) => item.order_id}
                     />
                 </ScrollView>
             </View>
@@ -84,7 +91,7 @@ class OrderScreen extends Component {
 
 const mapStateToProps = state => {
     const { user } = state;
-    console.log('userrrrrrrrrrrrrr', JSON.stringify(state.user.user.user_data));
+    //console.log('User Details', JSON.stringify(state.user.user.user_data));
     return {
         user
     };
@@ -101,10 +108,11 @@ export default connect(
 
 const styles = StyleSheet.create({
     Container: {
-        padding: 20,
-        paddingTop: 6,
         // backgroundColor: Colors.background,
-        padding: 5,
+        // padding: 5,
+        marginBottom: 12,
+        paddingHorizontal: 6,
+        paddingVertical: 12
     },
     ItemContainer: {
         flex: 1,
@@ -114,18 +122,19 @@ const styles = StyleSheet.create({
         padding: 4,
         borderRadius: 2,
         shadowColor: Colors.lightgrey,
-        minHeight: 90,
-        marginBottom: 6,
-        marginTop: 6,
+        minHeight: 100,
+        marginBottom: 12,
+        //marginTop: 6,
         shadowOffset: {
             width: 0,
             height: 2,
         },
         shadowRadius: 1,
         shadowOpacity: 0.5,
+
     },
     ItemContent: {
-        flex: 0.5,
+        flex: 0.7,
         padding: 4,
         paddingLeft: 12,
     },
@@ -163,7 +172,8 @@ const styles = StyleSheet.create({
     },
     btnWrap: {
         flex: 0.2,
-        paddingTop: 10,
+        right: 10,
+        justifyContent: 'center'
     },
     btn: {
         width: '100%',

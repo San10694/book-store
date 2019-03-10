@@ -11,9 +11,9 @@ export function removeCartItem(product) {
     return { type: types.REMOVE_CART_ITEM, product: product };
 };
 
-export function clearCartItem(product) {
+export function clearCartItem() {
     //  console.log("remove action-----");
-    return { type: types.CLEAR_CART_ITEM, product: product };
+    return { type: types.CLEAR_CART_ITEMS };
 };
 
 export function deleteCartItem(product) {
@@ -65,7 +65,7 @@ export default function CartReducer(state = INITIAL_STATE, action) {
         }
 
         case types.CLEAR_CART_ITEMS: {
-            return { cart: [] };
+            return Object.assign({}, state, { cart: [] })
         }
         case types.REMOVE_CART_ITEM: {
             const index = state.cart.findIndex(cartItem => compareCartItem(cartItem, action.product)); // check if existed

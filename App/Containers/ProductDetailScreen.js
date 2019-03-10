@@ -51,19 +51,15 @@ class ProductDetailScreen extends Component {
   componentDidMount() {
     // this.setState({ productDetail: this.props.navigation.state.params.product })
     api.getProductDetails(this.state.id).then(response => {
-      console.log("getProductDetails--", response, "--id ", this.state.id);
+      // console.log("getProductDetails--", response, "--id ", this.state.id);
       const { data } = response ? response.data : []
-      // console.log('getProductDetails -', data[0]);
       this.setState({ productDetail: data[0] })
-
-      // console.log('getProductDetails -', JSON.stringify(data));
     })
     this.findMyId();
   }
 
   // add to cart
   addProductToCart() {
-    //console.log('product----------->' + JSON.stringify(this.state.productDetail));
     this.props.addToCart(this.state.productDetail);
     this.props.navigation.navigate('CartScreen');
   }
@@ -73,9 +69,9 @@ class ProductDetailScreen extends Component {
     if (productDetail == null) {
       return <View></View>
     }
-    //console.log(Constants.IMAGE_URL + productDetail.image[0].path);
+
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, marginBottom: 1 }}>
         <ScrollView style={Styles.productDetailContainer}>
           <View style={Styles.productdetailSubContainer}>
             <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
