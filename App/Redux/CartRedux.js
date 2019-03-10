@@ -30,6 +30,7 @@ const INITIAL_STATE = {
     subTotal: 0.0,
     tax: 0.0,
     payMoney: 0.0,
+    subTotalAmount: 0,
 
     // couponDiscountPercentage: 0.0,
     // deductedAmountByCoupon: 0.0,
@@ -109,33 +110,36 @@ export default function CartReducer(state = INITIAL_STATE, action) {
 };
 
 const calculatePrice = state => {
-    var subTotal = 0.0;
-    var grandTotal = 0.0;
-    var payMoney = 0.0;
-    var tax = 0.0;
+    console.log("calculatePrice --", state)
+
+    var subTotal = 0;
+    var grandTotal = 0;
+    var payMoney = 0;
+    var tax = 0;
     state.cart.map(item => {
         item.totalPrice = (item.quantity) * Number(item.sale_price);
         subTotal = subTotal + item.totalPrice;
         grandTotal = subTotal;
-        state.subTotal = subTotal;
-        state.grandTotal = grandTotal;
-        state.payMoney = grandTotal;
-        return subTotal, grandTotal, payMoney;
+        // state.subTotal = subTotal;
+        // state.grandTotal = grandTotal;
+        // state.payMoney = grandTotal;
+        console.log("calculatePrice ", grandTotal)
+        return grandTotal
     });
 };
 
 const calculatePrice1 = (state, action) => {
-    var subTotal = 0.0;
-    var grandTotal = 0.0;
-    var payMoney = 0.0;
-    var tax = 0.0;
+    var subTotal = 0;
+    var grandTotal = 0;
+    var payMoney = 0;
+    var tax = 0;
     state.cart.map(item => {
         item.totalPrice = ((item.quantity) * Number(item.sale_price));
         subTotal = subTotal + item.totalPrice;
         grandTotal = subTotal;
-        state.subTotal = subTotal;
-        state.grandTotal = grandTotal;
-        state.payMoney = grandTotal;
+        // state.subTotal = subTotal;
+        // state.grandTotal = grandTotal;
+        // state.payMoney = grandTotal;
         // state.tax = tax;
         return subTotal, grandTotal, payMoney;
     });

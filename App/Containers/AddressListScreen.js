@@ -59,7 +59,7 @@ class AddressListScreen extends React.Component {
         })
         console.log('selectAddress', selectAddress);
         var data = { customer_id: user.user.user_data.id, data: cartItems.cart, shipping_id: selectAddress.id, address_id: selectAddress.id, promo_balance: null, payment_type_id: null }
-        console.log('dattta', JSON.stringify(data))
+        console.log('Order Details-', JSON.stringify(data))
     }
 
 
