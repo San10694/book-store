@@ -103,24 +103,31 @@ class ProductDetailScreen extends Component {
             }
           </View>
           <View style={Styles.productPriceContainer}>
-            <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }}>{productDetail.title}</Text>
+            <Text style={{ fontSize: Fonts.size.h6, fontWeight: '600' }} numberOfLines={2}>{productDetail.title}</Text>
             {/* <Text style={{ fontSize: Fonts.size.input, fontWeight: '400' }}>{productDetail.shopname}</Text> */}
-            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '300' }}>{Constants.rupee}{productDetail.sale_price}</Text>
           </View>
           <View style={Styles.productDescription}>
-            <Text>{productDetail.description}</Text>
+            <Text numberOfLines={1}>{productDetail.description}</Text>
           </View>
 
+
         </ScrollView>
-        <View style={Styles.checkoutContainer}>
+        <View style={Styles.BuyContainer}>
           <Ripple
-            style={Styles.buyButton}
+            style={[Styles.detailBottomPriceBtn]}
+            onPress={() => this.addProductToCart()}
+          >
+            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>{Constants.rupee}{productDetail.sale_price}/-</Text>
+
+          </Ripple>
+          <Ripple
+            style={Styles.detailBottomButton}
             onPress={() => this.addProductToCart()}
           >
             <Text style={Styles.btnText}>Buy Now</Text>
           </Ripple>
         </View>
-      </View>
+      </View >
     );
   }
 }
