@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { TouchableOpacity, StyleSheet, Text, View, ScrollView, Image, FlatList } from "react-native";
 import { connect } from "react-redux";
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { getRestaurantList } from "../Redux/ListRedux";
 import { Colors, Images, Fonts, Constants } from "../Themes";
 import Api from "../Services";
 import ActivityIndicator from '../Components/ActivityIndicator';

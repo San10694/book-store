@@ -13,6 +13,12 @@ const api = Api.Api();
 
 class SubSubCategoryScreen extends Component {
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.state.params.title
+        }
+    }
+
     constructor(props) {
         super(props);
 
@@ -26,7 +32,7 @@ class SubSubCategoryScreen extends Component {
         api.getChildCategories(this.state.category_sub_group_id).then(response => {
             const { data } = response ? response.data : []
             this.setState({ subCategories: data })
-            console.log("child--SubCategories - ", response);
+            // console.log("child--SubCategories - ", response);
         })
     }
 
@@ -37,7 +43,7 @@ class SubSubCategoryScreen extends Component {
             return <View></View>
         }
         return (
-            <ScrollView>
+            <ScrollView style={{ backgroundColor: Colors.background }}>
                 {subCategories.map((item, index) => {
                     return (
                         <View key={item.id}>

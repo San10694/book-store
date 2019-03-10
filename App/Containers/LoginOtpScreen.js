@@ -65,7 +65,7 @@ class LoginOtpScreen extends Component {
     }
 
     render() {
-        const { isLoading } = this.props;
+        const { isLoading } = this.props.user;
         return (
             <View style={{ flex: 1, backgroundColor: Colors.white }}>
                 <View style={styles.container}>
@@ -82,9 +82,8 @@ class LoginOtpScreen extends Component {
                         <View style={styles.subContain}>
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
-
                                     <TextInput
-                                        placeholder={"Enter  OTP"}
+                                        placeholder={"Please enter 4 digit OTP "}
                                         keyboardType="numeric"
                                         onChangeText={(otp) => this.validate(otp)}
                                         value={this.state.otp}
@@ -139,8 +138,7 @@ class LoginOtpScreen extends Component {
 
                             </TouchableOpacity>
                         </View>
-
-                        {isLoading ? <ActivityIndicator mode="overlay" /> : null}
+                        <ActivityIndicator isFetching={isLoading} />
                     </ScrollView>
                 </View>
             </View>

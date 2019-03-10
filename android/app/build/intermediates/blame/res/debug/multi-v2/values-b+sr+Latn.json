@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sandeeptiwari/Desktop/ReactNative/book-store/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml",
+            "outputFile": "/home/vijaya/Documents/React_Projects/2.Template/book-store/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml",
             "map": [
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/38b7b5a3f5795401809df18d9b544824/res/values-b+sr+Latn/values.xml",
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/c13445aee0fb0bef353d7dff0981a635/res/values-b+sr+Latn/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,24 +21,24 @@
                     }
                 },
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/firebase-messaging-15.0.2.aar/017c340596fa4cb273eb9c23ccc56f08/res/values-b+sr+Latn/values.xml",
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/ed15f99438fdfc9f88849711b26ae317/res/values-b+sr+Latn/values-b+sr+Latn.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "212",
-                        "endColumns": "99",
-                        "endOffsets": "311"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "37",
+                        "startLines": "39",
                         "startColumns": "4",
-                        "startOffsets": "4537",
-                        "endColumns": "103",
-                        "endOffsets": "4636"
+                        "startOffsets": "4725",
+                        "endColumns": "100",
+                        "endOffsets": "4821"
                     }
                 },
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/5ea47e5d12c505a9a428009886ffb2f1/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/ea6ef20914541d4e0435b530a400c991/res/values-b+sr+Latn/values-b+sr+Latn.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/d43f57c79b3fe63aa5b8ea4e7912a518/res/values-b+sr+Latn/values.xml",
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/10b6ac5b2dc64b7a9146cb4b8bb9bf05/res/values-b+sr+Latn/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -72,20 +72,20 @@
                     }
                 },
                 {
-                    "source": "/Users/sandeeptiwari/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/e70cabbc3c5662ace823e69133ed1759/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "source": "/home/vijaya/.gradle/caches/transforms-1/files-1.1/firebase-messaging-15.0.2.aar/add3b4f8bfe5aec0c95a9725d8f8cd0b/res/values-b+sr+Latn/values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "212",
+                        "endColumns": "99",
+                        "endOffsets": "311"
                     },
                     "to": {
-                        "startLines": "39",
+                        "startLines": "37",
                         "startColumns": "4",
-                        "startOffsets": "4725",
-                        "endColumns": "100",
-                        "endOffsets": "4821"
+                        "startOffsets": "4537",
+                        "endColumns": "103",
+                        "endOffsets": "4636"
                     }
                 }
             ]

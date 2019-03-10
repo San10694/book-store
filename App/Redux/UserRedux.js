@@ -38,6 +38,13 @@ export function logout() {
         payload: null
     };
 }
+export function resetLoader() {
+    return {
+        type: types.RESET_LOADER,
+        payload: null
+    };
+}
+
 
 
 
@@ -51,6 +58,7 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 isRegister: false,
                 isLoggedIn: false,
+                isLoading: true,
                 user: null
             }
         }
@@ -58,6 +66,7 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 isRegister: true,
+                isLoading: false,
                 isLoggedIn: payload.Status === 'success' ? true : false,
                 user: payload
             };
@@ -67,12 +76,13 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 isRegister: false,
                 isLoggedIn: false,
+                isLoading: false,
             };
 
         case types.USER_LOGIN: {
             return {
                 ...state,
-                isLoading: false,
+                isLoading: true,
                 isLoggedIn: false,
                 user: null
             }
@@ -95,6 +105,7 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 verifyOtp: true,
+                isLoading: true,
                 user: null
             }
         }
@@ -102,6 +113,7 @@ export default function UserReducer(state = initialState, action) {
             return {
                 ...state,
                 verifyOtp: true,
+                isLoading: false,
                 user: payload,
                 isLoggedIn: payload.Status === 'success' ? true : false,
             };
@@ -119,8 +131,15 @@ export default function UserReducer(state = initialState, action) {
                 ...state,
                 verifyOtp: false,
                 isLoggedIn: false,
-
+                isLoading: false
             };
+
+        case types.RESET_LOADER:
+            return {
+                ...state,
+                isLoading: false,
+            };
+
         default:
             return state;
     }
