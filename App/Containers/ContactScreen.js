@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import { Colors } from "../Themes";
+import { Platform, StyleSheet, Text, View, ScrollView } from "react-native";
+import { Colors, Images, Fonts } from "../Themes";
 
 export default class ContactScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to ContactScreen!</Text>
-      </View>
+      <ScrollView style={styles.container}>
+
+      </ScrollView>
     );
   }
 }
@@ -15,10 +15,7 @@ export default class ContactScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: Colors.lightGrey
-
   },
   welcome: {
     fontSize: 20,
