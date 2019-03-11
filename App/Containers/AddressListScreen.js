@@ -23,7 +23,7 @@ class AddressListScreen extends React.Component {
         super(props);
         this.state = {
             isSelect: false,
-            selectAddress: null
+            selectedAddress: null
         }
     }
 
@@ -56,21 +56,32 @@ class AddressListScreen extends React.Component {
         const { user, cartItems } = this.props;
         this.setState({
             isSelect: true,
+            selectedAddress: selectAddress
         })
         console.log('selectAddress', selectAddress);
-        var data = { customer_id: user.user.user_data.id, data: cartItems.cart, shipping_id: selectAddress.id, address_id: selectAddress.id, promo_balance: null, payment_type_id: null }
-        console.log('dattta', JSON.stringify(data))
+        // var data = { customer_id: user.user.user_data.id, data: cartItems.cart, shipping_id: selectAddress.id, address_id: selectAddress.id, promo_balance: null, payment_type_id: null }
     }
 
 
-    moveToPay(e) {
-        //	console.log('move');
+    moveToPay() {
+
         if (this.state.isSelect === false) {
             Alert.alert('Please!', 'Select Address !', [{ text: 'OK', onPress: () => console.log('ok') }], {
                 canceLabel: false,
             });
         } else {
-            this.props.navigation.navigate('PaymentScreen');
+            const { selectedAddress } = this.state;
+            const { user, cartItems } = this.props;
+            var orderDetails = {
+                customer_id: user.user && user.user.user_data ? user.user.user_data.id : null,
+                data: cartItems.cart,
+                shipping_id: selectedAddress.id,
+                address_id: selectedAddress.id,
+                promo_balance: 50,
+                payment_type_id: 6
+            }
+            // console.log('Order Details-', JSON.stringify(orderDetails))
+            this.props.navigation.navigate('PaymentScreen', { orderDetails: orderDetails });
         }
     }
 
@@ -140,7 +151,7 @@ class AddressListScreen extends React.Component {
                         data ?
                             <Ripple
                                 style={Styles.buyButton}
-                                onPress={(e) => this.moveToPay(e)}
+                                onPress={() => this.moveToPay()}
                             >
                                 <Text style={Styles.btnText}>Select Address</Text>
                             </Ripple>

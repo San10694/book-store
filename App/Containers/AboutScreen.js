@@ -14,7 +14,7 @@ export default class AboutScreen extends Component {
           <Image source={Images.burdon} style={styles.imageContainer} /></View>
 
         <View style={{ padding: 20 }}>
-          <Text style={styles.title}>About Us</Text>
+          <Text style={styles.title}>ABOUT US</Text>
           <Text style={styles.subTitle}>BOOKSTORE is a design-minded, multi-disciplinary brand offering objects, events, and experiences related to books and reading.</Text>
           <Text style={styles.titleSub}>OUR PHILOSOPHY</Text>
           <Text style={styles.subTitle}>Some people like to read on a screen. Other people need the variety and artistry, the sight, smell, and feel of actual books.They love seeing them on their shelves; they love having shelves for them.</Text>
@@ -29,6 +29,15 @@ export default class AboutScreen extends Component {
 
 </Text>
           <Text style={styles.subTitle}>These are the people we're working for.</Text>
+          <Text style={styles.titleSub}>CONTACT US</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.subTitle}>Email:</Text>
+            <Text style={styles.contactTitle}>xyz@gmail.com</Text>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={styles.subTitle}>Contact Number:</Text>
+            <Text style={styles.contactTitle}>1234567890</Text>
+          </View>
         </View>
       </ScrollView>
     );
@@ -55,5 +64,6 @@ const styles = StyleSheet.create({
     color: Colors.primary,
     paddingTop: 20, paddingBottom: 10
   },
-  subTitle: { fontSize: Fonts.size.regular, color: Colors.product.Text, textAlign: 'auto', paddingBottom: 5 }
+  subTitle: { fontSize: Fonts.size.regular, color: Colors.product.Text, textAlign: 'auto', paddingBottom: 5 },
+  contactTitle: { fontSize: Fonts.size.regular, color: Colors.primary, textAlign: 'auto', paddingBottom: 5 }
 });

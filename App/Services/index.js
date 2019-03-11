@@ -234,9 +234,14 @@ const Api = () => {
     const formData = new FormData();
     formData.append('key', 'A123456789');
     formData.append('customer_id', id);
-    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    //api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
-    return api.post(endPoints.order_list, formData)
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data; charset=utf-8;"
+      }
+    };
+    return api.post(endPoints.order_list, formData, config)
       .catch((error) => {
         if (error && error.response) {
           const { data } = error.response;
@@ -246,11 +251,16 @@ const Api = () => {
 
 
   const getOrderDetail = (id) => {
-    //console.log('id', endPoints.product_detail + `${id}`);
+    console.log('id', endPoints.order_detail + `${id}`);
     const formData = new FormData();
     formData.append('key', 'A123456789');
     api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data; charset=utf-8;"
+    //   }
+    // };
     return api.post(endPoints.order_detail + `${id}`, formData)
       .catch((error) => {
         if (error && error.response) {
@@ -260,20 +270,25 @@ const Api = () => {
   }
 
 
-  const orderPlace = (data) => {
-    //console.log('id', endPoints.product_detail + `${id}`);
-    const formData = new FormData();
+  const orderPlace = (orderDetails) => {
+    //console.log('orderPlace -', JSON.stringify(orderDetails));
+    let data = orderDetails;
+    let formData = new FormData();
     formData.append('key', 'A123456789');
     formData.append('customer_id', data.customer_id);
-    formData.append('data', data.data);
+    formData.append('data', JSON.stringify(data.data));
     formData.append('shipping_id', data.shipping_id);
     formData.append('address_id', data.address_id);
     formData.append('promo_balance', data.promo_balance);
     formData.append('payment_type_id', data.payment_type_id);
-    api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-    console.log("API -", api.defaults);
-    return api.post(endPoints.order_place, formData)
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data; charset=utf-8;"
+      }
+    };
+    return api.post(endPoints.order_place, formData, config)
       .catch((error) => {
+        console.log("orderPlace ERROR ", error)
         if (error && error.response) {
           const { data } = error.response;
         }
