@@ -71,7 +71,7 @@ class ProductDetailScreen extends Component {
     }
 
     return (
-      <View style={{ flex: 1, marginBottom: 1 }}>
+      <View style={{ flex: 1 }}>
         <ScrollView style={Styles.productDetailContainer}>
           <View style={Styles.productdetailSubContainer}>
             <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}

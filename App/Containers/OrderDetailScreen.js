@@ -89,6 +89,9 @@ class OrderDetailScreen extends Component {
                         <Text style={styleSheet.listItem}>Order Date : {Moment(orderDetails.sale_datetime).format('DD-MMM-YYYY')}</Text>
                         <Text style={styleSheet.listItem}>Delivery Status : {orderDetails.delivery_status}</Text>
                         <View>
+                            <Text style={styleSheet.Price}>Total : {Constants.rupee}{orderDetails.total}</Text>
+                        </View>
+                        <View>
                             <Text style={styleSheet.Price}>Grand Total : {Constants.rupee}{orderDetails.grand_total}</Text>
                         </View>
                     </View>
