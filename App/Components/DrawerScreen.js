@@ -22,7 +22,7 @@ const menuItems =
   [{ 'title': 'SHOP', 'route': 'Home' },
   { 'title': 'CATEGORY', 'route': 'Categories' },
   { 'title': 'ABOUT US', 'route': 'AboutScreen' },
-  { 'title': 'CONTACT', 'route': 'ContactScreen' },
+    // { 'title': 'CONTACT', 'route': 'ContactScreen' },
     //{ 'title': 'SETTING', 'route': 'Profile' },
     //{ 'title': 'LOGIN', 'route': 'LoginScreen' },
   ]
