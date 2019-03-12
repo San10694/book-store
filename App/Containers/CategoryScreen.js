@@ -3,6 +3,7 @@ import { Text, View, ScrollView, Image } from "react-native";
 import { Colors, Images } from "../Themes";
 import Styles from './Styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 import { getCategories } from "../Redux/ProductRedux";
 import { connect } from 'react-redux';
 import Api from "../Services";
@@ -37,7 +38,8 @@ class CategoryScreen extends Component {
                                         <Icon size={40} name={item.icon} color={Colors.primary} />
                                     </View>
                                     <Text style={Styles.categoryName}>{item.name}</Text>
-                                    <Icon size={20} name="chevron-right" color={Colors.lightgrey} style={Styles.categoryBackIcon} />
+                                    <Ionicon size={20} name="ios-arrow-forward" color={Colors.lightgrey}
+                                        style={Styles.categoryBackIcon} />
                                 </View>
 
                             </Ripple>

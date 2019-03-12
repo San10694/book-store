@@ -52,9 +52,16 @@ const styleSheet = StyleSheet.create({
     cardSectionContainer: {
         backgroundColor: Colors.background,
         margin: 10,
-        padding: 10,
+        padding: 5,
         borderRadius: 8,
         width: width * 0.95,
-        height: height * 0.3
+        height: height * 0.30,
+        shadowOffset: {
+            width: 2,
+            height: 3
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.8,
+        shadowColor: Colors.black,
     },
 })

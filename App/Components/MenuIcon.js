@@ -17,14 +17,14 @@ export const MenuIcon = ({ navigation }) => {
     } else {
       return (
         <View style={{ margin: 10 }}>
-          <Icon name="keyboard-backspace" size={25} color={Colors.primary}>
+          <Icon name="arrow-left" size={25} color={Colors.primary}>
           </Icon>
         </View>
       );
     }
   } return (
     <View style={{ margin: 10 }}>
-      <Icon name="keyboard-backspace" size={25} color={Colors.primary}>
+      <Icon name="arrow-left" size={25} color={Colors.primary}>
       </Icon>
     </View>
   );

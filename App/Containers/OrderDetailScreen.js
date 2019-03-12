@@ -47,7 +47,7 @@ class OrderDetailScreen extends Component {
         }
         // console.log(imageUrl + productDetail.image[0].path);
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
                 <ScrollView style={styleSheet.mainContainer}>
                     <View style={{ backgroundColor: Colors.white }}>
                         <FlatList
@@ -81,18 +81,24 @@ class OrderDetailScreen extends Component {
                         <Text>{detail.description}</Text>
                     </View> */}
                     <View style={{
-                        flex: 1, padding: 10, marginTop: 20, backgroundColor: Colors.white, shadowOffset: {
+                        flex: 1,
+                        padding: 10,
+                        marginTop: 20,
+                        backgroundColor: Colors.white,
+                        shadowOffset: {
                             width: 0,
                             height: 2,
                         },
                         shadowRadius: 1,
-                        shadowOpacity: 0.5,
+                        shadowOpacity: 0.5
                     }}>
-                        <View style={{
-                            borderBottomWidth: 1,
-                            borderBottomColor: Colors.charcoal,
-                            marginBottom: 5
-                        }}><Text style={styleSheet.Title}>Order Summary</Text></View>
+                        <View
+                            style={{
+                                borderBottomWidth: 1,
+                                borderBottomColor: Colors.charcoal,
+                                marginBottom: 5
+                            }}><Text style={styleSheet.Title}>Order Summary</Text>
+                        </View>
                         < Text style={styleSheet.listItem}>Shipping Address : {orderDetails.shipping_address}</Text>
                         <Text style={styleSheet.listItem}>Order Id : {orderDetails.order_no}</Text>
                         <Text style={styleSheet.listItem}>Order Date : {Moment(orderDetails.sale_datetime).format('DD-MMM-YYYY')}</Text>
@@ -143,7 +149,11 @@ const styleSheet = StyleSheet.create({
         paddingHorizontal: 6,
         paddingVertical: 12
     },
-    mainContainer: { padding: 10, position: 'relative', height: Dimensions.get('screen').height * .88 },
+    mainContainer: {
+        padding: 10,
+        position: 'relative',
+        height: Dimensions.get('screen').height * .88
+    },
     ItemContainer: {
         flex: 1,
         flexDirection: 'row',

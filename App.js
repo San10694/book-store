@@ -5,10 +5,8 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import Navigation from "./App/Navigation/AppNavigation";
 import configureStore from "./App/Redux/ConfigureStore";
-//import SplashScreen from 'react-native-smart-splash-screen';
 import SplashScreen from 'react-native-splash-screen'
 import firebase from 'react-native-firebase';
-
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const store = configureStore();
@@ -24,14 +22,8 @@ export default class App extends Component {
     // do stuff while splash screen is shown
     // After having done stuff (such as async tasks) hide the splash screen
     SplashScreen.hide();
-    //SplashScreen.close(SplashScreen.animationType.scale, 850, 500)
-    // SplashScreen.close({
-    //   animationType: SplashScreen.animationType.scale,
-    //   duration: 850,
-    //   delay: 500,
-    // })
   }
-  //1
+
   async checkPermission() {
     const enabled = await firebase.messaging().hasPermission();
     if (enabled) {

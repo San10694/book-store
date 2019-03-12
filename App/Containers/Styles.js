@@ -20,13 +20,16 @@ export default {
         top: 10
     },
     imgContainer: {
-        width: width * 0.45,
-        height: 100,
-        position: 'relative'
+        // width: width * 0.45,
+        // height: 100,
+        // width: width * 0.95,
+        // height: height * 0.30,
+        position: 'relative',
+
     },
     bookImg: {
-        width: width * 0.90,
-        height: height * 0.27,
+        width: width * 0.93,
+        height: height * 0.285,
         // top: 25,
         // left: 70,
         //position: 'absolute',
@@ -173,7 +176,7 @@ export default {
 
 
     ///category screen
-    categoryscnContainer: { borderBottomColor: Colors.primary, borderBottomWidth: 1 },
+    categoryscnContainer: { borderBottomColor: Colors.primary, borderBottomWidth: .5 },
     categorySubContainer: { flexDirection: 'row', padding: 20, flex: 1 },
     categoryIcon: { width: 40, height: 40, flex: .2 },
     categoryName: { flex: .7, paddingTop: 10, fontWeight: '500' },
@@ -196,7 +199,12 @@ export default {
 
     // product detail screen
 
-    productDetailContainer: { backgroundColor: Colors.white, padding: 10, position: 'relative', height: Dimensions.get('screen').height * .88 },
+    productDetailContainer: {
+        backgroundColor: Colors.white,
+        padding: 10,
+        position: 'relative',
+        height: height * .88
+    },
     productdetailSubContainer: {
         backgroundColor: 'transparent',
         width: width * 0.6,
@@ -204,12 +212,14 @@ export default {
         alignSelf: 'center',
         marginBottom: 10,
         marginTop: 20,
+        borderRadius: 5,
     },
     ProductDetailImg: {
         width: width * 0.65,
         height: height * 0.45,
+        borderRadius: 5,
     },
-    productDetailFav: { position: 'absolute', top: 6, right: 1 },
+    productDetailFav: { position: 'absolute', top: 6, right: 6 },
     productPriceContainer: { marginTop: 10, alignItems: 'center' },
     productDescription: { margin: 10, alignSelf: 'center' },
 
@@ -253,8 +263,10 @@ export default {
     },
     btnText: { color: Colors.white },
     BuyContainer: {
-        flexDirection: 'row', position: 'absolute', bottom: 0, shadowColor: Colors.lightgrey,
-
+        flexDirection: 'row',
+        position: 'absolute',
+        bottom: 0,
+        shadowColor: Colors.lightgrey,
         shadowOffset: {
             width: 2,
             height: 3

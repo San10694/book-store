@@ -12,7 +12,7 @@ import {
 import { DrawerActions } from "react-navigation";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
-import { Colors } from '../Themes'
+import { Colors, Fonts } from '../Themes'
 import { connect } from "react-redux";
 import { logout } from "../Redux/UserRedux";
 
@@ -171,9 +171,11 @@ const styles = StyleSheet.create({
     width: 300,
   },
   textItem: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "400",
-    color: Colors.black
+    color: Colors.black,
+    fontFamily: Fonts.type.gotham_medium,
+
   }
 });
 

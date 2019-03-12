@@ -71,7 +71,7 @@ class ProductDetailScreen extends Component {
     }
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
         <ScrollView style={Styles.productDetailContainer}>
           <View style={Styles.productdetailSubContainer}>
             <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
@@ -82,10 +82,7 @@ class ProductDetailScreen extends Component {
                   this.setState({ isFavourite: !this.state.isFavourite })
                   this.props.removeWishListItem(productDetail)
                 }}>
-
                 <Icon name='heart' size={25} color={Colors.error} />
-
-
               </Ripple>
               :
               <Ripple style={Styles.productDetailFav}
@@ -94,7 +91,6 @@ class ProductDetailScreen extends Component {
                   this.props.addWishListItem(productDetail)
                 }}>
                 <Icon name='heart' size={25} color={Colors.primary} />
-
               </Ripple>
             }
           </View>

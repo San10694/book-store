@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, ScrollView, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
 import { getRestaurantList } from "../Redux/ListRedux";
 import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
@@ -115,8 +116,7 @@ class HomeScreen extends Component {
                     </View>
                     <View style={Styles.advrContainer}>
                       <Text style={Styles.boldText}>{item.name}</Text>
-                      <Icon name='arrow-right' size={25} color={Colors.background} />
-
+                      <MaterialCommunityIcon name='arrow-right' size={25} color={Colors.background} />
                     </View>
                   </CardSection>
                 </Card>

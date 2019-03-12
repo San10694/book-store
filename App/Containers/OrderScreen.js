@@ -47,7 +47,7 @@ class OrderScreen extends Component {
             return <ActivityIndicator isFetching={isFetching} />
         }
         return (
-            <View>
+            <View style={{ backgroundColor: Colors.lightGrey }}>
                 <ScrollView style={styles.Container}>
                     <FlatList
                         data={orderList}

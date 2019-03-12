@@ -100,16 +100,17 @@ class AddressListScreen extends React.Component {
 
 
         return (
-            <ScrollView>
+            <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
                 <View>
                     <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
-                        <TouchableOpacity style={{ backgroundColor: Colors.primary }} onPress={() => this.props.navigation.navigate('AddAddressScreen')}>
+                        <TouchableOpacity style={{ backgroundColor: Colors.primary, borderRadius: 5 }}
+                            onPress={() => this.props.navigation.navigate('AddAddressScreen')}>
                             <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.white }}>Add New Address</Text>
                         </TouchableOpacity>
                     </View>
 
-                    <View style={{ marginBottom: 20 }}>
+                    <View style={{ marginBottom: 20, backgroundColor: Colors.white }}>
                         <RadioGroup
                             size={24}
                             thickness={2}
@@ -122,9 +123,17 @@ class AddressListScreen extends React.Component {
                             {data ? data.map((item, index) => {
                                 return (
                                     <RadioButton value={item.name} key={item.id}>
-                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: 10, marginBottom: 10 }}>
+                                        <View style={{
+                                            flexDirection: 'row',
+                                            justifyContent: 'space-between',
+                                            marginLeft: 10,
+                                            marginBottom: 10,
+                                            borderBottomWidth: 0.5,
+                                            borderColor: "#d6d7da",
+                                            paddingBottom: 10
+                                        }}>
                                             <View style={{ width: '80%' }}>
-                                                <Text>{item.name},</Text>
+                                                <Text style={{ fontWeight: 'bold' }}>{item.name},</Text>
                                                 <Text>{item.address}</Text>
                                                 <Text>{item.city},{item.state},{item.country},</Text>
                                                 <Text>{item.mobile},{item.pincode}</Text>
@@ -136,7 +145,7 @@ class AddressListScreen extends React.Component {
                                                 alignItems: 'center',
                                             }}>
                                                 <TouchableOpacity onPress={(e) => this.deleteAddressData(e, item.id)}>
-                                                    <Icon name='trash-o' size={25} color={Colors.lightgrey} />
+                                                    <Icon name='trash-o' size={25} color={Colors.primary} />
                                                 </TouchableOpacity>
                                             </View>
                                         </View>

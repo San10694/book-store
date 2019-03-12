@@ -16,7 +16,7 @@ class WishListScreen extends Component {
         const { wishList } = this.props;
         if (wishList.wishListItems.length == 0) {
             return <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
-                <Text style={{ fontSize: 18, fontWeight: '600' }}>Wish List is empty </Text>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>Wish List is empty </Text>
             </View>
         }
         return (

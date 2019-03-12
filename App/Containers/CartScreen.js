@@ -133,7 +133,7 @@ class CartScreen extends Component {
         console.log("Cart Items - ", cartItems)
         if (cartItems.cart.length == 0) {
             return <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
-                <Text style={{ fontSize: 18, fontWeight: '600' }}>Your Cart is empty </Text>
+                <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>Your Cart is empty </Text>
                 {/* <Ripple
                     style={{
                         width: 100,
@@ -171,15 +171,17 @@ class CartScreen extends Component {
                                         <View style={{
                                             flex: .3, width: 85, height: 85, marginRight: 5,
                                         }}>
-                                            <Image source={{ uri: item.image ? Constants.IMAGE_URL + item.image[0].path : null }} style={{
-                                                width: 85, height: 85, borderWidth: 3,
-                                                borderColor: Colors.lightGrey
-                                            }} />
+                                            <Image source={{ uri: item.image ? Constants.IMAGE_URL + item.image[0].path : null }}
+                                                style={{
+                                                    width: 85, height: 85,
+                                                    borderWidth: 1,
+                                                    borderColor: Colors.lightGrey
+                                                }} />
                                         </View>
                                         <View style={{ flex: .75, position: 'relative' }}>
-                                            <Text style={{ paddingLeft: 7, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
-                                            <Text style={{ padding: 10, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>{Constants.rupee}{item.sale_price}</Text>
-                                            <Ripple onPress={() => this.deleteToCart(item)} >
+                                            <Text style={{ paddingLeft: 8, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
+                                            <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>{Constants.rupee}{item.sale_price}</Text>
+                                            <Ripple style={{ paddingLeft: 8 }} onPress={() => this.deleteToCart(item)} >
                                                 <Icon name='trash-o' size={25} color={Colors.lightgrey} />
                                             </Ripple>
                                         </View>
