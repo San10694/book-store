@@ -29,21 +29,21 @@ build/
 .gradle
 local.properties
 *.iml
-# /android/
+/android/
 # Android
-# .idea
-# .gradle
+.idea
+.gradle
 # local.properties
 # *.iml
 # /android/
 # build/
-# android/.project
-# android/.gradle
-# android/.settings/
-# android/app/.classpath
-# android/app/.project
-# android/app/.settings/
-# android/.project
+android/.project
+android/.gradle
+android/.settings/
+android/app/.classpath
+android/app/.project
+android/app/.settings/
+android/.project
 # package-lock.json
 # .history/
 
