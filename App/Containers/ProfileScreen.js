@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 
 
 const menuItems =
-  [{ 'title': 'Cart', 'route': 'CartScreen' },
-  // { 'title': 'My Orders', 'route': 'OrderScreen' },
+  [{ 'title': 'My Account', 'route': 'Profile' },
+  { 'title': 'Cart', 'route': 'CartScreen' },
   { 'title': 'WishList', 'route': 'WishListScreen' },
   // { 'title': 'Contact Us', 'route': 'ContactScreen' },
   // { 'title': 'Privacy Polices', 'route': 'PrivacyScreen' },
