@@ -194,8 +194,8 @@ class RegistrationScreen extends Component {
                                     onPress={(e) => {
                                         if (!this.state.numberValidate || !this.state.nameValidate || !this.state.emailValidate) {
                                             Alert.alert(
-                                                'Please Filled All Fields',
-                                                'All Field is required and should be Validate',
+                                                '',
+                                                'Please fill all the inputs',
                                                 [
                                                     {
                                                         text: 'Cancel',

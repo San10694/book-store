@@ -161,8 +161,8 @@ class LoginScreen extends Component {
                                 onPress={(e) => {
                                     if (!this.state.valid) {
                                         Alert.alert(
-                                            'Please',
-                                            'Enter Your Valid Number',
+                                            '',
+                                            'Please enter Your Valid Mobile Number',
                                             [
                                                 {
                                                     text: 'Cancel',
@@ -184,7 +184,7 @@ class LoginScreen extends Component {
                         </View>
                         <ActivityIndicator isFetching={isLoading} />
                         <TouchableOpacity onPress={() => { this.props.navigation.navigate('RegistrationScreen') }}>
-                            <Text style={{ textAlign: 'center', paddingTop: 40, color: Colors.primary }}>Don't have an Account? Create one.</Text>
+                            <Text style={{ textAlign: 'center', paddingTop: 40, color: Colors.primary }}>Don't have an Account? Sign up.</Text>
                         </TouchableOpacity>
 
                     </ScrollView>
