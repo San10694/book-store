@@ -33,6 +33,7 @@ import OrderDetailScreen from '../Containers/OrderDetailScreen';
 import PaymentScreen from '../Containers/PaymentScreen';
 import TermsScreen from '../Containers/TermsScreen';
 import PrivacyScreen from '../Containers/PrivacyScreen';
+import MyAccount from "../Containers/MyAccountScreen";
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -196,6 +197,15 @@ hile using the drawer navigator inside stack navigator.*/
       screen: PaymentScreen,
       navigationOptions: {
         title: "Payment"
+      }
+    },
+
+    MyAccount: {
+      name: "MyAccount",
+      description: "MyAccount",
+      screen: MyAccount,
+      navigationOptions: {
+        title: "My Account"
       }
     },
 

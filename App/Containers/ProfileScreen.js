@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 
 
 const menuItems =
-  [{ 'title': 'My Account', 'route': 'Profile' },
-  { 'title': 'Cart', 'route': 'CartScreen' },
-  { 'title': 'WishList', 'route': 'WishListScreen' },
-  // { 'title': 'Contact Us', 'route': 'ContactScreen' },
-  // { 'title': 'Privacy Polices', 'route': 'PrivacyScreen' },
-  // { 'title': 'Terms & Conditions', 'route': 'TermsScreen' },
-  { 'title': 'About Us', 'route': 'AboutScreen' },
+  [
+    { 'title': 'Cart', 'route': 'CartScreen' },
+    { 'title': 'WishList', 'route': 'WishListScreen' },
+    // { 'title': 'Contact Us', 'route': 'ContactScreen' },
+    // { 'title': 'Privacy Polices', 'route': 'PrivacyScreen' },
+    // { 'title': 'Terms & Conditions', 'route': 'TermsScreen' },
+    { 'title': 'About Us', 'route': 'AboutScreen' },
   ]
 class ProfileScreen extends Component {
 
@@ -76,16 +76,27 @@ class ProfileScreen extends Component {
           <View style={{ backgroundColor: Colors.white }}>
 
             {user && this.props.user.isLoggedIn ?
-              <Ripple style={styles.menuItem}
-                onPress={() => {
-                  this.props.navigation.navigate("OrderScreen");
-                }}
-              >
-                <Text style={styles.textItem}>
-                  My Orders
+              <View>
+                <Ripple style={styles.menuItem}
+                  onPress={() => {
+                    this.props.navigation.navigate("MyAccount");
+                  }}
+                >
+                  <Text style={styles.textItem}>
+                    My Account
                   </Text>
-              </Ripple> :
-              <View></View>
+                </Ripple>
+                <Ripple style={styles.menuItem}
+                  onPress={() => {
+                    this.props.navigation.navigate("OrderScreen");
+                  }}
+                >
+                  <Text style={styles.textItem}>
+                    My Orders
+               </Text>
+                </Ripple>
+              </View> : null
+
             }
             {menuItems.map((item, index) => {
               return (
