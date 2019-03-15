@@ -104,6 +104,7 @@ class LoginScreen extends Component {
                                         onChangeText={(mobile) => this.validate(mobile, 'phn')}
                                         value={this.state.mobile}
                                         style={[{
+                                            paddingLeft: 10,
                                             height: 50,
                                             borderRadius: 5,
                                             width: Dimensions.get('screen').width * .88

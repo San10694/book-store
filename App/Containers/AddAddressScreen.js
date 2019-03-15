@@ -271,7 +271,7 @@ class AddAdressScreen extends Component {
                     <ScrollView
                         style={{ backgroundColor: Colors.white, marginTop: 20, marginBottom: 20 }}
                         contentContainerStyle={styles.container}>
-                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "padding"} enabled>
+                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "padding"} enabled>
 
                             <View>
                                 <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Enter Address</Text>
@@ -305,6 +305,7 @@ class AddAdressScreen extends Component {
                                             onChangeText={(name) => this.validate(name, 'name')}
                                             value={this.state.name}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -323,6 +324,7 @@ class AddAdressScreen extends Component {
                                             keyboardType='email-address'
                                             value={this.state.email}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -340,6 +342,7 @@ class AddAdressScreen extends Component {
                                             value={this.state.other}
                                             style={[{
                                                 height: 50,
+                                                paddingLeft: 10,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
                                             }, !this.state.otherValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
@@ -355,6 +358,7 @@ class AddAdressScreen extends Component {
                                             onChangeText={(city) => this.validate(city, 'city')}
                                             value={this.state.city}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -372,6 +376,7 @@ class AddAdressScreen extends Component {
                                             onChangeText={(state) => this.validate(state, 'state')}
                                             value={this.state.state}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -390,6 +395,7 @@ class AddAdressScreen extends Component {
 
                                             value={this.state.address}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -408,6 +414,7 @@ class AddAdressScreen extends Component {
 
                                             value={this.state.country}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -426,6 +433,7 @@ class AddAdressScreen extends Component {
 
                                             value={this.state.mobile}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -444,6 +452,7 @@ class AddAdressScreen extends Component {
                                             keyboardType="numeric"
                                             value={this.state.pincode}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
