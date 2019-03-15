@@ -37,7 +37,7 @@ class PaymentScreen extends Component {
                 canceLabel: false,
             });
         } else {
-            api.orderPlace(this.state.orderDetails).then(response => {
+            api.orderPlacePayment(this.state.orderDetails).then(response => {
                 console.log("orderPlace Response --", response);
                 this.props.clearCartItem()
                 this.props.navigation.push('OrderScreen');
