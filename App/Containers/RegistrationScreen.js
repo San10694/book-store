@@ -144,6 +144,7 @@ class RegistrationScreen extends Component {
                                             onChangeText={(name) => this.validate(name, 'name')}
                                             value={this.state.name}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -162,6 +163,7 @@ class RegistrationScreen extends Component {
                                             onChangeText={(email) => this.validate(email, 'email')}
                                             value={this.state.email}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88
@@ -179,6 +181,7 @@ class RegistrationScreen extends Component {
                                             onChangeText={(mobile) => this.validate(mobile, 'phn')}
                                             value={this.state.mobile}
                                             style={[{
+                                                paddingLeft: 10,
                                                 height: 50,
                                                 borderRadius: 5,
                                                 width: Dimensions.get('screen').width * .88

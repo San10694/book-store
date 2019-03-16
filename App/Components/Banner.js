@@ -62,6 +62,6 @@ const styleSheet = StyleSheet.create({
         },
         shadowRadius: 10,
         shadowOpacity: 0.8,
-        shadowColor: Colors.black,
+        shadowColor: Colors.lightGrey,
     },
 })

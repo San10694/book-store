@@ -80,6 +80,7 @@ class OtpScreen extends Component {
                                         onChangeText={(otp) => this.validate(otp)}
                                         value={this.state.otp}
                                         style={[{
+                                            paddingLeft: 10,
                                             height: 50,
                                             borderRadius: 5,
                                             width: Dimensions.get('screen').width * .88
