@@ -15,6 +15,7 @@ export default class AboutScreen extends Component {
 
         <View style={{ padding: 20 }}>
           <Text style={styles.title}>ABOUT US</Text>
+          <Text style={styles.title}>ABOUT US</Text>
           <Text style={styles.subTitle}>BOOKSTORE is a design-minded, multi-disciplinary brand offering objects, events, and experiences related to books and reading.</Text>
           <Text style={styles.titleSub}>OUR PHILOSOPHY</Text>
           <Text style={styles.subTitle}>Some people like to read on a screen. Other people need the variety and artistry, the sight, smell, and feel of actual books.They love seeing them on their shelves; they love having shelves for them.</Text>
