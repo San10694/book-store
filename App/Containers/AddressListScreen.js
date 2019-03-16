@@ -81,9 +81,10 @@ class AddressListScreen extends React.Component {
             //     payment_type_id: 6
             // }
             var orderDetails = {
-                customer_id: 11,
-                data: cartItems.cart,
-                shipping_id: selectedAddress.id,
+                key: 'A123456789',
+                customer_id: 7,
+                data: [{ "product_id": "40", "quantity": "2" }, { "product_id": "39", "quantity": "2" }],//cartItems.cart,
+                //shipping_id: selectedAddress.id,
                 address_id: 52,
                 promo_id: 18,
                 // payment_type_id: 6

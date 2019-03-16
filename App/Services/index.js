@@ -25,7 +25,7 @@ const Api = () => {
     order_list: '/api/myorders',
     order_detail: '/api/order_details/',
     order_place: '/api/order_place',
-    order_place_payment: 'order_place_payment'
+    order_place_payment: '/api/request'
   };
 
   const api = axios.create({
@@ -297,13 +297,12 @@ const Api = () => {
   }
 
   const orderPlacePayment = (orderDetails) => {
-    //console.log('orderPlace -', JSON.stringify(orderDetails));
     let data = orderDetails;
     let formData = new FormData();
     formData.append('key', 'A123456789');
     formData.append('customer_id', data.customer_id);
     formData.append('data', JSON.stringify(data.data));
-    formData.append('shipping_id', data.shipping_id);
+    //formData.append('shipping_id', data.shipping_id);
     formData.append('address_id', data.address_id);
     formData.append('promo_id', data.promo_id);
     //formData.append('payment_type_id', data.payment_type_id);
@@ -312,6 +311,7 @@ const Api = () => {
         "Content-Type": "multipart/form-data; charset=utf-8;"
       }
     };
+    console.log("orderPlacePayment API  ", api.defaults)
     return api.post(endPoints.order_place_payment, formData, config)
       .catch((error) => {
         console.log("orderPlace ERROR ", error)
