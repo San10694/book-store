@@ -51,6 +51,9 @@
 		72735C01144A4E28A690E79E /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93D2E5FA984043E7AC2F7FB2 /* EvilIcons.ttf */; };
 		762B382B2233AD71009C5A88 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B37F42233ACD6009C5A88 /* libRNFirebase.a */; };
 		7692F3162233CA9600D77232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7692F2ED2233CA9600D77232 /* GoogleService-Info.plist */; };
+		769E6296223ED10A00EA4B69 /* libRNSnackbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6295223ED0F000EA4B69 /* libRNSnackbar.a */; };
+		769E6297223ED11200EA4B69 /* libRazorpayCheckout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6267223ED05300EA4B69 /* libRazorpayCheckout.a */; };
+		769E629A223ED37F00EA4B69 /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6298223ED37F00EA4B69 /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7CED1691A6634E938719CAE6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DD033B1418844448F6BEE88 /* SimpleLineIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		929937FD500A4B6CA8DC5653 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A3D4506CC564D0080586131 /* Octicons.ttf */; };
@@ -337,6 +340,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		769E6266223ED05300EA4B69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 769E6261223ED05300EA4B69 /* RazorpayCheckout.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RazorpayCheckout;
+		};
+		769E6294223ED0F000EA4B69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 769E6290223ED0F000EA4B69 /* RNSnackbar.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4114DC4C1C187C3A003CD988;
+			remoteInfo = RNSnackbar;
+		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -359,6 +376,20 @@
 			remoteInfo = RCTBlob;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		769E629B223ED37F00EA4B69 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				769E629A223ED37F00EA4B69 /* Razorpay.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -403,6 +434,9 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6B4A6BC267E7612D6C75B873 /* Pods-BookStore-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookStore-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BookStore-tvOS/Pods-BookStore-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		7692F2ED2233CA9600D77232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../keystore-book-store/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		769E6261223ED05300EA4B69 /* RazorpayCheckout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RazorpayCheckout.xcodeproj; path = "../node_modules/react-native-razorpay/ios/RazorpayCheckout.xcodeproj"; sourceTree = "<group>"; };
+		769E6290223ED0F000EA4B69 /* RNSnackbar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSnackbar.xcodeproj; path = "../node_modules/react-native-snackbar/ios/RNSnackbar.xcodeproj"; sourceTree = "<group>"; };
+		769E6298223ED37F00EA4B69 /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Razorpay.framework; path = "../node_modules/react-native-razorpay/ios/Razorpay.framework"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A3564681EC24C21B1C67D36 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		7DD033B1418844448F6BEE88 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -436,6 +470,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769E6297223ED11200EA4B69 /* libRazorpayCheckout.a in Frameworks */,
+				769E6296223ED10A00EA4B69 /* libRNSnackbar.a in Frameworks */,
 				762B382B2233AD71009C5A88 /* libRNFirebase.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -647,6 +683,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		769E6262223ED05300EA4B69 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				769E6267223ED05300EA4B69 /* libRazorpayCheckout.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		769E6291223ED0F000EA4B69 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				769E6295223ED0F000EA4B69 /* libRNSnackbar.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,6 +741,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				769E6298223ED37F00EA4B69 /* Razorpay.framework */,
+				769E6290223ED0F000EA4B69 /* RNSnackbar.xcodeproj */,
+				769E6261223ED05300EA4B69 /* RazorpayCheckout.xcodeproj */,
 				7692F2ED2233CA9600D77232 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* BookStore */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -792,6 +847,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				769E629B223ED37F00EA4B69 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -880,6 +936,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 769E6262223ED05300EA4B69 /* Products */;
+					ProjectRef = 769E6261223ED05300EA4B69 /* RazorpayCheckout.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -930,6 +990,10 @@
 				{
 					ProductGroup = 762B37F02233ACD6009C5A88 /* Products */;
 					ProjectRef = 925EC790DF484DA38B325E92 /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = 769E6291223ED0F000EA4B69 /* Products */;
+					ProjectRef = 769E6290223ED0F000EA4B69 /* RNSnackbar.xcodeproj */;
 				},
 				{
 					ProductGroup = 762B37B42233ACCE009C5A88 /* Products */;
@@ -1206,6 +1270,20 @@
 			remoteRef = 762B37F32233ACD6009C5A88 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		769E6267223ED05300EA4B69 /* libRazorpayCheckout.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRazorpayCheckout.a;
+			remoteRef = 769E6266223ED05300EA4B69 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		769E6295223ED0F000EA4B69 /* libRNSnackbar.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSnackbar.a;
+			remoteRef = 769E6294223ED0F000EA4B69 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1292,7 +1370,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		13679BC69C90AF4E09933AB0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1528,14 +1606,24 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EAD2AA2A140380A47686CAC1 /* Pods-BookStore.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 367D9DC5WL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
+					"$(PROJECT_DIR)/../node_modules/react-native-razorpay/ios/",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-razorpay/ios/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-snackbar/ios/",
 				);
 				INFOPLIST_FILE = BookStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1554,13 +1642,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB818611CD509A8C73365656 /* Pods-BookStore.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 367D9DC5WL;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleAppMeasurement/Frameworks\"",
+					"$(PROJECT_DIR)/../node_modules/react-native-razorpay/ios/",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-razorpay/ios/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-snackbar/ios/",
 				);
 				INFOPLIST_FILE = BookStore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
