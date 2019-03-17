@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Alert, WebView, Linking } from "react-native";
+import { StyleSheet, Text, View, Alert, Linking, WebView } from "react-native";
 import { Colors } from "../Themes";
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import Styles from './Styles';
@@ -7,6 +7,7 @@ import Api from "../Services";
 import Ripple from "react-native-material-ripple";
 import { clearCartItem } from '../Redux/CartRedux';
 import { connect } from 'react-redux';
+// import { WebView } from "react-native-webview";
 
 const api = Api.Api();
 
@@ -84,27 +85,6 @@ class PaymentScreen extends Component {
         return str;
     }
 
-    // componentDidMount() {
-    //     const { orderDetails } = this.state
-    //     console.log('this.state.orderDetails -', orderDetails);
-    //     let formData = new FormData();
-    //     formData.append('key', 'A123456789');
-    //     formData.append('customer_id', 7);
-    //     formData.append('data', JSON.stringify(orderDetails.data));
-    //     formData.append('address_id', 52);
-    //     formData.append('promo_id', 18);
-    //     this.setState({
-    //         source: {
-    //             uri: 'http://68.183.94.56/api/payment',
-    //             headers: {
-    //                 "content-type": "application/x-www-form-urlencoded"
-    //             },
-    //             body: JSON.stringify(formData),//this.state.orderDetails.toString('utf8'),
-    //             method: 'POST'
-    //         }
-    //     })
-
-    // }
 
     _onNavigationStateChange(webViewState) {
         console.log("webViewState ", webViewState)
@@ -148,7 +128,7 @@ class PaymentScreen extends Component {
     render() {
         const uri = 'http://68.183.94.56/api/payment/' + this.state.ref_id;
         console.log("this.state.URI ", uri)
-        let jsCode = `!function(){var e=function(e,n,t){if(n=n.replace(/^on/g,""),"addEventListener"in window)e.addEventListener(n,t,!1);else if("attachEvent"in window)e.attachEvent("on"+n,t);else{var o=e["on"+n];e["on"+n]=o?function(e){o(e),t(e)}:t}return e},n=document.querySelectorAll("a[href]");if(n)for(var t in n)n.hasOwnProperty(t)&&e(n[t],"onclick",function(e){new RegExp("^https?://"+location.host,"gi").test(this.href)||(e.preventDefault(),console.log(this.href),window.postMessage(JSON.stringify({external_url_open:this.href})))})}();`
+        let jsCode = `!function(){var e=function(e,n,t){if(n=n.replace(/^on/g,""),"addEventListener"in window)e.addEventListener(n,t,!1);else if("attachEvent"in window)e.attachEvent("on"+n,t);else{var i=e["on"+n];e["on"+n]=i?function(e){i(e),t(e)}:t}return e},n=document.querySelectorAll("a[href]");if(n)for(var t in n)n.hasOwnProperty(t)&&e(n[t],"onclick",function(e){new RegExp("^https?://"+location.host,"gi").test(this.href)||(e.preventDefault(),window.postMessage(JSON.stringify({external_url_open:this.href})))})}();`
         if (this.state.ref_id) {
             return <WebView
                 // userAgent="Mobile"
@@ -157,14 +137,14 @@ class PaymentScreen extends Component {
                 // mixedContentMode={"always"}
                 // allowUniversalAccessFromFileURLs={true}
                 // domStorageEnabled={true}
-                // startInLoadingState={true}
-                source={{ uri: uri }}
+                startInLoadingState={true}
+                source={{ uri: 'https://www.google.com' }}
                 onLoadEnd={(data) => this.onLoadEnd(data)}
                 onNavigationStateChange={(webViewState) => this._onNavigationStateChange(webViewState)}
                 onError={console.error.bind(console, 'error')}
                 javaScriptEnabled={true}
                 onMessage={this.onMessage.bind(this)}
-                injectedJavaScript={patchPostMessageJsCode}
+                injectedJavaScript={jsCode}
             // style={{ marginTop: 20 }}
             />
         }
