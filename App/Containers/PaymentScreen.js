@@ -10,6 +10,19 @@ import { connect } from 'react-redux';
 
 const api = Api.Api();
 
+const patchPostMessageFunction = function () {
+    var originalPostMessage = window.postMessage;
+    var patchedPostMessage = function (message, targetOrigin, transfer) {
+        originalPostMessage(message, targetOrigin, transfer);
+    };
+    patchedPostMessage.toString = function () {
+        return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
+    };
+    window.postMessage = patchedPostMessage;
+};
+
+const patchPostMessageJsCode = '(' + String(patchPostMessageFunction) + ')();';
+
 const paymentTypes = [
     { selected: false, type: 'Rajor Pay ', value: 'rajor_pay' },
     { selected: false, type: 'Cash on Delivery', value: 'cod' },
@@ -71,35 +84,36 @@ class PaymentScreen extends Component {
         return str;
     }
 
-    componentDidMount() {
-        const { orderDetails } = this.state
-        console.log('this.state.orderDetails -', orderDetails);
-        let formData = new FormData();
-        formData.append('key', 'A123456789');
-        formData.append('customer_id', 7);
-        formData.append('data', JSON.stringify(orderDetails.data));
-        formData.append('address_id', 52);
-        formData.append('promo_id', 18);
-        this.setState({
-            source: {
-                uri: 'http://68.183.94.56/api/payment',
-                headers: {
-                    "content-type": "application/x-www-form-urlencoded"
-                },
-                body: JSON.stringify(formData),//this.state.orderDetails.toString('utf8'),
-                method: 'POST'
-            }
-        })
+    // componentDidMount() {
+    //     const { orderDetails } = this.state
+    //     console.log('this.state.orderDetails -', orderDetails);
+    //     let formData = new FormData();
+    //     formData.append('key', 'A123456789');
+    //     formData.append('customer_id', 7);
+    //     formData.append('data', JSON.stringify(orderDetails.data));
+    //     formData.append('address_id', 52);
+    //     formData.append('promo_id', 18);
+    //     this.setState({
+    //         source: {
+    //             uri: 'http://68.183.94.56/api/payment',
+    //             headers: {
+    //                 "content-type": "application/x-www-form-urlencoded"
+    //             },
+    //             body: JSON.stringify(formData),//this.state.orderDetails.toString('utf8'),
+    //             method: 'POST'
+    //         }
+    //     })
 
-    }
+    // }
 
     _onNavigationStateChange(webViewState) {
         console.log("webViewState ", webViewState)
 
     }
 
-    onLoadEnd(data) {
-        console.log("onLoadEnd ", data)
+    onLoadEnd(event) {
+        console.log("onLoadEnd ", event)
+        event.persist()
 
     }
 
@@ -130,6 +144,7 @@ class PaymentScreen extends Component {
     }
 
 
+
     render() {
         const uri = 'http://68.183.94.56/api/payment/' + this.state.ref_id;
         console.log("this.state.URI ", uri)
@@ -149,7 +164,7 @@ class PaymentScreen extends Component {
                 onError={console.error.bind(console, 'error')}
                 javaScriptEnabled={true}
                 onMessage={this.onMessage.bind(this)}
-                injectedJavaScript={jsCode}
+                injectedJavaScript={patchPostMessageJsCode}
             // style={{ marginTop: 20 }}
             />
         }
