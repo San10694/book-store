@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Alert, WebView } from "react-native";
+import { StyleSheet, Text, View, Alert, WebView, Linking } from "react-native";
 import { Colors } from "../Themes";
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import Styles from './Styles';
@@ -97,27 +97,59 @@ class PaymentScreen extends Component {
         console.log("webViewState ", webViewState)
 
     }
+
     onLoadEnd(data) {
         console.log("onLoadEnd ", data)
 
     }
 
 
+    onMessage(e) {
+        console.log(" onMessage Event ", e)
+        // retrieve event data
+        var data = e.nativeEvent.data;
+        // maybe parse stringified JSON
+        try {
+            data = JSON.parse(data)
+        } catch (e) {
+            console.error("onMessage Error - ", e);
+        }
+        // check if this message concerns us
+        if ('object' == typeof data && data.external_url_open) {
+            // proceed with URL open request
+            return Alert.alert(
+                'External URL',
+                'Do you want to open this URL in your browser?',
+                [
+                    { text: 'Cancel', style: 'cancel' },
+                    { text: 'OK', onPress: () => Linking.openURL(data.external_url_open) },
+                ],
+                { cancelable: false }
+            );
+        }
+    }
+
+
     render() {
         const uri = 'http://68.183.94.56/api/payment/' + this.state.ref_id;
         console.log("this.state.URI ", uri)
+        let jsCode = `!function(){var e=function(e,n,t){if(n=n.replace(/^on/g,""),"addEventListener"in window)e.addEventListener(n,t,!1);else if("attachEvent"in window)e.attachEvent("on"+n,t);else{var o=e["on"+n];e["on"+n]=o?function(e){o(e),t(e)}:t}return e},n=document.querySelectorAll("a[href]");if(n)for(var t in n)n.hasOwnProperty(t)&&e(n[t],"onclick",function(e){new RegExp("^https?://"+location.host,"gi").test(this.href)||(e.preventDefault(),console.log(this.href),window.postMessage(JSON.stringify({external_url_open:this.href})))})}();`
         if (this.state.ref_id) {
             return <WebView
-                userAgent="Mobile"
-                key={"WebView"}
+                // userAgent="Mobile"
+                // key={"WebView"}
                 ref="paymentWebview"
-                mixedContentMode={"always"}
-                allowUniversalAccessFromFileURLs={true}
-                domStorageEnabled={true}
-                startInLoadingState={true}
+                // mixedContentMode={"always"}
+                // allowUniversalAccessFromFileURLs={true}
+                // domStorageEnabled={true}
+                // startInLoadingState={true}
                 source={{ uri: uri }}
                 onLoadEnd={(data) => this.onLoadEnd(data)}
                 onNavigationStateChange={(webViewState) => this._onNavigationStateChange(webViewState)}
+                onError={console.error.bind(console, 'error')}
+                javaScriptEnabled={true}
+                onMessage={this.onMessage.bind(this)}
+                injectedJavaScript={jsCode}
             // style={{ marginTop: 20 }}
             />
         }
