@@ -3,8 +3,10 @@ package com.bookstore;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.razorpay.rn.RazorpayPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -27,9 +29,9 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new RNCWebViewPackage(),
-            new SplashScreenReactPackage(), new RNFirebasePackage(),
-          new RNFirebaseMessagingPackage(), new RNFirebaseNotificationsPackage(), new VectorIconsPackage());
+            new SnackbarPackage(), new RNCWebViewPackage(),
+          new SplashScreenReactPackage(), new RNFirebasePackage(), new RNFirebaseMessagingPackage(),
+          new RNFirebaseNotificationsPackage(), new VectorIconsPackage(), new RazorpayPackage());
     }
 
     @Override

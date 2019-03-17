@@ -23,7 +23,8 @@ class AddressListScreen extends React.Component {
         super(props);
         this.state = {
             isSelect: false,
-            selectedAddress: null
+            selectedAddress: null,
+            amount: props.navigation.state.params.amount,
         }
     }
 
@@ -81,7 +82,7 @@ class AddressListScreen extends React.Component {
                 payment_type_id: 6
             }
             // console.log('Order Details-', JSON.stringify(orderDetails))
-            this.props.navigation.navigate('PaymentScreen', { orderDetails: orderDetails });
+            this.props.navigation.navigate('PaymentScreen', { orderDetails: orderDetails, amount: this.state.amount });
         }
     }
 
@@ -105,7 +106,7 @@ class AddressListScreen extends React.Component {
                     <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
                         <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
                         <TouchableOpacity style={{ backgroundColor: Colors.primary, borderRadius: 5 }}
-                            onPress={() => this.props.navigation.navigate('AddAddressScreen')}>
+                            onPress={() => this.props.navigation.navigate('AddAddressScreen', { amount: this.state.amount })}>
                             <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.white }}>Add New Address</Text>
                         </TouchableOpacity>
                     </View>

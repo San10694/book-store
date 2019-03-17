@@ -7,6 +7,8 @@ import Api from "../Services";
 import Ripple from "react-native-material-ripple";
 import { clearCartItem } from '../Redux/CartRedux';
 import { connect } from 'react-redux';
+import RazorpayCheckout from 'react-native-razorpay';
+import Snackbar from 'react-native-snackbar';
 // import { WebView } from "react-native-webview";
 
 const api = Api.Api();
@@ -35,6 +37,7 @@ class PaymentScreen extends Component {
         this.state = {
             isSelect: false,
             orderDetails: props.navigation.state.params.orderDetails,
+            amount: props.navigation.state.params.amount,
             source: null,
             ref_id: null,
             paymentType: null
@@ -51,18 +54,50 @@ class PaymentScreen extends Component {
 
     placeOrder() {
         console.log('this.state.orderDetails -', this.state.orderDetails);
+        console.log('this.state.amount -', this.state.amount);
+        const { user } = this.props.user;
+        const { user_data } = user;
         if (this.state.isSelect === false) {
             Alert.alert('Please,', 'Select Payment Type !', [{ text: 'OK', onPress: () => console.log('ok') }], {
                 canceLabel: false,
             });
         } else if (this.state.paymentType === 'rajor_pay') {
-            api.orderPlacePayment(this.state.orderDetails).then(response => {
-                console.log("RAJOR PAY Response --", response);
-                this.setState({ ref_id: response.data.ref_id })
+            var options = {
+                description: 'Credits towards consultation',
+                image: 'https://i.imgur.com/3g7nmJC.png',
+                currency: 'INR',
+                key: 'rzp_test_pGs9haNVuQh2Cz',
+                amount: this.state.amount ? this.state.amount * 100 : '5000',
+                name: 'foo',
+                prefill: {
+                    email: user_data.email,//'san10694@gmail.com',
+                    contact: user_data.phone,//'9140631442',
+                    name: 'Razorpay Software'
+                },
+                theme: { color: '#F37254' }
+            }
+            RazorpayCheckout.open(options).then((data) => {
+                console.log("Rajor pay sucess ", data)
+                // handle success
+                //alert(`Success: ${data.razorpay_payment_id}`);
+                Snackbar.show({
+                    title: 'Payment Successfull',
+                    duration: Snackbar.LENGTH_LONG,
+                });
                 // this.props.clearCartItem()
-                // this.props.navigation.push('OrderScreen');
+                this.props.navigation.push('OrderScreen');
+            }).catch((error) => {
+                // handle failure
+                alert(`Error: ${error.code} | ${error.description}`);
+            });
+            // api.orderPlacePayment(this.state.orderDetails).then(response => {
+            //     console.log("RAJOR PAY Response --", response);
+            //     this.setState({ ref_id: response.data.ref_id })
+            //     // this.props.clearCartItem()
+            //     // this.props.navigation.push('OrderScreen');
 
-            })
+
+            // })
         } else {
             api.orderPlace(this.state.orderDetails).then(response => {
                 console.log("COD Response --", response);
@@ -129,25 +164,25 @@ class PaymentScreen extends Component {
         const uri = 'http://68.183.94.56/api/payment/' + this.state.ref_id;
         console.log("this.state.URI ", uri)
         let jsCode = `!function(){var e=function(e,n,t){if(n=n.replace(/^on/g,""),"addEventListener"in window)e.addEventListener(n,t,!1);else if("attachEvent"in window)e.attachEvent("on"+n,t);else{var i=e["on"+n];e["on"+n]=i?function(e){i(e),t(e)}:t}return e},n=document.querySelectorAll("a[href]");if(n)for(var t in n)n.hasOwnProperty(t)&&e(n[t],"onclick",function(e){new RegExp("^https?://"+location.host,"gi").test(this.href)||(e.preventDefault(),window.postMessage(JSON.stringify({external_url_open:this.href})))})}();`
-        if (this.state.ref_id) {
-            return <WebView
-                // userAgent="Mobile"
-                // key={"WebView"}
-                ref="paymentWebview"
-                // mixedContentMode={"always"}
-                // allowUniversalAccessFromFileURLs={true}
-                // domStorageEnabled={true}
-                startInLoadingState={true}
-                source={{ uri: 'https://www.google.com' }}
-                onLoadEnd={(data) => this.onLoadEnd(data)}
-                onNavigationStateChange={(webViewState) => this._onNavigationStateChange(webViewState)}
-                onError={console.error.bind(console, 'error')}
-                javaScriptEnabled={true}
-                onMessage={this.onMessage.bind(this)}
-                injectedJavaScript={jsCode}
-            // style={{ marginTop: 20 }}
-            />
-        }
+        // if (this.state.ref_id) {
+        //     return <WebView
+        //         // userAgent="Mobile"
+        //         // key={"WebView"}
+        //         ref="paymentWebview"
+        //         // mixedContentMode={"always"}
+        //         // allowUniversalAccessFromFileURLs={true}
+        //         // domStorageEnabled={true}
+        //         startInLoadingState={true}
+        //         source={{ uri: 'https://www.google.com' }}
+        //         onLoadEnd={(data) => this.onLoadEnd(data)}
+        //         onNavigationStateChange={(webViewState) => this._onNavigationStateChange(webViewState)}
+        //         onError={console.error.bind(console, 'error')}
+        //         javaScriptEnabled={true}
+        //         onMessage={this.onMessage.bind(this)}
+        //         injectedJavaScript={jsCode}
+        //     // style={{ marginTop: 20 }}
+        //     />
+        // }
 
         return (
             <View style={styles.container}>

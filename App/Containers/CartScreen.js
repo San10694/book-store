@@ -106,7 +106,7 @@ class CartScreen extends Component {
     // move to pay
     moveToPay() {
         if (this.props.user.user && this.props.user.isLoggedIn) {
-            this.props.navigation.navigate('AddressListScreen')
+            this.props.navigation.navigate('AddressListScreen', { amount: this.state.subTotal })
         } else {
             this.props.navigation.navigate('LoginScreen')
 

@@ -43,6 +43,7 @@ class AddAdressScreen extends Component {
             otherValid: false,
             countryValid: false,
             address2Valid: false,
+            amount: props.navigation.state.params.amount,
         }
     }
 
