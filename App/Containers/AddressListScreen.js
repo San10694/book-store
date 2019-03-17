@@ -77,15 +77,18 @@ class AddressListScreen extends React.Component {
                 customer_id: user.user && user.user.user_data ? user.user.user_data.id : null,
                 data: cartItems.cart,
                 address_id: selectedAddress.id,
+                shipping_id: 21,
                 promo_id: 18,
-                //payment_type_id: 6,
-
+                payment_type_id: 6,
+                promo_balance: 50
             }
             // var orderDetails = {
             //     customer_id: 7,
             //     data: cartItems.cart,
-            //     address_id: 52,
-            //     promo_id: 18
+            //     shipping_id: 21,
+            //     promo_id: 18,
+            //     payment_type_id: 6,
+            //     promo_balance: 50
             // }
             // console.log('Order Details-', JSON.stringify(orderDetails))
             this.props.navigation.navigate('PaymentScreen', { orderDetails: orderDetails, amount: cartItems.grandTotalAmount });

@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import { addToCart } from '../Redux/CartRedux';
 import { addWishListItem, removeWishListItem } from '../Redux/WishListRedux';
 import Ripple from "react-native-material-ripple";
+import Snackbar from 'react-native-snackbar';
+
 
 detail = { title: 'Harry Poter part -1', price: 50, shopname: 'Student shop', image: Images.burdon, description: 'Harry Potter, an eleven-year-old orphan, discovers that he is a wizard and is invited to study at Hogwarts. Even as he escapes a dreary life and enters a world of magic, he finds trouble awaiting him.' }
 
@@ -64,6 +66,13 @@ class ProductDetailScreen extends Component {
     this.props.navigation.navigate('CartScreen');
   }
 
+  showToast(message) {
+    Snackbar.show({
+      title: message,
+      duration: Snackbar.LENGTH_LONG,
+    });
+  }
+
   render() {
     const { productDetail } = this.state;
     if (productDetail == null) {
@@ -79,16 +88,19 @@ class ProductDetailScreen extends Component {
             {this.state.isFavourite ?
               <Ripple style={Styles.productDetailFav}
                 onPress={() => {
-                  this.setState({ isFavourite: !this.state.isFavourite })
-                  this.props.removeWishListItem(productDetail)
+                  this.setState({ isFavourite: !this.state.isFavourite });
+                  this.props.removeWishListItem(productDetail);
+                  this.showToast("Product removed from wishlist")
                 }}>
                 <Icon name='heart' size={25} color={Colors.error} />
               </Ripple>
               :
               <Ripple style={Styles.productDetailFav}
                 onPress={() => {
-                  this.setState({ isFavourite: !this.state.isFavourite })
-                  this.props.addWishListItem(productDetail)
+                  this.setState({ isFavourite: !this.state.isFavourite });
+                  this.props.addWishListItem(productDetail);
+                  this.showToast("Product added to wishlist")
+
                 }}>
                 <Icon name='heart' size={25} color={Colors.primary} />
               </Ripple>

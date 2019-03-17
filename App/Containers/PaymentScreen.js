@@ -13,19 +13,6 @@ import Snackbar from 'react-native-snackbar';
 
 const api = Api.Api();
 
-const patchPostMessageFunction = function () {
-    var originalPostMessage = window.postMessage;
-    var patchedPostMessage = function (message, targetOrigin, transfer) {
-        originalPostMessage(message, targetOrigin, transfer);
-    };
-    patchedPostMessage.toString = function () {
-        return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage');
-    };
-    window.postMessage = patchedPostMessage;
-};
-
-const patchPostMessageJsCode = '(' + String(patchPostMessageFunction) + ')();';
-
 const paymentTypes = [
     { selected: false, type: 'Rajor Pay ', value: 'rajor_pay' },
     { selected: false, type: 'Cash on Delivery', value: 'cod' },
@@ -53,8 +40,9 @@ class PaymentScreen extends Component {
     }
 
     placeOrder() {
-        console.log('this.state.orderDetails -', this.state.orderDetails);
-        console.log('this.state.amount -', this.state.amount);
+        const { orderDetails, amount } = this.state;
+        console.log('this.state.orderDetails -', orderDetails);
+        console.log('this.state.amount -', amount);
         const { user } = this.props.user;
         const { user_data } = user;
         if (this.state.isSelect === false) {
@@ -67,7 +55,7 @@ class PaymentScreen extends Component {
                 image: 'https://i.imgur.com/3g7nmJC.png',
                 currency: 'INR',
                 key: 'rzp_test_pGs9haNVuQh2Cz',
-                amount: this.state.amount ? this.state.amount * 100 : '5000',
+                amount: amount ? amount * 100 : '5000',
                 name: 'foo',
                 prefill: {
                     email: user_data.email,//'san10694@gmail.com',
@@ -80,8 +68,14 @@ class PaymentScreen extends Component {
                 console.log("Rajor pay sucess ", data)
                 this.showToast("payment successfull.");
                 //alert(`Success: ${data.razorpay_payment_id}`);
-                let orderObj = this.state.orderDetails
-                orderObj.payment_key = data.razorpay_payment_id
+                //let orderObj = this.state.orderDetails;
+                let orderObj = {
+                    customer_id: orderDetails.customer_id,
+                    data: orderDetails.data,
+                    shipping_id: orderDetails.shipping_id,
+                    promo_id: 18,
+                }
+                orderObj.payment_key = data.razorpay_payment_id;
                 api.orderPlacePayment(orderObj).then(response => {
                     console.log("orderPlacePayment Response --", response);
                     // this.setState({ ref_id: response.data.ref_id })
@@ -97,7 +91,16 @@ class PaymentScreen extends Component {
             });
 
         } else {
-            api.orderPlace(this.state.orderDetails).then(response => {
+            let orderObj = {
+                customer_id: orderDetails.customer_id,
+                data: orderDetails.data,
+                shipping_id: orderDetails.shipping_id,
+                shipping_id: 21,
+                // promo_id: 18,
+                payment_type_id: 6,
+                promo_balance: 50
+            }
+            api.orderPlace(orderObj).then(response => {
                 console.log("COD Response --", response);
                 this.showToast(response.data ? response.data.message : null);
                 // this.setState({ ref_id: response.data.ref_id })

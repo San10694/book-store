@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         padding: 4,
         borderRadius: 2,
         shadowColor: Colors.lightgrey,
-        minHeight: 90,
+        minHeight: 100,
         marginBottom: 6,
         marginTop: 6,
         shadowOffset: {

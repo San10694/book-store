@@ -4,7 +4,7 @@ import { types } from "../Redux/types";
 export function* _getBannerList(api, action) {
     try {
         const response = yield api.getBanners(action.payload);
-        if (response.data) {
+        if (response && response.data) {
             const { data } = response.data;
             // console.log("response ", data);
             yield put({ type: types.GET_BANNER_LIST_SUCCESS, payload: data });
@@ -19,7 +19,7 @@ export function* getCategories(api, action) {
     try {
         const response = yield api.getCategories(action.payload);
         // console.log("response-- ", response);
-        if (response.data) {
+        if (response && response.data) {
             const { data } = response.data;
             // console.log("response ", data);
             yield put({ type: types.GET_CATEGORIES_SUCCESS, payload: data });
@@ -35,7 +35,7 @@ export function* getProducts(api, action) {
     try {
         const response = yield api.getProducts(action.payload);
         // console.log("products  res-- ", response);
-        if (response.data) {
+        if (response && response.data) {
             const { data } = response.data;
             // console.log("response ", data);
             yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: data });

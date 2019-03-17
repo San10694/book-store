@@ -9,7 +9,7 @@ const ActivityIndicator = ({ isFetching }) => {
             <Spinner
                 visible={isFetching}
                 color={Colors.charcoal}
-                textContent={'Please wait...'}
+                // textContent={'Please wait...'}
                 textStyle={{ color: Colors.charcoal }}
             />
         </View>

@@ -1,4 +1,6 @@
 import axios from "axios";
+import Snackbar from 'react-native-snackbar';
+
 
 //export const BASE_URL = "http://104.211.215.126/ApiStaging/"
 export const BASE_URL = "http://68.183.94.56";
@@ -35,6 +37,36 @@ const Api = () => {
       "content-type": "application/json"
     }
   });
+
+
+  api.interceptors.request.use(config => {
+    //console.log("Monitor config -", config)
+    // Do something before request is sent
+    return config;
+  }, (error) => {
+    //console.log("Monitor request error-", error)
+    // Do something with request error
+    return Promise.reject(error);
+  });
+
+
+  // Add a response interceptor
+  api.interceptors.response.use(response => {
+    // console.log("Monitor -", response)
+    return response;
+  },
+    (error) => {
+      showToast("Internal Server Error");
+      console.log("Monitor response error-", error)
+      return Promise.reject(error);
+    });
+
+  const showToast = (message) => {
+    Snackbar.show({
+      title: message,
+      duration: Snackbar.LENGTH_LONG,
+    });
+  }
 
 
   const getBanners = () => {
