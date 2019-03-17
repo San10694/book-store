@@ -21,6 +21,11 @@ export function deleteCartItem(product) {
     return { type: types.DELETE_CART_ITEM, product: product };
 };
 
+export function saveGrandTotal(amount) {
+    //  console.log("delete action-----");
+    return { type: types.SAVE_GRAND_TOTAL, grandTotalAmount: amount };
+};
+
 
 const INITIAL_STATE = {
     cart: [],
@@ -31,7 +36,7 @@ const INITIAL_STATE = {
     tax: 0.0,
     payMoney: 0.0,
     subTotalAmount: 0,
-
+    grandTotalAmount: 0,
     // couponDiscountPercentage: 0.0,
     // deductedAmountByCoupon: 0.0,
     paymentOption: 'COD',
@@ -103,6 +108,9 @@ export default function CartReducer(state = INITIAL_STATE, action) {
 
         case types.FETCH_CART_COUPON:
             return { ...state, coupon: action.payload };
+
+        case types.SAVE_GRAND_TOTAL:
+            return { ...state, grandTotalAmount: action.grandTotalAmount };
 
         default:
             return state;

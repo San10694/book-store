@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.razorpay.rn.RazorpayPackage;
 import io.invertase.firebase.RNFirebasePackage;

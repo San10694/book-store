@@ -25,7 +25,7 @@ const Api = () => {
     order_list: '/api/myorders',
     order_detail: '/api/order_details/',
     order_place: '/api/order_place',
-    order_place_payment: '/api/request'
+    order_place_payment: '/api/order_place_with_payment'
   };
 
   const api = axios.create({
@@ -235,7 +235,7 @@ const Api = () => {
     const formData = new FormData();
     formData.append('key', 'A123456789');
     formData.append('customer_id', id);
-    //api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    // api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     console.log("API -", api.defaults);
     const config = {
       headers: {
@@ -296,22 +296,21 @@ const Api = () => {
       });
   }
 
-  const orderPlacePayment = (orderDetails) => {
-    let data = orderDetails;
+  const orderPlacePayment = (data) => {
+    console.log("orderPlacePayment API  ", data)
     let formData = new FormData();
     formData.append('key', 'A123456789');
     formData.append('customer_id', data.customer_id);
     formData.append('data', JSON.stringify(data.data));
-    //formData.append('shipping_id', data.shipping_id);
     formData.append('address_id', data.address_id);
     formData.append('promo_id', data.promo_id);
+    formData.append('payment_key', data.payment_key);
     //formData.append('payment_type_id', data.payment_type_id);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data; charset=utf-8;"
       }
     };
-    console.log("orderPlacePayment API  ", api.defaults)
     return api.post(endPoints.order_place_payment, formData, config)
       .catch((error) => {
         console.log("orderPlace ERROR ", error)

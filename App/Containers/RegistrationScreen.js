@@ -195,7 +195,7 @@ class RegistrationScreen extends Component {
 
                                 <TouchableOpacity
                                     onPress={(e) => {
-                                        if (!this.state.numberValidate || !this.state.nameValidate || !this.state.emailValidate) {
+                                        if (!this.state.numberValid || !this.state.nameValidate || !this.state.emailValidate) {
                                             Alert.alert(
                                                 '',
                                                 'Please fill all the inputs',

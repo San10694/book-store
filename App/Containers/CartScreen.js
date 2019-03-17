@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Fonts from '../Themes/Fonts';
 import Ripple from "react-native-material-ripple";
 import { connect } from "react-redux";
-import { addToCart, deleteCartItem, removeCartItem } from '../Redux/CartRedux';
+import { addToCart, deleteCartItem, removeCartItem, saveGrandTotal } from '../Redux/CartRedux';
 import Styles from './Styles';
 import { Colors, Images, Constants } from "../Themes";
 
@@ -106,7 +106,9 @@ class CartScreen extends Component {
     // move to pay
     moveToPay() {
         if (this.props.user.user && this.props.user.isLoggedIn) {
-            this.props.navigation.navigate('AddressListScreen', { amount: this.state.subTotal })
+            this.props.navigation.navigate('AddressListScreen', { amount: this.state.subTotal });
+            this.props.saveGrandTotal(this.state.subTotal);
+
         } else {
             this.props.navigation.navigate('LoginScreen')
 
@@ -231,6 +233,7 @@ const mapDispatchToProps = dispatch => {
         addCartItem: item => dispatch(addToCart(item)),
         removeCartItem: item => dispatch(removeCartItem(item)),
         deleteCartItem: item => dispatch(deleteCartItem(item)),
+        saveGrandTotal: item => dispatch(saveGrandTotal(item)),
     }
 };
 

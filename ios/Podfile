@@ -13,7 +13,6 @@ target 'BookStore' do
     # Pods for testing
     pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
-    pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
     pod 'RNSnackbar', :path => '../node_modules/react-native-snackbar'
 

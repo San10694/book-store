@@ -31,12 +31,12 @@ class OrderScreen extends Component {
         const { user } = this.props;
         if (user.user) {
             this.setState({ isFetching: true })
+            console.log("user.user.user_data.id) - ", user.user.user_data.id);
             api.getOrderList(user.user.user_data.id).then(response => {
-                console.log("orderList List - ", (response.data));
                 const { data } = response ? response.data : []
+                console.log("order List - ", response);
                 this.setState({ isFetching: false })
                 this.setState({ orderList: data })
-
             })
         }
     }
