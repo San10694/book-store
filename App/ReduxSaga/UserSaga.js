@@ -3,34 +3,26 @@ import { types } from "../Redux/types";
 import { Alert } from 'react-native';
 
 export function* userSignupProcess(api, action) {
-    const { payload } = action
-    console.log("userSignupProcess payload -m ", payload)
+    const { payload } = action;
     try {
         const response = yield api.otpVerifyReg(payload);
-        console.log("userSignupProcess response- ", response);
         if (response) {
             const { data } = response;
             if (data.Error === "0000") {
                 payload.navigate('HomeTab')
             }
             else {
-                Alert.alert(
-                    'Error ',
-                    data.Message,
-                    [
-                        {
-                            text: 'OK',
-                            onPress: () => {
-                                console.log('ok')
-                            },
-                        },
-                    ],
+                Alert.alert('Error ', data.Message, [{
+                    text: 'OK',
+                    onPress: () => {
+                        console.log('ok')
+                    }
+                }],
                     {
                         cancelable: false,
                     }
                 );
             }
-
             yield put({ type: types.USER_REGISTER_SUCCESS, payload: data });
         } else {
             yield put({ type: types.USER_REGISTER_FAILURE, payload: null });
@@ -42,28 +34,20 @@ export function* userSignupProcess(api, action) {
 
 export function* userLoginProcess(api, action) {
     const { payload } = action
-    console.log("userLoginProcess payload -m ", payload)
     try {
         const response = yield api.userLogin(payload.mobile);
         if (response) {
             const { data } = response;
-            console.log("userLoginProcess response- ", response);
-
             if (data.Error === "0000") {
                 payload.navigate("LoginOtpScreen", { number: payload.mobile });
             }
             else {
-                Alert.alert(
-                    'Error ',
-                    data.Message,
-                    [
-                        {
-                            text: 'OK',
-                            onPress: () => {
-                                console.log('ok')
-                            },
-                        },
-                    ],
+                Alert.alert('Error ', data.Message, [{
+                    text: 'OK',
+                    onPress: () => {
+                        console.log('ok')
+                    }
+                }],
                     {
                         cancelable: false,
                     }
@@ -82,28 +66,20 @@ export function* userLoginProcess(api, action) {
 
 export function* userOtpVerify(api, action) {
     const { payload } = action;
-    console.log("userVerifyOtp payload -m ", payload)
     try {
         const response = yield api.otpVerify(payload);
-        console.log("userOtpVerify response- ", response);
         if (response) {
             const { data } = response;
-
             if (data.Error === "0000") {
                 payload.navigate('HomeTab')
             }
             else {
-                Alert.alert(
-                    'Error ',
-                    data.Message,
-                    [
-                        {
-                            text: 'OK',
-                            onPress: () => {
-                                console.log('ok')
-                            },
-                        },
-                    ],
+                Alert.alert('Error ', data.Message, [{
+                    text: 'OK',
+                    onPress: () => {
+                        console.log('ok')
+                    }
+                }],
                     {
                         cancelable: false,
                     }
