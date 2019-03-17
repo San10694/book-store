@@ -138,7 +138,6 @@ class ProductDetailScreen extends Component {
 
 const mapStateToProps = state => {
   const { cartItems, wishList } = state;
-  console.log('wishList -> ', JSON.stringify(wishList));
   return {
     cartItems, wishList
   };

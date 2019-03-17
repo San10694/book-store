@@ -90,7 +90,7 @@ class HomeScreen extends Component {
                   <Ripple style={Styles.iconContainer} onPress={() => {
                     this.props.navigation.navigate('SubCategoryScreen', { category_group_id: item.id, title: item.name });
                   }}>
-                    <Icon name={item.icon} size={40} color={Colors.green} style={Styles.icon} />
+                    <Icon name={item.icon} size={35} color={Colors.green} style={Styles.icon} />
                   </Ripple>
                   <Text numberOfLines={2} style={Styles.iconNm}>{item.name}</Text>
                 </View>
@@ -165,7 +165,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = state => {
   const { restaurantList, product, user } = state;
-  console.log("USER  in Home Screen- ", (user));
+  console.log("USER Details- ", user);
   return {
     restaurantList,
     product,

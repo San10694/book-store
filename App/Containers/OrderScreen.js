@@ -7,12 +7,6 @@ import ActivityIndicator from '../Components/ActivityIndicator';
 const api = Api.Api();
 import Moment from 'moment';
 
-const bannerData = [
-    { key: 1, title: 'Harry Poter part -1', price: 50, image: Images.burdon },
-    { key: 2, title: 'Harry Poter part -2', price: 50, image: Images.burdon },
-    { key: 3, title: 'Harry Poter part -3', price: 50, image: Images.burdon },
-    { key: 4, title: 'Harry Poter part -4', price: 50, image: Images.burdon }
-]
 
 class OrderScreen extends Component {
     constructor(props) {
@@ -29,12 +23,12 @@ class OrderScreen extends Component {
 
     componentDidMount() {
         const { user } = this.props;
-        if (user.user) {
+        if (user && user.user && user.user.user_data) {
             this.setState({ isFetching: true })
-            console.log("user.user.user_data.id) - ", user.user.user_data.id);
+            console.log("User Id - ", user.user.user_data.id);
             api.getOrderList(user.user.user_data.id).then(response => {
                 const { data } = response ? response.data : []
-                console.log("order List - ", response);
+                console.log("order List response - ", response);
                 this.setState({ isFetching: false })
                 this.setState({ orderList: data })
             })
@@ -43,9 +37,17 @@ class OrderScreen extends Component {
 
     render() {
         const { orderList, isFetching } = this.state;
+        //console.log("orderList     ", orderList)
         if (!orderList) {
             return <ActivityIndicator isFetching={isFetching} />
         }
+        // if (orderList && orderList.length === 0) {
+        //     return (
+        //         <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
+        //             <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>Orders List is empty </Text>
+        //         </View>
+        //     )
+        // }
         return (
             <View style={{ backgroundColor: Colors.lightGrey }}>
                 <ScrollView style={styles.Container}>
