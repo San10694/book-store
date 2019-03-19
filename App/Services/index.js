@@ -27,7 +27,11 @@ const Api = () => {
     order_list: '/api/myorders',
     order_detail: '/api/order_details/',
     order_place: '/api/order_place',
-    order_place_payment: '/api/order_place_with_payment'
+    order_place_payment: '/api/order_place_with_payment',
+    coupon_code: '/api/CouponCode'
+
+
+
   };
 
   const api = axios.create({
@@ -302,6 +306,27 @@ const Api = () => {
       });
   }
 
+  const getCoupons = (data) => {
+    console.log('id', data);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('CouponCode', data.couponCode);
+    formData.append('customer_id', data.customer_id);
+    formData.append('total_amount', data.total_amount);
+    // api.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data; charset=utf-8;"
+      }
+    };
+    return api.post(endPoints.coupon_code, formData, config)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
 
   const orderPlace = (orderDetails) => {
     //console.log('orderPlace -', JSON.stringify(orderDetails));
@@ -371,7 +396,8 @@ const Api = () => {
     getOrderList,
     getOrderDetail,
     orderPlace,
-    orderPlacePayment
+    orderPlacePayment,
+    getCoupons
   }
 }
 

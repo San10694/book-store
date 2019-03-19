@@ -62,7 +62,7 @@ class OrderDetailScreen extends Component {
                                     <View style={styleSheet.ItemContent}>
                                         <Text style={styleSheet.Title}>Title : {item.title}</Text>
                                         <Text style={styleSheet.Date}>Quantity : {item.quantity}</Text>
-                                        <Text style={styleSheet.Date}>Price : {item.unit_price}</Text>
+                                        <Text style={styleSheet.Date}>Price : {Math.floor(item.unit_price)}</Text>
                                     </View>
                                 </View>
                             )}
@@ -103,9 +103,9 @@ class OrderDetailScreen extends Component {
                         <Text style={styleSheet.listItem}>Order Id : {orderDetails.order_no}</Text>
                         <Text style={styleSheet.listItem}>Order Date : {Moment(orderDetails.sale_datetime).format('DD-MMM-YYYY')}</Text>
                         <Text style={styleSheet.listItem}>Delivery Status : {orderDetails.delivery_status}</Text>
-                        <View>
+                        {/* <View>
                             <Text style={styleSheet.Price}>Total : {Constants.rupee}{orderDetails.total}</Text>
-                        </View>
+                        </View> */}
                         <View>
                             <Text style={styleSheet.Price}>Grand Total : {Constants.rupee}{orderDetails.grand_total}</Text>
                         </View>

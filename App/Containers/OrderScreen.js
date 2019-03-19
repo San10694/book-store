@@ -81,7 +81,7 @@ class OrderScreen extends Component {
                                     <Text style={styles.Date}>Order Date : {Moment(item.sale_datetime).format('DD-MMM-YYYY')}
                                     </Text>
                                     <Text style={styles.Date}>Payment Status : {item.payment_status}</Text>
-                                    <Text style={styles.Price}>Order Total : {Constants.rupee}{item.grand_total}</Text>
+                                    <Text style={styles.Price}>Order Total : {Constants.rupee}{Math.floor(item.grand_total)}</Text>
 
                                 </View>
                                 <View style={styles.btnWrap}>

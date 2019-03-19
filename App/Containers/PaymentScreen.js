@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Alert, Linking, WebView } from "react-native";
-import { Colors } from "../Themes";
+import { StyleSheet, Text, View, Alert, ScrollView, Linking, TextInput, WebView, Dimensions } from "react-native";
+import { Colors, Constants, Fonts } from "../Themes";
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import Styles from './Styles';
 import Api from "../Services";
@@ -27,7 +27,9 @@ class PaymentScreen extends Component {
             amount: props.navigation.state.params.amount,
             source: null,
             ref_id: null,
-            paymentType: null
+            paymentType: null,
+            couponCode: null,
+            promo_id: ''
         }
     }
 
@@ -73,7 +75,7 @@ class PaymentScreen extends Component {
                     customer_id: orderDetails.customer_id,
                     data: orderDetails.data,
                     shipping_id: orderDetails.shipping_id,
-                    promo_id: 18,
+                    promo_id: this.state.promo_id,
                 }
                 orderObj.payment_key = data.razorpay_payment_id;
                 api.orderPlacePayment(orderObj).then(response => {
@@ -101,10 +103,11 @@ class PaymentScreen extends Component {
             //     promo_balance: 50
             // }
             let orderObj = {
-                customer_id: 7,//orderDetails.customer_id,
+                customer_id: orderDetails.customer_id,
                 data: orderDetails.data,
-                shipping_id: 53,//orderDetails.shipping_id,
-                promo_id: 18,
+                shipping_id: orderDetails.shipping_id,
+                promo_id: this.state.promo_id,
+
             }
             api.orderPlace(orderObj).then(response => {
                 console.log("COD Response --", response);
@@ -163,6 +166,32 @@ class PaymentScreen extends Component {
         }
     }
 
+    applyPromo() {
+        const { orderDetails, amount, couponCode } = this.state;
+        if (couponCode) {
+            let data = {
+                customer_id: orderDetails.customer_id,
+                total_amount: amount,
+                shipping_id: orderDetails.shipping_id,
+                couponCode: couponCode,
+            }
+            api.getCoupons(data).then(response => {
+                console.log("getCoupons response --", response);
+                this.setState({ couponCode: null });
+                const { data } = response ? response : null;
+                if (data && data.error === '000000' && data.data.discount_amount) {
+                    this.showToast(data.Message || data.message + ' - ' + Constants.rupee + data.data.discount_amount);
+                    let updatedAmount = amount - data.data.discount_amount;
+                    this.setState({ amount: updatedAmount, promo_id: data.data.promo_id });
+                }
+                else {
+                    this.showToast(data.Message || data.message);
+                }
+            })
+        }
+
+    }
+
 
 
     render() {
@@ -190,28 +219,60 @@ class PaymentScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <View style={{ backgroundColor: Colors.white, marginTop: 20 }}>
-                    <RadioGroup
-                        size={20}
-                        thickness={2}
-                        color={Colors.primary}
-                        highlightColor={Colors.lightgrey}
-                        onSelect={(index, value) => this.selectPaymentMethod(index, value, paymentTypes[index])}
-                    >
-                        {paymentTypes.map(paymentType => {
-                            return (
-                                <RadioButton value={paymentType.type} key={paymentType.type}>
-                                    <View style={{
-                                        marginLeft: 10,
-                                        paddingBottom: 20
-                                    }}>
-                                        <Text style={{ width: '100%' }}>{paymentType.type}</Text>
-                                    </View>
-                                </RadioButton>
-                            );
-                        })}
-                    </RadioGroup>
-                </View>
+                <ScrollView>
+                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
+                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
+                    </View>
+                    <View style={{ backgroundColor: Colors.white, paddingVertical: 20 }}>
+                        <RadioGroup
+                            size={20}
+                            thickness={2}
+                            color={Colors.primary}
+                            highlightColor={Colors.lightgrey}
+                            onSelect={(index, value) => this.selectPaymentMethod(index, value, paymentTypes[index])}
+                        >
+                            {paymentTypes.map(paymentType => {
+                                return (
+                                    <RadioButton value={paymentType.type} key={paymentType.type}>
+                                        <View style={{
+                                            marginLeft: 10,
+                                            paddingBottom: 20
+                                        }}>
+                                            <Text style={{ width: '100%' }}>{paymentType.type}</Text>
+                                        </View>
+                                    </RadioButton>
+                                );
+                            })}
+                        </RadioGroup>
+                    </View>
+                    <View style={{ flexDirection: 'row', backgroundColor: Colors.white, paddingBottom: 20 }}>
+                        <View style={styles.inputWrap}>
+                            <TextInput
+                                placeholder={"Enter Prome Code Here"}
+                                // keyboardType="numeric"
+                                onChangeText={(code) => this.setState({ couponCode: code })}
+                                value={this.state.couponCode}
+                                style={{
+                                    paddingLeft: 10,
+                                    height: 50,
+                                    borderRadius: 5,
+                                    width: Dimensions.get('screen').width * 0.5
+                                }}
+                            />
+                        </View>
+                        <Ripple
+                            style={[Styles.buyButton, {
+                                width: Dimensions.get('screen').width * 0.3
+                            }]}
+                            onPress={() => {
+                                this.applyPromo()
+                            }}
+                        >
+                            <Text style={Styles.btnText}>Apply</Text>
+                        </Ripple>
+                    </View>
+                </ScrollView>
                 <View style={Styles.checkoutContainer}>
                     <Ripple
                         style={Styles.buyButton}
@@ -222,7 +283,6 @@ class PaymentScreen extends Component {
                         <Text style={Styles.btnText}>Place Order</Text>
                     </Ripple>
                 </View>
-
             </View>
         );
     }
@@ -247,6 +307,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(PaymentScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: Colors.lightGrey
 
     },
     welcome: {
@@ -258,5 +319,16 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#333333",
         marginBottom: 5
+    },
+    inputWrap: {
+        flexDirection: "row",
+        alignItems: "center",
+        borderColor: Colors.blackDivide,
+        borderWidth: 1,
+        borderRadius: 10,
+        marginLeft: 20,
+        marginRight: 20,
+        marginBottom: 5
+        // paddingHorizontal: 10
     }
 });

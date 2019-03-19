@@ -7,7 +7,8 @@ import {
   View,
   Image,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  Alert
 } from "react-native";
 import { DrawerActions } from "react-navigation";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -83,8 +84,25 @@ class DrawerScreen extends Component {
             {user && this.props.user.isLoggedIn ?
               <Ripple style={styles.menuItem}
                 onPress={() => {
-                  this.navigateToScreen("LoginScreen");
-                  this.props.logout()
+
+                  Alert.alert(
+                    '',
+                    'Are you sure you want to logout ?',
+                    [
+                      {
+                        text: 'Cancel',
+                        onPress: console.log('cancel'),
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'OK', onPress: () => {
+                          this.navigateToScreen("LoginScreen");
+                          this.props.logout()
+                        }
+                      },
+                    ],
+                    { cancelable: false }
+                  );
                 }}
               >
                 <Text style={styles.textItem}>
