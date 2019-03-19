@@ -259,9 +259,15 @@ hile using the drawer navigator inside stack navigator.*/
         <TouchableOpacity
           onPress={() => {
             const { routeName } = navigation.state
-            routeName === 'DrawerNavigator' ?
+            if (routeName === 'DrawerNavigator') {
               navigation.dispatch(DrawerActions.toggleDrawer())
-              : navigation.goBack();
+            }
+            else if (routeName === 'OrderScreen') {
+              navigation.navigate("HomeTab");
+            }
+            else {
+              navigation.goBack();
+            }
           }}
         >
           <MenuIcon navigation={navigation} />

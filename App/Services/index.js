@@ -310,10 +310,8 @@ const Api = () => {
     formData.append('key', 'A123456789');
     formData.append('customer_id', data.customer_id);
     formData.append('data', JSON.stringify(data.data));
-    formData.append('shipping_id', data.shipping_id);
     formData.append('address_id', data.address_id);
-    formData.append('promo_balance', data.promo_balance);
-    formData.append('payment_type_id', data.payment_type_id);
+    formData.append('promo_id', data.promo_id);
     const config = {
       headers: {
         "Content-Type": "multipart/form-data; charset=utf-8;"

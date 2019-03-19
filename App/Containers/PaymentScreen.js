@@ -91,14 +91,20 @@ class PaymentScreen extends Component {
             });
 
         } else {
+            // let orderObj = {
+            //     customer_id: orderDetails.customer_id,
+            //     data: orderDetails.data,
+            //     shipping_id: orderDetails.shipping_id,
+            //     shipping_id: 21,
+            //     // promo_id: 18,
+            //     payment_type_id: 6,
+            //     promo_balance: 50
+            // }
             let orderObj = {
-                customer_id: orderDetails.customer_id,
+                customer_id: 7,//orderDetails.customer_id,
                 data: orderDetails.data,
-                shipping_id: orderDetails.shipping_id,
-                shipping_id: 21,
-                // promo_id: 18,
-                payment_type_id: 6,
-                promo_balance: 50
+                shipping_id: 53,//orderDetails.shipping_id,
+                promo_id: 18,
             }
             api.orderPlace(orderObj).then(response => {
                 console.log("COD Response --", response);

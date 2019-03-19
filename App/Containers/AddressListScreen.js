@@ -143,10 +143,10 @@ class AddressListScreen extends React.Component {
                                             paddingBottom: 10
                                         }}>
                                             <View style={{ width: '80%' }}>
-                                                <Text style={{ fontWeight: 'bold' }}>{item.name},</Text>
-                                                <Text>{item.address}</Text>
-                                                <Text>{item.city},{item.state},{item.country},</Text>
-                                                <Text>{item.mobile},{item.pincode}</Text>
+                                                <Text style={{ fontWeight: 'bold' }}>{item.name ? item.name : null},</Text>
+                                                <Text>{item.address ? item.address : null}</Text>
+                                                <Text>{item.city ? item.city : null},{typeof item.state !== 'undefined' ? item.state : null},{item.country ? item.country : null},</Text>
+                                                <Text>{item.mobile ? item.mobile : null},{item.pincode ? item.pincode : null}</Text>
 
                                             </View>
                                             <View style={{

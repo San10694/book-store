@@ -22,7 +22,7 @@ class OrderDetailScreen extends Component {
         super(props);
         this.state = {
             orderDetails: null,
-            id: props.navigation.state.params.id,
+            id: props.navigation.state.params.id,//17
             isFetching: false
         }
 
@@ -32,7 +32,7 @@ class OrderDetailScreen extends Component {
     componentDidMount() {
         // this.setState({ productDetail: this.props.navigation.state.params.product })
         this.setState({ isFetching: true })
-        api.getOrderDetail(17).then(response => {
+        api.getOrderDetail(this.state.id).then(response => {
             const { data } = response ? response.data : []
             console.log('getOrderDetail -', data);
             this.setState({ orderDetails: data, isFetching: false })

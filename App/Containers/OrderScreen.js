@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity, StyleSheet, Text, View, ScrollView, Image, FlatList } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, ScrollView, BackHandler, Image, FlatList } from "react-native";
 import { connect } from "react-redux";
 import { Colors, Images, Fonts, Constants } from "../Themes";
 import Api from "../Services";
@@ -19,6 +19,21 @@ class OrderScreen extends Component {
 
     static navigationOptions = {
 
+    }
+
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+    }
+
+    handleBackPress = () => {
+        console.log("BackPress")
+        // this.goBack(); // works best when the goBack is async
+        this.props.navigation.navigate("HomeTab")
+        return true;
     }
 
     componentDidMount() {
