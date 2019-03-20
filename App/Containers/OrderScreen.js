@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import { Colors, Images, Fonts, Constants } from "../Themes";
 import Api from "../Services";
 import ActivityIndicator from '../Components/ActivityIndicator';
-const api = Api.Api();
 import Moment from 'moment';
+import { SafeAreaView } from 'react-navigation';
+
+const api = Api.Api();
 
 
 class OrderScreen extends Component {
@@ -64,43 +66,46 @@ class OrderScreen extends Component {
         //     )
         // }
         return (
-            <View style={{ backgroundColor: Colors.lightGrey }}>
-                <ScrollView style={styles.Container}>
-                    <FlatList
-                        data={orderList}
-                        renderItem={({ item }) => (
-                            <View key={item.order_id} style={styles.ItemContainer}>
-                                {/* <View style={styles.ItemImgContent}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+
+                <View style={{ backgroundColor: Colors.lightGrey }}>
+                    <ScrollView style={styles.Container}>
+                        <FlatList
+                            data={orderList}
+                            renderItem={({ item }) => (
+                                <View key={item.order_id} style={styles.ItemContainer}>
+                                    {/* <View style={styles.ItemImgContent}>
                                     <View style={styles.ImgWrapper}>
                                         <Image source={Images.burdon} style={styles.Img} />
                                     </View>
                                 </View> */}
-                                <View style={styles.ItemContent}>
-                                    <Text style={styles.Title}>Order Id : {item.order_id}</Text>
-                                    <Text style={styles.Date}>Payment Mode : {item.payment_type}</Text>
-                                    <Text style={styles.Date}>Order Date : {Moment(item.sale_datetime).format('DD-MMM-YYYY')}
-                                    </Text>
-                                    <Text style={styles.Date}>Payment Status : {item.payment_status}</Text>
-                                    <Text style={styles.Price}>Order Total : {Constants.rupee}{Math.floor(item.grand_total)}</Text>
+                                    <View style={styles.ItemContent}>
+                                        <Text style={styles.Title}>Order Id : {item.order_id}</Text>
+                                        <Text style={styles.Date}>Payment Mode : {item.payment_type}</Text>
+                                        <Text style={styles.Date}>Order Date : {Moment(item.sale_datetime).format('DD-MMM-YYYY')}
+                                        </Text>
+                                        <Text style={styles.Date}>Payment Status : {item.payment_status}</Text>
+                                        <Text style={styles.Price}>Order Total : {Constants.rupee}{Math.floor(item.grand_total)}</Text>
 
-                                </View>
-                                <View style={styles.btnWrap}>
-                                    <TouchableOpacity
-                                        style={styles.btn}
-                                        onPress={() => this.props.navigation.navigate('OrderDetailScreen', { id: item.order_id })}
-                                    >
-                                        <Text style={styles.btnText}>
-                                            View
+                                    </View>
+                                    <View style={styles.btnWrap}>
+                                        <TouchableOpacity
+                                            style={styles.btn}
+                                            onPress={() => this.props.navigation.navigate('OrderDetailScreen', { id: item.order_id })}
+                                        >
+                                            <Text style={styles.btnText}>
+                                                View
                                     </Text>
-                                    </TouchableOpacity>
+                                        </TouchableOpacity>
 
+                                    </View>
                                 </View>
-                            </View>
-                        )}
-                        keyExtractor={(item, index) => item.order_id}
-                    />
-                </ScrollView>
-            </View>
+                            )}
+                            keyExtractor={(item, index) => item.order_id}
+                        />
+                    </ScrollView>
+                </View>
+            </SafeAreaView>
         );
     }
 }

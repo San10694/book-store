@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
-import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
+import { getProducts } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
 import Styles from './Styles';
 import { Colors, Images, Constants } from "../Themes";
 import FeatureCard from "../Components/FeatureCard";
 import Api from "../Services";
+import { SafeAreaView } from 'react-navigation';
 
 
 const api = Api.Api();
@@ -41,26 +42,31 @@ class ProductListScreen extends Component {
             return <View></View>
         }
         return (
-            // <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
-            <View style={{
-                flexWrap: "wrap",
-                flex: 1,
-                width: "50%"
-            }}>
-                <View style={{ flexWrap: "wrap" }}>
-                    {
-                        productList ? productList.map((item, index) => {
-                            return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                                title={item.title} price={item.sale_price} style={Styles.productContainer} imageStyle={Styles.productImg}
-                                onPress={() => {
-                                    this.props.navigation.navigate('ProductDetailScreen', { product_id: item.id, title: item.name, product: item });
-                                }}
-                            />
-                        }) : null
-                    }
-                </View>
-            </View>
-            // </ScrollView>
+
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
+                    <View style={{
+                        flexDirection: "row",
+                    }}>
+                        <View style={{ flexDirection: "row", flex: 1, flexWrap: 'wrap' }}>
+                            {
+                                productList ? productList.map((item, index) => {
+                                    return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
+                                        title={item.title} price={item.sale_price}
+                                        style={Styles.productContainer}
+                                        imageStyle={Styles.productImg}
+                                        onPress={() => {
+                                            this.props.navigation.navigate('ProductDetailScreen', { product_id: item.id, title: item.name, product: item });
+                                        }}
+                                    />
+                                }) : null
+                            }
+                        </View>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+
+
         );
     }
 }

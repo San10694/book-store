@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
 import { Colors, Fonts } from "../Themes";
 import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-navigation';
 
 
 
@@ -23,38 +24,40 @@ class ProfileScreen extends Component {
     render() {
         const { user_data } = this.props.user.user;
         return (
-            <View style={styles.container}>
-                <ScrollView style={{ backgroundColor: Colors.white }}>
-                    <View style={styles.userWrapper}>
-                        <View style={styles.avatar}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                <View style={styles.container}>
+                    <ScrollView style={{ backgroundColor: Colors.white }}>
+                        <View style={styles.userWrapper}>
+                            <View style={styles.avatar}>
 
-                            <View>
-                                <Icon name="account-circle-outline" size={90} color={Colors.primary}>
-                                </Icon>
+                                <View>
+                                    <Icon name="account-circle-outline" size={90} color={Colors.primary}>
+                                    </Icon>
+                                </View>
                             </View>
-                        </View>
-                        <Text style={styles.userName}>
-                            {this.props.user.user && user_data ? user_data != null ? user_data.name : null : 'GUEST'}
+                            <Text style={styles.userName}>
+                                {this.props.user.user && user_data ? user_data != null ? user_data.name : null : 'GUEST'}
 
-                        </Text>
-                    </View>
-                    <View style={{ height: 10, backgroundColor: Colors.lightGrey }}></View>
-                    <View style={{ backgroundColor: Colors.white }}>
-                        <View style={styles.menuItem}>
-                            <Text style={styles.textItem}>Name : {user_data.name}</Text>
+                            </Text>
                         </View>
-                        <View style={styles.menuItem}>
-                            <Text style={styles.textItem}>Email : {user_data.email}</Text>
-                        </View>
-                        <View style={styles.menuItem}>
-                            <Text style={styles.textItem}>Mobile No : {user_data.phone}</Text>
-                        </View>
-                        {/* <View style={styles.menuItem}>
+                        <View style={{ height: 10, backgroundColor: Colors.lightGrey }}></View>
+                        <View style={{ backgroundColor: Colors.white }}>
+                            <View style={styles.menuItem}>
+                                <Text style={styles.textItem}>Name : {user_data.name}</Text>
+                            </View>
+                            <View style={styles.menuItem}>
+                                <Text style={styles.textItem}>Email : {user_data.email}</Text>
+                            </View>
+                            <View style={styles.menuItem}>
+                                <Text style={styles.textItem}>Mobile No : {user_data.phone}</Text>
+                            </View>
+                            {/* <View style={styles.menuItem}>
                             <Text style={styles.textItem}>Name : {user_data.name}</Text>
                         </View> */}
-                    </View>
-                </ScrollView>
-            </View>
+                        </View>
+                    </ScrollView>
+                </View>
+            </SafeAreaView>
         );
     }
 }

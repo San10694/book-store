@@ -15,6 +15,7 @@ import Banner from "../Components/Banner";
 import FeatureCard from "../Components/FeatureCard";
 import ActivityIndicator from "../Components/ActivityIndicator";
 import { resetLoader } from "../Redux/UserRedux";
+import { SafeAreaView } from 'react-navigation';
 
 
 const bannerData = [
@@ -68,95 +69,95 @@ class HomeScreen extends Component {
       )
     }
     return (
-      <ScrollView
-        style={{ backgroundColor: Colors.lightGrey }}
-      >
-        <View style={Styles.dateContainer}>
-          <Text style={Styles.normalText}>{currentDate.toUpperCase()}</Text>
-        </View>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {
-            banner ? banner.banners.map((item, index) => {
-              return <Banner key={index} image={Constants.IMAGE_URL + item.image_link}
-                title={item.title} price={item.price} imageStyle={Styles.bookImg} />
-            }) : null
-          }
-        </ScrollView>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {categories ? categories.map((item, index) => {
-            return (
-              <View key={item.id}>
-                <View style={Styles.iconMainContainer}>
-                  <Ripple style={Styles.iconContainer} onPress={() => {
-                    this.props.navigation.navigate('SubCategoryScreen', { category_group_id: item.id, title: item.name });
-                  }}>
-                    <Icon name={item.icon} size={35} color={Colors.green} style={Styles.icon} />
-                  </Ripple>
-                  <Text numberOfLines={2} style={Styles.iconNm}>{item.name}</Text>
-                </View>
-              </View>
-            )
-          }) : null
-          }
-        </ScrollView>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {
-            banner ? banner.offers.map((item, index) => {
+      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+        <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
+          <View style={Styles.dateContainer}>
+            <Text style={Styles.normalText}>{currentDate.toUpperCase()}</Text>
+          </View>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {
+              banner ? banner.banners.map((item, index) => {
+                return <Banner key={index} image={Constants.IMAGE_URL + item.image_link}
+                  title={item.title} price={item.price} imageStyle={Styles.bookImg} />
+              }) : null
+            }
+          </ScrollView>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {categories ? categories.map((item, index) => {
               return (
-                <Card key={index} style={Styles.cardStyle}>
-                  <CardSection style={Styles.advrCardSection}>
-                    <Image source={Images.burdon} style={Styles.advrImg} />
-                    <View style={{
-                      position: 'absolute',
-                      paddingTop: 20,
-                      paddingLeft: 60
+                <View key={item.id}>
+                  <View style={Styles.iconMainContainer}>
+                    <Ripple style={Styles.iconContainer} onPress={() => {
+                      this.props.navigation.navigate('SubCategoryScreen', { category_group_id: item.id, title: item.name });
                     }}>
-                      <Text style={styles.offerText}>{item.description}</Text>
-                      <Text style={styles.offerText}>Use Code: <Text> {item.code}</Text></Text>
-                    </View>
-                    <View style={Styles.advrContainer}>
-                      <Text style={Styles.boldText}>{item.name}</Text>
-                      <MaterialCommunityIcon name='arrow-right' size={25} color={Colors.background} />
-                    </View>
-                  </CardSection>
-                </Card>
+                      <Icon name={item.icon} size={35} color={Colors.green} style={Styles.icon} />
+                    </Ripple>
+                    <Text numberOfLines={2} style={Styles.iconNm}>{item.name}</Text>
+                  </View>
+                </View>
               )
             }) : null
-          }
+            }
+          </ScrollView>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {
+              banner ? banner.offers.map((item, index) => {
+                return (
+                  <Card key={index} style={Styles.cardStyle}>
+                    <CardSection style={Styles.advrCardSection}>
+                      <Image source={Images.burdon} style={Styles.advrImg} />
+                      <View style={{
+                        position: 'absolute',
+                        paddingTop: 20,
+                        paddingLeft: 60
+                      }}>
+                        <Text style={styles.offerText}>{item.description}</Text>
+                        <Text style={styles.offerText}>Use Code: <Text> {item.code}</Text></Text>
+                      </View>
+                      <View style={Styles.advrContainer}>
+                        <Text style={Styles.boldText}>{item.name}</Text>
+                        <MaterialCommunityIcon name='arrow-right' size={25} color={Colors.background} />
+                      </View>
+                    </CardSection>
+                  </Card>
+                )
+              }) : null
+            }
 
-        </ScrollView>
-        <Text style={Styles.headText}>Sale</Text>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {
-            productDetails ? productDetails.sale.map((item, index) => {
-              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
-            }) : null
-          }
-        </ScrollView>
-        <Text style={Styles.headText}>Featured</Text>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {
-            productDetails ? productDetails.featured.map((item, index) => {
-              return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
-            }) : null
-          }
-        </ScrollView>
-        <Text style={Styles.headText}>Online Books</Text>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {
-            productDetails ? productDetails.online.map((item, index) => {
-              //   return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-              //     title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
-              // }) : null
-              return <FeatureCard onPress={() => this.onPress(item)}
-                key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
-            }) : null
-          }
+          </ScrollView>
+          <Text style={Styles.headText}>Sale</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {
+              productDetails ? productDetails.sale.map((item, index) => {
+                return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
+                  title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
+              }) : null
+            }
+          </ScrollView>
+          <Text style={Styles.headText}>Featured</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {
+              productDetails ? productDetails.featured.map((item, index) => {
+                return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
+                  title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
+              }) : null
+            }
+          </ScrollView>
+          <Text style={Styles.headText}>Online Books</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {
+              productDetails ? productDetails.online.map((item, index) => {
+                //   return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
+                //     title={item.title} price={item.sale_price} style={Styles.bookContainer} imageStyle={Styles.bookConImg} />
+                // }) : null
+                return <FeatureCard onPress={() => this.onPress(item)}
+                  key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
+                  title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
+              }) : null
+            }
+          </ScrollView >
         </ScrollView >
-      </ScrollView >
+      </SafeAreaView>
     );
   }
 

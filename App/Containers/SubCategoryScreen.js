@@ -8,6 +8,7 @@ import { getCategories } from "../Redux/ProductRedux";
 import { connect } from "react-redux";
 import Ripple from 'react-native-material-ripple';
 import Api from "../Services";
+import { SafeAreaView } from 'react-navigation';
 
 
 const api = Api.Api();
@@ -47,29 +48,31 @@ class SubCategoryScreen extends Component {
             return <View></View>
         }
         return (
-            <ScrollView style={{ backgroundColor: Colors.background }}>
-                {subCategories ? subCategories.map((item, index) => {
-                    return (
-                        <View key={item.id}>
-                            <Ripple style={Styles.categoryscnContainer} onPress={() => {
-                                this.props.navigation.navigate('SubSubCategoryScreen', { category_sub_group_id: item.id, title: item.name });
-                            }}>
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                <ScrollView style={{ backgroundColor: Colors.background }}>
+                    {subCategories ? subCategories.map((item, index) => {
+                        return (
+                            <View key={item.id}>
+                                <Ripple style={Styles.categoryscnContainer} onPress={() => {
+                                    this.props.navigation.navigate('SubSubCategoryScreen', { category_sub_group_id: item.id, title: item.name });
+                                }}>
 
-                                <View style={Styles.categorySubContainer}>
-                                    <View style={Styles.categoryIcon}>
-                                        <Icon size={40} name={item.icon ? item.icon : 'book'} color={Colors.primary} />
+                                    <View style={Styles.categorySubContainer}>
+                                        <View style={Styles.categoryIcon}>
+                                            <Icon size={40} name={item.icon ? item.icon : 'book'} color={Colors.primary} />
+                                        </View>
+                                        <Text style={Styles.categoryName}>{item.name}</Text>
+                                        <Ionicon size={20} name="ios-arrow-forward" color={Colors.lightgrey}
+                                            style={Styles.categoryBackIcon} />
                                     </View>
-                                    <Text style={Styles.categoryName}>{item.name}</Text>
-                                    <Ionicon size={20} name="ios-arrow-forward" color={Colors.lightgrey}
-                                        style={Styles.categoryBackIcon} />
-                                </View>
 
-                            </Ripple>
-                        </View>
-                    )
-                }) : null
-                }
-            </ScrollView>
+                                </Ripple>
+                            </View>
+                        )
+                    }) : null
+                    }
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }

@@ -9,6 +9,7 @@ import { getAddress } from '../Redux/UserAddressRedux';
 import { connect } from "react-redux";
 import ActivityIndicator from "../Components/ActivityIndicator";
 import Api from '../Services';
+import { SafeAreaView } from 'react-navigation';
 
 // const bannerData = [
 //     { key: 1, title: 'Hari', zip: 890076, state: 'karnataka', city: 'bangalore', mobile: 8976453210 },
@@ -110,75 +111,77 @@ class AddressListScreen extends React.Component {
 
 
         return (
-            <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
-                <View>
-                    <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
-                        <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
-                        <TouchableOpacity style={{ backgroundColor: Colors.primary, borderRadius: 5 }}
-                            onPress={() => this.props.navigation.navigate('AddAddressScreen', { amount: this.state.amount })}>
-                            <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.white }}>Add New Address</Text>
-                        </TouchableOpacity>
-                    </View>
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                <ScrollView style={{ backgroundColor: Colors.lightGrey }}>
+                    <View>
+                        <View style={{ flexDirection: 'row', margin: 10, justifyContent: 'space-between' }}>
+                            <Text style={{ fontSize: Fonts.size.h6, fontWeight: '500' }}>Address List</Text>
+                            <TouchableOpacity style={{ backgroundColor: Colors.primary, borderRadius: 5 }}
+                                onPress={() => this.props.navigation.navigate('AddAddressScreen', { amount: this.state.amount })}>
+                                <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.white }}>Add New Address</Text>
+                            </TouchableOpacity>
+                        </View>
 
-                    <View style={{ marginBottom: 20, backgroundColor: Colors.white }}>
-                        <RadioGroup
-                            size={24}
-                            thickness={2}
-                            color={Colors.primary}
-                            highlightColor={Colors.lightgrey}
-                            onSelect={(index, value) =>
-                                this.selectAddress(index, value, data[index])
-                            }
-                        >
-                            {data ? data.map((item, index) => {
-                                return (
-                                    <RadioButton value={item.name} key={item.id}>
-                                        <View style={{
-                                            flexDirection: 'row',
-                                            justifyContent: 'space-between',
-                                            marginLeft: 10,
-                                            marginBottom: 10,
-                                            borderBottomWidth: 0.5,
-                                            borderColor: "#d6d7da",
-                                            paddingBottom: 10
-                                        }}>
-                                            <View style={{ width: '80%' }}>
-                                                <Text style={{ fontWeight: 'bold' }}>{item.name ? item.name : null},</Text>
-                                                <Text>{item.address ? item.address : null}</Text>
-                                                <Text>{item.city ? item.city : null},{typeof item.state !== 'undefined' ? item.state : null},{item.country ? item.country : null},</Text>
-                                                <Text>{item.mobile ? item.mobile : null},{item.pincode ? item.pincode : null}</Text>
-
-                                            </View>
-                                            <View style={{
-                                                width: '20%',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                            }}>
-                                                <TouchableOpacity onPress={(e) => this.deleteAddressData(e, item.id)}>
-                                                    <Icon name='trash-o' size={25} color={Colors.primary} />
-                                                </TouchableOpacity>
-                                            </View>
-                                        </View>
-                                    </RadioButton>
-                                );
-                            }) : null}
-                        </RadioGroup>
-                    </View>
-                </View>
-                <View>
-                    {
-                        data ?
-                            <Ripple
-                                style={Styles.buyButton}
-                                onPress={() => this.moveToPay()}
+                        <View style={{ marginBottom: 20, backgroundColor: Colors.white }}>
+                            <RadioGroup
+                                size={24}
+                                thickness={2}
+                                color={Colors.primary}
+                                highlightColor={Colors.lightgrey}
+                                onSelect={(index, value) =>
+                                    this.selectAddress(index, value, data[index])
+                                }
                             >
-                                <Text style={Styles.btnText}>Select Address</Text>
-                            </Ripple>
-                            : null
-                    }
+                                {data ? data.map((item, index) => {
+                                    return (
+                                        <RadioButton value={item.name} key={item.id}>
+                                            <View style={{
+                                                flexDirection: 'row',
+                                                justifyContent: 'space-between',
+                                                marginLeft: 10,
+                                                marginBottom: 10,
+                                                borderBottomWidth: 0.5,
+                                                borderColor: "#d6d7da",
+                                                paddingBottom: 10
+                                            }}>
+                                                <View style={{ width: '80%' }}>
+                                                    <Text style={{ fontWeight: 'bold' }}>{item.name ? item.name : null},</Text>
+                                                    <Text>{item.address ? item.address : null}</Text>
+                                                    <Text>{item.city ? item.city : null},{typeof item.state !== 'undefined' ? item.state : null},{item.country ? item.country : null},</Text>
+                                                    <Text>{item.mobile ? item.mobile : null},{item.pincode ? item.pincode : null}</Text>
 
-                </View>
-            </ScrollView>
+                                                </View>
+                                                <View style={{
+                                                    width: '20%',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                }}>
+                                                    <TouchableOpacity onPress={(e) => this.deleteAddressData(e, item.id)}>
+                                                        <Icon name='trash-o' size={25} color={Colors.primary} />
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </RadioButton>
+                                    );
+                                }) : null}
+                            </RadioGroup>
+                        </View>
+                    </View>
+                    <View>
+                        {
+                            data ?
+                                <Ripple
+                                    style={Styles.buyButton}
+                                    onPress={() => this.moveToPay()}
+                                >
+                                    <Text style={Styles.btnText}>Select Address</Text>
+                                </Ripple>
+                                : null
+                        }
+
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
 
     }

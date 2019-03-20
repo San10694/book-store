@@ -7,6 +7,7 @@ import { Colors } from "../Themes";
 import ActivityIndicator from '../Components/ActivityIndicator';
 import Fonts from '../Themes/Fonts';
 import { Picker } from 'react-native-picker-dropdown';
+import { SafeAreaView } from 'react-navigation';
 const { width, height } = Dimensions.get('window');
 
 
@@ -267,258 +268,259 @@ class AddAdressScreen extends Component {
     render() {
         const { isLoading } = this.props;
         return (
-            <ScrollView style={{ flex: 1, backgroundColor: Colors.white }}>
-                <View style={styles.container}>
-                    <ScrollView
-                        style={{ backgroundColor: Colors.white, marginTop: 20, marginBottom: 20 }}
-                        contentContainerStyle={styles.container}>
-                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "padding"} enabled>
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                <ScrollView style={{ flex: 1, backgroundColor: Colors.white }}>
+                    <View style={styles.container}>
+                        <ScrollView
+                            style={{ backgroundColor: Colors.white, marginTop: 20, marginBottom: 20 }}
+                            contentContainerStyle={styles.container}>
+                            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "padding"} enabled>
 
-                            <View>
-                                <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Enter Address</Text>
-                            </View>
-                            <View style={styles.subContain}>
-                                <View style={styles.loginForm}>
-                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                        <Text style={{ paddingTop: 15, paddingLeft: 20, fontSize: Fonts.size.medium_15 }}>Address Type</Text>
-                                        <Picker
-                                            selectedValue={this.state.address_type}
-                                            onValueChange={(itemValue, itemIndex) => this.selectAddress(itemValue, itemIndex)}
-                                            prompt="Choose Address Type"
-                                            style={{
-                                                height: 50,
-                                                width: 150,
-                                                alignSelf: 'center',
-                                                color: Colors.primary,
-                                            }}
-                                            cancel
-
-                                        >
-                                            <Picker.Item label="Primary" value="primary" />
-                                            <Picker.Item label="Shipping" value="shipping" />
-                                            <Picker.Item label="Billing" value="billing" />
-                                        </Picker>
-                                    </View>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter Your Name"}
-                                            onChangeText={(name) => this.validate(name, 'name')}
-                                            value={this.state.name}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.nameValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.nameValidate ? 'Must be greater than 4 characters' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-
-                                            placeholder={"Enter Your Email"}
-                                            onChangeText={(email) => this.validate(email, 'email')}
-                                            keyboardType='email-address'
-                                            value={this.state.email}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.emailValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.emailValidate ? 'Invalid email address' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Near by address..."}
-                                            onChangeText={(other) => this.validate(other, 'other')}
-                                            value={this.state.other}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.otherValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.otherValidate ? 'Address must be greater than 10 characters' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter City Name"}
-                                            onChangeText={(city) => this.validate(city, 'city')}
-                                            value={this.state.city}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.cityValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.cityValidate ? 'City name must be greater than 4 characters' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter State Name"}
-                                            keyboardType='name-phone-pad'
-                                            onChangeText={(state) => this.validate(state, 'state')}
-                                            value={this.state.state}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.stateValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.stateValidate ? 'State name must be required' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter floor No, House No"}
-                                            keyboardType='name-phone-pad'
-                                            onChangeText={(address) => this.validate(address, 'address')}
-
-                                            value={this.state.address}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.address2Validate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.address2Validate ? 'Address must be greater than 10 characters' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter Your Country Name"}
-                                            keyboardType='name-phone-pad'
-                                            onChangeText={(country) => this.validate(country, 'country')}
-
-                                            value={this.state.country}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.countryValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.countryValidate ? 'Country name, must be greater than 4 characters' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter Mobile No"}
-                                            keyboardType="numeric"
-                                            onChangeText={(mobile) => this.validate(mobile, 'phn')}
-
-                                            value={this.state.mobile}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.mobileValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.mobileValidate ? 'Invalid phone number, must be 10 digits' : ''}</Text>
-                                    <View style={styles.inputWrap}>
-
-                                        <TextInput
-                                            placeholder={"Enter PinCode No"}
-                                            onChangeText={(pincode) => this.validate(pincode, 'pincode')}
-
-                                            keyboardType="numeric"
-                                            value={this.state.pincode}
-                                            style={[{
-                                                paddingLeft: 10,
-                                                height: 50,
-                                                borderRadius: 5,
-                                                width: Dimensions.get('screen').width * .88
-                                            }, !this.state.pincodeValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
-                                        />
-
-                                    </View>
-                                    <Text
-                                        style={{ color: Colors.red, marginLeft: 24 }}
-                                    >{!this.state.pincodeValidate ? 'Invalid Pincode, must be 6 digits' : ''}</Text>
+                                <View>
+                                    <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Enter Address</Text>
                                 </View>
-                                <TouchableOpacity
-                                    style={{
-                                        width: width * 0.9,
-                                        height: 40,
-                                        backgroundColor: Colors.primary,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        borderRadius: 5,
-                                        marginTop: 15,
-                                        marginLeft: 20
-                                    }}
-                                    onPress={(e) => {
+                                <View style={styles.subContain}>
+                                    <View style={styles.loginForm}>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                            <Text style={{ paddingTop: 15, paddingLeft: 20, fontSize: Fonts.size.medium_15 }}>Address Type</Text>
+                                            <Picker
+                                                selectedValue={this.state.address_type}
+                                                onValueChange={(itemValue, itemIndex) => this.selectAddress(itemValue, itemIndex)}
+                                                prompt="Choose Address Type"
+                                                style={{
+                                                    height: 50,
+                                                    width: 150,
+                                                    alignSelf: 'center',
+                                                    color: Colors.primary,
+                                                }}
+                                                cancel
 
-                                        if (!this.state.nameValid ||
-                                            !this.state.pincodeValid ||
-                                            !this.state.mobileValid ||
-                                            !this.state.cityValid ||
-                                            !this.state.stateValid ||
-                                            !this.state.emailValid ||
-                                            !this.state.otherValid ||
-                                            !this.state.countryValid ||
-                                            !this.state.address2Valid) {
-                                            Alert.alert(
-                                                '',
-                                                'Please fill all the inputs',
-                                                [
-                                                    {
-                                                        text: 'Cancel',
-                                                        onPress: console.log('cancel'),
-                                                        style: 'cancel',
-                                                    },
-                                                    { text: 'OK', onPress: () => console.log('ok') },
-                                                ],
-                                                { cancelable: false }
-                                            );
+                                            >
+                                                <Picker.Item label="Primary" value="primary" />
+                                                <Picker.Item label="Shipping" value="shipping" />
+                                                <Picker.Item label="Billing" value="billing" />
+                                            </Picker>
+                                        </View>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter Your Name"}
+                                                onChangeText={(name) => this.validate(name, 'name')}
+                                                value={this.state.name}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.nameValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.nameValidate ? 'Must be greater than 4 characters' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+
+                                                placeholder={"Enter Your Email"}
+                                                onChangeText={(email) => this.validate(email, 'email')}
+                                                keyboardType='email-address'
+                                                value={this.state.email}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.emailValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.emailValidate ? 'Invalid email address' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Near by address..."}
+                                                onChangeText={(other) => this.validate(other, 'other')}
+                                                value={this.state.other}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.otherValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.otherValidate ? 'Address must be greater than 10 characters' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter City Name"}
+                                                onChangeText={(city) => this.validate(city, 'city')}
+                                                value={this.state.city}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.cityValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.cityValidate ? 'City name must be greater than 4 characters' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter State Name"}
+                                                keyboardType='name-phone-pad'
+                                                onChangeText={(state) => this.validate(state, 'state')}
+                                                value={this.state.state}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.stateValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.stateValidate ? 'State name must be required' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter floor No, House No"}
+                                                keyboardType='name-phone-pad'
+                                                onChangeText={(address) => this.validate(address, 'address')}
+
+                                                value={this.state.address}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.address2Validate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.address2Validate ? 'Address must be greater than 10 characters' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter Your Country Name"}
+                                                keyboardType='name-phone-pad'
+                                                onChangeText={(country) => this.validate(country, 'country')}
+
+                                                value={this.state.country}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.countryValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.countryValidate ? 'Country name, must be greater than 4 characters' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter Mobile No"}
+                                                keyboardType="numeric"
+                                                onChangeText={(mobile) => this.validate(mobile, 'phn')}
+
+                                                value={this.state.mobile}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.mobileValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.mobileValidate ? 'Invalid phone number, must be 10 digits' : ''}</Text>
+                                        <View style={styles.inputWrap}>
+
+                                            <TextInput
+                                                placeholder={"Enter PinCode No"}
+                                                onChangeText={(pincode) => this.validate(pincode, 'pincode')}
+
+                                                keyboardType="numeric"
+                                                value={this.state.pincode}
+                                                style={[{
+                                                    paddingLeft: 10,
+                                                    height: 50,
+                                                    borderRadius: 5,
+                                                    width: Dimensions.get('screen').width * .88
+                                                }, !this.state.pincodeValidate ? { borderColor: Colors.red, borderWidth: 1 } : null]}
+                                            />
+
+                                        </View>
+                                        <Text
+                                            style={{ color: Colors.red, marginLeft: 24 }}
+                                        >{!this.state.pincodeValidate ? 'Invalid Pincode, must be 6 digits' : ''}</Text>
+                                    </View>
+                                    <TouchableOpacity
+                                        style={{
+                                            width: width * 0.9,
+                                            height: 40,
+                                            backgroundColor: Colors.primary,
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            borderRadius: 5,
+                                            marginTop: 15,
+                                            marginLeft: 20
+                                        }}
+                                        onPress={(e) => {
+
+                                            if (!this.state.nameValid ||
+                                                !this.state.pincodeValid ||
+                                                !this.state.mobileValid ||
+                                                !this.state.cityValid ||
+                                                !this.state.stateValid ||
+                                                !this.state.emailValid ||
+                                                !this.state.otherValid ||
+                                                !this.state.countryValid ||
+                                                !this.state.address2Valid) {
+                                                Alert.alert(
+                                                    '',
+                                                    'Please fill all the inputs',
+                                                    [
+                                                        {
+                                                            text: 'Cancel',
+                                                            onPress: console.log('cancel'),
+                                                            style: 'cancel',
+                                                        },
+                                                        { text: 'OK', onPress: () => console.log('ok') },
+                                                    ],
+                                                    { cancelable: false }
+                                                );
+                                            }
+                                            else {
+                                                this.onSubmit(e)
+                                            }
                                         }
-                                        else {
-                                            this.onSubmit(e)
                                         }
-                                    }
-                                    }
-                                >
+                                    >
 
-                                    <Text style={{ color: Colors.white }}>Add Address</Text>
+                                        <Text style={{ color: Colors.white }}>Add Address</Text>
 
-                                </TouchableOpacity>
-                            </View>
+                                    </TouchableOpacity>
+                                </View>
 
-                            {isLoading ? <ActivityIndicator mode="overlay" /> : null}
-                        </KeyboardAvoidingView>
-                    </ScrollView>
-                </View>
-
-            </ScrollView>
+                                {isLoading ? <ActivityIndicator mode="overlay" /> : null}
+                            </KeyboardAvoidingView>
+                        </ScrollView>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }

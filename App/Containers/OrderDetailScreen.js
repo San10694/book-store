@@ -10,6 +10,7 @@ import { addToCart } from '../Redux/CartRedux';
 import Ripple from "react-native-material-ripple";
 import ActivityIndicator from "../Components/ActivityIndicator";
 import Moment from 'moment';
+import { SafeAreaView } from 'react-navigation';
 
 
 detail = { title: 'Fundamentals of Engineering Drawing', price: 300, shopname: 'Student shop', image: Images.burdon, description: 'Fundamentals of Engineering Drawing-Luzadder Warren J.Duff John M.' }
@@ -47,29 +48,31 @@ class OrderDetailScreen extends Component {
         }
         // console.log(imageUrl + productDetail.image[0].path);
         return (
-            <View style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
-                <ScrollView style={styleSheet.mainContainer}>
-                    <View style={{ backgroundColor: Colors.white }}>
-                        <FlatList
-                            data={orderDetails.product_details}
-                            renderItem={({ item }) => (
-                                <View key={item.inventory_id} style={styleSheet.ItemContainer}>
-                                    <View style={styleSheet.ItemImgContent}>
-                                        <View style={styleSheet.ImgWrapper}>
-                                            <Image source={Images.burdon} style={styleSheet.Img} />
+            <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+
+                <View style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                    <ScrollView style={styleSheet.mainContainer}>
+                        <View style={{ backgroundColor: Colors.white }}>
+                            <FlatList
+                                data={orderDetails.product_details}
+                                renderItem={({ item }) => (
+                                    <View key={item.inventory_id} style={styleSheet.ItemContainer}>
+                                        <View style={styleSheet.ItemImgContent}>
+                                            <View style={styleSheet.ImgWrapper}>
+                                                <Image source={Images.burdon} style={styleSheet.Img} />
+                                            </View>
+                                        </View>
+                                        <View style={styleSheet.ItemContent}>
+                                            <Text style={styleSheet.Title}>Title : {item.title}</Text>
+                                            <Text style={styleSheet.Date}>Quantity : {item.quantity}</Text>
+                                            <Text style={styleSheet.Date}>Price : {Math.floor(item.unit_price)}</Text>
                                         </View>
                                     </View>
-                                    <View style={styleSheet.ItemContent}>
-                                        <Text style={styleSheet.Title}>Title : {item.title}</Text>
-                                        <Text style={styleSheet.Date}>Quantity : {item.quantity}</Text>
-                                        <Text style={styleSheet.Date}>Price : {Math.floor(item.unit_price)}</Text>
-                                    </View>
-                                </View>
-                            )}
-                            keyExtractor={(item, index) => item.order_id}
-                        />
-                    </View>
-                    {/* <View style={Styles.productdetailSubContainer}>
+                                )}
+                                keyExtractor={(item, index) => item.order_id}
+                            />
+                        </View>
+                        {/* <View style={Styles.productdetailSubContainer}>
                         <Image source={detail.image}
                             style={Styles.ProductDetailImg} />
                     </View>
@@ -80,47 +83,48 @@ class OrderDetailScreen extends Component {
                     <View style={Styles.productDescription}>
                         <Text>{detail.description}</Text>
                     </View> */}
-                    <View style={{
-                        flex: 1,
-                        padding: 10,
-                        marginTop: 20,
-                        backgroundColor: Colors.white,
-                        shadowOffset: {
-                            width: 0,
-                            height: 2,
-                        },
-                        shadowRadius: 1,
-                        shadowOpacity: 0.5
-                    }}>
-                        <View
-                            style={{
-                                borderBottomWidth: 1,
-                                borderBottomColor: Colors.charcoal,
-                                marginBottom: 5
-                            }}><Text style={styleSheet.Title}>Order Summary</Text>
-                        </View>
-                        < Text style={styleSheet.listItem}>Shipping Address : {orderDetails.shipping_address}</Text>
-                        <Text style={styleSheet.listItem}>Order Id : {orderDetails.order_no}</Text>
-                        <Text style={styleSheet.listItem}>Order Date : {Moment(orderDetails.sale_datetime).format('DD-MMM-YYYY')}</Text>
-                        <Text style={styleSheet.listItem}>Delivery Status : {orderDetails.delivery_status}</Text>
-                        {/* <View>
+                        <View style={{
+                            flex: 1,
+                            padding: 10,
+                            marginTop: 20,
+                            backgroundColor: Colors.white,
+                            shadowOffset: {
+                                width: 0,
+                                height: 2,
+                            },
+                            shadowRadius: 1,
+                            shadowOpacity: 0.5
+                        }}>
+                            <View
+                                style={{
+                                    borderBottomWidth: 1,
+                                    borderBottomColor: Colors.charcoal,
+                                    marginBottom: 5
+                                }}><Text style={styleSheet.Title}>Order Summary</Text>
+                            </View>
+                            < Text style={styleSheet.listItem}>Shipping Address : {orderDetails.shipping_address}</Text>
+                            <Text style={styleSheet.listItem}>Order Id : {orderDetails.order_no}</Text>
+                            <Text style={styleSheet.listItem}>Order Date : {Moment(orderDetails.sale_datetime).format('DD-MMM-YYYY')}</Text>
+                            <Text style={styleSheet.listItem}>Delivery Status : {orderDetails.delivery_status}</Text>
+                            {/* <View>
                             <Text style={styleSheet.Price}>Total : {Constants.rupee}{orderDetails.total}</Text>
                         </View> */}
-                        <View>
-                            <Text style={styleSheet.Price}>Grand Total : {Constants.rupee}{orderDetails.grand_total}</Text>
+                            <View>
+                                <Text style={styleSheet.Price}>Grand Total : {Constants.rupee}{orderDetails.grand_total}</Text>
+                            </View>
                         </View>
-                    </View>
 
-                </ScrollView>
-                <View style={Styles.checkoutContainer}>
-                    <Ripple
-                        style={Styles.buyButton}
-                        onPress={() => this.props.navigation.navigate("HomeTab")}
-                    >
-                        <Text style={Styles.btnText}>Continue Shopping</Text>
-                    </Ripple>
+                    </ScrollView>
+                    <View style={Styles.checkoutContainer}>
+                        <Ripple
+                            style={Styles.buyButton}
+                            onPress={() => this.props.navigation.navigate("HomeTab")}
+                        >
+                            <Text style={Styles.btnText}>Continue Shopping</Text>
+                        </Ripple>
+                    </View>
                 </View>
-            </View>
+            </SafeAreaView>
         );
     }
 }

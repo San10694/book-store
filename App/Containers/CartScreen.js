@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { addToCart, deleteCartItem, removeCartItem, saveGrandTotal } from '../Redux/CartRedux';
 import Styles from './Styles';
 import { Colors, Images, Constants } from "../Themes";
+import { SafeAreaView } from 'react-navigation';
 
 
 class CartScreen extends Component {
@@ -156,64 +157,66 @@ class CartScreen extends Component {
         }
         else {
             return (
-                <View style={{ flex: 1 }}>
-                    <ScrollView style={Styles.productDetailContainer}>
-                        <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
-                            <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
-                                <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.subTotal}</Text>
+                <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
+                    <View style={{ flex: 1 }}>
+                        <ScrollView style={Styles.productDetailContainer}>
+                            <View style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                                <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                    <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
+                                    <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.subTotal}</Text>
+                                </View>
                             </View>
-                        </View>
-                        <FlatList
-                            data={cartItems.cart}
-                            renderItem={({ item }) => (
-                                <View key={item.product_id} style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
+                            <FlatList
+                                data={cartItems.cart}
+                                renderItem={({ item }) => (
+                                    <View key={item.product_id} style={{ borderBottomColor: Colors.lightgrey, borderBottomWidth: 1 }}>
 
-                                    <View style={{ padding: 20, flex: 1, flexDirection: 'row', }}>
-                                        <View style={{
-                                            flex: .3, width: 85, height: 85, marginRight: 5,
-                                        }}>
-                                            <Image source={{ uri: item.image ? Constants.IMAGE_URL + item.image[0].path : null }}
-                                                style={{
-                                                    width: 85, height: 85,
-                                                    borderWidth: 1,
-                                                    borderColor: Colors.lightGrey
-                                                }} />
-                                        </View>
-                                        <View style={{ flex: .75, position: 'relative' }}>
-                                            <Text style={{ paddingLeft: 8, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
-                                            <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>{Constants.rupee}{item.sale_price}</Text>
-                                            <Ripple style={{ paddingLeft: 8 }} onPress={() => this.deleteToCart(item)} >
-                                                <Icon name='trash-o' size={25} color={Colors.lightgrey} />
-                                            </Ripple>
-                                        </View>
-                                        <View style={{ flex: .1 }}>
-                                            <View style={{ backgroundColor: Colors.lightGrey, alignItems: 'center', width: 25, height: 85, borderColor: Colors.lightgrey, borderWidth: 1, borderRadius: 25 }}>
-                                                <Ripple onPress={(e) => this.add(e, item)}><Icon name='caret-up' size={25} color={Colors.lightgrey} /></Ripple>
-                                                <View style={{ paddingTop: 6, paddingBottom: 6 }}><Text>{item.quantity}</Text></View>
-                                                <Ripple onPress={(e) => {
-                                                    if (item.quantity > 1)
-                                                        this.remove(e, item)
-                                                }}><Icon name='caret-down' size={25} color={Colors.lightgrey} /></Ripple>
+                                        <View style={{ padding: 20, flex: 1, flexDirection: 'row', }}>
+                                            <View style={{
+                                                flex: .3, width: 85, height: 85, marginRight: 5,
+                                            }}>
+                                                <Image source={{ uri: item.image ? Constants.IMAGE_URL + item.image[0].path : null }}
+                                                    style={{
+                                                        width: 85, height: 85,
+                                                        borderWidth: 1,
+                                                        borderColor: Colors.lightGrey
+                                                    }} />
+                                            </View>
+                                            <View style={{ flex: .75, position: 'relative' }}>
+                                                <Text style={{ paddingLeft: 8, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>
+                                                <Text style={{ padding: 8, fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '600' }}>{Constants.rupee}{item.sale_price}</Text>
+                                                <Ripple style={{ paddingLeft: 8 }} onPress={() => this.deleteToCart(item)} >
+                                                    <Icon name='trash-o' size={25} color={Colors.lightgrey} />
+                                                </Ripple>
+                                            </View>
+                                            <View style={{ flex: .1 }}>
+                                                <View style={{ backgroundColor: Colors.lightGrey, alignItems: 'center', width: 25, height: 85, borderColor: Colors.lightgrey, borderWidth: 1, borderRadius: 25 }}>
+                                                    <Ripple onPress={(e) => this.add(e, item)}><Icon name='caret-up' size={25} color={Colors.lightgrey} /></Ripple>
+                                                    <View style={{ paddingTop: 6, paddingBottom: 6 }}><Text>{item.quantity}</Text></View>
+                                                    <Ripple onPress={(e) => {
+                                                        if (item.quantity > 1)
+                                                            this.remove(e, item)
+                                                    }}><Icon name='caret-down' size={25} color={Colors.lightgrey} /></Ripple>
+                                                </View>
                                             </View>
                                         </View>
+
                                     </View>
+                                )}
+                                keyExtractor={(item, index) => item.id}
+                            />
 
-                                </View>
-                            )}
-                            keyExtractor={(item, index) => item.id}
-                        />
-
-                    </ScrollView>
-                    <View style={Styles.checkoutContainer}>
-                        <Ripple
-                            style={Styles.buyButton}
-                            onPress={() => this.moveToPay()}
-                        >
-                            <Text style={Styles.btnText}>Checkout</Text>
-                        </Ripple>
+                        </ScrollView>
+                        <View style={Styles.checkoutContainer}>
+                            <Ripple
+                                style={Styles.buyButton}
+                                onPress={() => this.moveToPay()}
+                            >
+                                <Text style={Styles.btnText}>Checkout</Text>
+                            </Ripple>
+                        </View>
                     </View>
-                </View>
+                </SafeAreaView>
             );
         }
     }
