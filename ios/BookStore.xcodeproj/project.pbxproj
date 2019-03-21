@@ -50,6 +50,7 @@
 		67B55BB7C3FC490AB983B450 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF767BA25879491A834C6BB8 /* Zocial.ttf */; };
 		72735C01144A4E28A690E79E /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93D2E5FA984043E7AC2F7FB2 /* EvilIcons.ttf */; };
 		762B382B2233AD71009C5A88 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B37F42233ACD6009C5A88 /* libRNFirebase.a */; };
+		76696B4022429CCB00886EB5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76696B3F22429CCB00886EB5 /* Launch Screen.storyboard */; };
 		7692F3162233CA9600D77232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7692F2ED2233CA9600D77232 /* GoogleService-Info.plist */; };
 		769E6296223ED10A00EA4B69 /* libRNSnackbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6295223ED0F000EA4B69 /* libRNSnackbar.a */; };
 		769E6297223ED11200EA4B69 /* libRazorpayCheckout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6267223ED05300EA4B69 /* libRazorpayCheckout.a */; };
@@ -433,6 +434,7 @@
 		5CA807B82D5141D3B01E2FC2 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6B4A6BC267E7612D6C75B873 /* Pods-BookStore-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BookStore-tvOS.release.xcconfig"; path = "Target Support Files/Pods-BookStore-tvOS/Pods-BookStore-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		76696B3F22429CCB00886EB5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		7692F2ED2233CA9600D77232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../keystore-book-store/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		769E6261223ED05300EA4B69 /* RazorpayCheckout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RazorpayCheckout.xcodeproj; path = "../node_modules/react-native-razorpay/ios/RazorpayCheckout.xcodeproj"; sourceTree = "<group>"; };
 		769E6290223ED0F000EA4B69 /* RNSnackbar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSnackbar.xcodeproj; path = "../node_modules/react-native-snackbar/ios/RNSnackbar.xcodeproj"; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				76696B3F22429CCB00886EB5 /* Launch Screen.storyboard */,
 			);
 			name = BookStore;
 			sourceTree = "<group>";
@@ -1327,6 +1330,7 @@
 				414F15C0E3FC4CDFA811D34F /* Feather.ttf in Resources */,
 				E020C37AF3DF47099D7909F8 /* FontAwesome.ttf in Resources */,
 				DE806D2989674726A3EADAD3 /* FontAwesome5_Brands.ttf in Resources */,
+				76696B4022429CCB00886EB5 /* Launch Screen.storyboard in Resources */,
 				333C981100134B5F985E4BE1 /* FontAwesome5_Regular.ttf in Resources */,
 				C8A75C294BFF45AAAA4D815F /* FontAwesome5_Solid.ttf in Resources */,
 				57B31F4CDFC043E3914F1011 /* Foundation.ttf in Resources */,
