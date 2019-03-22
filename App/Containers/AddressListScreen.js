@@ -25,7 +25,7 @@ class AddressListScreen extends React.Component {
         this.state = {
             isSelect: false,
             selectedAddress: null,
-            amount: props.navigation.state.params.amount,
+            // amount: props.navigation.state.params.amount,
         }
     }
 
@@ -37,7 +37,7 @@ class AddressListScreen extends React.Component {
     }
 
     deleteAddressData(e, id) {
-        Alert.alert('ohhhh!', 'Do you want to delete address!', [
+        Alert.alert('ohhhh!', 'Do you want to delete address ?', [
             { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
             {
                 text: 'OK', onPress: () => this.deleteUserAddressData(id)
@@ -66,7 +66,6 @@ class AddressListScreen extends React.Component {
 
 
     moveToPay() {
-
         if (this.state.isSelect === false) {
             Alert.alert('Please!', 'Select Address !', [{ text: 'OK', onPress: () => console.log('ok') }], {
                 canceLabel: false,

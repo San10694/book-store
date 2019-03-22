@@ -84,7 +84,7 @@ class PaymentScreen extends Component {
                     // this.setState({ ref_id: response.data.ref_id })
                     this.showToast(response.data ? response.data.message : null);
                     this.props.clearCartItem()
-                    this.props.navigation.push('OrderScreen');
+                    this.props.navigation.replace('OrderScreen');
                 })
 
             }).catch((error) => {
@@ -115,7 +115,7 @@ class PaymentScreen extends Component {
                 this.showToast(response.data ? response.data.message : null);
                 // this.setState({ ref_id: response.data.ref_id })
                 this.props.clearCartItem()
-                this.props.navigation.push('OrderScreen');
+                this.props.navigation.replace('OrderScreen');
 
             })
 

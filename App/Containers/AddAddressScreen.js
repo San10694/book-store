@@ -44,7 +44,7 @@ class AddAdressScreen extends Component {
             otherValid: false,
             countryValid: false,
             address2Valid: false,
-            amount: props.navigation.state.params.amount,
+            // amount: props.navigation.state.params.amount,
         }
     }
 
@@ -122,7 +122,7 @@ class AddAdressScreen extends Component {
             }
         }
         else if (type == 'name') {
-            if (text.length > 4) {
+            if (text.length > 0) {
                 this.setState({
                     nameValidate: true,
                     name: text,
@@ -138,7 +138,7 @@ class AddAdressScreen extends Component {
             }
         }
         else if (type == 'city') {
-            if (text.length > 2) {
+            if (text.length > 0) {
                 this.setState({
                     cityValidate: true,
                     city: text,
@@ -170,7 +170,7 @@ class AddAdressScreen extends Component {
             }
         }
         else if (type == 'country') {
-            if (text.length > 2) {
+            if (text.length > 0) {
                 this.setState({
                     countryValidate: true,
                     country: text,
@@ -202,7 +202,7 @@ class AddAdressScreen extends Component {
             }
         }
         else if (type == 'other') {
-            if (text.length > 10) {
+            if (text.length > 0) {
                 this.setState({
                     otherValidate: true,
                     other: text,
@@ -218,7 +218,7 @@ class AddAdressScreen extends Component {
             }
         }
         else if (type == 'address') {
-            if (text.length > 10) {
+            if (text.length > 0) {
                 this.setState({
                     address2Validate: true,
                     address: text,
@@ -233,6 +233,8 @@ class AddAdressScreen extends Component {
                 })
             }
         }
+
+
         else { }
     }
 
@@ -249,9 +251,9 @@ class AddAdressScreen extends Component {
             set_default: this.state.address_type === 'primary' ? 'yes' : 'no',
             customer_id: this.props.user.user.user_data.id,
             country: this.state.country,
-            address_line_2: this.state.address_line_2
+            address_line_2: this.state.address
         }
-        var addressData = { data: data, navigate: this.props.navigation.push };
+        var addressData = { data: data, navigate: this.props.navigation.replace };
         // console.log('address formmmm', JSON.stringify(data))
         this.props.addAddress(addressData);
 
@@ -290,11 +292,9 @@ class AddAdressScreen extends Component {
                                                 style={{
                                                     height: 50,
                                                     width: 150,
-                                                    alignSelf: 'center',
-                                                    color: Colors.primary,
+                                                    alignSelf: 'center'
                                                 }}
                                                 cancel
-
                                             >
                                                 <Picker.Item label="Primary" value="primary" />
                                                 <Picker.Item label="Shipping" value="shipping" />
@@ -317,7 +317,7 @@ class AddAdressScreen extends Component {
                                         </View>
                                         <Text
                                             style={{ color: Colors.red, marginLeft: 24 }}
-                                        >{!this.state.nameValidate ? 'Must be greater than 4 characters' : ''}</Text>
+                                        >{!this.state.nameValidate ? 'User Name is required.' : ''}</Text>
                                         <View style={styles.inputWrap}>
 
                                             <TextInput
@@ -353,7 +353,7 @@ class AddAdressScreen extends Component {
                                         </View>
                                         <Text
                                             style={{ color: Colors.red, marginLeft: 24 }}
-                                        >{!this.state.otherValidate ? 'Address must be greater than 10 characters' : ''}</Text>
+                                        >{!this.state.otherValidate ? 'Landmark is required.' : ''}</Text>
                                         <View style={styles.inputWrap}>
 
                                             <TextInput
@@ -370,7 +370,7 @@ class AddAdressScreen extends Component {
                                         </View>
                                         <Text
                                             style={{ color: Colors.red, marginLeft: 24 }}
-                                        >{!this.state.cityValidate ? 'City name must be greater than 4 characters' : ''}</Text>
+                                        >{!this.state.cityValidate ? 'City name is required.' : ''}</Text>
                                         <View style={styles.inputWrap}>
 
                                             <TextInput
@@ -388,7 +388,7 @@ class AddAdressScreen extends Component {
                                         </View>
                                         <Text
                                             style={{ color: Colors.red, marginLeft: 24 }}
-                                        >{!this.state.stateValidate ? 'State name must be required' : ''}</Text>
+                                        >{!this.state.stateValidate ? 'State name is required.' : ''}</Text>
                                         <View style={styles.inputWrap}>
 
                                             <TextInput
@@ -407,7 +407,7 @@ class AddAdressScreen extends Component {
                                         </View>
                                         <Text
                                             style={{ color: Colors.red, marginLeft: 24 }}
-                                        >{!this.state.address2Validate ? 'Address must be greater than 10 characters' : ''}</Text>
+                                        >{!this.state.address2Validate ? 'House No is required.' : ''}</Text>
                                         <View style={styles.inputWrap}>
 
                                             <TextInput
@@ -426,7 +426,7 @@ class AddAdressScreen extends Component {
                                         </View>
                                         <Text
                                             style={{ color: Colors.red, marginLeft: 24 }}
-                                        >{!this.state.countryValidate ? 'Country name, must be greater than 4 characters' : ''}</Text>
+                                        >{!this.state.countryValidate ? 'Country name is required.' : ''}</Text>
                                         <View style={styles.inputWrap}>
 
                                             <TextInput
@@ -527,7 +527,7 @@ class AddAdressScreen extends Component {
 
 const mapStateToProps = state => {
     const { address, user } = state;
-    console.log('userrrrrrrrrrrrrr', JSON.stringify(state.user.user.user_data));
+    // console.log('User', JSON.stringify(state.user.user.user_data));
     console.log("State in address Screen- ", address);
     return {
         address, user

@@ -34,6 +34,7 @@ import PaymentScreen from '../Containers/PaymentScreen';
 import TermsScreen from '../Containers/TermsScreen';
 import PrivacyScreen from '../Containers/PrivacyScreen';
 import MyAccount from "../Containers/MyAccountScreen";
+import CartIcon from "../Components/CartIcon";
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -271,6 +272,11 @@ hile using the drawer navigator inside stack navigator.*/
           }}
         >
           <MenuIcon navigation={navigation} />
+        </TouchableOpacity>
+      ),
+      headerRight: (
+        <TouchableOpacity >
+          <CartIcon navigation={navigation} />
         </TouchableOpacity>
       ),
       headerStyle: {
