@@ -30,7 +30,10 @@ class PaymentScreen extends Component {
             ref_id: null,
             paymentType: null,
             couponCode: null,
-            promo_id: ''
+            promo_id: '',
+            discount_amount: null,
+            updatedAmount: 0,
+            appliedCouponCode: null
         }
     }
 
@@ -43,7 +46,7 @@ class PaymentScreen extends Component {
     }
 
     placeOrder() {
-        const { orderDetails, amount } = this.state;
+        const { orderDetails, amount, updatedAmount } = this.state;
         console.log('this.state.orderDetails -', orderDetails);
         console.log('this.state.amount -', amount);
         const { user } = this.props.user;
@@ -58,7 +61,7 @@ class PaymentScreen extends Component {
                 image: 'https://i.imgur.com/3g7nmJC.png',
                 currency: 'INR',
                 key: 'rzp_test_pGs9haNVuQh2Cz',
-                amount: amount ? amount * 100 : '5000',
+                amount: updatedAmount ? updatedAmount * 100 : amount * 100,
                 name: 'foo',
                 prefill: {
                     email: user_data.email,//'san10694@gmail.com',
@@ -168,8 +171,13 @@ class PaymentScreen extends Component {
     }
 
     applyPromo() {
-        const { orderDetails, amount, couponCode } = this.state;
+        const { orderDetails, amount, couponCode, appliedCouponCode } = this.state;
         if (couponCode) {
+            if (couponCode.toUpperCase() === appliedCouponCode && appliedCouponCode.toUpperCase()) {
+                this.showToast("This Coupon is already applied.");
+                return
+            }
+            this.setState({ discount_amount: null })
             let data = {
                 customer_id: orderDetails.customer_id,
                 total_amount: amount,
@@ -183,7 +191,12 @@ class PaymentScreen extends Component {
                 if (data && data.error === '000000' && data.data.discount_amount) {
                     this.showToast(data.Message || data.message + ' - ' + Constants.rupee + data.data.discount_amount);
                     let updatedAmount = amount - data.data.discount_amount;
-                    this.setState({ amount: updatedAmount, promo_id: data.data.promo_id });
+                    this.setState({
+                        updatedAmount: updatedAmount,
+                        promo_id: data.data.promo_id,
+                        discount_amount: data.data.discount_amount,
+                        appliedCouponCode: data.data.code
+                    });
                 }
                 else {
                     this.showToast(data.Message || data.message);
@@ -226,6 +239,23 @@ class PaymentScreen extends Component {
                             <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
                             <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
                         </View>
+                        {
+                            this.state.discount_amount ?
+                                <View>
+                                    <View style={{ padding: 15 }}>
+                                        <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>Coupon Applied Successfully</Text>
+                                        {/* <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
+                                    </View>
+                                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Discount Price :</Text>
+                                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
+                                    </View>
+                                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Updated Price :</Text>
+                                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
+                                    </View>
+                                </View> : null
+                        }
                         <View style={{ backgroundColor: Colors.white, paddingVertical: 20 }}>
                             <RadioGroup
                                 size={20}
@@ -274,6 +304,8 @@ class PaymentScreen extends Component {
                                 <Text style={Styles.btnText}>Apply</Text>
                             </Ripple>
                         </View>
+
+
                     </ScrollView>
                     <View style={Styles.checkoutContainer}>
                         <Ripple

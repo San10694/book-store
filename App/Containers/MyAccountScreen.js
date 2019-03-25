@@ -51,12 +51,29 @@ class ProfileScreen extends Component {
                             <View style={styles.menuItem}>
                                 <Text style={styles.textItem}>Mobile No : {user_data.phone}</Text>
                             </View>
-                            {/* <View style={styles.menuItem}>
-                            <Text style={styles.textItem}>Name : {user_data.name}</Text>
-                        </View> */}
+
                         </View>
+                        <TouchableOpacity
+                            onPress={(e) => {
+                                this.props.navigation.navigate("EditProfileScreen");
+                            }}
+                            style={{
+                                width: 100,
+                                height: 40,
+                                backgroundColor: Colors.primary,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 5,
+                                marginTop: 15,
+                                marginHorizontal: 100
+                            }}
+                        //onPress={this.onSignUpHandle}
+                        >
+                            <Text style={{ color: Colors.white }}>Edit Account</Text>
+                        </TouchableOpacity>
                     </ScrollView>
                 </View>
+
             </SafeAreaView>
         );
     }
@@ -64,7 +81,6 @@ class ProfileScreen extends Component {
 
 const mapStateToProps = state => {
     const { user } = state;
-    //console.log("user in Profile Screen- ", JSON.stringify(user));
     return {
         user
     };

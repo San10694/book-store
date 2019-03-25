@@ -28,7 +28,8 @@ const Api = () => {
     order_detail: '/api/order_details/',
     order_place: '/api/order_place',
     order_place_payment: '/api/order_place_with_payment',
-    coupon_code: '/api/CouponCode'
+    coupon_code: '/api/CouponCode',
+    update_user_details: 'api/customer_update'
 
 
 

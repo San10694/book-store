@@ -35,6 +35,8 @@ import TermsScreen from '../Containers/TermsScreen';
 import PrivacyScreen from '../Containers/PrivacyScreen';
 import MyAccount from "../Containers/MyAccountScreen";
 import CartIcon from "../Components/CartIcon";
+import ReturnScreen from "../Containers/ReturnScreen";
+import EditProfileScreen from "../Containers/EditProfileScreen";
 
 const DrawerNavigator = createDrawerNavigator(Routes, {
   initialRouteName: "HomeTab",
@@ -248,6 +250,22 @@ hile using the drawer navigator inside stack navigator.*/
       screen: TermsScreen,
       navigationOptions: {
         title: "Terms And Conditions"
+      }
+    },
+    ReturnScreen: {
+      name: "ReturnScreen",
+      description: "ReturnScreen",
+      screen: ReturnScreen,
+      navigationOptions: {
+        title: "Request / Return"
+      }
+    },
+    EditProfileScreen: {
+      name: "EditProfileScreen",
+      description: "EditProfileScreen",
+      screen: EditProfileScreen,
+      navigationOptions: {
+        title: "My Account"
       }
     },
   },
