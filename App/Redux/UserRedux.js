@@ -31,6 +31,14 @@ export function otpVerify(data) {
         payload: data
     };
 }
+
+export function updateUser(data) {
+    // console.log('ooooooooooooo', mobile);
+    return {
+        type: types.UPDATE_USER_DETAILS,
+        payload: data
+    };
+}
 export function logout() {
     // console.log('ooooooooooooo', mobile);
     return {
@@ -117,6 +125,13 @@ export default function UserReducer(state = initialState, action) {
                 user: payload,
                 isLoggedIn: payload.Status === 'success' ? true : false,
             };
+
+        case types.UPDATE_USER_DETAILS:
+            return {
+                ...state,
+                user: payload    // { ...state.user, ...payload },
+            };
+
         case types.LOG_OUT:
             return {
                 ...state,

@@ -29,7 +29,8 @@ const Api = () => {
     order_place: '/api/order_place',
     order_place_payment: '/api/order_place_with_payment',
     coupon_code: '/api/CouponCode',
-    update_user_details: 'api/customer_update'
+    update_user_details: 'api/customer_update',
+    about_us: '/api/about_us'
 
 
 
@@ -235,6 +236,28 @@ const Api = () => {
       });
   }
 
+  const updateUserDetails = (data) => {
+    //console.log('id', endPoints.product_detail + `${id}`);
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    formData.append('customer_id', data.customer_id);
+    formData.append('name', data.name);
+    formData.append('email', data.email);
+    formData.append('phone', data.mobile);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data; charset=utf-8;"
+      }
+    };
+    console.log(" updateUserDetails API -", formData);
+    return api.post(endPoints.update_user_details, formData, config)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
 
   const getAddress = (id) => {
     //console.log('id', endPoints.product_detail + `${id}`);
@@ -376,6 +399,22 @@ const Api = () => {
       });
   }
 
+  const getAboutUs = (data) => {
+    const formData = new FormData();
+    formData.append('key', 'A123456789');
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data; charset=utf-8;"
+      }
+    };
+    return api.post(endPoints.about_us, formData, config)
+      .catch((error) => {
+        if (error && error.response) {
+          const { data } = error.response;
+        }
+      });
+  }
+
   const getRestaurantList = () => api.get(endPoints.getBanners);
 
   return {
@@ -398,7 +437,9 @@ const Api = () => {
     getOrderDetail,
     orderPlace,
     orderPlacePayment,
-    getCoupons
+    getCoupons,
+    updateUserDetails,
+    getAboutUs
   }
 }
 

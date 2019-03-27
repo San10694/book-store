@@ -44,8 +44,12 @@ class SubCategoryScreen extends Component {
         const { subCategories } = this.state
         const { categories } = this.props.product
         //console.log("  categories -- ", JSON.stringify(categories));
-        if (subCategories == null) {
-            return <View></View>
+        if (subCategories.length < 1) {
+            return (
+                <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>There is no any product. </Text>
+                </View>
+            )
         }
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>

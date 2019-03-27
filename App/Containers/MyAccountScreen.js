@@ -10,14 +10,13 @@ import { SafeAreaView } from 'react-navigation';
 
 
 
-class ProfileScreen extends Component {
+class MyAccountScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             userName: ''
         }
-
     }
 
 
@@ -53,24 +52,28 @@ class ProfileScreen extends Component {
                             </View>
 
                         </View>
-                        <TouchableOpacity
-                            onPress={(e) => {
-                                this.props.navigation.navigate("EditProfileScreen");
-                            }}
-                            style={{
-                                width: 100,
-                                height: 40,
-                                backgroundColor: Colors.primary,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderRadius: 5,
-                                marginTop: 15,
-                                marginHorizontal: 100
-                            }}
-                        //onPress={this.onSignUpHandle}
-                        >
-                            <Text style={{ color: Colors.white }}>Edit Account</Text>
-                        </TouchableOpacity>
+                        <View style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                            <TouchableOpacity
+                                onPress={(e) => {
+                                    this.props.navigation.navigate("EditProfileScreen");
+                                }}
+                                style={{
+                                    width: 150,
+                                    height: 40,
+                                    backgroundColor: Colors.primary,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderRadius: 5,
+                                    marginTop: 15,
+                                    marginHorizontal: 100
+                                }}
+                            >
+                                <Text style={{ color: Colors.white }}>Edit Account</Text>
+                            </TouchableOpacity>
+                        </View>
                     </ScrollView>
                 </View>
 
@@ -91,7 +94,7 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     null
-)(ProfileScreen);
+)(MyAccountScreen);
 
 const styles = StyleSheet.create({
     container: {

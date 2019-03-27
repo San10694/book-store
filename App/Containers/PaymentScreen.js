@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Alert, ScrollView, Linking, TextInput, WebView, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Alert, ScrollView, Linking, Platform, TextInput, KeyboardAvoidingView, WebView, Dimensions } from "react-native";
 import { Colors, Constants, Fonts } from "../Themes";
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 import Styles from './Styles';
@@ -234,78 +234,77 @@ class PaymentScreen extends Component {
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
                 <View style={styles.container}>
-                    <ScrollView>
-                        <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
-                            <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
-                        </View>
-                        {
-                            this.state.discount_amount ?
-                                <View>
-                                    <View style={{ padding: 15 }}>
-                                        <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>Coupon Applied Successfully</Text>
-                                        {/* <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
-                                    </View>
-                                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Discount Price :</Text>
-                                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
-                                    </View>
-                                    <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                                        <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Updated Price :</Text>
-                                        <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
-                                    </View>
-                                </View> : null
-                        }
-                        <View style={{ backgroundColor: Colors.white, paddingVertical: 20 }}>
-                            <RadioGroup
-                                size={20}
-                                thickness={2}
-                                color={Colors.primary}
-                                highlightColor={Colors.lightgrey}
-                                onSelect={(index, value) => this.selectPaymentMethod(index, value, paymentTypes[index])}
-                            >
-                                {paymentTypes.map(paymentType => {
-                                    return (
-                                        <RadioButton value={paymentType.type} key={paymentType.type}>
-                                            <View style={{
-                                                marginLeft: 10,
-                                                paddingBottom: 20
-                                            }}>
-                                                <Text style={{ width: '100%' }}>{paymentType.type}</Text>
-                                            </View>
-                                        </RadioButton>
-                                    );
-                                })}
-                            </RadioGroup>
-                        </View>
-                        <View style={{ flexDirection: 'row', backgroundColor: Colors.white, paddingBottom: 20 }}>
-                            <View style={styles.inputWrap}>
-                                <TextInput
-                                    placeholder={"Enter Prome Code Here"}
-                                    // keyboardType="numeric"
-                                    onChangeText={(code) => this.setState({ couponCode: code })}
-                                    value={this.state.couponCode}
-                                    style={{
-                                        paddingLeft: 10,
-                                        height: 50,
-                                        borderRadius: 5,
-                                        width: Dimensions.get('screen').width * 0.5
-                                    }}
-                                />
+                    <ScrollView style={{ paddingBottom: 30 }}>
+                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "position"} enabled>
+                            <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
+                                <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
                             </View>
-                            <Ripple
-                                style={[Styles.buyButton, {
-                                    width: Dimensions.get('screen').width * 0.3
-                                }]}
-                                onPress={() => {
-                                    this.applyPromo()
-                                }}
-                            >
-                                <Text style={Styles.btnText}>Apply</Text>
-                            </Ripple>
-                        </View>
-
-
+                            {
+                                this.state.discount_amount ?
+                                    <View>
+                                        <View style={{ padding: 15 }}>
+                                            <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>Coupon Applied Successfully</Text>
+                                            {/* <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
+                                        </View>
+                                        <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Discount Price :</Text>
+                                            <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
+                                        </View>
+                                        <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Updated Price :</Text>
+                                            <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
+                                        </View>
+                                    </View> : null
+                            }
+                            <View style={{ backgroundColor: Colors.white, paddingVertical: 20 }}>
+                                <RadioGroup
+                                    size={20}
+                                    thickness={2}
+                                    color={Colors.primary}
+                                    highlightColor={Colors.lightgrey}
+                                    onSelect={(index, value) => this.selectPaymentMethod(index, value, paymentTypes[index])}
+                                >
+                                    {paymentTypes.map(paymentType => {
+                                        return (
+                                            <RadioButton value={paymentType.type} key={paymentType.type}>
+                                                <View style={{
+                                                    marginLeft: 10,
+                                                    paddingBottom: 20
+                                                }}>
+                                                    <Text style={{ width: '100%' }}>{paymentType.type}</Text>
+                                                </View>
+                                            </RadioButton>
+                                        );
+                                    })}
+                                </RadioGroup>
+                            </View>
+                            <View style={{ flexDirection: 'row', backgroundColor: Colors.white, paddingBottom: 20 }}>
+                                <View style={styles.inputWrap}>
+                                    <TextInput
+                                        placeholder={"Enter Prome Code Here"}
+                                        onChangeText={(code) => this.setState({ couponCode: code })}
+                                        value={this.state.couponCode}
+                                        style={{
+                                            paddingLeft: 10,
+                                            height: 50,
+                                            borderRadius: 5,
+                                            width: Dimensions.get('screen').width * 0.5
+                                        }}
+                                    />
+                                </View>
+                                <Ripple
+                                    style={[Styles.buyButton, {
+                                        width: Dimensions.get('screen').width * 0.3
+                                    }]}
+                                    onPress={() => {
+                                        this.applyPromo()
+                                    }}
+                                >
+                                    <Text style={Styles.btnText}>Apply</Text>
+                                </Ripple>
+                            </View>
+                        </KeyboardAvoidingView>
                     </ScrollView>
                     <View style={Styles.checkoutContainer}>
                         <Ripple

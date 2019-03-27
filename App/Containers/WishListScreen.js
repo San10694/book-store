@@ -15,9 +15,11 @@ class WishListScreen extends Component {
     render() {
         const { wishList } = this.props;
         if (wishList.wishListItems.length == 0) {
-            return <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
-                <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>Wish List is empty </Text>
-            </View>
+            return (
+                <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
+                    <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>Wish List is empty </Text>
+                </View>
+            )
         }
         return (
             <View>
@@ -32,7 +34,7 @@ class WishListScreen extends Component {
                                 }}>
                                 <View style={styles.ItemImgContent}>
                                     <View style={styles.ImgWrapper}>
-                                        <Image source={{ uri: item.product.image ? Constants.IMAGE_URL + item.product.image[0].path : null }} style={styles.Img} />
+                                        <Image source={{ uri: item.product.image && item.product.image[0] ? Constants.IMAGE_URL + item.product.image[0].path : null }} style={styles.Img} />
                                     </View>
                                 </View>
                                 <View style={styles.ItemContent}>

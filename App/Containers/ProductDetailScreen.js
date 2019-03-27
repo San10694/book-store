@@ -86,7 +86,7 @@ class ProductDetailScreen extends Component {
         <View style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
           <ScrollView style={Styles.productDetailContainer}>
             <View style={Styles.productdetailSubContainer}>
-              <Image source={{ uri: productDetail.image ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
+              <Image source={{ uri: productDetail.image && productDetail.image[0] ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
                 style={Styles.ProductDetailImg} />
               {this.state.isFavourite ?
                 <Ripple style={Styles.productDetailFav}

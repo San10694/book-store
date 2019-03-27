@@ -2,12 +2,23 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Image, Dimensions, ScrollView } from "react-native";
 import { Colors, Images, Fonts } from "../Themes";
 import { SafeAreaView } from 'react-navigation';
+import Api from '../Services';
+
+const api = Api.Api();
 
 export default class AboutScreen extends Component {
 
   static navigationOptions = {
     title: "About Screen"
   }
+
+  componentDidMount() {
+    // api.getAboutUs().then(response => {
+    //   console.log("About us ", response)
+    // })
+  }
+
+
   render() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>

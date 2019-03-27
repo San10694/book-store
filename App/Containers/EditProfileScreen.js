@@ -8,19 +8,27 @@ import ActivityIndicator from '../Components/ActivityIndicator';
 import Fonts from '../Themes/Fonts';
 import { Picker } from 'react-native-picker-dropdown';
 import { SafeAreaView } from 'react-navigation';
+import Api from '../Services';
+import Snackbar from 'react-native-snackbar';
+import { updateUser } from "../Redux/UserRedux";
+
 const { width, height } = Dimensions.get('window');
+
+
+const api = Api.Api();
+
 
 
 class EditProfileScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
+            name: props.user.user.user_data.name,
             pincode: '',
-            mobile: 0,
+            mobile: props.user.user.user_data.phone,
             city: '',
             state: '',
-            email: '',
+            email: props.user.user.user_data.email,
             other: '',
             address_type: 'primary',
             set_default: false,
@@ -54,6 +62,9 @@ class EditProfileScreen extends Component {
 
     componentDidMount() {
         //this.props.getRestaurantList();
+        this.setState({
+
+        })
     }
 
 
@@ -111,17 +122,33 @@ class EditProfileScreen extends Component {
 
     }
 
+    showToast(message) {
+        Snackbar.show({
+            title: message,
+            duration: Snackbar.LENGTH_LONG,
+        });
+    }
+
     onSubmit(e) {
-        var data = {
+        const { user } = this.props
+        var dataObj = {
             mobile: this.state.mobile,
             name: this.state.name,
             email: this.state.email,
-            customer_id: this.props.user.user.user_data.id
+            customer_id: user.user.user_data.id ? user.user.user_data.id : user.user.user_data.customer_id
         }
-        var addressData = { data: data, navigate: this.props.navigation.replace };
+        // var addressData = { data: data, navigate: this.props.navigation.replace };
+        api.updateUserDetails(dataObj).then(response => {
+            const { data } = response;
+            console.log('updateUserDetails response ', data);
+            if (data && data.Status === 'success') {
+                this.props.updateUser(data)
+                this.showToast(data.Message ? data.Message : "Your account has been updated successfully");
+                // this.props.navigation.replace("ProfileScreen");
+                this.props.navigation.replace('MyAccount');
+            }
+        });
         // console.log('address formmmm', JSON.stringify(data))
-        // this.props.addAddress(addressData);
-
     }
 
     selectAddress(itemValue, itemIndex) {
@@ -220,9 +247,9 @@ class EditProfileScreen extends Component {
                                         }}
                                         onPress={(e) => {
 
-                                            if (!this.state.nameValid ||
-                                                !this.state.mobileValid ||
-                                                !this.state.emailValid
+                                            if (!this.state.name ||
+                                                !this.state.mobile ||
+                                                !this.state.email
                                             ) {
                                                 Alert.alert(
                                                     '',
@@ -272,8 +299,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addAddress: (value) => dispatch(addAddress(value)),
-        getAddress: (value) => dispatch(getAddress(value))
+        updateUser: (value) => dispatch(updateUser(value))
     };
 };
 
