@@ -132,7 +132,9 @@ class LoginOtpScreen extends Component {
                                     alignItems: 'center',
                                     borderRadius: 5,
                                     marginTop: 15,
-                                    marginHorizontal: 100
+                                    alignSelf: 'center'
+
+                                    // marginHorizontal: 100
                                 }}
                             //onPress={this.onSignUpHandle}
                             >

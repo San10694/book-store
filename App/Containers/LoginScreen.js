@@ -58,7 +58,6 @@ class LoginScreen extends Component {
 
     componentDidMount() {
         this.refs.input.focus()
-
     }
 
 
@@ -162,7 +161,9 @@ class LoginScreen extends Component {
                                     alignItems: 'center',
                                     borderRadius: 5,
                                     marginTop: 15,
-                                    marginHorizontal: 100
+                                    alignSelf: 'center'
+
+                                    // marginHorizontal: 100
                                 }}
                                 onPress={(e) => {
                                     if (!this.state.valid) {

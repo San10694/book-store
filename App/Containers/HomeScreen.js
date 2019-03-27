@@ -56,6 +56,12 @@ class HomeScreen extends Component {
     this.props.navigation.navigate('ProductDetailScreen', { product_id: item.id })
   }
 
+  limitChar(text, count = 30) {
+    return text.slice(0, count) + (text.length > count ? "..." : "");
+  }
+
+
+
 
   render() {
     var date = new Date();
@@ -130,7 +136,7 @@ class HomeScreen extends Component {
             {
               productDetails ? productDetails.sale.map((item, index) => {
                 return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                  title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
+                  title={this.limitChar(item.title)} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
               }) : null
             }
           </ScrollView>
@@ -139,11 +145,11 @@ class HomeScreen extends Component {
             {
               productDetails ? productDetails.featured.map((item, index) => {
                 return <FeatureCard key={index} onPress={() => this.onPress(item)} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                  title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
+                  title={this.limitChar(item.title)} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
               }) : null
             }
           </ScrollView>
-          <Text style={Styles.headText}>Online Books</Text>
+          <Text style={Styles.headText}>Added Recently</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {
               productDetails ? productDetails.online.map((item, index) => {
@@ -152,7 +158,7 @@ class HomeScreen extends Component {
                 // }) : null
                 return <FeatureCard onPress={() => this.onPress(item)}
                   key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                  title={item.title} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
+                  title={this.limitChar(item.title)} price={item.sale_price} style={Styles.saleCardsection} imageStyle={Styles.saleImg} />
               }) : null
             }
           </ScrollView >

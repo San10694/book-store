@@ -8,7 +8,8 @@ import {
   Image,
   TouchableOpacity,
   AsyncStorage,
-  Alert
+  Alert,
+  Linking
 } from "react-native";
 import { DrawerActions } from "react-navigation";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,14 +18,14 @@ import { Colors, Fonts } from '../Themes'
 import { connect } from "react-redux";
 import { logout } from "../Redux/UserRedux";
 
-
+const phoneNumber = 8147464241;
 
 const menuItems =
   [{ 'title': 'SHOP', 'route': 'Home' },
   { 'title': 'CATEGORY', 'route': 'Categories' },
   { 'title': 'REQUEST/ RETURN', 'route': 'ReturnScreen' },
   { 'title': 'ABOUT US', 'route': 'AboutScreen' },
-    //{ 'title': 'SETTING', 'route': 'Profile' },
+    // { 'title': 'Contact Us', 'route': '' },
     //{ 'title': 'LOGIN', 'route': 'LoginScreen' },
   ]
 
@@ -80,6 +81,17 @@ class DrawerScreen extends Component {
                 </Ripple>
               )
             })
+            }
+            {
+              <Ripple style={styles.menuItem}
+                onPress={() => {
+                  Linking.openURL(`tel:${phoneNumber}`);
+                }}
+              >
+                <Text style={styles.textItem}>
+                  CONTACT US
+                </Text>
+              </Ripple>
             }
             {user && this.props.user.isLoggedIn ?
               <Ripple style={styles.menuItem}

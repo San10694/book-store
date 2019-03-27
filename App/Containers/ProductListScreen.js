@@ -36,6 +36,10 @@ class ProductListScreen extends Component {
         })
     }
 
+    limitChar(text, count = 35) {
+        return text.slice(0, count) + (text.length > count ? "..." : "");
+    }
+
     render() {
         const { productList } = this.state;
         if (productList == null) {
@@ -52,7 +56,7 @@ class ProductListScreen extends Component {
                             {
                                 productList ? productList.map((item, index) => {
                                     return <FeatureCard key={index} image={item.image ? Constants.IMAGE_URL + item.image.path : null}
-                                        title={item.title} price={item.sale_price}
+                                        title={this.limitChar(item.title)} price={item.sale_price}
                                         style={Styles.productContainer}
                                         imageStyle={Styles.productImg}
                                         onPress={() => {

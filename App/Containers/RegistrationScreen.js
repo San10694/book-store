@@ -28,9 +28,12 @@ class RegistrationScreen extends Component {
 
     }
 
+
+
     componentDidMount() {
-        //this.props.getRestaurantList();
+        // this.refs.input1.focus()
     }
+
 
 
     validate(text, type) {
@@ -139,6 +142,7 @@ class RegistrationScreen extends Component {
                                     <View style={styles.inputWrap}>
 
                                         <TextInput
+                                            ref="input1"
                                             placeholder={"Enter Your Name"}
                                             keyboardType='name-phone-pad'
                                             onChangeText={(name) => this.validate(name, 'name')}
@@ -222,7 +226,8 @@ class RegistrationScreen extends Component {
                                         alignItems: 'center',
                                         borderRadius: 5,
                                         marginTop: 15,
-                                        marginHorizontal: 100
+                                        alignSelf: 'center'
+                                        // marginHorizontal: 100
                                     }}
                                 //onPress={this.onSignUpHandle}
                                 >

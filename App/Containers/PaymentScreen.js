@@ -238,24 +238,24 @@ class PaymentScreen extends Component {
         return (
             <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
                 <View style={styles.container}>
-                    <ScrollView style={{ paddingBottom: 30 }}>
+                    <ScrollView >
                         <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "position"} enabled>
-                            <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                            <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
                                 <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Total Price :</Text>
                                 <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
                             </View>
                             {
                                 this.state.discount_amount ?
                                     <View>
-                                        <View style={{ padding: 15 }}>
-                                            <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>Coupon Applied Successfully</Text>
+                                        <View style={{ padding: 10 }}>
+                                            <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '400' }}>Coupon Applied Successfully</Text>
                                             {/* <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
                                         </View>
-                                        <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
                                             <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Discount Price :</Text>
                                             <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
                                         </View>
-                                        <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
                                             <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Updated Price :</Text>
                                             <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
                                         </View>
@@ -345,7 +345,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(PaymentScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.lightGrey
+        backgroundColor: Colors.lightGrey,
+        paddingBottom: 100
 
     },
     welcome: {
