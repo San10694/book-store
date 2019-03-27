@@ -11,6 +11,7 @@ import { addWishListItem, removeWishListItem } from '../Redux/WishListRedux';
 import Ripple from "react-native-material-ripple";
 import Snackbar from 'react-native-snackbar';
 import { SafeAreaView } from "react-navigation"
+import images from "../Themes/Images";
 
 
 
@@ -71,7 +72,7 @@ class ProductDetailScreen extends Component {
   showToast(message) {
     Snackbar.show({
       title: message,
-      duration: Snackbar.LENGTH_LONG,
+      duration: Snackbar.LENGTH_SHORT,
     });
   }
 
@@ -86,8 +87,15 @@ class ProductDetailScreen extends Component {
         <View style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
           <ScrollView style={Styles.productDetailContainer}>
             <View style={Styles.productdetailSubContainer}>
-              <Image source={{ uri: productDetail.image && productDetail.image[0] ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
-                style={Styles.ProductDetailImg} />
+              {/* <Image source={{ uri: productDetail.image && productDetail.image[0] ? Constants.IMAGE_URL + productDetail.image[0].path : null }}
+                style={Styles.ProductDetailImg} /> */}
+
+              {productDetail.image && productDetail.image[0] ?
+                <Image source={{ uri: Constants.IMAGE_URL + productDetail.image[0].path }} style={Styles.ProductDetailImg}
+                />
+                : <Image source={Images.burdon} style={Styles.ProductDetailImg}
+                  resizeMode='stretch' />
+              }
               {this.state.isFavourite ?
                 <Ripple style={Styles.productDetailFav}
                   onPress={() => {

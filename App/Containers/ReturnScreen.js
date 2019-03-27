@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, WebView, Text, View } from "react-native";
 import { Colors } from "../Themes";
+import { BASE_URL } from "../Services";
 
 
 
@@ -15,7 +16,7 @@ export default class ReturnScreen extends Component {
                     key={"WebView"}
                     ref="paymentWebview"
                     startInLoadingState={true}
-                    source={{ uri: 'http://68.183.94.56/api/request_book' }} />
+                    source={{ uri: BASE_URL + '/api/request_book' }} />
             </View>
         )
     }

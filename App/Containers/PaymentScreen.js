@@ -73,8 +73,6 @@ class PaymentScreen extends Component {
             RazorpayCheckout.open(options).then((data) => {
                 console.log("Rajor pay sucess ", data)
                 this.showToast("payment successfull.");
-                //alert(`Success: ${data.razorpay_payment_id}`);
-                //let orderObj = this.state.orderDetails;
                 let orderObj = {
                     customer_id: orderDetails.customer_id,
                     data: orderDetails.data,
@@ -199,6 +197,12 @@ class PaymentScreen extends Component {
                     });
                 }
                 else {
+                    this.setState({
+                        updatedAmount: amount,
+                        promo_id: '',
+                        discount_amount: null,
+                        appliedCouponCode: null
+                    });
                     this.showToast(data.Message || data.message);
                 }
             })
@@ -237,23 +241,23 @@ class PaymentScreen extends Component {
                     <ScrollView style={{ paddingBottom: 30 }}>
                         <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "position"} enabled>
                             <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Total Price :</Text>
-                                <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
+                                <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Total Price :</Text>
+                                <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
                             </View>
                             {
                                 this.state.discount_amount ?
                                     <View>
                                         <View style={{ padding: 15 }}>
                                             <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>Coupon Applied Successfully</Text>
-                                            {/* <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
+                                            {/* <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
                                         </View>
                                         <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                                            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Discount Price :</Text>
-                                            <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
+                                            <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Discount Price :</Text>
+                                            <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
                                         </View>
                                         <View style={{ padding: 15, justifyContent: 'space-between', flexDirection: 'row' }}>
-                                            <Text style={{ fontSize: Fonts.size.regular_17, fontWeight: '500' }}>Updated Price :</Text>
-                                            <Text style={{ fontSize: Fonts.size.regular_17, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
+                                            <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Updated Price :</Text>
+                                            <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
                                         </View>
                                     </View> : null
                             }

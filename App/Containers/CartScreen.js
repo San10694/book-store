@@ -8,6 +8,7 @@ import { addToCart, deleteCartItem, removeCartItem, saveGrandTotal } from '../Re
 import Styles from './Styles';
 import { Colors, Images, Constants } from "../Themes";
 import { SafeAreaView } from 'react-navigation';
+import images from "../Themes/Images";
 
 
 class CartScreen extends Component {
@@ -175,12 +176,29 @@ class CartScreen extends Component {
                                             <View style={{
                                                 flex: .3, width: 85, height: 85, marginRight: 5,
                                             }}>
-                                                <Image source={{ uri: item.image ? Constants.IMAGE_URL + item.image[0].path : null }}
+                                                {/* <Image source={{ uri: item.image && item.image[0] ? Constants.IMAGE_URL + item.image[0].path : null }}
                                                     style={{
                                                         width: 85, height: 85,
                                                         borderWidth: 1,
                                                         borderColor: Colors.lightGrey
-                                                    }} />
+                                                    }} /> */}
+
+                                                {item.image && item.image[0] ?
+                                                    <Image source={{ uri: Constants.IMAGE_URL + item.image[0].path }}
+                                                        style={{
+                                                            width: 85, height: 85,
+                                                            borderWidth: 1,
+                                                            borderColor: Colors.lightGrey
+                                                        }}
+                                                    />
+                                                    : <Image source={images.burdon}
+                                                        style={{
+                                                            width: 85, height: 85,
+                                                            borderWidth: 1,
+                                                            borderColor: Colors.lightGrey
+                                                        }}
+                                                        resizeMode='stretch' />
+                                                }
                                             </View>
                                             <View style={{ flex: .75, position: 'relative' }}>
                                                 <Text style={{ paddingLeft: 8, fontSize: Fonts.size.medium_15 }}>{item.title}</Text>

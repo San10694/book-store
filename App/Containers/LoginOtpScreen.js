@@ -28,7 +28,8 @@ class LoginOtpScreen extends Component {
 
     async componentDidMount() {
         let fcmToken = await AsyncStorage.getItem('fcmToken');
-        this.setState({ fcm: fcmToken })
+        this.setState({ fcm: fcmToken });
+        this.refs.input.focus()
     }
 
     onOTPEditHandle = (otp) => {
@@ -83,6 +84,7 @@ class LoginOtpScreen extends Component {
                             <View style={styles.loginForm}>
                                 <View style={styles.inputWrap}>
                                     <TextInput
+                                        ref="input"
                                         placeholder={"Please enter 4 digit OTP "}
                                         keyboardType="numeric"
                                         onChangeText={(otp) => this.validate(otp)}

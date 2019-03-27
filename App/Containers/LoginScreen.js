@@ -56,6 +56,11 @@ class LoginScreen extends Component {
         }
     }
 
+    componentDidMount() {
+        this.refs.input.focus()
+
+    }
+
 
     render() {
         const { isLoading } = this.props.user;
@@ -98,7 +103,7 @@ class LoginScreen extends Component {
                                         color={Colors.primary}
                                     /> */}
                                     <TextInput
-
+                                        ref="input"
                                         placeholder={"Enter Mobile No"}
                                         keyboardType="numeric"
                                         onChangeText={(mobile) => this.validate(mobile, 'phn')}
