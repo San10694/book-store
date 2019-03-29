@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, WebView, Dimensions, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, WebView, Dimensions, Platform, Image, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { getProducts } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
@@ -36,7 +36,7 @@ class ProductListScreen extends Component {
         })
     }
 
-    limitChar(text, count = 35) {
+    limitChar(text, count = Platform.OS == "ios" ? 30 : 35) {
         return text.slice(0, count) + (text.length > count ? "..." : "");
     }
 

@@ -239,7 +239,7 @@ class PaymentScreen extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
                 <View style={styles.container}>
                     <ScrollView >
-                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "position"} enabled>
+                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "position"} enabled>
                             <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
                                 <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Total Price :</Text>
                                 <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
