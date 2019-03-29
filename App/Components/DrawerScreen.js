@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   AsyncStorage,
   Alert,
-  Linking
+  Linking,
+  Platform
 } from "react-native";
 import { DrawerActions } from "react-navigation";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -46,6 +47,23 @@ class DrawerScreen extends Component {
     this.props.navigation.dispatch(navigateAction);
     this.props.navigation.dispatch(DrawerActions.closeDrawer());
   };
+
+  makePhoneCall() {
+    let contact;
+    contact = Platform.OS !== 'android' ? `telprompt:${phoneNumber}` : `tel:${phoneNumber}`;
+    Linking.canOpenURL(contact)
+      .then(supported => {
+        if (!supported) {
+          Alert.alert('', 'Phone number is not available');
+        } else {
+          return Linking.openURL(contact);
+        }
+      })
+      .catch(err => console.log(err));
+  };
+  // Linking.openURL(`tel:${phoneNumber}`);
+
+  // }
 
 
   render() {
@@ -85,7 +103,7 @@ class DrawerScreen extends Component {
             {
               <Ripple style={styles.menuItem}
                 onPress={() => {
-                  Linking.openURL(`tel:${phoneNumber}`);
+                  this.makePhoneCall()
                 }}
               >
                 <Text style={styles.textItem}>
