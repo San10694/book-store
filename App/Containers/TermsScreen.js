@@ -15,9 +15,7 @@ class TermsScreen extends Component {
 
     }
 
-    componentDidMount() {
-        //this.props.getRestaurantList();
-    }
+
 
     render() {
         return (

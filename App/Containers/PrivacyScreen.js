@@ -16,7 +16,7 @@ class PrivacyScreen extends Component {
     }
 
     componentDidMount() {
-        //this.props.getRestaurantList();
+
     }
 
     render() {

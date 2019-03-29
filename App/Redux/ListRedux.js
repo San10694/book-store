@@ -2,7 +2,8 @@ import { types } from "./types";
 const initialState = {
   isFetching: false,
   error: false,
-  list: null
+  list: null,
+  counter: 0
 };
 
 export default function ListReducer(state = initialState, action) {
@@ -26,6 +27,12 @@ export default function ListReducer(state = initialState, action) {
         isFetching: false
         //contacts: action.data
       };
+    case types.INCREMENT_COUNTER:
+      return {
+        ...state,
+        counter: state.counter + 1
+        //contacts: action.data
+      };
     default:
       return state;
   }
@@ -36,5 +43,12 @@ export function getRestaurantList() {
   return {
     type: types.GET_RESTAURANT_LIST,
     payload: null
+  };
+}
+
+export function incrementCounter(count) {
+  return {
+    type: types.INCREMENT_COUNTER,
+    payload: count
   };
 }

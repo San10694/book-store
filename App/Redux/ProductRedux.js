@@ -5,6 +5,8 @@ const initialState = {
     bannerList: null,
     categories: null,
     productDetails: null,
+    showPopup: true,
+    isCancellClicked: false
     // productDetail: null
 };
 
@@ -47,6 +49,13 @@ export default function ProductReducer(state = initialState, action) {
                 ...state,
                 isFetching: false,
             };
+        case types.SAVE_POPUP_FLAG:
+            return {
+                ...state,
+                isFetching: false,
+                showPopup: payload,
+                isCancellClicked: true
+            };
 
         default:
             return state;
@@ -70,6 +79,13 @@ export function getCategories() {
 export function getProducts(flag) {
     return {
         type: types.GET_PRODUCTS,
+        payload: flag
+    };
+}
+
+export function savePopupFlag(flag) {
+    return {
+        type: types.SAVE_POPUP_FLAG,
         payload: flag
     };
 }

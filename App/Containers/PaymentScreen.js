@@ -68,7 +68,7 @@ class PaymentScreen extends Component {
                     contact: user_data.phone,//'9140631442',
                     name: 'Razorpay Software'
                 },
-                theme: { color: '#F37254' }
+                theme: { color: Colors.primary }
             }
             RazorpayCheckout.open(options).then((data) => {
                 console.log("Rajor pay sucess ", data)

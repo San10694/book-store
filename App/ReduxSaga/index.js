@@ -10,7 +10,7 @@ const api = Api.Api();
 
 
 export default function* root() {
-  yield takeLatest(types.GET_RESTAURANT_LIST, _getRestaurantList);
+  // yield takeLatest(types.GET_RESTAURANT_LIST, _getRestaurantList);
   yield takeLatest(types.GET_BANNER_LIST, _getBannerList, api);
   yield takeLatest(types.GET_CATEGORIES, getCategories, api);
   yield takeLatest(types.GET_PRODUCTS, getProducts, api);

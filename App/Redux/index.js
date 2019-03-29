@@ -7,7 +7,7 @@ import UserAddressReducer from './UserAddressRedux';
 import WishListReducer from "./WishListRedux";
 
 const rootReducer = combineReducers({
-  restaurantList: ListReducer,
+  list: ListReducer,
   product: ProductReducer,
   cartItems: CartReducer,
   wishList: WishListReducer,

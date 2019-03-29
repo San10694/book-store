@@ -53,7 +53,7 @@ class AddAdressScreen extends Component {
     }
 
     componentDidMount() {
-        //this.props.getRestaurantList();
+
     }
 
     // onUsernameEditHandle = (name) => {

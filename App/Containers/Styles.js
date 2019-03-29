@@ -72,7 +72,7 @@ export default {
         marginBottom: 5
     },
     advrCardSection: {
-        backgroundColor: 'transparent',
+        // backgroundColor: 'transparent',
         padding: 0,
         width: width * 0.80,
         borderWidth: 4.0,

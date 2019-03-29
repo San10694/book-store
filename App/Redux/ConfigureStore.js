@@ -11,7 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage: storage,
-  blacklist: ["invoice"], // invoice will not be persisted
+  blacklist: ["list"], // invoice will not be persisted
   debug: true //to get useful logging
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);

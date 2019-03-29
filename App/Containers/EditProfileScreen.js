@@ -60,12 +60,7 @@ class EditProfileScreen extends Component {
 
     }
 
-    componentDidMount() {
-        //this.props.getRestaurantList();
-        this.setState({
 
-        })
-    }
 
 
     validate(text, type) {

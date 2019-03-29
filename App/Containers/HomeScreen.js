@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Image, ScrollView, AsyncStorage } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView, Alert, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ripple from 'react-native-material-ripple';
-import { getRestaurantList } from "../Redux/ListRedux";
-import { getBannerList, getCategories, getProducts } from "../Redux/ProductRedux";
+import { incrementCounter } from "../Redux/ListRedux";
+import { getBannerList, getCategories, getProducts, savePopupFlag } from "../Redux/ProductRedux";
 import Fonts from '../Themes/Fonts';
 import { CardSection } from '../Components/CardSection';
 import { Card } from '../Components/Card';
@@ -37,6 +37,9 @@ const _categories = [
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      conter: 0
+    }
   }
 
 
@@ -44,12 +47,42 @@ class HomeScreen extends Component {
 
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const { user } = this.props.user;
+    const { showPopup, isCancellClicked } = this.props.product
     this.props.resetLoader();
     this.props.getBannerList();
     this.props.getCategories();
     this.props.getProducts(1);
-    this.props.user.user && this.props.user.user.user_data != null ? AsyncStorage.setItem('name', this.props.user.user.user_data.name) : null;
+    user && user.user_data != null ?
+      AsyncStorage.setItem('name', user.user_data.name) : null;
+    console.log(" showw counter----", this.props.list.counter)
+    if (showPopup && !isCancellClicked && this.props.list.counter === 0) {
+      console.log(" showw----")
+      setTimeout(() => {
+        this.showPopup();
+        this.setState({ conter: 1 })
+        this.props.incrementCounter(1)
+      }, 1000)
+    }
+
+  }
+
+  showPopup() {
+    Alert.alert(
+      '',
+      'In case If you do not find books on our app, you can raise a request by clicking on request books option on the left side of the sidebar menu.',
+      [
+        { text: "Don't show again", onPress: () => this.props.savePopupFlag(false) },
+        {
+          //   text: 'Cancel',
+          //   onPress: () => console.log('Cancel Pressed'),
+          //   style: 'cancel',
+        },
+        { text: 'Close', onPress: () => console.log('OK Pressed') },
+      ],
+      { cancelable: false },
+    );
   }
 
   onPress(item) {
@@ -59,8 +92,6 @@ class HomeScreen extends Component {
   limitChar(text, count = 30) {
     return text.slice(0, count) + (text.length > count ? "..." : "");
   }
-
-
 
 
   render() {
@@ -171,10 +202,10 @@ class HomeScreen extends Component {
 
 
 const mapStateToProps = state => {
-  const { restaurantList, product, user } = state;
+  const { list, product, user } = state;
   console.log("USER Details- ", user);
   return {
-    restaurantList,
+    list,
     product,
     user
   };
@@ -182,11 +213,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRestaurantList: () => dispatch(getRestaurantList()),
     getBannerList: () => dispatch(getBannerList()),
     getCategories: () => dispatch(getCategories()),
     getProducts: (flag) => dispatch(getProducts(flag)),
     resetLoader: () => dispatch(resetLoader()),
+    savePopupFlag: (flag) => dispatch(savePopupFlag(flag)),
+    incrementCounter: (count) => dispatch(incrementCounter(count)),
+
   };
 };
 
