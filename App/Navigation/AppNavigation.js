@@ -161,14 +161,14 @@ hile using the drawer navigator inside stack navigator.*/
         // header: null
       }
     },
-    LoginScreen: {
-      name: "LoginScreen",
-      description: "LoginScreen",
-      screen: LoginScreen,
-      navigationOptions: {
-        title: "Login Screen"
-      }
-    },
+    // LoginScreen: {
+    //   name: "LoginScreen",
+    //   description: "LoginScreen",
+    //   screen: LoginScreen,
+    //   navigationOptions: {
+    //     title: "Login Screen"
+    //   }
+    // },
     OrderScreen: {
       name: "OrderScreen",
       description: "OrderScreen",
@@ -233,7 +233,7 @@ hile using the drawer navigator inside stack navigator.*/
       description: "AboutScreen",
       screen: AboutScreen,
       navigationOptions: {
-        title: "About Screen"
+        title: "About Us"
       }
     },
     PrivacyScreen: {

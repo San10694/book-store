@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-navigation';
 const api = Api.Api();
 
 const paymentTypes = [
-    { selected: false, type: 'Rajor Pay ', value: 'rajor_pay' },
+    { selected: false, type: 'Credit/Debit Card, UPI', value: 'rajor_pay' },
     { selected: false, type: 'Cash on Delivery', value: 'cod' },
 ];
 class PaymentScreen extends Component {
@@ -38,7 +38,7 @@ class PaymentScreen extends Component {
     }
 
     selectPaymentMethod(index, value, paymentType) {
-        console.log('paymentType ', paymentType)
+        // console.log('paymentType ', paymentType)
         this.setState({
             isSelect: true,
             paymentType: paymentType.value
@@ -47,8 +47,8 @@ class PaymentScreen extends Component {
 
     placeOrder() {
         const { orderDetails, amount, updatedAmount } = this.state;
-        console.log('this.state.orderDetails -', orderDetails);
-        console.log('this.state.amount -', amount);
+        // console.log('this.state.orderDetails -', orderDetails);
+        // console.log('this.state.amount -', amount);
         const { user } = this.props.user;
         const { user_data } = user;
         if (this.state.isSelect === false) {
@@ -71,7 +71,7 @@ class PaymentScreen extends Component {
                 theme: { color: Colors.primary }
             }
             RazorpayCheckout.open(options).then((data) => {
-                console.log("Rajor pay sucess ", data)
+                // console.log("Rajor pay sucess ", data)
                 this.showToast("payment successfull.");
                 let orderObj = {
                     customer_id: orderDetails.customer_id,
@@ -81,7 +81,7 @@ class PaymentScreen extends Component {
                 }
                 orderObj.payment_key = data.razorpay_payment_id;
                 api.orderPlacePayment(orderObj).then(response => {
-                    console.log("orderPlacePayment Response --", response);
+                    // console.log("orderPlacePayment Response --", response);
                     // this.setState({ ref_id: response.data.ref_id })
                     this.showToast(response.data ? response.data.message : null);
                     this.props.clearCartItem()
@@ -89,7 +89,7 @@ class PaymentScreen extends Component {
                 })
 
             }).catch((error) => {
-                console.log("Rajor pay Error ", error)
+                // console.log("Rajor pay Error ", error)
                 // handle failure
                 alert(`Error: ${error.code} | ${error.description}`);
             });
@@ -112,7 +112,7 @@ class PaymentScreen extends Component {
 
             }
             api.orderPlace(orderObj).then(response => {
-                console.log("COD Response --", response);
+                // console.log("COD Response --", response);
                 this.showToast(response.data ? response.data.message : null);
                 // this.setState({ ref_id: response.data.ref_id })
                 this.props.clearCartItem()
@@ -131,43 +131,6 @@ class PaymentScreen extends Component {
     }
 
 
-    _onNavigationStateChange(webViewState) {
-        console.log("webViewState ", webViewState)
-
-    }
-
-    onLoadEnd(event) {
-        console.log("onLoadEnd ", event)
-        event.persist()
-
-    }
-
-
-    onMessage(e) {
-        console.log(" onMessage Event ", e)
-        // retrieve event data
-        var data = e.nativeEvent.data;
-        // maybe parse stringified JSON
-        try {
-            data = JSON.parse(data)
-        } catch (e) {
-            console.error("onMessage Error - ", e);
-        }
-        // check if this message concerns us
-        if ('object' == typeof data && data.external_url_open) {
-            // proceed with URL open request
-            return Alert.alert(
-                'External URL',
-                'Do you want to open this URL in your browser?',
-                [
-                    { text: 'Cancel', style: 'cancel' },
-                    { text: 'OK', onPress: () => Linking.openURL(data.external_url_open) },
-                ],
-                { cancelable: false }
-            );
-        }
-    }
-
     applyPromo() {
         const { orderDetails, amount, couponCode, appliedCouponCode } = this.state;
         if (couponCode) {
@@ -183,7 +146,7 @@ class PaymentScreen extends Component {
                 couponCode: couponCode,
             }
             api.getCoupons(data).then(response => {
-                console.log("getCoupons response --", response);
+                // console.log("getCoupons response --", response);
                 this.setState({ couponCode: null });
                 const { data } = response ? response : null;
                 if (data && data.error === '000000' && data.data.discount_amount) {

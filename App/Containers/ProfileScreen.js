@@ -10,12 +10,12 @@ import { connect } from 'react-redux';
 
 const menuItems =
   [
-    { 'title': 'Cart', 'route': 'CartScreen' },
-    { 'title': 'WishList', 'route': 'WishListScreen' },
+    { 'title': 'Cart', 'route': 'CartScreen', 'icon': 'cart-outline' },
+    { 'title': 'WishList', 'route': 'WishListScreen', 'icon': 'heart-outline' },
     // { 'title': 'Contact Us', 'route': 'ContactScreen' },
     // { 'title': 'Privacy Polices', 'route': 'PrivacyScreen' },
     // { 'title': 'Terms & Conditions', 'route': 'TermsScreen' },
-    { 'title': 'About Us', 'route': 'AboutScreen' },
+    { 'title': 'About Us', 'route': 'AboutScreen', 'icon': 'book-open-outline' },
   ]
 class ProfileScreen extends Component {
 
@@ -82,18 +82,24 @@ class ProfileScreen extends Component {
                     this.props.navigation.navigate("MyAccount");
                   }}
                 >
-                  <Text style={styles.textItem}>
-                    My Account
+                  <View style={{ flexDirection: 'row', }}>
+                    <Icon style={{ marginRight: 10 }} name={"account-outline"} size={22} color={Colors.primary}></Icon>
+                    <Text style={styles.textItem}>
+                      My Account
                   </Text>
+                  </View>
                 </Ripple>
                 <Ripple style={styles.menuItem}
                   onPress={() => {
                     this.props.navigation.navigate("OrderScreen");
                   }}
                 >
-                  <Text style={styles.textItem}>
-                    My Orders
+                  <View style={{ flexDirection: 'row', }}>
+                    <Icon style={{ marginRight: 10 }} name={"history"} size={22} color={Colors.primary}></Icon>
+                    <Text style={styles.textItem}>
+                      My Orders
                </Text>
+                  </View>
                 </Ripple>
               </View> : null
 
@@ -103,9 +109,12 @@ class ProfileScreen extends Component {
                 <Ripple key={index} style={styles.menuItem}
                   onPress={() => this.props.navigation.navigate(item.route)}
                 >
-                  <Text style={styles.textItem}>
-                    {item.title}
-                  </Text>
+                  <View style={{ flexDirection: 'row', }}>
+                    <Icon style={{ marginRight: 10 }} name={item.icon} size={22} color={Colors.primary}></Icon>
+                    <Text style={styles.textItem}>
+                      {item.title}
+                    </Text>
+                  </View>
                 </Ripple>
               )
             })

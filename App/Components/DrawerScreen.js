@@ -22,10 +22,10 @@ import { logout } from "../Redux/UserRedux";
 const phoneNumber = 8147464241;
 
 const menuItems =
-  [{ 'title': 'SHOP', 'route': 'Home' },
-  { 'title': 'CATEGORY', 'route': 'Categories' },
-  { 'title': 'REQUEST/ RETURN', 'route': 'ReturnScreen' },
-  { 'title': 'ABOUT US', 'route': 'AboutScreen' },
+  [{ 'title': 'SHOP', 'route': 'Home', 'icon': 'shopping' },
+  { 'title': 'CATEGORY', 'route': 'Categories', 'icon': 'apps' },
+  { 'title': 'REQUEST/ EXCHANGE', 'route': 'ReturnScreen', 'icon': 'message-outline' },
+  { 'title': 'ABOUT US', 'route': 'AboutScreen', 'icon': 'book-open-outline' },
     // { 'title': 'Contact Us', 'route': '' },
     //{ 'title': 'LOGIN', 'route': 'LoginScreen' },
   ]
@@ -39,6 +39,10 @@ class DrawerScreen extends Component {
     }
 
   }
+
+  // shouldComponentUpdate() {
+  //   return false
+  // }
 
   navigateToScreen(route) {
     const navigateAction = NavigationActions.navigate({
@@ -64,6 +68,28 @@ class DrawerScreen extends Component {
   // Linking.openURL(`tel:${phoneNumber}`);
 
   // }
+
+
+  logout() {
+    Alert.alert(
+      '',
+      'Are you sure you want to logout ?',
+      [
+        {
+          text: 'Cancel',
+          onPress: console.log('cancel'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK', onPress: () => {
+            this.navigateToScreen("LoginScreen");
+            this.props.logout()
+          }
+        },
+      ],
+      { cancelable: false }
+    );
+  }
 
 
   render() {
@@ -93,9 +119,12 @@ class DrawerScreen extends Component {
                 <Ripple key={index} style={styles.menuItem} onPress={() => {
                   this.navigateToScreen(item.route)
                 }}>
-                  <Text style={styles.textItem}>
-                    {item.title}
-                  </Text>
+                  <View style={{ flexDirection: 'row', }}>
+                    <Icon style={{ marginRight: 10 }} name={item.icon} size={22} color={Colors.primary}></Icon>
+                    <Text style={styles.textItem}>
+                      {item.title}
+                    </Text>
+                  </View>
                 </Ripple>
               )
             })
@@ -106,47 +135,36 @@ class DrawerScreen extends Component {
                   this.makePhoneCall()
                 }}
               >
-                <Text style={styles.textItem}>
-                  CONTACT US
+                <View style={{ flexDirection: 'row', }}>
+                  <Icon style={{ marginRight: 10 }} name={"phone"} size={22} color={Colors.primary}></Icon>
+                  <Text style={styles.textItem}>
+                    CONTACT US
                 </Text>
+                </View>
               </Ripple>
             }
             {user && this.props.user.isLoggedIn ?
               <Ripple style={styles.menuItem}
-                onPress={() => {
-
-                  Alert.alert(
-                    '',
-                    'Are you sure you want to logout ?',
-                    [
-                      {
-                        text: 'Cancel',
-                        onPress: console.log('cancel'),
-                        style: 'cancel',
-                      },
-                      {
-                        text: 'OK', onPress: () => {
-                          this.navigateToScreen("LoginScreen");
-                          this.props.logout()
-                        }
-                      },
-                    ],
-                    { cancelable: false }
-                  );
-                }}
+                onPress={() => { this.logout() }}
               >
-                <Text style={styles.textItem}>
-                  LOGOUT
+                <View style={{ flexDirection: 'row', }}>
+                  <Icon style={{ marginRight: 10 }} name={"logout"} size={22} color={Colors.primary}></Icon>
+                  <Text style={styles.textItem}>
+                    LOGOUT
                   </Text>
+                </View>
               </Ripple> :
               <Ripple style={styles.menuItem}
                 onPress={() => {
                   this.navigateToScreen("LoginScreen");
                 }}
               >
-                <Text style={styles.textItem}>
-                  LOGIN
+                <View style={{ flexDirection: 'row', }}>
+                  <Icon style={{ marginRight: 10 }} name={"login"} size={22} color={Colors.primary}></Icon>
+                  <Text style={styles.textItem}>
+                    LOGIN
                   </Text>
+                </View>
               </Ripple>
             }
           </View>
@@ -227,10 +245,10 @@ const styles = StyleSheet.create({
   }
 });
 
-// use native component for drawer
-// import { DrawerItems, SafeAreaView } from "react-navigation";
+      // use native component for drawer
+// import {DrawerItems, SafeAreaView } from "react-navigation";
 
-// const CustomDrawerContentComponent = props => (
+          // const CustomDrawerContentComponent = props => (
 //   <ScrollView>
 //     <SafeAreaView
 //       style={styles.container}
