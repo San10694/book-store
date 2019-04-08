@@ -54,7 +54,7 @@ class PaymentScreen extends Component {
         const { user } = this.props.user;
         const { user_data } = user;
         if (this.state.isSelect === false) {
-            Alert.alert('Please,', 'Select Payment Type !', [{ text: 'OK', onPress: () => console.log('ok') }], {
+            Alert.alert('', 'Please Select Payment Type', [{ text: 'OK', onPress: () => console.log('ok') }], {
                 canceLabel: false,
             });
         } else if (this.state.paymentType === 'rajor_pay') {
@@ -236,7 +236,14 @@ class PaymentScreen extends Component {
                                 <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Grand Total :</Text>
                                 <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.grandTotal}</Text>
                             </View>
-                            <View style={{ backgroundColor: Colors.white, paddingVertical: 20 }}>
+                            <View style={{
+                                // backgroundColor: Colors.white,
+                                paddingVertical: 20,
+                                margin: 10,
+                                borderWidth: 0.5,
+                                borderRadius: 5,
+                                borderColor: Colors.charcoal
+                            }}>
                                 <RadioGroup
                                     size={20}
                                     thickness={2}
@@ -246,10 +253,11 @@ class PaymentScreen extends Component {
                                 >
                                     {paymentTypes.map(paymentType => {
                                         return (
-                                            <RadioButton value={paymentType.type} key={paymentType.type}>
+                                            <RadioButton style={{ marginHorizontal: 5, }} value={paymentType.type} key={paymentType.type}>
                                                 <View style={{
                                                     marginLeft: 10,
-                                                    paddingBottom: 20
+                                                    paddingBottom: 20,
+                                                    // paddingVertical: 10
                                                 }}>
                                                     <Text style={{ width: '100%' }}>{paymentType.type}</Text>
                                                 </View>
@@ -308,7 +316,7 @@ class PaymentScreen extends Component {
     getCoupons(Coupons) {
         return Coupons.map((item, index) => {
             return (
-                <View style={{
+                <View key={index} style={{
                     paddingLeft: 20,
                     width: 300,
                     marginVertical: 5,
