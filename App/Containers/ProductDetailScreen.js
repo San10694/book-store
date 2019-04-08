@@ -56,7 +56,7 @@ class ProductDetailScreen extends Component {
   componentDidMount() {
     // this.setState({ productDetail: this.props.navigation.state.params.product })
     api.getProductDetails(this.state.id).then(response => {
-      // console.log("getProductDetails--", response, "--id ", this.state.id);
+      console.log("getProductDetails--", response, "--id ", this.state.id);
       const { data } = response ? response.data : []
       this.setState({ productDetail: data[0] })
     })
@@ -139,7 +139,7 @@ class ProductDetailScreen extends Component {
               style={Styles.detailBottomButton}
               onPress={() => this.addProductToCart()}
             >
-              <Text style={Styles.btnText}>Buy Now</Text>
+              <Text style={Styles.btnText}>Add to Cart</Text>
             </Ripple>
           </View>
         </View >

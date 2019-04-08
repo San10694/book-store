@@ -26,22 +26,26 @@ class SubSubCategoryScreen extends Component {
 
         this.state = {
             category_sub_group_id: props.navigation.state.params.category_sub_group_id,
-            subCategories: []
+            subCategories: [],
+            isFetching: false
         }
     }
 
     componentDidMount() {
+        this.setState({ isFetching: true })
         api.getChildCategories(this.state.category_sub_group_id).then(response => {
             const { data } = response ? response.data : []
-            this.setState({ subCategories: data })
+            this.setState({ subCategories: data });
+            this.setState({ isFetching: false })
+
             // console.log("child--SubCategories - ", response);
         })
     }
 
     render() {
-        const { subCategories } = this.state
+        const { subCategories, isFetching } = this.state;
         const { categories } = this.props.product
-        if (subCategories.length < 1) {
+        if (subCategories.length < 1 && !isFetching) {
             return (
                 <View style={{ flex: 1, paddingTop: 20, alignItems: 'center' }}>
                     <Text style={{ fontSize: 18, fontWeight: '600', color: Colors.primary }}>There is no any product. </Text>

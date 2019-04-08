@@ -299,12 +299,12 @@ hile using the drawer navigator inside stack navigator.*/
       ),
       headerStyle: {
         backgroundColor: Colors.lightGrey,
-        elevation: navigation.state.routeName === 'DrawerNavigator' ? 0 : 1
-
+        elevation: navigation.state.routeName === 'DrawerNavigator' ? 0 : 1,
       },
       headerTintColor: Colors.Text,
       headerTitleStyle: {
-        fontWeight: "400"
+        fontWeight: "400",
+        marginLeft: -15
       }
     })
   }

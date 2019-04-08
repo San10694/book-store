@@ -23,7 +23,7 @@ const phoneNumber = 8147464241;
 
 const menuItems =
   [{ 'title': 'SHOP', 'route': 'Home', 'icon': 'shopping' },
-  { 'title': 'CATEGORY', 'route': 'Categories', 'icon': 'apps' },
+  // { 'title': 'CATEGORY', 'route': 'Categories', 'icon': 'apps' },
   { 'title': 'REQUEST/ EXCHANGE', 'route': 'ReturnScreen', 'icon': 'message-outline' },
   { 'title': 'ABOUT US', 'route': 'AboutScreen', 'icon': 'book-open-outline' },
     // { 'title': 'Contact Us', 'route': '' },
