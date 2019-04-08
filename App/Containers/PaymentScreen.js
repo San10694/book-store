@@ -32,7 +32,9 @@ class PaymentScreen extends Component {
             couponCode: null,
             promo_id: '',
             discount_amount: null,
+            shippingCharges: 49,
             updatedAmount: 0,
+            grandTotal: props.navigation.state.params.amount + 49,
             appliedCouponCode: null
         }
     }
@@ -46,7 +48,7 @@ class PaymentScreen extends Component {
     }
 
     placeOrder() {
-        const { orderDetails, amount, updatedAmount } = this.state;
+        const { orderDetails, grandTotal, amount, updatedAmount } = this.state;
         // console.log('this.state.orderDetails -', orderDetails);
         // console.log('this.state.amount -', amount);
         const { user } = this.props.user;
@@ -61,7 +63,7 @@ class PaymentScreen extends Component {
                 image: 'https://i.imgur.com/3g7nmJC.png',
                 currency: 'INR',
                 key: 'rzp_test_pGs9haNVuQh2Cz',
-                amount: updatedAmount ? updatedAmount * 100 : amount * 100,
+                amount: grandTotal * 100,
                 name: 'foo',
                 prefill: {
                     email: user_data.email,//'san10694@gmail.com',
@@ -154,6 +156,7 @@ class PaymentScreen extends Component {
                     let updatedAmount = amount - data.data.discount_amount;
                     this.setState({
                         updatedAmount: updatedAmount,
+                        grandTotal: updatedAmount + 49,
                         promo_id: data.data.promo_id,
                         discount_amount: data.data.discount_amount,
                         appliedCouponCode: data.data.code
@@ -162,6 +165,7 @@ class PaymentScreen extends Component {
                 else {
                     this.setState({
                         updatedAmount: amount,
+                        grandTotal: amount + 49,
                         promo_id: '',
                         discount_amount: null,
                         appliedCouponCode: null
@@ -202,28 +206,36 @@ class PaymentScreen extends Component {
             <SafeAreaView style={{ flex: 1, backgroundColor: Colors.lightGrey }}>
                 <View style={styles.container}>
                     <ScrollView >
-                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "position"} enabled>
-                            <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "position" : "padding"} enabled>
+                            <View style={{ paddingHorizontal: 10, paddingVertical: 5, justifyContent: 'space-between', flexDirection: 'row' }}>
                                 <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Total Price :</Text>
                                 <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.amount}</Text>
+                            </View>
+                            <View style={{ paddingHorizontal: 10, paddingVertical: 5, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Shipping :</Text>
+                                <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.shippingCharges}</Text>
                             </View>
                             {
                                 this.state.discount_amount ?
                                     <View>
-                                        <View style={{ padding: 10 }}>
+                                        <View style={{ paddingHorizontal: 10, paddingVertical: 5 }}>
                                             <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '400' }}>Coupon Applied Successfully</Text>
                                             {/* <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee} {this.state.discount_amount}</Text> */}
                                         </View>
-                                        <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        <View style={{ paddingHorizontal: 10, paddingVertical: 5, justifyContent: 'space-between', flexDirection: 'row' }}>
                                             <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Discount Price :</Text>
                                             <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}> - {Constants.rupee}{this.state.discount_amount}</Text>
                                         </View>
-                                        <View style={{ padding: 10, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                        {/* <View style={{ paddingHorizontal: 10, paddingVertical: 5, justifyContent: 'space-between', flexDirection: 'row' }}>
                                             <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Updated Price :</Text>
                                             <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.updatedAmount}</Text>
-                                        </View>
+                                        </View> */}
                                     </View> : null
                             }
+                            <View style={{ paddingHorizontal: 10, paddingVertical: 5, justifyContent: 'space-between', flexDirection: 'row' }}>
+                                <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500' }}>Grand Total :</Text>
+                                <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>{Constants.rupee}{this.state.grandTotal}</Text>
+                            </View>
                             <View style={{ backgroundColor: Colors.white, paddingVertical: 20 }}>
                                 <RadioGroup
                                     size={20}
@@ -271,6 +283,11 @@ class PaymentScreen extends Component {
                                     <Text style={Styles.btnText}>Apply</Text>
                                 </Ripple>
                             </View>
+                            <Text style={{ fontSize: Fonts.size.medium_15, fontWeight: '500', marginLeft: 10 }}>Available Offers : </Text>
+
+                            {
+                                this.getCoupons(this.props.product.banner.offers)
+                            }
                         </KeyboardAvoidingView>
                     </ScrollView>
                     <View style={Styles.checkoutContainer}>
@@ -287,12 +304,36 @@ class PaymentScreen extends Component {
             </SafeAreaView>
         );
     }
+
+    getCoupons(Coupons) {
+        return Coupons.map((item, index) => {
+            return (
+                <View style={{
+                    paddingLeft: 20,
+                    width: 300,
+                    marginVertical: 5,
+                    marginLeft: 10,
+                    paddingVertical: 5,
+                    borderWidth: 0.5,
+                    borderRadius: 5,
+                    borderColor: Colors.primary
+                }}>
+                    <Text style={{ fontSize: Fonts.size.medium_15 }}>{item.name} </Text>
+                    <Text style={{ fontSize: Fonts.size.medium_15, color: Colors.primary, fontWeight: '500' }}>CODE : {item.code}</Text>
+                    <Text style={{ fontSize: Fonts.size.medium_15, }}> {item.description}</Text>
+                </View>
+            )
+        })
+    }
 }
 
+
+
 const mapStateToProps = state => {
-    const { user } = state;
+    const { user, product } = state;
     return {
-        user
+        user,
+        product
     };
 
 };
@@ -308,8 +349,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(PaymentScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.lightGrey,
-        paddingBottom: 100
+        backgroundColor: Colors.white,
+        paddingBottom: Platform.OS == "ios" ? 100 : 60
 
     },
     welcome: {
