@@ -53,10 +53,13 @@ PODS:
   - react-native-splash-screen (3.2.0):
     - React
   - React/Core (0.11.0)
+  - RNSnackbar (0.5.5):
+    - React
 
 DEPENDENCIES:
   - Firebase/Core (~> 5.15.0)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
+  - RNSnackbar (from `../node_modules/react-native-snackbar`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -72,6 +75,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   react-native-splash-screen:
     :path: "../node_modules/react-native-splash-screen"
+  RNSnackbar:
+    :path: "../node_modules/react-native-snackbar"
 
 SPEC CHECKSUMS:
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
@@ -83,7 +88,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   React: ab1a2e21deb34965c38328d5ec40cc7d12c6050a
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
+  RNSnackbar: c920346cb15353b898d0ace0ccd95e67264dcafd
 
-PODFILE CHECKSUM: 9df844e6f9590392869cd3ed3cfefb47b0d9bed8
+PODFILE CHECKSUM: cb3e387635320e4fdef38395f73a51a3a5ebd526
 
 COCOAPODS: 1.6.0

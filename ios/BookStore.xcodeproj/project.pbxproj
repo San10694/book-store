@@ -52,7 +52,6 @@
 		762B382B2233AD71009C5A88 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B37F42233ACD6009C5A88 /* libRNFirebase.a */; };
 		76696B4022429CCB00886EB5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76696B3F22429CCB00886EB5 /* Launch Screen.storyboard */; };
 		7692F3162233CA9600D77232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7692F2ED2233CA9600D77232 /* GoogleService-Info.plist */; };
-		769E6296223ED10A00EA4B69 /* libRNSnackbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6295223ED0F000EA4B69 /* libRNSnackbar.a */; };
 		769E6297223ED11200EA4B69 /* libRazorpayCheckout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6267223ED05300EA4B69 /* libRazorpayCheckout.a */; };
 		769E629A223ED37F00EA4B69 /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 769E6298223ED37F00EA4B69 /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76F5C2A0224E926C0023D75C /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F5C29F224E92430023D75C /* libSplashScreen.a */; };
@@ -484,7 +483,6 @@
 			files = (
 				76F5C2A0224E926C0023D75C /* libSplashScreen.a in Frameworks */,
 				769E6297223ED11200EA4B69 /* libRazorpayCheckout.a in Frameworks */,
-				769E6296223ED10A00EA4B69 /* libRNSnackbar.a in Frameworks */,
 				762B382B2233AD71009C5A88 /* libRNFirebase.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
